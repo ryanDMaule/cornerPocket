@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_purple_blue"
+    tools:context=".GameDetailsFragment">
+
+    <!-- DATE / TIME SECTION -->
+    <TextView
+        android:id="@+id/date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10th April, 2024"/>
+
+    <TextView
+        android:id="@+id/game_duration_title"
+        style="@style/greyText"
+        android:layout_marginTop="12dp"
+        android:text="@string/game_duration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_title" />
+
+    <TextView
+        android:id="@+id/game_duration_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_duration_title"
+        tools:text="6:37" />
+
+    <!-- SPLIT SECTION -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/versusBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/game_duration_text">
+
+        <!-- USER SECTION -->
+        <ImageView
+            android:id="@+id/user_crown"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:src="@drawable/crown_img"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintStart_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/crown"/>
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/user_icon_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_crown"
+            android:contentDescription="@string/user_icon_blue"/>
+
+        <TextView
+            android:id="@+id/user_text"
+            style="@style/smallCapsText"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintStart_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toBottomOf="@+id/user_image"
+            tools:text="Ryan" />
+
+        <TextView
+            android:id="@+id/vs_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vs"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/user_image"
+            app:layout_constraintEnd_toStartOf="@+id/opponent_image"
+            app:layout_constraintStart_toEndOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="@+id/user_image" />
+
+        <!-- OPPONENT SECTION -->
+        <ImageView
+            android:id="@+id/opponent_crown"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:src="@drawable/crown_img"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintStart_toStartOf="@+id/opponent_image"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/crown"
+            tools:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/opponent_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/opponent_icon_purple"
+            android:src="@drawable/user_icon_purple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/opponent_text"
+            style="@style/smallCapsText"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintStart_toStartOf="@+id/opponent_image"
+            app:layout_constraintTop_toBottomOf="@+id/opponent_image"
+            tools:text="Kieron" />
+
+        <!-- WINNING METHOD SECTION -->
+        <TextView
+            android:id="@+id/winner_via_title"
+            style="@style/greyText"
+            android:layout_marginTop="24dp"
+            android:text="@string/winner_via"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_text" />
+
+        <TextView
+            android:id="@+id/winning_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/winner_via_title"
+            tools:text="Standard win" />
+
+        <ImageView
+            android:id="@+id/divider_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/divider_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/winning_method"
+            android:contentDescription="@string/divider"/>
+
+        <!-- STATS SECTION -->
+
+        <!-- RECORD HEADING -->
+        <TextView
+            android:id="@+id/record_title"
+            style="@style/greyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/record"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_1" />
+
+        <ImageView
+            android:id="@+id/user_up_arrow"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/up_arrow_green"
+            app:layout_constraintBottom_toTopOf="@+id/user_record_text"
+            app:layout_constraintEnd_toEndOf="@+id/user_record_text"
+            app:layout_constraintStart_toStartOf="@+id/user_record_text"
+            android:contentDescription="@string/up_arrow"/>
+
+        <TextView
+            android:id="@+id/user_record_text"
+            style="@style/smallCapsText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/record_title"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintStart_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="@+id/record_title"
+            tools:text="1" />
+
+        <ImageView
+            android:id="@+id/opponent_up_arrow"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/up_arrow_green"
+            app:layout_constraintBottom_toTopOf="@+id/user_record_text"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_record_text"
+            app:layout_constraintStart_toStartOf="@+id/opponent_record_text"
+            android:contentDescription="@string/up_arrow"
+            tools:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/opponent_record_text"
+            style="@style/smallCapsText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/record_title"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintStart_toStartOf="@+id/opponent_image"
+            app:layout_constraintTop_toTopOf="@+id/record_title"
+            tools:text="3" />
+
+        <!-- BREAK HEADING -->
+        <TextView
+            android:id="@+id/broke_title"
+            style="@style/greyText"
+            android:layout_marginTop="40dp"
+            android:text="@string/broke"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/record_title" />
+
+        <ImageView
+            android:id="@+id/user_broke_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/tick_green"
+            app:layout_constraintBottom_toBottomOf="@+id/broke_title"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintStart_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="@+id/broke_title"
+            android:contentDescription="@string/tick"/>
+
+        <ImageView
+            android:id="@+id/opponent_broke_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/tick_green"
+            app:layout_constraintBottom_toBottomOf="@+id/broke_title"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintStart_toStartOf="@+id/opponent_image"
+            app:layout_constraintTop_toTopOf="@+id/broke_title"
+            android:contentDescription="@string/tick"
+            tools:visibility="invisible"/>
+
+        <!-- BALLS PLAYED HEADING -->
+        <TextView
+            android:id="@+id/balls_played_title"
+            style="@style/greyText"
+            android:layout_marginTop="40dp"
+            android:text="@string/balls_played"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/broke_title" />
+
+        <ImageView
+            android:id="@+id/user_balls_played"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/red_ball_img"
+            app:layout_constraintBottom_toBottomOf="@+id/balls_played_title"
+            app:layout_constraintEnd_toEndOf="@+id/user_record_text"
+            app:layout_constraintStart_toStartOf="@+id/user_record_text"
+            app:layout_constraintTop_toTopOf="@+id/balls_played_title"
+            android:contentDescription="@string/red_ball"/>
+
+        <TextView
+            android:id="@+id/user_balls_played_text"
+            style="@style/smallCapsText"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintStart_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toBottomOf="@+id/user_balls_played"
+            tools:text="Red" />
+
+        <ImageView
+            android:id="@+id/opponent_balls_played"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/yellow_ball_img"
+            app:layout_constraintBottom_toBottomOf="@+id/balls_played_title"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_record_text"
+            app:layout_constraintStart_toStartOf="@+id/opponent_record_text"
+            app:layout_constraintTop_toTopOf="@+id/balls_played_title"
+            android:contentDescription="@string/yellow_ball"/>
+
+        <TextView
+            android:id="@+id/opponent_balls_played_text"
+            style="@style/smallCapsText"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintStart_toStartOf="@+id/opponent_image"
+            app:layout_constraintTop_toBottomOf="@+id/opponent_balls_played"
+            tools:text="YELLOW" />
+
+        <!-- BALLS LEFT HEADING -->
+        <TextView
+            android:id="@+id/balls_left_title"
+            style="@style/greyText"
+            android:layout_marginTop="40dp"
+            android:text="@string/balls_remaining"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balls_played_title" />
+
+        <TextView
+            android:id="@+id/user_balls_left_text"
+            style="@style/smallCapsText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/balls_left_title"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintStart_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="@+id/balls_left_title"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/opponent_balls_left_text"
+            style="@style/smallCapsText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/balls_left_title"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintStart_toStartOf="@+id/opponent_image"
+            app:layout_constraintTop_toTopOf="@+id/balls_left_title"
+            tools:text="3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- FINISH BUTTON -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton"
+        style="@style/mainButton"
+        android:text="@string/main_menu"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/versusBlock" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

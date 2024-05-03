@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_red_orange"
+    tools:context=".GameTypeFragment">
+
+    <!-- NAV SECTION -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topNavigationConstraint"
+        style="@style/navigationSection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/settings_button"
+            style="@style/iconSize"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/back_icon_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/back_icon"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- VERSUS SECTION
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/versusBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/topNavigationConstraint">
+
+        <TextView
+            android:id="@+id/user_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USER"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintStart_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="56dp"
+            android:src="@drawable/user_icon_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_text" />
+
+        <TextView
+            android:id="@+id/opponent_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OPPONENT"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintStart_toStartOf="@+id/opponent_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/opponent_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/user_icon_purple"
+            android:layout_marginEnd="56dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/opponent_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    -->
+
+    <TextView
+        android:id="@+id/rackTitle"
+        style="@style/TitleTextStyling"
+        android:text="@string/rack_them_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topNavigationConstraint" />
+
+    <!-- GAME TYPE PICKER -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gameTypeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rackTitle">
+
+        <TextView
+            android:id="@+id/englishGameTypeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/english"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/cyan"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/english_bar"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:background="@drawable/gradient_blue_purple"
+            android:contentDescription="@string/selected_bar"
+            app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/englishGameTypeText"
+            tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/middleGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/americanGameTypeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/american"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/middleGuideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:background="@color/white"
+            android:contentDescription="@string/unselected_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/middleGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/americanGameTypeText"
+            tools:ignore="RedundantDescriptionCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--
+
+    https://m2.material.io/components/tabs/android#using-tabs
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rackTitle">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ENGLISH"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AMERICAN"
+            />
+
+    </com.google.android.material.tabs.TabLayout>
+    -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:padding="64dp"
+        android:src="@drawable/english_setup"
+        app:layout_constraintBottom_toTopOf="@+id/materialButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameTypeContainer"
+        android:contentDescription="@string/english_rack"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton"
+        style="@style/mainButton"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

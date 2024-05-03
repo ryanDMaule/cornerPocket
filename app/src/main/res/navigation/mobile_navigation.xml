@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/playFragment">
+
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.example.cornerpocket.StatsFragment"
+        android:label="fragment_stats"
+        tools:layout="@layout/fragment_stats" />
+    <fragment
+        android:id="@+id/playFragment"
+        android:name="com.example.cornerpocket.PlayFragment"
+        android:label="fragment_play"
+        tools:layout="@layout/fragment_play" >
+        <action
+            android:id="@+id/action_playFragment_to_opponentSelectFragment"
+            app:destination="@id/opponentSelectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.cornerpocket.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/opponentSelectFragment"
+        android:name="com.example.cornerpocket.OpponentSelectFragment"
+        android:label="fragment_opponent_select"
+        tools:layout="@layout/fragment_opponent_select" >
+        <action
+            android:id="@+id/action_opponentSelectFragment_to_gameTypeFragment"
+            app:destination="@id/gameTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameTypeFragment"
+        android:name="com.example.cornerpocket.GameTypeFragment"
+        android:label="fragment_game_type"
+        tools:layout="@layout/fragment_game_type" >
+        <action
+            android:id="@+id/action_gameTypeFragment_to_breakSelectionFragment"
+            app:destination="@id/breakSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breakSelectionFragment"
+        android:name="com.example.cornerpocket.BreakSelectionFragment"
+        android:label="fragment_break_selection"
+        tools:layout="@layout/fragment_break_selection" >
+        <action
+            android:id="@+id/action_breakSelectionFragment_to_gameUnderwayFragment"
+            app:destination="@id/gameUnderwayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameUnderwayFragment"
+        android:name="com.example.cornerpocket.GameUnderwayFragment"
+        android:label="fragment_game_underway"
+        tools:layout="@layout/fragment_game_underway" >
+        <action
+            android:id="@+id/action_gameUnderwayFragment_to_gameReviewFragment"
+            app:destination="@id/gameReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameReviewFragment"
+        android:name="com.example.cornerpocket.GameReviewFragment"
+        android:label="fragment_game_review"
+        tools:layout="@layout/fragment_game_review" >
+        <action
+            android:id="@+id/action_gameReviewFragment_to_gameDetailsFragment"
+            app:destination="@id/gameDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameDetailsFragment"
+        android:name="com.example.cornerpocket.GameDetailsFragment"
+        android:label="fragment_game_details"
+        tools:layout="@layout/fragment_game_details" />
+</navigation>

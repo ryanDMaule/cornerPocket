@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">CornerPocket</string>
+    
+    <!-- PAGES -->
+    <string name="title_play">PLAY</string>
+    <string name="title_stats">STATS</string>
+    <string name="title_history">HISTORY</string>
+
+    <!-- TITLES -->
+    <string name="select_opponent">Select opponent</string>
+    <string name="rack_them_up">Rack em\' up</string>
+    <string name="who_breaks">Who \nbreaks?</string>
+    <string name="game_review">Game \nreview</string>
+    <string name="game_time">Game time</string>
+
+    <!-- GENERAL-->
+    <string name="tap_to_select">Tap to select*</string>
+    <string name="english">English</string>
+    <string name="american">American</string>
+    <string name="random">Random</string>
+    <string name="who_won">Who won?</string>
+    <string name="method_of_victory">METHOD OF VICTORY</string>
+    <string name="balls_played">Balls played</string>
+    <string name="red">Red</string>
+    <string name="yellow">Yellow</string>
+    <string name="balls_remaining">Balls remaining</string>
+    <string name="ellipses">…</string>
+    <string name="game_duration">Game duration</string>
+    <string name="vs">Vs</string>
+    <string name="winner_via">Winner via:</string>
+    <string name="record">Record</string>
+    <string name="broke">Broke</string>
+    <string name="main_menu">Main menu</string>
+
+    <!-- BUTTONS -->
+    <string name="start_game">Start game</string>
+    <string name="finish_game">Finish game</string>
+    <string name="next">Next</string>
+
+    <!-- CONTENT DESCRIPTIONS -->
+    <string name="settings_icon">Settings icon</string>
+    <string name="profile_icon">Profile icon</string>
+    <string name="profile_icon_red">Red profile icon</string>
+    <string name="user_icon_blue">Blue user icon</string>
+    <string name="opponent_icon_purple">Purple opponent icon</string>
+    <string name="back_icon">Back icon</string>
+    <string name="logo">Logo</string>
+    <string name="selected_bar">Selected bar</string>
+    <string name="unselected_bar">Unselected bar</string>
+    <string name="english_rack">English rack</string>
+    <string name="american_rack">American rack</string>
+    <string name="break_icon">Break icon</string>
+    <string name="random_icon">Random icon</string>
+    <string name="quit_icon">Quit icon</string>
+    <string name="info_icon">Info icon</string>
+    <string name="tick">Tick</string>
+    <string name="red_ball">Red ball</string>
+    <string name="yellow_ball">Yellow ball</string>
+    <string name="border">border</string>
+    <string name="crown">Crown</string>
+    <string name="divider">Divider</string>
+    <string name="up_arrow">Up arrow</string>
+
+
+</resources>
