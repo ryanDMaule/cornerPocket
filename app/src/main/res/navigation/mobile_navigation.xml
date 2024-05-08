@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_opponentSelectFragment_to_gameTypeFragment"
             app:destination="@id/gameTypeFragment" />
+        <action
+            android:id="@+id/action_opponentSelectFragment_to_playFragment"
+            app:destination="@id/playFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameTypeFragment"
@@ -41,6 +44,9 @@
         <action
             android:id="@+id/action_gameTypeFragment_to_breakSelectionFragment"
             app:destination="@id/breakSelectionFragment" />
+        <action
+            android:id="@+id/action_gameTypeFragment_to_opponentSelectFragment"
+            app:destination="@id/opponentSelectFragment" />
     </fragment>
     <fragment
         android:id="@+id/breakSelectionFragment"
@@ -50,6 +56,9 @@
         <action
             android:id="@+id/action_breakSelectionFragment_to_gameUnderwayFragment"
             app:destination="@id/gameUnderwayFragment" />
+        <action
+            android:id="@+id/action_breakSelectionFragment_to_gameTypeFragment"
+            app:destination="@id/gameTypeFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameUnderwayFragment"
@@ -59,6 +68,9 @@
         <action
             android:id="@+id/action_gameUnderwayFragment_to_gameReviewFragment"
             app:destination="@id/gameReviewFragment" />
+        <action
+            android:id="@+id/action_gameUnderwayFragment_to_playFragment"
+            app:destination="@id/playFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameReviewFragment"
@@ -68,10 +80,17 @@
         <action
             android:id="@+id/action_gameReviewFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
+        <action
+            android:id="@+id/action_gameReviewFragment_to_playFragment"
+            app:destination="@id/playFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameDetailsFragment"
         android:name="com.example.cornerpocket.GameDetailsFragment"
         android:label="fragment_game_details"
-        tools:layout="@layout/fragment_game_details" />
+        tools:layout="@layout/fragment_game_details" >
+        <action
+            android:id="@+id/action_gameDetailsFragment_to_playFragment"
+            app:destination="@id/playFragment" />
+    </fragment>
 </navigation>

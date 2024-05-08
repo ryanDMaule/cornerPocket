@@ -60,6 +60,10 @@
     <string name="crown">Crown</string>
     <string name="divider">Divider</string>
     <string name="up_arrow">Up arrow</string>
+    <string name="na_img">NA image</string>
+    <string name="win_img">Win image</string>
+    <string name="loss_img">Loss image</string>
+    <string name="recent_game">Recent game result</string>
 
 
 </resources>

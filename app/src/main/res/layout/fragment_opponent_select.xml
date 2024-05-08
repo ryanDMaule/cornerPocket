@@ -34,30 +34,140 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topNavigationConstraint" />
 
-    <ImageView
-        android:id="@+id/selectOpponentImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/user_icon_red"
-        android:layout_marginTop="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/selectedOpponentSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintTop_toBottomOf="@+id/selectOpponentTitle"
-        android:contentDescription="@string/profile_icon_red"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        style="@style/smallCapsText"
-        android:text="@string/tap_to_select"
+        <ImageView
+            android:id="@+id/selectedOpponentImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="@string/opponent_icon_purple"
+            android:src="@drawable/user_icon_red"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/selectedOpponentName"
+            style="@style/smallCapsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selectedOpponentImage"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            tools:text="NONE SELECTED"/>
+
+        <TextView
+            android:id="@+id/selectedOpponentRecord"
+            style="@style/greyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selectedOpponentImage"
+            app:layout_constraintTop_toBottomOf="@+id/selectedOpponentName"
+            android:layout_marginTop="8dp"
+            tools:text="NA"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/opponentPreviousFiveSection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selectedOpponentImage"
+            app:layout_constraintTop_toBottomOf="@+id/selectedOpponentRecord">
+
+            <ImageView
+                android:id="@+id/result1"
+                style="@style/recentGames"
+                android:contentDescription="@string/recent_game"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/result2"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/na_img"/>
+
+            <ImageView
+                android:id="@+id/result2"
+                style="@style/recentGames"
+                android:contentDescription="@string/recent_game"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/result3"
+                app:layout_constraintStart_toEndOf="@+id/result1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/na_img"/>
+
+            <ImageView
+                android:id="@+id/result3"
+                style="@style/recentGames"
+                android:contentDescription="@string/recent_game"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/result4"
+                app:layout_constraintStart_toEndOf="@+id/result2"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/na_img"/>
+
+            <ImageView
+                android:id="@+id/result4"
+                style="@style/recentGames"
+                android:contentDescription="@string/recent_game"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/result5"
+                app:layout_constraintStart_toEndOf="@+id/result3"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/na_img"/>
+
+            <ImageView
+                android:id="@+id/result5"
+                style="@style/recentGames"
+                android:contentDescription="@string/recent_game"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/result4"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/na_img"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/divider"
+        android:src="@drawable/divider_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectOpponentImage" />
+        app:layout_constraintTop_toBottomOf="@+id/selectedOpponentSection"
+        tools:ignore="ImageContrastCheck" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton2"
         style="@style/mainButton"
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/opponentListRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/materialButton2"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
