@@ -1,6 +1,7 @@
 package com.example.cornerpocket
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -34,6 +35,15 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         supportActionBar?.hide()
         navView.setupWithNavController(navController)
+
+        //HIDE BOTTOM NAV ON X FRAGMENTS
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.opponentSelectFragment) {
+                navView.visibility = View.GONE
+            } else {
+                navView.visibility = View.VISIBLE
+            }
+        }
 
         //endregion
 

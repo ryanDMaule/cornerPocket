@@ -47,6 +47,7 @@
         android:contentDescription="@string/logo"/>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/start_game_button"
         style="@style/mainButton"
         android:text="@string/start_game"
         app:layout_constraintBottom_toBottomOf="parent"
