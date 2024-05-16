@@ -56,25 +56,25 @@
         <TextView
             android:id="@+id/selectedOpponentName"
             style="@style/smallCapsText"
+            android:text="@string/none_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/selectedOpponentImage"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp"
-            tools:text="NONE SELECTED"/>
+            android:layout_marginTop="16dp" />
 
         <TextView
             android:id="@+id/selectedOpponentRecord"
             style="@style/greyText"
+            android:text="@string/na"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/selectedOpponentImage"
             app:layout_constraintTop_toBottomOf="@+id/selectedOpponentName"
-            android:layout_marginTop="8dp"
-            tools:text="NA"/>
+            android:layout_marginTop="8dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/opponentPreviousFiveSection"
@@ -88,53 +88,53 @@
             <ImageView
                 android:id="@+id/result1"
                 style="@style/recentGames"
+                android:src="@drawable/na_img"
                 android:contentDescription="@string/recent_game"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/result2"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/na_img"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/result2"
                 style="@style/recentGames"
+                android:src="@drawable/na_img"
                 android:contentDescription="@string/recent_game"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/result3"
                 app:layout_constraintStart_toEndOf="@+id/result1"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/na_img"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/result3"
                 style="@style/recentGames"
+                android:src="@drawable/na_img"
                 android:contentDescription="@string/recent_game"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/result4"
                 app:layout_constraintStart_toEndOf="@+id/result2"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/na_img"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/result4"
                 style="@style/recentGames"
+                android:src="@drawable/na_img"
                 android:contentDescription="@string/recent_game"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/result5"
                 app:layout_constraintStart_toEndOf="@+id/result3"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/na_img"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/result5"
                 style="@style/recentGames"
+                android:src="@drawable/na_img"
                 android:contentDescription="@string/recent_game"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/result4"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/na_img"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

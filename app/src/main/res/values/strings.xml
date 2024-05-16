@@ -31,6 +31,8 @@
     <string name="record">Record</string>
     <string name="broke">Broke</string>
     <string name="main_menu">Main menu</string>
+    <string name="none_selected">None selected</string>
+    <string name="na">NA</string>
 
     <!-- BUTTONS -->
     <string name="start_game">Start game</string>
