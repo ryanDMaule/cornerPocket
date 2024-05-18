@@ -160,6 +160,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_white_icon"
+        app:tint="@color/white"
+        app:backgroundTint="@color/purple"
+        app:layout_constraintBottom_toBottomOf="@+id/opponentListRecycler"
+        app:layout_constraintEnd_toEndOf="@+id/opponentListRecycler" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/opponentListRecycler"
         android:layout_width="match_parent"

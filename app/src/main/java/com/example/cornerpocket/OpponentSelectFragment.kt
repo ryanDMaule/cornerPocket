@@ -6,22 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
 import com.example.cornerpocket.databinding.FragmentOpponentSelectBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.viewModels.MainViewModel
-import io.realm.kotlin.Realm
-import io.realm.kotlin.query.RealmResults
-import io.realm.kotlin.query.Sort
-import kotlinx.coroutines.flow.collect
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.sidesheet.SideSheetDialog
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
 
@@ -59,7 +58,45 @@ class OpponentSelectFragment : Fragment()  {
             }
         }
 
-        return binding.root
+        binding.fabAdd.setOnClickListener {
+            val dialog = SideSheetDialog(requireContext())
+            val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
+
+            val btnClose = view.findViewById<ImageView>(R.id.quit_button)
+            val btnCreate = view.findViewById<MaterialButton>(R.id.btnCreate)
+            val textInputEditText = view.findViewById<TextInputEditText>(R.id.inputTextName)
+
+            btnClose.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            btnCreate.setOnClickListener {
+                createOpponent(textInputEditText, dialog)
+            }
+
+            dialog.setContentView(view)
+
+            dialog.show()
+        }
+
+    return binding.root
+    }
+
+    private fun createOpponent(textInput : TextInputEditText, dialog : SideSheetDialog){
+        if(textInput.text?.isBlank() == true){
+            Toast.makeText(requireContext(), "PLEASE ENTER A NAME", Toast.LENGTH_SHORT).show()
+        } else {
+            //add to realm db
+            viewModel.viewModelScope.launch {
+                viewModel.insertOpponent(opponent = Opponent().apply {
+                    name = textInput.text.toString()
+                })
+
+                Toast.makeText(requireContext(), "${textInput.text.toString()} added!", Toast.LENGTH_SHORT).show()
+
+                dialog.dismiss()
+            }
+        }
     }
 
     private fun itemSelected(opponent: Opponent){

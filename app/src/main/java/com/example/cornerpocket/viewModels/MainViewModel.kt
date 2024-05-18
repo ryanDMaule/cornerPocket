@@ -36,6 +36,10 @@ class MainViewModel: ViewModel() {
         return realm.query<Opponent>().asFlow().map { it.list.toMutableList() }
     }
 
+    suspend fun insertOpponent(opponent : Opponent){
+        realm.write { copyToRealm(opponent) }
+    }
+
     init {
         Log.i("MVM", "init")
 
