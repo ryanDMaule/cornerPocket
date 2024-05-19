@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.databinding.FragmentGameTypeBinding
 import com.example.cornerpocket.databinding.FragmentPlayBinding
 import com.example.cornerpocket.viewModels.MainViewModel
@@ -16,7 +17,7 @@ class GameTypeFragment : Fragment() {
     private var _binding : FragmentGameTypeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentGameTypeBinding.inflate(inflater, container, false)

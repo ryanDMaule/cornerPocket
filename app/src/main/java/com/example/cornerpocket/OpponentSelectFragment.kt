@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
@@ -28,7 +29,7 @@ class OpponentSelectFragment : Fragment()  {
     private var _binding : FragmentOpponentSelectBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var opponentsAdapter: OpponentSelectorAdapter
