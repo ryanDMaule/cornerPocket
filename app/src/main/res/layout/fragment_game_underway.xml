@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/settings_button"
+            android:id="@+id/exit_button"
             style="@style/iconSize"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/quit_icon"
@@ -84,6 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/versusBlock" />
 
     <Chronometer
+        android:id="@+id/timer"
         style="@style/TitleTextStyling"
         android:layout_marginTop="64dp"
         android:textColor="@color/white"
@@ -94,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/breaksTitle"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+        android:id="@+id/finishGame"
         style="@style/mainButton"
         android:text="@string/finish_game"
         app:layout_constraintBottom_toBottomOf="parent"
