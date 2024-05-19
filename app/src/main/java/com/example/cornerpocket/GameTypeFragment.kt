@@ -5,55 +5,80 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.cornerpocket.databinding.FragmentGameTypeBinding
+import com.example.cornerpocket.databinding.FragmentPlayBinding
+import com.example.cornerpocket.viewModels.MainViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [GameTypeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GameTypeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding : FragmentGameTypeBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private val viewModel: MainViewModel by viewModels()
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentGameTypeBinding.inflate(inflater, container, false)
+
+        binding.backButton.setOnClickListener {
+            findNavController().navigate(R.id.action_gameTypeFragment_to_opponentSelectFragment)
+        }
+
+        binding.btnNext.setOnClickListener {
+            setVmGameType()
+            findNavController().navigate(R.id.action_gameTypeFragment_to_breakSelectionFragment)
+        }
+
+        binding.englishGameTypeText.setOnClickListener {
+            englishGamePressed()
+        }
+
+        binding.americanGameTypeText.setOnClickListener {
+            americanGamePressed()
+        }
+
+        return binding.root
+    }
+
+    private var englishSelected = true
+
+    private fun setVmGameType(){
+        if (englishSelected){
+            viewModel.newGameGameType = "ENGLISH"
+        } else {
+            viewModel.newGameGameType = "AMERICAN"
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game_type, container, false)
+    private fun englishGamePressed(){
+        if (englishSelected){
+            //do nothing
+        } else {
+            englishSelected = true
+            binding.englishBar.setBackgroundResource(R.drawable.gradient_blue_purple)
+            binding.englishGameTypeText.setTextColor(resources.getColor(R.color.cyan))
+
+            binding.americanBar.setBackgroundResource(R.color.white)
+            binding.americanGameTypeText.setTextColor(resources.getColor(R.color.white))
+
+            binding.ivGameSetUp.setImageResource(R.drawable.english_setup)
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GameTypeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GameTypeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun americanGamePressed(){
+        if (!englishSelected){
+            //do nothing
+        } else {
+            englishSelected = false
+            binding.englishBar.setBackgroundResource(R.color.white)
+            binding.englishGameTypeText.setTextColor(resources.getColor(R.color.white))
+
+            binding.americanBar.setBackgroundResource(R.drawable.gradient_purple_blue2)
+            binding.americanGameTypeText.setTextColor(resources.getColor(R.color.cyan))
+
+            binding.ivGameSetUp.setImageResource(R.drawable.american_setup)
+        }
     }
+
 }

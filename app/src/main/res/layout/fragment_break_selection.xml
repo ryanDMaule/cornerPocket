@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/settings_button"
+            android:id="@+id/back_button"
             style="@style/iconSize"
             android:layout_marginStart="16dp"
             android:src="@drawable/back_icon_white"
@@ -107,6 +107,7 @@
 
         <TextView
             style="@style/smallCapsText"
+            android:id="@+id/tvOpponentName"
             android:textSize="16sp"
             android:background="@color/dark_primary_60"
             app:layout_constraintBottom_toTopOf="@+id/opponent_icon"
@@ -155,7 +156,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+        android:id="@+id/startGameButton"
         style="@style/mainButton"
         android:text="@string/start_game"
         app:layout_constraintBottom_toBottomOf="parent"

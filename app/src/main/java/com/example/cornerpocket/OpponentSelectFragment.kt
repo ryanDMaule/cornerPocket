@@ -38,10 +38,19 @@ class OpponentSelectFragment : Fragment()  {
 
         Log.i("OSF", "onCreateView")
 
+        binding.btnNextButton.setOnClickListener {
+            if (viewModel.selectedOpponent != null){
+                findNavController().navigate(R.id.action_opponentSelectFragment_to_gameTypeFragment)
+            } else {
+                Toast.makeText(requireContext(), "PLEASE SELECT AN OPPONENT", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         binding.settingsButton.setOnClickListener {
             findNavController().navigate(R.id.action_opponentSelectFragment_to_playFragment)
         }
+
+
 
         recyclerView = binding.opponentListRecycler
         recyclerView.setHasFixedSize(true)
@@ -54,6 +63,7 @@ class OpponentSelectFragment : Fragment()  {
 
                 opponentsAdapter.onItemClicked = {
                     itemSelected(it)
+                    viewModel.selectedOpponent = it
                 }
             }
         }

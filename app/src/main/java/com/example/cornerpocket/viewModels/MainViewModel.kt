@@ -1,6 +1,7 @@
 package com.example.cornerpocket.viewModels
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cornerpocket.MyApp
@@ -39,6 +40,22 @@ class MainViewModel: ViewModel() {
     suspend fun insertOpponent(opponent : Opponent){
         realm.write { copyToRealm(opponent) }
     }
+
+    val newGame = Game().apply {
+        //date = "12th March, 2024"
+        opponent = selectedOpponent
+        gameDuration = 709
+        userWon = false
+        gameType = "ENGLISH"
+        userBroke = false
+        userBallsPlayed = "RED"
+        methodOfVictory = "STANDARD WIN"
+        userBallsRemaining = 2
+        opponentBallsRemaining = 0
+    }
+
+    var selectedOpponent : Opponent? = null
+    var newGameGameType : String = ""
 
     init {
         Log.i("MVM", "init")
