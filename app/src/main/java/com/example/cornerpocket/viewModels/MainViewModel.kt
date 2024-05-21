@@ -56,8 +56,13 @@ class MainViewModel: ViewModel() {
 
     var selectedOpponent : Opponent? = null
     var newGameGameType : String = ""
+    var newGameUserBroke : Boolean? = null
     var newGameLength : String = ""
-
+    var newGameUserWon : Boolean? = null
+    var newGameMethodOfVictory : String = ""
+    var newGameUserBallsPlayed: String = ""
+    var newGameUserBallsRemaining: Int? = null
+    var newGameOpponentBallsRemaining: Int? = null
     init {
         Log.i("MVM", "init")
 
