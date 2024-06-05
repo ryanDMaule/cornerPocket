@@ -48,6 +48,31 @@ class MainViewModel: ViewModel() {
         realm.write { copyToRealm(game) }
     }
 
+//    fun getOpponentMostRecentGame(opponent: Opponent) : Game? {
+//        viewModelScope.launch(Dispatchers.IO) {
+////            realm.write {
+////                val queriedOpponentLatest = findLatest(opponent)
+////                if (queriedOpponentLatest !=  null){
+////                    queriedOpponentLatest.gamesHistory[0]
+////                }
+////            }
+//
+//            realm.write {
+//                if (opponent !=  null){
+//                    opponent.gamesHistory[0]
+//                }
+//            }
+//        }
+//    }
+
+    fun getOpponentMostRecentGame() : Game? {
+        val queriedOpponent = realm.query<Opponent>("_id == $0", selectedOpponent!!._id).first().find()
+        if (queriedOpponent != null){
+            return queriedOpponent.gamesHistory[queriedOpponent.gamesHistory.size-1]
+        }
+        return null
+    }
+
     fun updateOpponent(){
         viewModelScope.launch(Dispatchers.IO) {
             realm.write {
@@ -58,6 +83,14 @@ class MainViewModel: ViewModel() {
                     val queriedOpponentLatest = findLatest(queriedOpponent)
 
                     if (queriedOpponentLatest != null){
+                        if (newGameUserWon != null){
+                            if (newGameUserWon == true){
+                                queriedOpponentLatest.losses++
+                            } else {
+                                queriedOpponent.wins++
+                            }
+                        }
+
                         val newGame = Game().apply {
                             //opponent = opponentNew
                             gameDuration = newGameLength

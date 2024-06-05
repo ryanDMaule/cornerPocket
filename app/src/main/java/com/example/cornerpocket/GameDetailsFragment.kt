@@ -5,55 +5,123 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
+import com.example.cornerpocket.viewModels.MainViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [GameDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GameDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding : FragmentGameDetailsBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentGameDetailsBinding.inflate(inflater, container, false)
+
+        binding.menuButton.setOnClickListener {
+            findNavController().navigate(R.id.action_gameDetailsFragment_to_playFragment)
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game_details, container, false)
-    }
+        val game = viewModel.getOpponentMostRecentGame()
+        if (game == null){
+            Toast.makeText(requireActivity(), "NO GAME FOUND!",Toast.LENGTH_SHORT).show()
+        } else {
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GameDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GameDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+            //DATE
+            binding.dateTitle.text = game.date.toString()
+
+            //GAME TIME
+            // TODO: Format to MM:SS
+            binding.gameDurationText.text = game.gameDuration
+
+            //WINNERS CROWN / RECORD UP ARROW
+            if (game.userWon){
+                binding.userCrown.visibility = View.VISIBLE
+                binding.userUpArrow.visibility = View.VISIBLE
+            } else {
+                binding.opponentCrown.visibility = View.VISIBLE
+                binding.opponentUpArrow.visibility = View.VISIBLE
+            }
+
+            //PLAYER NAMES
+            binding.userText.text = "Ryan"
+            binding.opponentText.text = viewModel.selectedOpponent?.name
+
+            //METHOD OF VICTORY
+            binding.winningMethod.text = game.methodOfVictory
+
+            //PLAYER AND OPPONENT WIN RECORDS
+            binding.userRecordText.text = viewModel.selectedOpponent?.losses.toString()
+            binding.opponentRecordText.text = viewModel.selectedOpponent?.wins.toString()
+
+            //WHO BROKE
+            if (game.userBroke){
+                binding.userBrokeImage.visibility = View.VISIBLE
+            } else {
+                binding.opponentBrokeImage.visibility = View.VISIBLE
+            }
+
+            //BALLS PLAYED
+            when (game.gameType) {
+                "ENGLISH" -> {
+                    when (game.userBallsPlayed) {
+                        "RED" -> {
+                            binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
+                            binding.userBallsPlayedText.text = "RED"
+
+                            binding.opponentBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
+                            binding.opponentBallsPlayedText.text = "YELLOW"
+                        }
+
+                        "YELLOW" -> {
+                            binding.userBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
+                            binding.userBallsPlayedText.text = "YELLOW"
+
+                            binding.opponentBallsPlayed.setImageResource(R.drawable.red_ball_img)
+                            binding.opponentBallsPlayedText.text = "RED"
+                        }
+
+                        else -> {
+                            //dunno
+                        }
+                    }
+                }
+                "AMERICAN" -> {
+                    when (game.userBallsPlayed) {
+                        "SOLIDS" -> {
+                            binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
+                            binding.userBallsPlayedText.text = "SOLIDS"
+
+                            binding.opponentBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
+                            binding.opponentBallsPlayedText.text = "STRIPES"
+                        }
+
+                        "STRIPES" -> {
+                            binding.userBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
+                            binding.userBallsPlayedText.text = "STRIPES"
+
+                            binding.opponentBallsPlayed.setImageResource(R.drawable.solid_ball_img)
+                            binding.opponentBallsPlayedText.text = "SOLIDS"
+                        }
+
+                        else -> {
+                            //dunno
+                        }
+                    }
+                }
+                else -> {
+                    //dunno
                 }
             }
+
+            //BALLS REMAINING
+            binding.userBallsLeftText.text = game.userBallsRemaining.toString()
+            binding.opponentBallsLeftText.text = game.opponentBallsRemaining.toString()
+        }
+
+
+        return binding.root
     }
 }

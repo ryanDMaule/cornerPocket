@@ -38,7 +38,12 @@ class MainActivity : AppCompatActivity() {
 
         //HIDE BOTTOM NAV ON X FRAGMENTS
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.opponentSelectFragment) {
+            if(destination.id == R.id.opponentSelectFragment ||
+                destination.id == R.id.gameTypeFragment ||
+                destination.id == R.id.breakSelectionFragment ||
+                destination.id == R.id.gameUnderwayFragment ||
+                destination.id == R.id.gameReviewFragment ||
+                destination.id == R.id.gameDetailsFragment) {
                 navView.visibility = View.GONE
             } else {
                 navView.visibility = View.VISIBLE
