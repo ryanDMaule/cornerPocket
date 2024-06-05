@@ -9,6 +9,10 @@ import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
+import io.realm.kotlin.query.Sort
+import io.realm.kotlin.types.RealmList
+import io.realm.kotlin.types.annotations.PrimaryKey
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collect
@@ -36,27 +40,47 @@ class MainViewModel: ViewModel() {
     fun getOpponents() : Flow<MutableList<Opponent>> {
         return realm.query<Opponent>().asFlow().map { it.list.toMutableList() }
     }
-
     suspend fun insertOpponent(opponent : Opponent){
         realm.write { copyToRealm(opponent) }
     }
 
-    val newGame = Game().apply {
-        //date = "12th March, 2024"
-        opponent = selectedOpponent
-        gameDuration = 709
-        userWon = false
-        gameType = "ENGLISH"
-        userBroke = false
-        userBallsPlayed = "RED"
-        methodOfVictory = "STANDARD WIN"
-        userBallsRemaining = 2
-        opponentBallsRemaining = 0
+    suspend fun insertGame(game : Game){
+        realm.write { copyToRealm(game) }
+    }
+
+    fun updateOpponent(){
+        viewModelScope.launch(Dispatchers.IO) {
+            realm.write {
+                val queriedOpponent = this.query<Opponent>("_id == $0", selectedOpponent!!._id).first().find()
+//                Log.i("updateOpponent", "updateOpponent : ${queriedOpponent?.name}")
+
+                if (queriedOpponent != null){
+                    val queriedOpponentLatest = findLatest(queriedOpponent)
+
+                    if (queriedOpponentLatest != null){
+                        val newGame = Game().apply {
+                            //opponent = opponentNew
+                            gameDuration = newGameLength
+                            userWon = newGameUserWon == true
+                            gameType = newGameGameType
+                            userBroke = newGameUserBroke
+                            userBallsPlayed = newGameUserBallsPlayed
+                            methodOfVictory = newGameMethodOfVictory
+                            userBallsRemaining = newGameUserBallsRemaining
+                            opponentBallsRemaining = newGameOpponentBallsRemaining
+                        }
+                        queriedOpponentLatest.gamesHistory.add(newGame)
+
+                        copyToRealm(queriedOpponentLatest, updatePolicy = UpdatePolicy.ALL)
+                    }
+                }
+            }
+        }
     }
 
     var selectedOpponent : Opponent? = null
     var newGameGameType : String = ""
-    var newGameUserBroke : Boolean? = null
+    var newGameUserBroke : Boolean = true
     var newGameLength : String = ""
     var newGameUserWon : Boolean? = null
     var newGameMethodOfVictory : String = ""
@@ -106,8 +130,8 @@ class MainViewModel: ViewModel() {
 
                 val game1 = Game().apply {
                     //date = LocalDateTime.now().toString()
-                    opponent = opponent2
-                    gameDuration = 397
+                    //opponent = opponent2
+                    gameDuration = "03:47"
                     userWon = true
                     gameType = "ENGLISH"
                     userBroke = true
@@ -118,8 +142,8 @@ class MainViewModel: ViewModel() {
                 }
                 val game2 = Game().apply {
                     //date = "12th March, 2024"
-                    opponent = opponent2
-                    gameDuration = 709
+                    //opponent = opponent2
+                    gameDuration = "05:11"
                     userWon = false
                     gameType = "ENGLISH"
                     userBroke = false
@@ -130,8 +154,8 @@ class MainViewModel: ViewModel() {
                 }
                 val game3 = Game().apply {
                     //date = "17th March, 2024"
-                    opponent = opponent2
-                    gameDuration = 612
+                    //opponent = opponent2
+                    gameDuration = "06:09"
                     userWon = false
                     gameType = "ENGLISH"
                     userBroke = true
@@ -142,8 +166,8 @@ class MainViewModel: ViewModel() {
                 }
                 val game4 = Game().apply {
                     //date = "23rd March, 2024"
-                    opponent = opponent2
-                    gameDuration = 911
+                    //opponent = opponent2
+                    gameDuration = "03:43"
                     userWon = false
                     gameType = "ENGLISH"
                     userBroke = false
@@ -154,8 +178,8 @@ class MainViewModel: ViewModel() {
                 }
                 val game5 = Game().apply {
                     //date = "11th April, 2024"
-                    opponent = opponent4
-                    gameDuration = 402
+                    //opponent = opponent4
+                    gameDuration = "04:44"
                     userWon = true
                     gameType = "AMERICAN"
                     userBroke = true

@@ -113,7 +113,7 @@ class OpponentSelectFragment : Fragment()  {
     private fun itemSelected(opponent: Opponent){
         binding.selectedOpponentName.text =opponent.name
         binding.selectedOpponentRecord.text = "${opponent.wins} - ${opponent.losses}"
-        formatRecentGames(opponent.gamesHistory.take(5))
+        formatRecentGames(opponent.gamesHistory.take(5).reversed())
     }
 
     private fun formatRecentGames(gamesList : List<Game>){

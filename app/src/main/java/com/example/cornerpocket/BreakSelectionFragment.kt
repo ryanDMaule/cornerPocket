@@ -38,7 +38,9 @@ class BreakSelectionFragment : Fragment() {
         }
 
         binding.startGameButton.setOnClickListener {
-            findNavController().navigate(R.id.action_breakSelectionFragment_to_gameUnderwayFragment)
+            if (userBreaks != null){
+                findNavController().navigate(R.id.action_breakSelectionFragment_to_gameUnderwayFragment)
+            }
         }
 
         binding.userIcon.setOnClickListener {
@@ -68,12 +70,14 @@ class BreakSelectionFragment : Fragment() {
 
     private fun setUserBreaks(){
         userBreaks = true
+        viewModel.newGameUserBroke = userBreaks as Boolean
         binding.opponentBreakIcon.visibility = View.INVISIBLE
         binding.userBreakIcon.visibility = View.VISIBLE
     }
 
     private fun setOpponentBreaks(){
         userBreaks = false
+        viewModel.newGameUserBroke = userBreaks as Boolean
         binding.opponentBreakIcon.visibility = View.VISIBLE
         binding.userBreakIcon.visibility = View.INVISIBLE
     }

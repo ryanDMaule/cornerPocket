@@ -10,10 +10,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.databinding.FragmentGameReviewBinding
+import com.example.cornerpocket.models.Game
+import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.viewModels.MainViewModel
+import com.google.android.material.sidesheet.SideSheetDialog
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 
 class GameReviewFragment : Fragment() {
     private var _binding : FragmentGameReviewBinding? = null
@@ -22,7 +28,7 @@ class GameReviewFragment : Fragment() {
     private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
 
 
-    private var dropdownItems = arrayOf<String>("Standard victory","Opponent foul")
+    private var dropdownItems = arrayOf("Standard victory","Opponent foul")
     private lateinit var actv : AutoCompleteTextView
     private lateinit var adapterItems : ArrayAdapter<String>
 
@@ -39,7 +45,7 @@ class GameReviewFragment : Fragment() {
 
         binding.finishGame.setOnClickListener {
 
-            if (viewModel.newGameUserWon != null && viewModel.newGameMethodOfVictory.isNotBlank()){
+            if (viewModel.newGameMethodOfVictory.isNotBlank()){
                 if (binding.redBallsLeftText.text.isNotBlank() && binding.yellowBallsLeftText.text.isNotBlank()){
                     when (viewModel.newGameUserBallsPlayed) {
                         "RED", "SOLIDS" -> {
@@ -57,6 +63,7 @@ class GameReviewFragment : Fragment() {
                 } else {
                     Toast.makeText(requireActivity(), "PLEASE ENTER THE BALLS REMAINING FOR BOTH BALL TYPES",Toast.LENGTH_SHORT).show()
                 }
+                createGame()
                 findNavController().navigate(R.id.action_gameReviewFragment_to_gameDetailsFragment)
             } else {
                 Toast.makeText(requireActivity(), "PLEASE SELECT THE GAME WINNER AND METHOD OF VICTORY",Toast.LENGTH_SHORT).show()
@@ -81,16 +88,24 @@ class GameReviewFragment : Fragment() {
         binding.userImage.setOnClickListener {
             Log.i("GRF", "userIcon = $viewModel.newGameUserWon")
 
-            if (viewModel.newGameUserWon != true){
+            if (viewModel.newGameUserWon == null){
                 setUserWon()
+            } else {
+                if (!viewModel.newGameUserWon!!){
+                    setUserWon()
+                }
             }
         }
 
         binding.opponentImage.setOnClickListener {
             Log.i("GRF", "opponentIcon = $viewModel.newGameUserWon")
 
-            if (viewModel.newGameUserWon != false){
+            if (viewModel.newGameUserWon == null){
                 setOpponentWon()
+            } else {
+                if (viewModel.newGameUserWon!!){
+                    setOpponentWon()
+                }
             }
         }
 
@@ -161,5 +176,8 @@ class GameReviewFragment : Fragment() {
         }
     }
 
+    private fun createGame(){
+        viewModel.updateOpponent()
+    }
 
 }
