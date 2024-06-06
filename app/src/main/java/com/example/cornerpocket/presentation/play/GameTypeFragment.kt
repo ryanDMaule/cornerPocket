@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.presentation.play
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameTypeBinding
-import com.example.cornerpocket.databinding.FragmentPlayBinding
 import com.example.cornerpocket.viewModels.MainViewModel
 
 class GameTypeFragment : Fragment() {
@@ -27,7 +26,6 @@ class GameTypeFragment : Fragment() {
         }
 
         binding.btnNext.setOnClickListener {
-            setVmGameType()
             findNavController().navigate(R.id.action_gameTypeFragment_to_breakSelectionFragment)
         }
 
@@ -42,21 +40,11 @@ class GameTypeFragment : Fragment() {
         return binding.root
     }
 
-    private var englishSelected = true
-
-    private fun setVmGameType(){
-        if (englishSelected){
-            viewModel.newGameGameType = "ENGLISH"
-        } else {
-            viewModel.newGameGameType = "AMERICAN"
-        }
-    }
-
     private fun englishGamePressed(){
-        if (englishSelected){
+        if (viewModel.getGameType() == "ENGLISH"){
             //do nothing
         } else {
-            englishSelected = true
+            viewModel.setGameType("ENGLISH")
             binding.englishBar.setBackgroundResource(R.drawable.gradient_blue_purple)
             binding.englishGameTypeText.setTextColor(resources.getColor(R.color.cyan))
 
@@ -68,10 +56,10 @@ class GameTypeFragment : Fragment() {
     }
 
     private fun americanGamePressed(){
-        if (!englishSelected){
+        if (viewModel.getGameType() == "AMERICAN"){
             //do nothing
         } else {
-            englishSelected = false
+            viewModel.setGameType("AMERICAN")
             binding.englishBar.setBackgroundResource(R.color.white)
             binding.englishGameTypeText.setTextColor(resources.getColor(R.color.white))
 

@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.presentation.play
 
 import android.os.Bundle
 import android.util.Log
@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentBreakSelectionBinding
 import com.example.cornerpocket.viewModels.MainViewModel
 
@@ -19,16 +19,16 @@ class BreakSelectionFragment : Fragment() {
 
     private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBreakSelectionBinding.inflate(inflater, container, false)
 
         // TODO: get users name from Realm object 
         binding.tvUserName.text = "Ryan"
-        
-        if (viewModel.selectedOpponent != null){
-            Log.i("BSF", "selectedOpponent = ${viewModel.selectedOpponent}")
+        val opponent = viewModel.getSelectedOpponent()
 
-            binding.tvOpponentName.text = viewModel.selectedOpponent!!.name
+        if (opponent != null){
+            Log.i("BSF", "selectedOpponent = $opponent")
+            binding.tvOpponentName.text = opponent.name
         } else {
             Log.i("BSF", "viewModel.selectedOpponent == null")
         }
@@ -38,23 +38,23 @@ class BreakSelectionFragment : Fragment() {
         }
 
         binding.startGameButton.setOnClickListener {
-            if (userBreaks != null){
+            if (viewModel.getUserBroke() != null){
                 findNavController().navigate(R.id.action_breakSelectionFragment_to_gameUnderwayFragment)
             }
         }
 
         binding.userIcon.setOnClickListener {
-            Log.i("BSF", "userIcon = $userBreaks")
+            Log.i("BSF", "userIcon = ${viewModel.getUserBroke()}")
 
-            if (userBreaks != true){
+            if (viewModel.getUserBroke() != true){
                 setUserBreaks()
             }
         }
 
         binding.opponentIcon.setOnClickListener {
-            Log.i("BSF", "opponentIcon = $userBreaks")
+            Log.i("BSF", "opponentIcon = ${viewModel.getUserBroke()}")
 
-            if (userBreaks != false){
+            if (viewModel.getUserBroke() != false){
                 setOpponentBreaks()
             }
         }
@@ -66,18 +66,14 @@ class BreakSelectionFragment : Fragment() {
         return binding.root
     }
 
-    private var userBreaks : Boolean? = null
-
     private fun setUserBreaks(){
-        userBreaks = true
-        viewModel.newGameUserBroke = userBreaks as Boolean
+        viewModel.setUserBroke(true)
         binding.opponentBreakIcon.visibility = View.INVISIBLE
         binding.userBreakIcon.visibility = View.VISIBLE
     }
 
     private fun setOpponentBreaks(){
-        userBreaks = false
-        viewModel.newGameUserBroke = userBreaks as Boolean
+        viewModel.setUserBroke(false)
         binding.opponentBreakIcon.visibility = View.VISIBLE
         binding.userBreakIcon.visibility = View.INVISIBLE
     }
@@ -85,12 +81,12 @@ class BreakSelectionFragment : Fragment() {
     private fun selectRandomPlayer(){
         when ((0..1).random()) {
             0 -> {
-                if (userBreaks != true){
+                if (viewModel.getUserBroke() != true){
                     setUserBreaks()
                 }
             }
             1 -> {
-                if (userBreaks != false){
+                if (viewModel.getUserBroke() != false){
                     setOpponentBreaks()
                 }
             }

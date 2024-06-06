@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.presentation.play
 
 import android.os.Bundle
 import android.util.Log
@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
+import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentOpponentSelectBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
@@ -37,10 +37,8 @@ class OpponentSelectFragment : Fragment()  {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentOpponentSelectBinding.inflate(inflater, container, false)
 
-        Log.i("OSF", "onCreateView")
-
         binding.btnNextButton.setOnClickListener {
-            if (viewModel.selectedOpponent != null){
+            if (viewModel.getSelectedOpponent() != null){
                 findNavController().navigate(R.id.action_opponentSelectFragment_to_gameTypeFragment)
             } else {
                 Toast.makeText(requireContext(), "PLEASE SELECT AN OPPONENT", Toast.LENGTH_SHORT).show()
@@ -51,20 +49,18 @@ class OpponentSelectFragment : Fragment()  {
             findNavController().navigate(R.id.action_opponentSelectFragment_to_playFragment)
         }
 
-
-
         recyclerView = binding.opponentListRecycler
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
 
         viewModel.viewModelScope.launch {
-            viewModel.getOpponents().collect() {
-                opponentsAdapter = OpponentSelectorAdapter(it)
+            viewModel.getOpponents().collect{ opponentList ->
+                opponentsAdapter = OpponentSelectorAdapter(opponentList)
                 recyclerView.adapter = opponentsAdapter
 
-                opponentsAdapter.onItemClicked = {
-                    itemSelected(it)
-                    viewModel.selectedOpponent = it
+                opponentsAdapter.onItemClicked = { opponent ->
+                    itemSelected(opponent)
+                    viewModel.setSelectedOpponent(opponent)
                 }
             }
         }

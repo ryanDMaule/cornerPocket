@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.presentation.play
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.viewModels.MainViewModel
 
@@ -25,8 +26,10 @@ class GameDetailsFragment : Fragment() {
         }
 
         val game = viewModel.getOpponentMostRecentGame()
-        if (game == null){
-            Toast.makeText(requireActivity(), "NO GAME FOUND!",Toast.LENGTH_SHORT).show()
+        val opponent = viewModel.getUpdatedOpponent()
+
+        if (game == null || opponent == null){
+            Toast.makeText(requireActivity(), "NO GAME/OPPONENT FOUND!",Toast.LENGTH_SHORT).show()
         } else {
 
             //DATE
@@ -47,14 +50,14 @@ class GameDetailsFragment : Fragment() {
 
             //PLAYER NAMES
             binding.userText.text = "Ryan"
-            binding.opponentText.text = viewModel.selectedOpponent?.name
+            binding.opponentText.text = opponent.name
 
             //METHOD OF VICTORY
             binding.winningMethod.text = game.methodOfVictory
 
             //PLAYER AND OPPONENT WIN RECORDS
-            binding.userRecordText.text = viewModel.selectedOpponent?.losses.toString()
-            binding.opponentRecordText.text = viewModel.selectedOpponent?.wins.toString()
+            binding.userRecordText.text = opponent.losses.toString()
+            binding.opponentRecordText.text = opponent.wins.toString()
 
             //WHO BROKE
             if (game.userBroke){

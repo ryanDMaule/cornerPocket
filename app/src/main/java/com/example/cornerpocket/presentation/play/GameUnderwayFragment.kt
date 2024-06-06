@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.presentation.play
 
 import android.os.Bundle
 import android.util.Log
@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameUnderwayBinding
-import com.example.cornerpocket.databinding.FragmentPlayBinding
 import com.example.cornerpocket.viewModels.MainViewModel
 
 class GameUnderwayFragment : Fragment() {
@@ -26,17 +25,18 @@ class GameUnderwayFragment : Fragment() {
         binding.timer.start()
 
         binding.userText.text = "Ryan"
+        val opponent = viewModel.getSelectedOpponent()
 
-        if (viewModel.selectedOpponent != null){
-            Log.i("GUF", "selectedOpponent = ${viewModel.selectedOpponent}")
+        if (opponent != null){
+            Log.i("GUF", "selectedOpponent = $opponent")
 
-            binding.opponentText.text = viewModel.selectedOpponent!!.name
+            binding.opponentText.text = opponent.name
         } else {
             Log.i("GUF", "viewModel.selectedOpponent == null")
         }
 
         binding.finishGame.setOnClickListener {
-            viewModel.newGameLength = binding.timer.text.toString()
+            viewModel.setGameLength(binding.timer.text.toString())
             binding.timer.stop()
 
             findNavController().navigate(R.id.action_gameUnderwayFragment_to_gameReviewFragment)

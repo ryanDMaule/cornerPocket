@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_red_orange"
-    tools:context=".BreakSelectionFragment">
+    tools:context=".presentation.play.BreakSelectionFragment">
 
     <!-- NAVIGATION SECTION-->
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_green_green"
-    tools:context=".GameUnderwayFragment">
+    tools:context=".presentation.play.GameUnderwayFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topNavigationConstraint"

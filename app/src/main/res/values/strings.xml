@@ -23,6 +23,8 @@
     <string name="balls_played">Balls played</string>
     <string name="red">Red</string>
     <string name="yellow">Yellow</string>
+    <string name="spot">Spot</string>
+    <string name="stripe">Stripe</string>
     <string name="balls_remaining">Balls remaining</string>
     <string name="ellipses">…</string>
     <string name="game_duration">Game duration</string>
@@ -66,6 +68,5 @@
     <string name="win_img">Win image</string>
     <string name="loss_img">Loss image</string>
     <string name="recent_game">Recent game result</string>
-
 
 </resources>

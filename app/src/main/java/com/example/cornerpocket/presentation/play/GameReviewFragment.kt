@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.presentation.play
 
 import android.os.Bundle
 import android.util.Log
@@ -10,16 +10,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameReviewBinding
-import com.example.cornerpocket.models.Game
-import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.viewModels.MainViewModel
-import com.google.android.material.sidesheet.SideSheetDialog
-import com.google.android.material.textfield.TextInputEditText
-import kotlinx.coroutines.launch
 
 class GameReviewFragment : Fragment() {
     private var _binding : FragmentGameReviewBinding? = null
@@ -36,30 +31,20 @@ class GameReviewFragment : Fragment() {
         _binding = FragmentGameReviewBinding.inflate(inflater, container, false)
 
         actv = binding.actv
-        adapterItems = ArrayAdapter<String>(requireContext(), R.layout.item_text_dropdown, dropdownItems)
+        adapterItems = ArrayAdapter<String>(requireContext(),
+            R.layout.item_text_dropdown, dropdownItems)
         actv.setAdapter(adapterItems)
         actv.onItemClickListener = AdapterView.OnItemClickListener { adapterView: AdapterView<*>, _: View, i: Int, _: Long ->
             val item : String = adapterView.getItemAtPosition(i).toString()
-            viewModel.newGameMethodOfVictory = item
+            viewModel.setMethodOfVictory(item)
         }
 
         binding.finishGame.setOnClickListener {
 
-            if (viewModel.newGameMethodOfVictory.isNotBlank()){
+            if (viewModel.getMethodOfVictory().isNotBlank()){
                 if (binding.redBallsLeftText.text.isNotBlank() && binding.yellowBallsLeftText.text.isNotBlank()){
-                    when (viewModel.newGameUserBallsPlayed) {
-                        "RED", "SOLIDS" -> {
-                            viewModel.newGameUserBallsRemaining = binding.redBallsLeftText.text.toString().toInt()
-                            viewModel.newGameOpponentBallsRemaining = binding.yellowBallsLeftText.text.toString().toInt()
-                        }
-                        "YELLOW", "STRIPES" -> {
-                            viewModel.newGameUserBallsRemaining = binding.yellowBallsLeftText.text.toString().toInt()
-                            viewModel.newGameOpponentBallsRemaining = binding.redBallsLeftText.text.toString().toInt()
-                        }
-                        else -> {
-                            Log.i("GRF", "Unknown balls played = ${viewModel.newGameUserBallsPlayed}")
-                        }
-                    }
+                    viewModel.setUserBallsRemaining(binding.redBallsLeftText.text.toString().toInt())
+                    viewModel.setOpponentBallsRemaining(binding.yellowBallsLeftText.text.toString().toInt())
                 } else {
                     Toast.makeText(requireActivity(), "PLEASE ENTER THE BALLS REMAINING FOR BOTH BALL TYPES",Toast.LENGTH_SHORT).show()
                 }
@@ -76,34 +61,37 @@ class GameReviewFragment : Fragment() {
 
         //WINNER SECTION
         binding.userText.text = "Ryan"
+        val opponent = viewModel.getSelectedOpponent()
 
-        if (viewModel.selectedOpponent != null){
-            Log.i("GRF", "selectedOpponent = ${viewModel.selectedOpponent}")
+        if (opponent != null){
+            Log.i("GRF", "selectedOpponent = $opponent}")
 
-            binding.opponentText.text = viewModel.selectedOpponent!!.name
+            binding.opponentText.text = opponent.name
         } else {
             Log.i("GRF", "viewModel.selectedOpponent == null")
         }
 
         binding.userImage.setOnClickListener {
-            Log.i("GRF", "userIcon = $viewModel.newGameUserWon")
+            val userWon = viewModel.getUserWon()
+            Log.i("GRF", "userIcon = $userWon")
 
-            if (viewModel.newGameUserWon == null){
+            if (userWon == null){
                 setUserWon()
             } else {
-                if (!viewModel.newGameUserWon!!){
+                if (!userWon){
                     setUserWon()
                 }
             }
         }
 
         binding.opponentImage.setOnClickListener {
-            Log.i("GRF", "opponentIcon = $viewModel.newGameUserWon")
+            val userWon = viewModel.getUserWon()
+            Log.i("GRF", "opponentIcon = $userWon")
 
-            if (viewModel.newGameUserWon == null){
+            if (userWon == null){
                 setOpponentWon()
             } else {
-                if (viewModel.newGameUserWon!!){
+                if (userWon){
                     setOpponentWon()
                 }
             }
@@ -111,17 +99,19 @@ class GameReviewFragment : Fragment() {
 
 
         binding.redBallImage.setOnClickListener {
-            Log.i("GRF", "ballsPlayed = $viewModel.newGameUserBallsPlayed")
+            val ballsPlayed = viewModel.getUserBallsPlayed()
+            Log.i("GRF", "ballsPlayed = $ballsPlayed")
 
-            if (viewModel.newGameUserBallsPlayed != "RED" || viewModel.newGameUserBallsPlayed != "SOLIDS"){
+            if (ballsPlayed == "YELLOW" || ballsPlayed == "STRIPES" || ballsPlayed.isBlank()){
                 balls1Played()
             }
         }
 
         binding.yellowBallImage.setOnClickListener {
-            Log.i("GRF", "ballsPlayed = $viewModel.newGameUserBallsPlayed")
+            val ballsPlayed = viewModel.getUserBallsPlayed()
+            Log.i("GRF", "ballsPlayed = $ballsPlayed")
 
-            if (viewModel.newGameUserBallsPlayed != "YELLOW" || viewModel.newGameUserBallsPlayed != "STRIPES"){
+            if (ballsPlayed == "RED" || ballsPlayed == "SOLIDS" || ballsPlayed.isBlank()){
                 balls2Played()
             }
         }
@@ -130,53 +120,55 @@ class GameReviewFragment : Fragment() {
     }
 
     private fun setUserWon(){
-        viewModel.newGameUserWon = true
+        viewModel.setUserWon(true)
         binding.opponentSelectedImage.visibility = View.INVISIBLE
         binding.userSelectedImage.visibility = View.VISIBLE
     }
     private fun setOpponentWon(){
-        viewModel.newGameUserWon = false
+        viewModel.setUserWon(false)
         binding.opponentSelectedImage.visibility = View.VISIBLE
         binding.userSelectedImage.visibility = View.INVISIBLE
     }
 
 
-    //RED / SOLIDS, YELLOW / STRIPES
+    //RED / SOLIDS
     private fun balls1Played(){
         binding.yellowBallSelectedImage.visibility = View.INVISIBLE
         binding.redBallSelectedImage.visibility = View.VISIBLE
 
-        when (viewModel.newGameGameType) {
+        when (viewModel.getGameType()) {
             "ENGLISH" -> {
-                viewModel.newGameUserBallsPlayed = "RED"
+                viewModel.setUserBallsPlayed("RED")
             }
             "AMERICAN" -> {
-                viewModel.newGameUserBallsPlayed = "SOLIDS"
+                viewModel.setUserBallsPlayed("SOLIDS")
             }
             else -> {
-                Log.i("GRF", "Unknown game type : ${viewModel.newGameGameType}")
+                Log.i("GRF", "Unknown game type : ${viewModel.getGameType()}")
             }
         }
 
     }
+    //YELLOW / STRIPES
     private fun balls2Played(){
         binding.yellowBallSelectedImage.visibility = View.VISIBLE
         binding.redBallSelectedImage.visibility = View.INVISIBLE
 
-        when (viewModel.newGameGameType) {
+        when (viewModel.getGameType()) {
             "ENGLISH" -> {
-                viewModel.newGameUserBallsPlayed = "YELLOW"
+                viewModel.setUserBallsPlayed("YELLOW")
             }
             "AMERICAN" -> {
-                viewModel.newGameUserBallsPlayed = "STRIPES"
+                viewModel.setUserBallsPlayed("STRIPES")
             }
             else -> {
-                Log.i("GRF", "Unknown game type : ${viewModel.newGameGameType}")
+                Log.i("GRF", "Unknown game type : ${viewModel.getGameType()}")
             }
         }
     }
 
     private fun createGame(){
+//        viewModel.printPendingGameValues()
         viewModel.updateOpponent()
     }
 

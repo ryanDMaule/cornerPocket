@@ -25,45 +25,12 @@ class MainViewModel: ViewModel() {
 
     private val realm = MyApp.realm
 
-    val opponents = realm
-        .query<Opponent>()
-        .asFlow()
-        .map { results ->
-            results.list.toList()
-        }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(),
-            emptyList()
-        )
-
     fun getOpponents() : Flow<MutableList<Opponent>> {
         return realm.query<Opponent>().asFlow().map { it.list.toMutableList() }
     }
     suspend fun insertOpponent(opponent : Opponent){
         realm.write { copyToRealm(opponent) }
     }
-
-    suspend fun insertGame(game : Game){
-        realm.write { copyToRealm(game) }
-    }
-
-//    fun getOpponentMostRecentGame(opponent: Opponent) : Game? {
-//        viewModelScope.launch(Dispatchers.IO) {
-////            realm.write {
-////                val queriedOpponentLatest = findLatest(opponent)
-////                if (queriedOpponentLatest !=  null){
-////                    queriedOpponentLatest.gamesHistory[0]
-////                }
-////            }
-//
-//            realm.write {
-//                if (opponent !=  null){
-//                    opponent.gamesHistory[0]
-//                }
-//            }
-//        }
-//    }
 
     fun getOpponentMostRecentGame() : Game? {
         val queriedOpponent = realm.query<Opponent>("_id == $0", selectedOpponent!!._id).first().find()
@@ -73,37 +40,32 @@ class MainViewModel: ViewModel() {
         return null
     }
 
+    fun getUpdatedOpponent() : Opponent? {
+        val queriedOpponent = realm.query<Opponent>("_id == $0", selectedOpponent!!._id).first().find()
+        if (queriedOpponent != null){
+            return queriedOpponent
+        }
+        return null
+    }
+
     fun updateOpponent(){
         viewModelScope.launch(Dispatchers.IO) {
             realm.write {
                 val queriedOpponent = this.query<Opponent>("_id == $0", selectedOpponent!!._id).first().find()
-//                Log.i("updateOpponent", "updateOpponent : ${queriedOpponent?.name}")
 
                 if (queriedOpponent != null){
                     val queriedOpponentLatest = findLatest(queriedOpponent)
 
                     if (queriedOpponentLatest != null){
-                        if (newGameUserWon != null){
-                            if (newGameUserWon == true){
+                        if (pUserWon != null){
+                            if (pUserWon == true){
                                 queriedOpponentLatest.losses++
                             } else {
                                 queriedOpponent.wins++
                             }
                         }
 
-                        val newGame = Game().apply {
-                            //opponent = opponentNew
-                            gameDuration = newGameLength
-                            userWon = newGameUserWon == true
-                            gameType = newGameGameType
-                            userBroke = newGameUserBroke
-                            userBallsPlayed = newGameUserBallsPlayed
-                            methodOfVictory = newGameMethodOfVictory
-                            userBallsRemaining = newGameUserBallsRemaining
-                            opponentBallsRemaining = newGameOpponentBallsRemaining
-                        }
-                        queriedOpponentLatest.gamesHistory.add(newGame)
-
+                        queriedOpponentLatest.gamesHistory.add(createGame())
                         copyToRealm(queriedOpponentLatest, updatePolicy = UpdatePolicy.ALL)
                     }
                 }
@@ -111,15 +73,130 @@ class MainViewModel: ViewModel() {
         }
     }
 
-    var selectedOpponent : Opponent? = null
-    var newGameGameType : String = ""
-    var newGameUserBroke : Boolean = true
-    var newGameLength : String = ""
-    var newGameUserWon : Boolean? = null
-    var newGameMethodOfVictory : String = ""
-    var newGameUserBallsPlayed: String = ""
-    var newGameUserBallsRemaining: Int? = null
-    var newGameOpponentBallsRemaining: Int? = null
+    private fun createGame() : Game {
+        return Game().apply {
+            gameDuration = pGameLength
+            userWon = pUserWon == true
+            gameType = pGameType
+            userBroke = pUserBroke == true
+            userBallsPlayed = pUserBallsPlayed
+            methodOfVictory = pMethodOfVictory
+            userBallsRemaining = pUserBallsRemaining
+            opponentBallsRemaining = pOpponentBallsRemaining
+        }
+    }
+
+    private var selectedOpponent : Opponent? = null
+    fun getSelectedOpponent() : Opponent? {
+        Log.e("MVM", "GET - SELECTED OPPONENT : $selectedOpponent")
+        return selectedOpponent
+    }
+    fun setSelectedOpponent(opponent: Opponent) {
+        Log.e("MVM", "SET - SELECTED OPPONENT : $selectedOpponent")
+        selectedOpponent = opponent
+    }
+
+    // p = pending
+
+    // TODO: USE DEFAULT GAME TYPE AS DEFAULT STRING
+    private var pGameType : String = "ENGLISH"
+    fun getGameType() : String {
+        Log.e("MVM", "GET - GAME TYPE : $pGameType")
+        return pGameType
+    }
+    fun setGameType(v : String) {
+        Log.e("MVM", "SET - GAME TYPE : $v")
+        pGameType = v
+    }
+
+
+    private var pUserBroke : Boolean? = null
+    fun getUserBroke() : Boolean? {
+        Log.e("MVM", "GET - USER BROKE : $pUserBroke")
+        return pUserBroke
+    }
+    fun setUserBroke(v : Boolean){
+        Log.e("MVM", "SET - USER BROKE : $v")
+        pUserBroke = v
+    }
+
+
+    private var pGameLength : String = ""
+    fun getGameLength() : String {
+        Log.e("MVM", "GET - GAME LENGTH : $pGameLength")
+        return pGameLength
+    }
+    fun setGameLength(v : String){
+        Log.e("MVM", "SET - GAME LENGTH : $v")
+        pGameLength = v
+    }
+
+
+    private var pUserWon : Boolean? = null
+    fun getUserWon() : Boolean? {
+        Log.e("MVM", "GET - USER WON : $pUserWon")
+        return pUserWon
+    }
+    fun setUserWon(v : Boolean){
+        Log.e("MVM", "SET - USER WON : $v")
+        pUserWon = v
+    }
+
+
+    private var pMethodOfVictory : String = ""
+    fun getMethodOfVictory() : String {
+        Log.e("MVM", "GET - METHOD OF VICTORY : $pUserWon")
+        return pMethodOfVictory
+    }
+    fun setMethodOfVictory(v : String){
+        Log.e("MVM", "SET - METHOD OF VICTORY : $v")
+        pMethodOfVictory = v
+    }
+
+
+    private var pUserBallsPlayed: String = ""
+    fun getUserBallsPlayed() : String {
+        Log.e("MVM", "GET - USER BALLS PLAYED : $pUserBallsPlayed")
+        return pUserBallsPlayed
+    }
+    fun setUserBallsPlayed(v : String) {
+        Log.e("MVM", "SET - USER BALLS PLAYED : $v")
+        pUserBallsPlayed = v
+    }
+
+
+    private var pUserBallsRemaining: Int? = null
+    fun getUserBallsRemaining() : Int? {
+        Log.e("MVM", "GET - USER BALLS REMAINING : $pUserBallsRemaining")
+        return pUserBallsRemaining
+    }
+    fun setUserBallsRemaining(v : Int) {
+        Log.e("MVM", "SET - USER BALLS REMAINING : $v")
+        pUserBallsRemaining = v
+    }
+
+
+    private var pOpponentBallsRemaining: Int? = null
+    fun getOpponentBallsRemaining() : Int? {
+        Log.e("MVM", "GET - OPPONENT BALLS REMAINING : $pOpponentBallsRemaining")
+        return pOpponentBallsRemaining
+    }
+    fun setOpponentBallsRemaining(v : Int) {
+        Log.e("MVM", "SET - OPPONENT BALLS REMAINING : $v")
+        pOpponentBallsRemaining = v
+    }
+
+    fun printPendingGameValues(){
+        Log.i("MVM", "GAME DURATION : ${getGameLength()}")
+        Log.i("MVM", "USER WON : ${getUserWon()}")
+        Log.i("MVM", "GAME TYPE : ${getGameType()}")
+        Log.i("MVM", "USER BROKE : ${getUserBroke()}")
+        Log.i("MVM", "USER BALLS PLAYED : ${getUserBallsPlayed()}")
+        Log.i("MVM", "METHOD OF VICTORY : ${getMethodOfVictory()}")
+        Log.i("MVM", "USER BALLS REMAINING : ${getUserBallsRemaining()}")
+        Log.i("MVM", "OPPONENT BALLS REMAINING : ${getOpponentBallsRemaining()}")
+    }
+
     init {
         Log.i("MVM", "init")
 

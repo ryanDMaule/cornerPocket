@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/statsFragment"
-        android:name="com.example.cornerpocket.StatsFragment"
+        android:name="com.example.cornerpocket.presentation.stats.StatsFragment"
         android:label="fragment_stats"
         tools:layout="@layout/fragment_stats" />
     <fragment
@@ -21,14 +21,14 @@
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.cornerpocket.HistoryFragment"
+        android:name="com.example.cornerpocket.presentation.history.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <navigation android:id="@+id/gameGraph"
         app:startDestination="@id/opponentSelectFragment">
         <fragment
             android:id="@+id/gameTypeFragment"
-            android:name="com.example.cornerpocket.GameTypeFragment"
+            android:name="com.example.cornerpocket.presentation.play.GameTypeFragment"
             android:label="fragment_game_type"
             tools:layout="@layout/fragment_game_type">
             <action
@@ -40,7 +40,7 @@
         </fragment>
         <fragment
             android:id="@+id/gameReviewFragment"
-            android:name="com.example.cornerpocket.GameReviewFragment"
+            android:name="com.example.cornerpocket.presentation.play.GameReviewFragment"
             android:label="fragment_game_review"
             tools:layout="@layout/fragment_game_review">
             <action
@@ -52,7 +52,7 @@
         </fragment>
         <fragment
             android:id="@+id/gameUnderwayFragment"
-            android:name="com.example.cornerpocket.GameUnderwayFragment"
+            android:name="com.example.cornerpocket.presentation.play.GameUnderwayFragment"
             android:label="fragment_game_underway"
             tools:layout="@layout/fragment_game_underway">
             <action
@@ -64,7 +64,7 @@
         </fragment>
         <fragment
             android:id="@+id/opponentSelectFragment"
-            android:name="com.example.cornerpocket.OpponentSelectFragment"
+            android:name="com.example.cornerpocket.presentation.play.OpponentSelectFragment"
             android:label="fragment_opponent_select"
             tools:layout="@layout/fragment_opponent_select">
             <action
@@ -76,7 +76,7 @@
         </fragment>
         <fragment
             android:id="@+id/breakSelectionFragment"
-            android:name="com.example.cornerpocket.BreakSelectionFragment"
+            android:name="com.example.cornerpocket.presentation.play.BreakSelectionFragment"
             android:label="fragment_break_selection"
             tools:layout="@layout/fragment_break_selection">
             <action
@@ -88,7 +88,7 @@
         </fragment>
         <fragment
             android:id="@+id/gameDetailsFragment"
-            android:name="com.example.cornerpocket.GameDetailsFragment"
+            android:name="com.example.cornerpocket.presentation.play.GameDetailsFragment"
             android:label="fragment_game_details"
             tools:layout="@layout/fragment_game_details">
             <action
