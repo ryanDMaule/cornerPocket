@@ -37,6 +37,8 @@ class OpponentSelectFragment : Fragment()  {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentOpponentSelectBinding.inflate(inflater, container, false)
 
+        binding.userText.text = "Ryan"
+
         binding.btnNextButton.setOnClickListener {
             if (viewModel.getSelectedOpponent() != null){
                 findNavController().navigate(R.id.action_opponentSelectFragment_to_gameTypeFragment)
@@ -107,8 +109,8 @@ class OpponentSelectFragment : Fragment()  {
     }
 
     private fun itemSelected(opponent: Opponent){
-        binding.selectedOpponentName.text =opponent.name
-        binding.selectedOpponentRecord.text = "${opponent.wins} - ${opponent.losses}"
+        binding.opponentText.text =opponent.name
+        binding.winRecordText.text = "${opponent.wins} - ${opponent.losses}"
         formatRecentGames(opponent.gamesHistory.take(5).reversed())
     }
 

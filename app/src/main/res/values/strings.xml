@@ -40,6 +40,7 @@
     <string name="start_game">Start game</string>
     <string name="finish_game">Finish game</string>
     <string name="next">Next</string>
+    <string name="back">Back</string>
 
     <!-- CONTENT DESCRIPTIONS -->
     <string name="settings_icon">Settings icon</string>
