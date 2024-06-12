@@ -4,7 +4,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:background="@color/dark_primary"
-    android:padding="8dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
@@ -15,6 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
         tools:text="NAME" />
 
     <ImageView

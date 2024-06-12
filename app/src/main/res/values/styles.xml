@@ -6,7 +6,7 @@
         <item name="android:shadowColor">@color/white</item>
         <item name="android:shadowDx">0.0</item>
         <item name="android:shadowDy">0.0</item>
-        <item name="android:shadowRadius">50</item>
+        <item name="android:shadowRadius">16</item>
         <item name="android:letterSpacing">.05</item>
     </style>
 
@@ -36,7 +36,6 @@
         <item name="android:textColor">@color/white_80</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:letterSpacing">.1</item>
     </style>
 
     <style name="greyText" parent="smallCapsText">
@@ -55,15 +54,19 @@
     </style>
 
     <style name="recentGames">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
     </style>
 
-    <style name="mainButton">
+    <style name="mainButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/dark_primary</item>
-        <item name="android:layout_marginBottom">32dp</item>
+        <item name="android:textColor">@color/cyan</item>
+        <item name="android:backgroundTint">@color/dark_primary</item>
+        <item name="strokeColor">@color/cyan</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">.2</item>
+        <item name="android:padding">24dp</item>
     </style>
 
     <style name="gameReviewTextTitle">
@@ -74,6 +77,25 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:letterSpacing">.05</item>
+    </style>
+
+    <style name="titleBarStepText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_60</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="floatingActionButton">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_gravity">right|end|bottom</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:scaleType">center</item>
+        <item name="elevation">4dp</item>
+        <item name="android:foreground">@drawable/add_icon_solid</item>
+        <item name="backgroundTint">#0028E7C4</item>
+        <item name="borderWidth">1dp</item>
     </style>
 
 </resources>

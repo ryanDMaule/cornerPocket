@@ -47,7 +47,7 @@ class OpponentSelectFragment : Fragment()  {
             }
         }
 
-        binding.settingsButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_opponentSelectFragment_to_playFragment)
         }
 
@@ -63,6 +63,10 @@ class OpponentSelectFragment : Fragment()  {
                 opponentsAdapter.onItemClicked = { opponent ->
                     itemSelected(opponent)
                     viewModel.setSelectedOpponent(opponent)
+                    if (binding.selectedOpponentSection.visibility != View.VISIBLE){
+                        binding.noOpponentSelectedBlock.visibility = View.GONE
+                        binding.selectedOpponentSection.visibility = View.VISIBLE
+                    }
                 }
             }
         }
