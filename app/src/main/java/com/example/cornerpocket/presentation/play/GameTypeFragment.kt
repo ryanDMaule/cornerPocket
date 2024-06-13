@@ -1,16 +1,19 @@
 package com.example.cornerpocket.presentation.play
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameTypeBinding
 import com.example.cornerpocket.viewModels.MainViewModel
+import com.google.android.material.button.MaterialButton
 
 class GameTypeFragment : Fragment() {
     private var _binding : FragmentGameTypeBinding? = null
@@ -21,19 +24,33 @@ class GameTypeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentGameTypeBinding.inflate(inflater, container, false)
 
+        binding.vsSection.opponentNameTv.text = viewModel.getSelectedOpponent()?.name
+
+        when (viewModel.getGameType()) {
+            "ENGLISH" -> {
+                englishGamePressed()
+            }
+            "AMERICAN" -> {
+                americanGamePressed()
+            }
+            else -> {
+                //handle
+            }
+        }
+
         binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_gameTypeFragment_to_opponentSelectFragment)
         }
 
-        binding.btnNext.setOnClickListener {
+        binding.btnNextButton.setOnClickListener {
             findNavController().navigate(R.id.action_gameTypeFragment_to_breakSelectionFragment)
         }
 
-        binding.englishGameTypeText.setOnClickListener {
+        binding.englishButton.setOnClickListener {
             englishGamePressed()
         }
 
-        binding.americanGameTypeText.setOnClickListener {
+        binding.americanButton.setOnClickListener {
             americanGamePressed()
         }
 
@@ -41,33 +58,40 @@ class GameTypeFragment : Fragment() {
     }
 
     private fun englishGamePressed(){
-        if (viewModel.getGameType() == "ENGLISH"){
-            //do nothing
-        } else {
-            viewModel.setGameType("ENGLISH")
-            binding.englishBar.setBackgroundResource(R.drawable.gradient_blue_purple)
-            binding.englishGameTypeText.setTextColor(resources.getColor(R.color.cyan))
+        viewModel.setGameType("ENGLISH")
 
-            binding.americanBar.setBackgroundResource(R.color.white)
-            binding.americanGameTypeText.setTextColor(resources.getColor(R.color.white))
+        styleSelectedButton(binding.englishButton)
+        styleUnselectedButton(binding.americanButton)
 
-            binding.ivGameSetUp.setImageResource(R.drawable.english_setup)
-        }
+        binding.ivGameSetUp.setImageResource(R.drawable.english_setup)
     }
 
     private fun americanGamePressed(){
-        if (viewModel.getGameType() == "AMERICAN"){
-            //do nothing
-        } else {
-            viewModel.setGameType("AMERICAN")
-            binding.englishBar.setBackgroundResource(R.color.white)
-            binding.englishGameTypeText.setTextColor(resources.getColor(R.color.white))
+        viewModel.setGameType("AMERICAN")
 
-            binding.americanBar.setBackgroundResource(R.drawable.gradient_purple_blue2)
-            binding.americanGameTypeText.setTextColor(resources.getColor(R.color.cyan))
+        styleUnselectedButton(binding.englishButton)
+        styleSelectedButton(binding.americanButton)
 
-            binding.ivGameSetUp.setImageResource(R.drawable.american_setup)
-        }
+        binding.ivGameSetUp.setImageResource(R.drawable.american_setup)
+    }
+    private fun styleUnselectedButton(button: MaterialButton) {
+        button.strokeWidth = 4
+        button.setTextColor(resources.getColor(R.color.white_80))
+        val colorInt: Int = requireContext().getColor(R.color.white_80)
+        val csl = ColorStateList.valueOf(colorInt)
+        button.strokeColor = csl
+
+        val colorInt2: Int = requireContext().getColor(R.color.transparant)
+        val csl2 = ColorStateList.valueOf(colorInt2)
+        button.backgroundTintList = csl2
+    }
+
+    private fun styleSelectedButton(button: MaterialButton) {
+        button.strokeWidth = 0
+        button.setTextColor(resources.getColor(R.color.dark_primary))
+        val colorInt2: Int = requireContext().getColor(R.color.cyan)
+        val csl2 = ColorStateList.valueOf(colorInt2)
+        button.backgroundTintList = csl2
     }
 
 }

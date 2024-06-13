@@ -7,6 +7,7 @@
     <color name="grey_60">#99B8B7BA</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_80">#CCFFFFFF</color>
+    <color name="transparant">#00FFFFFF</color>
 
     <color name="cyan">#28E7C4</color>
     <color name="dark_cyan">#41A4C0</color>
