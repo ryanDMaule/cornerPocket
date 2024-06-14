@@ -219,77 +219,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- GAME TYPE PICKER
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/gameTypeContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/englishGameTypeText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="@string/english"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/cyan"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/english_bar"
-                android:layout_width="0dp"
-                android:layout_height="4dp"
-                android:background="@drawable/gradient_blue_purple"
-                android:contentDescription="@string/selected_bar"
-                app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/englishGameTypeText"
-                tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/middleGuideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
-
-            <TextView
-                android:id="@+id/americanGameTypeText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="@string/american"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/middleGuideline"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/americanBar"
-                android:layout_width="0dp"
-                android:layout_height="4dp"
-                android:background="@color/white"
-                android:contentDescription="@string/unselected_bar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/middleGuideline"
-                app:layout_constraintTop_toBottomOf="@+id/americanGameTypeText"
-                tools:ignore="RedundantDescriptionCheck" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        -->
-
         <ImageView
             android:id="@+id/ivGameSetUp"
             android:layout_width="wrap_content"
@@ -307,7 +236,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/gradient_dark_primary_transparant"
-            app:layout_constraintBottom_toBottomOf="@+id/ivGameSetUp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

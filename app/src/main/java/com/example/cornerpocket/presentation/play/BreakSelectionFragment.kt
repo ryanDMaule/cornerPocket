@@ -37,7 +37,7 @@ class BreakSelectionFragment : Fragment() {
             findNavController().navigate(R.id.action_breakSelectionFragment_to_gameTypeFragment)
         }
 
-        binding.startGameButton.setOnClickListener {
+        binding.btnNextButton.setOnClickListener {
             if (viewModel.getUserBroke() != null){
                 findNavController().navigate(R.id.action_breakSelectionFragment_to_gameUnderwayFragment)
             }
