@@ -24,13 +24,13 @@ class GameUnderwayFragment : Fragment() {
 
         binding.timer.start()
 
-        binding.userText.text = "Ryan"
+        binding.vsSection.userNameTv.text = "Ryan"
         val opponent = viewModel.getSelectedOpponent()
 
         if (opponent != null){
             Log.i("GUF", "selectedOpponent = $opponent")
 
-            binding.opponentText.text = opponent.name
+            binding.vsSection.opponentNameTv.text = opponent.name
         } else {
             Log.i("GUF", "viewModel.selectedOpponent == null")
         }
@@ -42,7 +42,7 @@ class GameUnderwayFragment : Fragment() {
             findNavController().navigate(R.id.action_gameUnderwayFragment_to_gameReviewFragment)
         }
 
-        binding.exitButton.setOnClickListener {
+        binding.quitButton.setOnClickListener {
             findNavController().navigate(R.id.action_gameUnderwayFragment_to_playFragment)
         }
 
