@@ -30,7 +30,7 @@ class GameReviewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentGameReviewBinding.inflate(inflater, container, false)
 
-        actv = binding.actv
+        actv = binding.winnerSection.actv
         adapterItems = ArrayAdapter<String>(requireContext(),
             R.layout.item_text_dropdown, dropdownItems)
         actv.setAdapter(adapterItems)
@@ -42,9 +42,9 @@ class GameReviewFragment : Fragment() {
         binding.finishGame.setOnClickListener {
 
             if (viewModel.getMethodOfVictory().isNotBlank()){
-                if (binding.redBallsLeftText.text.isNotBlank() && binding.yellowBallsLeftText.text.isNotBlank()){
-                    viewModel.setUserBallsRemaining(binding.redBallsLeftText.text.toString().toInt())
-                    viewModel.setOpponentBallsRemaining(binding.yellowBallsLeftText.text.toString().toInt())
+                if (binding.ballsPlayedSection.redBallsLeftText.text.isNotBlank() && binding.ballsPlayedSection.yellowBallsLeftText.text.isNotBlank()){
+                    viewModel.setUserBallsRemaining(binding.ballsPlayedSection.redBallsLeftText.text.toString().toInt())
+                    viewModel.setOpponentBallsRemaining(binding.ballsPlayedSection.yellowBallsLeftText.text.toString().toInt())
                 } else {
                     Toast.makeText(requireActivity(), "PLEASE ENTER THE BALLS REMAINING FOR BOTH BALL TYPES",Toast.LENGTH_SHORT).show()
                 }
@@ -60,18 +60,18 @@ class GameReviewFragment : Fragment() {
         }
 
         //WINNER SECTION
-        binding.userText.text = "Ryan"
+        binding.winnerSection.userText.text = "Ryan"
         val opponent = viewModel.getSelectedOpponent()
 
         if (opponent != null){
             Log.i("GRF", "selectedOpponent = $opponent}")
 
-            binding.opponentText.text = opponent.name
+            binding.winnerSection.opponentText.text = opponent.name
         } else {
             Log.i("GRF", "viewModel.selectedOpponent == null")
         }
 
-        binding.userImage.setOnClickListener {
+        binding.winnerSection.userImage.setOnClickListener {
             val userWon = viewModel.getUserWon()
             Log.i("GRF", "userIcon = $userWon")
 
@@ -84,7 +84,7 @@ class GameReviewFragment : Fragment() {
             }
         }
 
-        binding.opponentImage.setOnClickListener {
+        binding.winnerSection.opponentImage.setOnClickListener {
             val userWon = viewModel.getUserWon()
             Log.i("GRF", "opponentIcon = $userWon")
 
@@ -98,7 +98,7 @@ class GameReviewFragment : Fragment() {
         }
 
 
-        binding.redBallImage.setOnClickListener {
+        binding.ballsPlayedSection.redBallImage.setOnClickListener {
             val ballsPlayed = viewModel.getUserBallsPlayed()
             Log.i("GRF", "ballsPlayed = $ballsPlayed")
 
@@ -107,7 +107,7 @@ class GameReviewFragment : Fragment() {
             }
         }
 
-        binding.yellowBallImage.setOnClickListener {
+        binding.ballsPlayedSection.yellowBallImage.setOnClickListener {
             val ballsPlayed = viewModel.getUserBallsPlayed()
             Log.i("GRF", "ballsPlayed = $ballsPlayed")
 
@@ -121,20 +121,20 @@ class GameReviewFragment : Fragment() {
 
     private fun setUserWon(){
         viewModel.setUserWon(true)
-        binding.opponentSelectedImage.visibility = View.INVISIBLE
-        binding.userSelectedImage.visibility = View.VISIBLE
+        binding.winnerSection.opponentSelectedImage.visibility = View.INVISIBLE
+        binding.winnerSection.userSelectedImage.visibility = View.VISIBLE
     }
     private fun setOpponentWon(){
         viewModel.setUserWon(false)
-        binding.opponentSelectedImage.visibility = View.VISIBLE
-        binding.userSelectedImage.visibility = View.INVISIBLE
+        binding.winnerSection.opponentSelectedImage.visibility = View.VISIBLE
+        binding.winnerSection.userSelectedImage.visibility = View.INVISIBLE
     }
 
 
     //RED / SOLIDS
     private fun balls1Played(){
-        binding.yellowBallSelectedImage.visibility = View.INVISIBLE
-        binding.redBallSelectedImage.visibility = View.VISIBLE
+        binding.ballsPlayedSection.yellowBallSelectedImage.visibility = View.INVISIBLE
+        binding.ballsPlayedSection.redBallSelectedImage.visibility = View.VISIBLE
 
         when (viewModel.getGameType()) {
             "ENGLISH" -> {
@@ -151,8 +151,8 @@ class GameReviewFragment : Fragment() {
     }
     //YELLOW / STRIPES
     private fun balls2Played(){
-        binding.yellowBallSelectedImage.visibility = View.VISIBLE
-        binding.redBallSelectedImage.visibility = View.INVISIBLE
+        binding.ballsPlayedSection.yellowBallSelectedImage.visibility = View.VISIBLE
+        binding.ballsPlayedSection.redBallSelectedImage.visibility = View.INVISIBLE
 
         when (viewModel.getGameType()) {
             "ENGLISH" -> {
