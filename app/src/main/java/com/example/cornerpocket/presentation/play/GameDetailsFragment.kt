@@ -1,6 +1,7 @@
 package com.example.cornerpocket.presentation.play
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,10 +34,9 @@ class GameDetailsFragment : Fragment() {
         } else {
 
             //DATE
-            binding.dateTitle.text = game.date.toString()
+            binding.dateTitle.text = game.date
 
             //GAME TIME
-            // TODO: Format to MM:SS
             binding.gameDurationText.text = game.gameDuration
 
             //WINNERS CROWN / RECORD UP ARROW
@@ -49,7 +49,11 @@ class GameDetailsFragment : Fragment() {
             }
 
             //PLAYER NAMES
-            binding.userText.text = "Ryan"
+            val user = viewModel.getUser()
+            Log.i("BSF", "user = $user")
+            if (user != null){
+                binding.userText.text = user.name
+            }
             binding.opponentText.text = opponent.name
 
             //METHOD OF VICTORY

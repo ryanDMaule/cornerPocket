@@ -24,15 +24,16 @@ class GameUnderwayFragment : Fragment() {
 
         binding.timer.start()
 
-        binding.vsSection.userNameTv.text = "Ryan"
+        val user = viewModel.getUser()
+        Log.i("BSF", "user = $user")
+        if (user != null){
+            binding.vsSection.userNameTv.text = viewModel.getUser()?.name
+        }
+
         val opponent = viewModel.getSelectedOpponent()
-
+        Log.i("GUF", "selectedOpponent = $opponent")
         if (opponent != null){
-            Log.i("GUF", "selectedOpponent = $opponent")
-
             binding.vsSection.opponentNameTv.text = opponent.name
-        } else {
-            Log.i("GUF", "viewModel.selectedOpponent == null")
         }
 
         binding.finishGame.setOnClickListener {

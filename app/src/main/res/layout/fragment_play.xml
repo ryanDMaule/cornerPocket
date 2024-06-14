@@ -19,21 +19,21 @@
             android:id="@+id/user_profile_button"
             style="@style/iconSize"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@string/profile_icon"
             android:src="@drawable/user_placeholder_icon_white"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/profile_icon"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/settings_button"
-            style="@style/iconSize"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/settings_icon_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/user_profile_button"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/settings_icon"/>
+        <TextView
+            android:id="@+id/user_profile_text"
+            style="@style/smallCapsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="profile"
+            app:layout_constraintEnd_toEndOf="@+id/user_profile_button"
+            app:layout_constraintStart_toStartOf="@+id/user_profile_button"
+            app:layout_constraintTop_toBottomOf="@+id/user_profile_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

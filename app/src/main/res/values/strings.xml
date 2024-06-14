@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CornerPocket</string>
-    
+
     <!-- PAGES -->
     <string name="title_play">PLAY</string>
     <string name="title_stats">STATS</string>
@@ -69,5 +69,7 @@
     <string name="win_img">Win image</string>
     <string name="loss_img">Loss image</string>
     <string name="recent_game">Recent game result</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

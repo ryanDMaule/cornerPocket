@@ -37,7 +37,7 @@ class OpponentSelectFragment : Fragment()  {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentOpponentSelectBinding.inflate(inflater, container, false)
 
-        binding.userText.text = "Ryan"
+        binding.userText.text = viewModel.getUser()?.name
 
         binding.btnNextButton.setOnClickListener {
             if (viewModel.getSelectedOpponent() != null){

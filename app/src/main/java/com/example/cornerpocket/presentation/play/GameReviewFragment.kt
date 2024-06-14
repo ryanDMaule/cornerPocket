@@ -60,15 +60,16 @@ class GameReviewFragment : Fragment() {
         }
 
         //WINNER SECTION
-        binding.winnerSection.userText.text = "Ryan"
+        val user = viewModel.getUser()
+        Log.i("BSF", "user = $user")
+        if (user != null){
+            binding.winnerSection.userText.text = user.name
+        }
+
         val opponent = viewModel.getSelectedOpponent()
-
+        Log.i("GRF", "selectedOpponent = $opponent}")
         if (opponent != null){
-            Log.i("GRF", "selectedOpponent = $opponent}")
-
             binding.winnerSection.opponentText.text = opponent.name
-        } else {
-            Log.i("GRF", "viewModel.selectedOpponent == null")
         }
 
         binding.winnerSection.userImage.setOnClickListener {

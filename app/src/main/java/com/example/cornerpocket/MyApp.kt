@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
+import com.example.cornerpocket.models.User
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 
@@ -22,7 +23,8 @@ class MyApp: Application() {
             configuration = RealmConfiguration.create(
                 schema = setOf(
                     Game::class,
-                    Opponent::class
+                    Opponent::class,
+                    User::class
                 )
             )
         )

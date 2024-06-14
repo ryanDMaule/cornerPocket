@@ -22,15 +22,18 @@ class BreakSelectionFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBreakSelectionBinding.inflate(inflater, container, false)
 
-        // TODO: get users name from Realm object 
-        binding.tvUserName.text = "Ryan"
-        val opponent = viewModel.getSelectedOpponent()
+        val user = viewModel.getUser()
+        Log.i("BSF", "user = $user")
+        if (user != null){
+            binding.vsSection.userNameTv.text = viewModel.getUser()?.name
+            binding.tvUserName.text = viewModel.getUser()?.name
+        }
 
+        val opponent = viewModel.getSelectedOpponent()
+        Log.i("BSF", "selectedOpponent = $opponent")
         if (opponent != null){
-            Log.i("BSF", "selectedOpponent = $opponent")
             binding.tvOpponentName.text = opponent.name
-        } else {
-            Log.i("BSF", "viewModel.selectedOpponent == null")
+            binding.vsSection.opponentNameTv.text = opponent.name
         }
 
         binding.backButton.setOnClickListener {

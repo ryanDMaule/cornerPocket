@@ -20,14 +20,8 @@ class PlayFragment : Fragment() {
             findNavController().navigate(R.id.action_playFragment_to_opponentSelectFragment)
         }
 
-        binding.settingsButton.setOnClickListener {
-            // TODO: ON CLICK GO TO SETTINGS PAGE
-            Toast.makeText(requireActivity(), "SETTINGS",Toast.LENGTH_SHORT).show()
-        }
-
         binding.userProfileButton.setOnClickListener {
-            // TODO: ON CLICK GO TO USER PROFILE PAGE
-            Toast.makeText(requireActivity(), "USER PROFILE",Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_playFragment_to_user_details)
         }
 
 

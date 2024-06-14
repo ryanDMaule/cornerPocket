@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.cornerpocket.MyApp
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
+import com.example.cornerpocket.models.User
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.query.Sort
@@ -24,6 +25,77 @@ import java.time.LocalDateTime
 class MainViewModel: ViewModel() {
 
     private val realm = MyApp.realm
+
+    fun getUser() : User? {
+        val queriedUser = realm.query<User>().first().find()
+        return if (queriedUser != null){
+            Log.i("MVM", "getUser: return user : $queriedUser")
+            queriedUser
+        } else {
+            viewModelScope.launch(Dispatchers.IO) {
+                realm.write {
+                    val user = User().apply {
+                        name = "User"
+                    }
+                    copyToRealm(user, updatePolicy = UpdatePolicy.ALL)
+                    Log.i("MVM", "getUser: create user : $user")
+
+                    getUser()
+                }
+            }
+            null
+        }
+    }
+
+//    fun createUser() {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            val queriedUser = realm.query<User>().first().find()
+//            if (queriedUser != null){
+//                Log.i("MVM", "createUser: return user : $queriedUser")
+//                setUser(queriedUser)
+//            } else {
+//                realm.write {
+//                    val user = User().apply {
+//                        name = "User"
+//                    }
+//                    copyToRealm(user, updatePolicy = UpdatePolicy.ALL)
+//                    Log.i("MVM", "createUser: create user : $user")
+//
+//                    createUser()
+//                }
+//            }
+//        }
+//    }
+//
+//
+//    private var user : User? = null
+//    fun getUserVal() : User? {
+//        Log.e("MVM", "GET - USER : $user")
+//        return user
+//    }
+//    fun setUser(passedUser: User) {
+//        Log.e("MVM", "SET - USER : $passedUser")
+//        user = passedUser
+//    }
+
+
+
+    fun updateUser(name : String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            realm.write {
+                val queriedUser = realm.query<User>().first().find()
+
+                if (queriedUser != null){
+                    val queriedUserLatest = findLatest(queriedUser)
+
+                    if (queriedUserLatest != null){
+                        queriedUserLatest.name = name
+                        copyToRealm(queriedUserLatest, updatePolicy = UpdatePolicy.ALL)
+                    }
+                }
+            }
+        }
+    }
 
     fun getOpponents() : Flow<MutableList<Opponent>> {
         return realm.query<Opponent>().asFlow().map { it.list.toMutableList() }
@@ -73,6 +145,7 @@ class MainViewModel: ViewModel() {
         }
     }
 
+    // region gameCreation
     private fun createGame() : Game {
         return Game().apply {
             gameDuration = pGameLength
@@ -197,6 +270,8 @@ class MainViewModel: ViewModel() {
         Log.i("MVM", "OPPONENT BALLS REMAINING : ${getOpponentBallsRemaining()}")
     }
 
+    // endregion
+
     init {
         Log.i("MVM", "init")
 
@@ -217,6 +292,10 @@ class MainViewModel: ViewModel() {
         Log.i("MVM", "createSampleEntries")
         viewModelScope.launch {
             realm.write {
+                val user = User().apply {
+                    name = "User"
+                }
+
                 val opponent1 = Opponent().apply {
                     name = "Ryan"
                     wins = 0
@@ -309,13 +388,6 @@ class MainViewModel: ViewModel() {
                 copyToRealm(opponent2, updatePolicy = UpdatePolicy.ALL)
                 copyToRealm(opponent3, updatePolicy = UpdatePolicy.ALL)
                 copyToRealm(opponent4, updatePolicy = UpdatePolicy.ALL)
-
-//                copyToRealm(game1, updatePolicy = UpdatePolicy.ALL)
-//                copyToRealm(game2, updatePolicy = UpdatePolicy.ALL)
-//                copyToRealm(game3, updatePolicy = UpdatePolicy.ALL)
-//                copyToRealm(game4, updatePolicy = UpdatePolicy.ALL)
-//                copyToRealm(game5, updatePolicy = UpdatePolicy.ALL)
-
             }
         }
     }
