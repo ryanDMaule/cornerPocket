@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.viewModels.MainViewModel
@@ -34,7 +35,8 @@ class GameDetailsFragment : Fragment() {
         } else {
 
             //DATE
-            binding.dateTitle.text = game.date
+            val date = HelperFunctions.longConversion(game.date)
+            binding.dateTitle.text = HelperFunctions.formatDate(date)
 
             //GAME TIME
             binding.gameDurationText.text = game.gameDuration

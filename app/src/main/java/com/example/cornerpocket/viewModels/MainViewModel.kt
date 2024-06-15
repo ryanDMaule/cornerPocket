@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.mongodb.kbson.ObjectId
 import java.time.LocalDateTime
 
 class MainViewModel: ViewModel() {
@@ -47,39 +48,6 @@ class MainViewModel: ViewModel() {
         }
     }
 
-//    fun createUser() {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            val queriedUser = realm.query<User>().first().find()
-//            if (queriedUser != null){
-//                Log.i("MVM", "createUser: return user : $queriedUser")
-//                setUser(queriedUser)
-//            } else {
-//                realm.write {
-//                    val user = User().apply {
-//                        name = "User"
-//                    }
-//                    copyToRealm(user, updatePolicy = UpdatePolicy.ALL)
-//                    Log.i("MVM", "createUser: create user : $user")
-//
-//                    createUser()
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    private var user : User? = null
-//    fun getUserVal() : User? {
-//        Log.e("MVM", "GET - USER : $user")
-//        return user
-//    }
-//    fun setUser(passedUser: User) {
-//        Log.e("MVM", "SET - USER : $passedUser")
-//        user = passedUser
-//    }
-
-
-
     fun updateUser(name : String) {
         viewModelScope.launch(Dispatchers.IO) {
             realm.write {
@@ -100,6 +68,10 @@ class MainViewModel: ViewModel() {
     fun getOpponents() : Flow<MutableList<Opponent>> {
         return realm.query<Opponent>().asFlow().map { it.list.toMutableList() }
     }
+    fun getGames() : Flow<MutableList<Game>> {
+        return realm.query<Game>().asFlow().map { it.list.toMutableList() }
+    }
+
     suspend fun insertOpponent(opponent : Opponent){
         realm.write { copyToRealm(opponent) }
     }
@@ -145,9 +117,18 @@ class MainViewModel: ViewModel() {
         }
     }
 
+    fun getOpponentViaId(id : ObjectId) : Opponent? {
+        val queriedOpponent = realm.query<Opponent>("_id == $0", id).first().find()
+        if (queriedOpponent != null){
+            return queriedOpponent
+        }
+        return null
+    }
+
     // region gameCreation
     private fun createGame() : Game {
         return Game().apply {
+            opponentId = selectedOpponent!!._id
             gameDuration = pGameLength
             userWon = pUserWon == true
             gameType = pGameType
