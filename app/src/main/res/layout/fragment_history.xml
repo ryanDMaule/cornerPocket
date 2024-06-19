@@ -52,18 +52,31 @@
             android:id="@+id/textView2"
             style="@style/smallCapsText"
             android:layout_width="0dp"
-            android:padding="8dp"
+            android:layout_marginTop="16dp"
             android:letterSpacing=".1"
+            android:padding="8dp"
             android:text="Game History"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/resultsCounterText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section" />
+
+        <TextView
+            android:id="@+id/resultsCounterText"
+            style="@style/smallCapsText"
+            android:layout_width="0dp"
+            android:layout_marginBottom="16dp"
+            android:letterSpacing=".1"
+            android:textAlignment="center"
+            android:textColor="@color/white_80"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="5 RESULTS" />
 
         <ImageView
             android:id="@+id/background_completion_bar"
@@ -135,11 +148,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guidelineTwo"
                 app:layout_constraintTop_toTopOf="parent" />
-            
-            
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
+            android:id="@+id/divider_2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/white_80"
@@ -152,16 +166,7 @@
             tools:listitem="@layout/item_result"
             tools:itemCount="5"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headings" />
-
-        <ImageView
-            android:id="@+id/fade_out_iv"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/gradient_dark_primary_transparant"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/divider_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
