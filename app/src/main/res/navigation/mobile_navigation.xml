@@ -26,7 +26,11 @@
         android:id="@+id/historyFragment"
         android:name="com.example.cornerpocket.presentation.history.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_historyGameDetailsFragment"
+            app:destination="@id/historyGameDetailsFragment" />
+    </fragment>
     <navigation android:id="@+id/gameGraph"
         app:startDestination="@id/opponentSelectFragment">
         <fragment
@@ -107,5 +111,14 @@
         <action
             android:id="@+id/action_user_details_to_playFragment"
             app:destination="@id/playFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyGameDetailsFragment"
+        android:name="com.example.cornerpocket.presentation.history.HistoryGameDetailsFragment"
+        android:label="fragment_history_game_details"
+        tools:layout="@layout/fragment_game_details" >
+        <action
+            android:id="@+id/action_historyGameDetailsFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
 </navigation>

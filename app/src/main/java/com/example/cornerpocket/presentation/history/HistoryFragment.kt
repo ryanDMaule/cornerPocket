@@ -12,9 +12,11 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.GameHistoryAdapter
@@ -61,6 +63,11 @@ class HistoryFragment : Fragment() {
 
                 historyAdapter.onItemClicked = { game ->
                     Toast.makeText(requireContext(), "${game._id}", Toast.LENGTH_SHORT).show()
+                    val bundle = Bundle().apply {
+                        putString("gameKey", game._id.toHexString())
+                    }
+                    // TODO:
+                    findNavController().navigate(R.id.action_historyFragment_to_historyGameDetailsFragment, bundle)
                 }
             }
         }
@@ -160,6 +167,13 @@ class HistoryFragment : Fragment() {
                 recyclerView.adapter = historyAdapter
                 binding.resultsCounterText.text = "${filteredList.size} RESULTS"
 
+                historyAdapter.onItemClicked = { game ->
+                    Toast.makeText(requireContext(), "${game._id}", Toast.LENGTH_SHORT).show()
+                    val bundle = Bundle().apply {
+                        putString("gameKey", game._id.toHexString())
+                    }
+                    findNavController().navigate(R.id.action_historyFragment_to_historyGameDetailsFragment, bundle)
+                }
 
                 dialog.dismiss()
             }

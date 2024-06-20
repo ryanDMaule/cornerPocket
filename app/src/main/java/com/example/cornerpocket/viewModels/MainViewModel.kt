@@ -211,6 +211,14 @@ class MainViewModel: ViewModel() {
         return null
     }
 
+    fun getGameViaId(id : ObjectId) : Game? {
+        val queriedGame = realm.query<Game>("_id == $0", id).first().find()
+        if (queriedGame != null){
+            return queriedGame
+        }
+        return null
+    }
+
     // region gameCreation
     private fun createGame() : Game {
         return Game().apply {
