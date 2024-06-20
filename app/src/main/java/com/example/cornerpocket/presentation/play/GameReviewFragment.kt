@@ -14,13 +14,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameReviewBinding
-import com.example.cornerpocket.viewModels.MainViewModel
+import com.example.cornerpocket.viewModels.PlayViewModel
 
 class GameReviewFragment : Fragment() {
     private var _binding : FragmentGameReviewBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
+    private val viewModel: PlayViewModel by navGraphViewModels(R.id.gameGraph)
 
 
     private var dropdownItems = arrayOf("Standard victory","Opponent foul")

@@ -1,181 +1,55 @@
 package com.example.cornerpocket.viewModels
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cornerpocket.MyApp
+import com.example.cornerpocket.Repositories.GameRepository
+import com.example.cornerpocket.Repositories.OpponentRepository
+import com.example.cornerpocket.Repositories.UserRepository
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.models.User
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
-import io.realm.kotlin.query.RealmResults
-import io.realm.kotlin.query.Sort
-import io.realm.kotlin.types.RealmList
-import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.mongodb.kbson.ObjectId
-import java.time.LocalDateTime
-import kotlin.math.abs
 
-class MainViewModel: ViewModel() {
+class PlayViewModel: ViewModel() {
 
     private val realm = MyApp.realm
 
-    fun getUser() : User? {
-        val queriedUser = realm.query<User>().first().find()
-        return if (queriedUser != null){
-            Log.i("MVM", "getUser: return user : $queriedUser")
-            queriedUser
-        } else {
-            viewModelScope.launch(Dispatchers.IO) {
-                realm.write {
-                    val user = User().apply {
-                        name = "User"
-                    }
-                    copyToRealm(user, updatePolicy = UpdatePolicy.ALL)
-                    Log.i("MVM", "getUser: create user : $user")
-
-                    getUser()
-                }
-            }
-            null
-        }
+    private val gameRepository: GameRepository by lazy {
+        GameRepository(realm)
     }
 
-    fun updateUser(name : String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            realm.write {
-                val queriedUser = realm.query<User>().first().find()
+    private val opponentRepository: OpponentRepository by lazy {
+        OpponentRepository(realm)
+    }
 
-                if (queriedUser != null){
-                    val queriedUserLatest = findLatest(queriedUser)
+    private val userRepository: UserRepository by lazy {
+        UserRepository(realm)
+    }
 
-                    if (queriedUserLatest != null){
-                        queriedUserLatest.name = name
-                        copyToRealm(queriedUserLatest, updatePolicy = UpdatePolicy.ALL)
-                    }
-                }
-            }
-        }
+    fun getUser() : User? {
+        return userRepository.getUser()
     }
 
     fun getOpponents() : Flow<MutableList<Opponent>> {
-        return realm.query<Opponent>().asFlow().map { it.list.toMutableList() }
+        return opponentRepository.getOpponents()
     }
-    fun getGames() : Flow<MutableList<Game>> {
-        return realm.query<Game>().asFlow().map { it.list.toMutableList() }
-    }
-
-    fun filterGames(list : MutableList<Game>, opponent : Opponent?, gameType : String?, userWins : Boolean?, userBreaks : Boolean?, orderNewest : Boolean) : MutableList<Game> {
-        var filteredList = list
-
-        if (opponent != null){
-            filteredList = filterGamesByOpponent(filteredList, opponent)
-        }
-        if (gameType != null){
-            filteredList = filterGamesByGameType(filteredList, gameType)
-        }
-        if (userWins != null){
-            filteredList = filterGamesByResult(filteredList, userWins)
-        }
-        if (userBreaks != null) {
-            filteredList = filterGamesByUserBreaks(filteredList, userBreaks)
-        }
-        filteredList = if (orderNewest){
-            filterGamesByMostRecent(filteredList)
-        } else {
-            filterGamesByOldest(filteredList)
-        }
-
-        return filteredList
-    }
-
-    private fun filterGamesByOpponent(list : MutableList<Game>, opponent: Opponent) : MutableList<Game>{ //
-        return list.filter { it.opponentId == opponent._id }.toMutableList()
-    }
-
-    private fun filterGamesByGameType(list : MutableList<Game>, gameType : String) : MutableList<Game>{
-        return when(gameType){
-            "ENGLISH" -> {
-                //ENGLISH games played
-                list.filter { it.gameType == "ENGLISH" }.toMutableList()
-            }
-
-            "AMERICAN" -> {
-                //AMERICAN games played
-                list.filter { it.gameType == "AMERICAN" }.toMutableList()
-            }
-            else -> {
-                list
-            }
-        }
-    }
-
-    private fun filterGamesByResult(list : MutableList<Game>, userWins : Boolean) : MutableList<Game>{
-        return when(userWins){
-            true -> {
-                //games user won
-                list.filter { it.userWon }.toMutableList()
-            }
-
-            false -> {
-                //games user lost
-                list.filter { !it.userWon }.toMutableList()
-            }
-        }
-    }
-
-    private fun filterGamesByUserBreaks(list : MutableList<Game>, breaks : Boolean) : MutableList<Game>{
-        return when(breaks){
-            true -> {
-                //games user broke
-                list.filter { it.userBroke }.toMutableList()
-            }
-
-            false -> {
-                //games opponentBroke
-                list.filter { !it.userBroke }.toMutableList()
-            }
-        }
-    }
-
-    fun filterGamesByOldest(list : MutableList<Game>) : MutableList<Game>{
-        list.sortedBy { game ->
-            abs(game.date - System.currentTimeMillis())
-        }
-        return list.toMutableList()
-    }
-
-    fun filterGamesByMostRecent(list : MutableList<Game>) : MutableList<Game>{
-        return filterGamesByOldest(list).reversed().toMutableList()
-    }
-
     suspend fun insertOpponent(opponent : Opponent){
-        realm.write { copyToRealm(opponent) }
+        opponentRepository.insertOpponent(opponent = opponent)
     }
 
     fun getOpponentMostRecentGame() : Game? {
-        val queriedOpponent = realm.query<Opponent>("_id == $0", selectedOpponent!!._id).first().find()
-        if (queriedOpponent != null){
-            return queriedOpponent.gamesHistory[queriedOpponent.gamesHistory.size-1]
-        }
-        return null
+        return gameRepository.getOpponentMostRecentGame(passedOpponent = selectedOpponent!!)
     }
 
     fun getUpdatedOpponent() : Opponent? {
-        val queriedOpponent = realm.query<Opponent>("_id == $0", selectedOpponent!!._id).first().find()
-        if (queriedOpponent != null){
-            return queriedOpponent
-        }
-        return null
+        return opponentRepository.getUpdatedOpponent(passedOpponent = selectedOpponent!!)
     }
 
     fun updateOpponent(){
@@ -204,34 +78,26 @@ class MainViewModel: ViewModel() {
     }
 
     fun getOpponentViaId(id : ObjectId) : Opponent? {
-        val queriedOpponent = realm.query<Opponent>("_id == $0", id).first().find()
-        if (queriedOpponent != null){
-            return queriedOpponent
-        }
-        return null
+        return opponentRepository.getOpponentViaId(id = id)
     }
 
     fun getGameViaId(id : ObjectId) : Game? {
-        val queriedGame = realm.query<Game>("_id == $0", id).first().find()
-        if (queriedGame != null){
-            return queriedGame
-        }
-        return null
+        return gameRepository.getGameViaId(id = id)
     }
 
     // region gameCreation
     private fun createGame() : Game {
-        return Game().apply {
-            opponentId = selectedOpponent!!._id
-            gameDuration = pGameLength
-            userWon = pUserWon == true
-            gameType = pGameType
-            userBroke = pUserBroke == true
-            userBallsPlayed = pUserBallsPlayed
-            methodOfVictory = pMethodOfVictory
-            userBallsRemaining = pUserBallsRemaining
-            opponentBallsRemaining = pOpponentBallsRemaining
-        }
+        return gameRepository.createGame(
+            selectedOpponent = selectedOpponent!!,
+            pGameLength = pGameLength,
+            pUserWon = pUserWon == true,
+            pGameType = pGameType,
+            pUserBroke = pUserBroke == true,
+            pUserBallsPlayed = pUserBallsPlayed,
+            pMethodOfVictory = pMethodOfVictory,
+            pUserBallsRemaining = pUserBallsRemaining,
+            pOpponentBallsRemaining = pOpponentBallsRemaining
+        )
     }
 
     private var selectedOpponent : Opponent? = null

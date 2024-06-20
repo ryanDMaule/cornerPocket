@@ -12,12 +12,12 @@ import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
-import com.example.cornerpocket.viewModels.MainViewModel
+import com.example.cornerpocket.viewModels.PlayViewModel
 
 class GameDetailsFragment : Fragment() {
     private var _binding : FragmentGameDetailsBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
+    private val viewModel: PlayViewModel by navGraphViewModels(R.id.gameGraph)
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -10,14 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameUnderwayBinding
-import com.example.cornerpocket.viewModels.MainViewModel
+import com.example.cornerpocket.viewModels.PlayViewModel
 
 class GameUnderwayFragment : Fragment() {
 
     private var _binding : FragmentGameUnderwayBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
+    private val viewModel: PlayViewModel by navGraphViewModels(R.id.gameGraph)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGameUnderwayBinding.inflate(inflater, container, false)

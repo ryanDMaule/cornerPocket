@@ -8,21 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
-import com.example.cornerpocket.viewModels.MainViewModel
+import com.example.cornerpocket.viewModels.UserViewModel
+import kotlinx.coroutines.launch
 
-class user_details : Fragment() {
+class UserDetailsFragment : Fragment() {
     private var _binding : FragmentUserDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
 
-        val user = viewModel.getUser()
+        val user = userViewModel.getUser()
         Log.i("UDF", "user: $user")
 
         if (user != null){
@@ -34,11 +36,17 @@ class user_details : Fragment() {
         }
 
         binding.applyBtn.setOnClickListener {
-            val updatedName = binding.inputTextName.text.toString()
-            if (updatedName.isNotBlank()){
-                viewModel.updateUser(updatedName)
-            } else {
-                Toast.makeText(requireActivity(), "TEXT FIELD CANNOT BE BLANK", Toast.LENGTH_SHORT).show()
+            userViewModel.viewModelScope.launch {
+                val updatedName = binding.inputTextName.text.toString()
+                if (updatedName.isNotBlank()){
+                    userViewModel.updateUser(updatedName)
+                    val updatedUser = userViewModel.getUser()
+                    if (updatedUser != null){
+                        binding.userNameTv.text = updatedUser.name
+                    }
+                } else {
+                    Toast.makeText(requireActivity(), "TEXT FIELD CANNOT BE BLANK", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

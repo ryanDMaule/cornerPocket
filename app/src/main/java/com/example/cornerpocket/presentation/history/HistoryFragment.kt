@@ -12,11 +12,10 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.GameHistoryAdapter
@@ -26,7 +25,7 @@ import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentHistoryBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
-import com.example.cornerpocket.viewModels.MainViewModel
+import com.example.cornerpocket.viewModels.HistoryViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.launch
@@ -36,7 +35,8 @@ class HistoryFragment : Fragment() {
     private var _binding : FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by viewModels()
+    //private val viewModel: MainViewModel by viewModels()
+    private val historyViewModel: HistoryViewModel by navGraphViewModels(R.id.historyGraph)
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var historyAdapter: GameHistoryAdapter
@@ -53,12 +53,12 @@ class HistoryFragment : Fragment() {
         recyclerView = binding.historyRecycler
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
 
-        viewModel.viewModelScope.launch {
-            viewModel.getGames().collect{ gamesList ->
+        historyViewModel.viewModelScope.launch {
+            historyViewModel.getGames().collect{ gamesList ->
                 binding.resultsCounterText.text = "${gamesList.size} RESULTS"
 
                 defaultList = gamesList
-                historyAdapter = GameHistoryAdapter(viewModel.filterGamesByMostRecent(gamesList), viewModel)
+                historyAdapter = GameHistoryAdapter(historyViewModel.filterGamesByMostRecent(gamesList), historyViewModel)
                 recyclerView.adapter = historyAdapter
 
                 historyAdapter.onItemClicked = { game ->
@@ -80,9 +80,8 @@ class HistoryFragment : Fragment() {
 
             //OPPONENT DROP DOWN BUTTON
             actv = view.findViewById(R.id.actv)
-
-            viewModel.viewModelScope.launch {
-                viewModel.getOpponents().collect { opponents ->
+            historyViewModel.viewModelScope.launch {
+                historyViewModel.getOpponents().collect { opponents ->
                     // Create and set the adapter
                     try {
                         val adapter = OpponentListAdapter(requireContext(), opponents.toMutableList())
@@ -107,7 +106,6 @@ class HistoryFragment : Fragment() {
                     }
                 }
             }
-
 
             //region FILTER LOGIC
 
@@ -154,7 +152,7 @@ class HistoryFragment : Fragment() {
             val btnApply = view.findViewById<MaterialButton>(R.id.footer_button)
             btnApply.setOnClickListener {
                 // TODO: APPLY SELECTED FILTERS
-                val filteredList = viewModel.filterGames(
+                val filteredList = historyViewModel.filterGames(
                     defaultList.toMutableList(),
                     opponent = selectedOpponent,
                     gameType = getGameTypeRadioResult(getSelectedRadioButtonText(view.findViewById(R.id.groupradio_gameType))),
@@ -163,7 +161,7 @@ class HistoryFragment : Fragment() {
                     orderNewest = getOrderRadioResult(getSelectedRadioButtonText(view.findViewById(R.id.groupradio_order))))
                 Log.i("HF", "filteredList size : ${filteredList.size}")
 
-                historyAdapter = GameHistoryAdapter(filteredList, viewModel)
+                historyAdapter = GameHistoryAdapter(filteredList, historyViewModel)
                 recyclerView.adapter = historyAdapter
                 binding.resultsCounterText.text = "${filteredList.size} RESULTS"
 

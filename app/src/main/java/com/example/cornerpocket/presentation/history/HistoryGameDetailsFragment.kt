@@ -6,20 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.models.Game
-import com.example.cornerpocket.viewModels.MainViewModel
+import com.example.cornerpocket.viewModels.PlayViewModel
 import org.mongodb.kbson.ObjectId
 
 class HistoryGameDetailsFragment : Fragment() {
     private var _binding : FragmentGameDetailsBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: PlayViewModel by viewModels()
 
     private var passedGame: Game? = null
 

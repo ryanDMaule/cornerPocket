@@ -17,7 +17,7 @@ import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentOpponentSelectBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
-import com.example.cornerpocket.viewModels.MainViewModel
+import com.example.cornerpocket.viewModels.PlayViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.sidesheet.SideSheetDialog
 import com.google.android.material.textfield.TextInputEditText
@@ -28,7 +28,7 @@ class OpponentSelectFragment : Fragment()  {
     private var _binding : FragmentOpponentSelectBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by navGraphViewModels(R.id.gameGraph)
+    private val viewModel: PlayViewModel by navGraphViewModels(R.id.gameGraph)
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var opponentsAdapter: OpponentSelectorAdapter
