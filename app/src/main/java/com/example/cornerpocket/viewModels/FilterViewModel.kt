@@ -6,12 +6,22 @@ import com.example.cornerpocket.Repositories.GameRepository
 import com.example.cornerpocket.Repositories.OpponentRepository
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
+import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.flow.Flow
 import org.mongodb.kbson.ObjectId
 
-class HistoryViewModel : ViewModel() {
+class FilterViewModel : ViewModel() {
 
     private val realm = MyApp.realm
+
+    //region FILTERS
+
+    var unfilteredGameList : MutableList<Game>? = null
+    var filteredGameList : MutableList<Game>? = null
+
+    var filtersDialog : SideSheetDialog? = null
+
+    //endregion
 
     private val gameRepository: GameRepository by lazy {
         GameRepository(realm)

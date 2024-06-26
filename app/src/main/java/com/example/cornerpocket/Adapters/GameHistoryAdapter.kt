@@ -1,6 +1,7 @@
 package com.example.cornerpocket.Adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -9,10 +10,10 @@ import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.ItemResultBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.HelperFunctions
-import com.example.cornerpocket.viewModels.HistoryViewModel
+import com.example.cornerpocket.viewModels.FilterViewModel
 
 
-class GameHistoryAdapter(private var games: MutableList<Game>, var vm: HistoryViewModel) : RecyclerView.Adapter<GameHistoryAdapter.GamesViewHolder>()  {
+class GameHistoryAdapter(private var games: MutableList<Game>, var vm: FilterViewModel) : RecyclerView.Adapter<GameHistoryAdapter.GamesViewHolder>()  {
     inner class GamesViewHolder(val binding: ItemResultBinding) : RecyclerView.ViewHolder(binding.root)
     var onItemClicked : ((Game) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamesViewHolder {
@@ -38,7 +39,6 @@ class GameHistoryAdapter(private var games: MutableList<Game>, var vm: HistoryVi
             val opponent = vm.getOpponentViaId(games[position].opponentId)
             name.text = opponent?.name
 
-//            val gameDate = longConverison(games[position].date)
             val gameDate = HelperFunctions.longConversion(games[position].date)
             date.text = HelperFunctions.formatDateToString(gameDate)
         }
