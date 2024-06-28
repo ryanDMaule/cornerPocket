@@ -42,7 +42,7 @@ class HistoryGameDetailsFragment : Fragment() {
             binding.dateTitle.text = HelperFunctions.formatDate(date)
 
             //GAME TIME
-            binding.gameDurationText.text = passedGame!!.gameDuration
+            binding.gameDurationText.text = HelperFunctions.formatSecondsToMMSS(passedGame!!.gameDuration)
 
             //WINNERS CROWN / RECORD UP ARROW
             if (passedGame!!.userWon){

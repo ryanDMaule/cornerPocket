@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.widget.ImageView
+import com.example.cornerpocket.models.Game
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDate
@@ -123,6 +124,40 @@ class HelperFunctions {
 //        a.duration = (initialHeight / v.context.resources.displayMetrics.density).toInt().toLong()
             a.duration = ANIM_DURATION
             v.startAnimation(a)
+        }
+
+        fun calculatePercentage(totalGames: Int, divisor: Int): String {
+            if (totalGames == 0) {
+                return "0.0" // Avoid division by zero
+            }
+            val percentage = (divisor.toDouble() / totalGames.toDouble()) * 100
+            return String.format("%.1f", percentage)
+        }
+
+        fun getChronometerElapsedTimeInSeconds(chronometerText: CharSequence): Int {
+            val timeParts = chronometerText.split(":").map { it.toInt() }
+            return when (timeParts.size) {
+                2 -> {
+                    // Format is MM:SS
+                    val minutes = timeParts[0]
+                    val seconds = timeParts[1]
+                    minutes * 60 + seconds
+                }
+                3 -> {
+                    // Format is HH:MM:SS
+                    val hours = timeParts[0]
+                    val minutes = timeParts[1]
+                    val seconds = timeParts[2]
+                    hours * 3600 + minutes * 60 + seconds
+                }
+                else -> 0 // Default case if the format is unexpected
+            }
+        }
+
+        fun formatSecondsToMMSS(totalSeconds: Int): String {
+            val minutes = totalSeconds / 60
+            val seconds = totalSeconds % 60
+            return String.format("%02d:%02d", minutes, seconds)
         }
 
     }

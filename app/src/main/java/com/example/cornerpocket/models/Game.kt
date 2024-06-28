@@ -14,7 +14,7 @@ class Game: RealmObject {
     @Index // Allows queries to run faster when using this variable
     var opponentId: ObjectId = ObjectId()
     var date: Long = System.currentTimeMillis()
-    var gameDuration: String = ""
+    var gameDuration: Int = 0
     var userWon: Boolean = true
     var gameType: String = defaultGameType
     var userBroke: Boolean = true

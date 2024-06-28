@@ -119,7 +119,7 @@ class GameRepository(passedRealm : Realm) {
 
     fun createGame(
         selectedOpponent : Opponent,
-        pGameLength : String,
+        pGameLength : Int,
         pUserWon : Boolean,
         pGameType : String,
         pUserBroke : Boolean,

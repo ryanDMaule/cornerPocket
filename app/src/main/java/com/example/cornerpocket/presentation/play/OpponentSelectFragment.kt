@@ -13,6 +13,7 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
+import com.example.cornerpocket.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentOpponentSelectBinding
 import com.example.cornerpocket.models.Game
@@ -135,11 +136,11 @@ class OpponentSelectFragment : Fragment()  {
 
     private fun getImage(position: Int) : ImageView {
         return when(position) {
-            0 -> binding.result1
-            1 -> binding.result2
-            2 -> binding.result3
-            3 -> binding.result4
-            4 -> binding.result5
+            0 -> binding.opponentPreviousFiveSection.result1
+            1 -> binding.opponentPreviousFiveSection.result2
+            2 -> binding.opponentPreviousFiveSection.result3
+            3 -> binding.opponentPreviousFiveSection.result4
+            4 -> binding.opponentPreviousFiveSection.result5
 
             else -> throw Error()
         }

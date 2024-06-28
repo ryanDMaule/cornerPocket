@@ -61,4 +61,32 @@ class FilterViewModel : ViewModel() {
         return opponentRepository.getOpponentViaId(id = id)
     }
 
+    fun getUserWins(list : MutableList<Game>) : Int {
+        var wins = 0
+        list.forEach {
+            if (it.userWon){
+                wins++
+            }
+        }
+        return wins
+    }
+
+    fun getUserLosses(list : MutableList<Game>) : Int {
+        var losses = 0
+        list.forEach {
+            if (!it.userWon){
+                losses++
+            }
+        }
+        return losses
+    }
+
+    fun getAverageGameLength(list : MutableList<Game>) : Int {
+        var totalGameTime = 0
+        list.forEach {
+            totalGameTime += it.gameDuration
+        }
+        return totalGameTime/list.size
+    }
+
 }

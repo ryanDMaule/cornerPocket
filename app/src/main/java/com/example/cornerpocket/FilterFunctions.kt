@@ -21,9 +21,10 @@ import kotlinx.coroutines.launch
 
 class FilterFunctions {
     companion object {
-        private var selectedOpponent : Opponent? = null
+        var selectedOpponent : Opponent? = null
         var btnResetFilters : ImageView? = null
         var btnApply : MaterialButton? = null
+        var orderConstraint : ConstraintLayout? = null
         fun createFiltersDialog(context: Context, li : LayoutInflater, vm : FilterViewModel) : SideSheetDialog {
             val dialog = SideSheetDialog(context)
             val view = li.inflate(R.layout.filters_sheet, null)
@@ -101,6 +102,7 @@ class FilterFunctions {
             }
 
             //ORDER - FILTER
+            orderConstraint = view.findViewById(R.id.order_filter_constraint)
             val orderFilterButton = view.findViewById<ImageView>(R.id.order_filter_add_button)
             val orderFilterExpansion = view.findViewById<ConstraintLayout>(R.id.order_filter_expansion)
             orderFilterButton.setOnClickListener {
@@ -117,12 +119,12 @@ class FilterFunctions {
             dialog.setContentView(view)
             return dialog
         }
-        private fun getSelectedRadioButtonText(radioGroup: RadioGroup): String {
+        fun getSelectedRadioButtonText(radioGroup: RadioGroup): String {
             val selectedRadioButtonId = radioGroup.checkedRadioButtonId
             val selectedRadioButton = radioGroup.findViewById<RadioButton>(selectedRadioButtonId)
             return selectedRadioButton.text.toString()
         }
-        private fun getGameTypeRadioResult(selectedOption : String) : String? {
+        fun getGameTypeRadioResult(selectedOption : String) : String? {
             return when(selectedOption.uppercase()){
                 "ENGLISH" -> {
                     "ENGLISH"
@@ -160,7 +162,7 @@ class FilterFunctions {
                 }
             }
         }
-        private fun getUserBreaksRadioResult(selectedOption : String) : Boolean? {
+        fun getUserBreaksRadioResult(selectedOption : String) : Boolean? {
             return when(selectedOption.uppercase()){
                 "ME" -> {
                     true

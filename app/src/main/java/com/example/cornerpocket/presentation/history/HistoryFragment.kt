@@ -57,7 +57,7 @@ class HistoryFragment : Fragment() {
 //        }
 
         filterViewModel.viewModelScope.launch {
-            filterViewModel.getGames().collect{ gamesList ->
+            filterViewModel.getGames().collect { gamesList ->
                 filterViewModel.unfilteredGameList = gamesList
 
 //                if (filterViewModel.filteredGameList != null){
@@ -76,6 +76,7 @@ class HistoryFragment : Fragment() {
     }
     private fun resetDialogFilterLogic(dialog : SideSheetDialog) {
         filterViewModel.filteredGameList = null
+        FilterFunctions.selectedOpponent = null
         filterViewModel.filtersDialog = createFiltersDialog(requireContext(), layoutInflater, filterViewModel)
         populateGamesAdapter(filterViewModel.unfilteredGameList!!)
         dialog.dismiss()

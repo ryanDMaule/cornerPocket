@@ -39,7 +39,7 @@ class GameDetailsFragment : Fragment() {
             binding.dateTitle.text = HelperFunctions.formatDate(date)
 
             //GAME TIME
-            binding.gameDurationText.text = game.gameDuration
+            binding.gameDurationText.text = HelperFunctions.formatSecondsToMMSS(game.gameDuration)
 
             //WINNERS CROWN / RECORD UP ARROW
             if (game.userWon){

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameUnderwayBinding
 import com.example.cornerpocket.viewModels.PlayViewModel
@@ -37,7 +38,10 @@ class GameUnderwayFragment : Fragment() {
         }
 
         binding.finishGame.setOnClickListener {
-            viewModel.setGameLength(binding.timer.text.toString())
+            val chronometerTimer = HelperFunctions.getChronometerElapsedTimeInSeconds(binding.timer.text)
+            Log.e("GUF", "chronometerTimer = $chronometerTimer")
+
+            viewModel.setGameLength(chronometerTimer)
             binding.timer.stop()
 
             findNavController().navigate(R.id.action_gameUnderwayFragment_to_gameReviewFragment)
