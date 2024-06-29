@@ -134,36 +134,35 @@ class StatsFragment : Fragment() {
     }
 
     private fun populateGameStatisticsSection() {
-        var list : MutableList<Game>? = if (filterViewModel.filteredGameList != null){
-            filterViewModel.filteredGameList
+        val list : MutableList<Game> = getGamesList()
+
+        //SET AVERAGE GAME LENGTH
+        val averageGameLength = filterViewModel.getAverageGameLength(list)
+        binding.gameStatistics.gameLength.text = "Average game duration : ${HelperFunctions.formatSecondsToMMSS(averageGameLength)}"
+
+        //TOTAL GAMES
+        binding.gameStatistics.gamesTotal.text = list.size.toString()
+
+        //USER WINS
+        val userWins = filterViewModel.getUserWins(list)
+        binding.gameStatistics.winsTotal.text = userWins.toString()
+        binding.gameStatistics.winsPercentage.text = "${HelperFunctions.calculatePercentage(list.size, userWins)}%"
+
+        //USER LOSSES
+        val userLosses = (list.size - userWins)
+        binding.gameStatistics.lossesTotal.text = userLosses.toString()
+        binding.gameStatistics.lossesPercentage.text = "${HelperFunctions.calculatePercentage(list.size, userLosses)}%"
+
+        //RECENT 5 GAMES
+        formatRecentGames(list.reversed().take(5))
+    }
+    private fun getGamesList() : MutableList<Game> {
+        val list: MutableList<Game> = if (filterViewModel.filteredGameList != null){
+            filterViewModel.filteredGameList!!
         } else {
-            filterViewModel.unfilteredGameList
+            filterViewModel.unfilteredGameList!!
         }
-
-        if (list != null){
-            //SET AVERAGE GAME LENGTH
-            val averageGameLength = filterViewModel.getAverageGameLength(list)
-            binding.gameStatistics.gameLength.text = "Average game duration : ${HelperFunctions.formatSecondsToMMSS(averageGameLength)}"
-
-            //TOTAL GAMES
-            binding.gameStatistics.gamesTotal.text = list.size.toString()
-
-            //USER WINS
-            val userWins = filterViewModel.getUserWins(list)
-            binding.gameStatistics.winsTotal.text = userWins.toString()
-            binding.gameStatistics.winsPercentage.text = "${HelperFunctions.calculatePercentage(list.size, userWins)}%"
-
-            //USER LOSSES
-            val userLosses = (list.size - userWins)
-            binding.gameStatistics.lossesTotal.text = userLosses.toString()
-            binding.gameStatistics.lossesPercentage.text = "${HelperFunctions.calculatePercentage(list.size, userLosses)}%"
-
-            //RECENT 5 GAMES
-            formatRecentGames(list.reversed().take(5))
-        } else {
-            Log.e("SF", "LIST IS NULL")
-        }
-
+        return list
     }
 
     private fun formatRecentGames(gamesList : List<Game>){
@@ -181,7 +180,6 @@ class StatsFragment : Fragment() {
             }
         }
     }
-
     private fun getImage(position: Int) : ImageView {
         return when(position) {
             0 -> binding.gameStatistics.opponentPreviousFiveSection.result1
@@ -195,10 +193,48 @@ class StatsFragment : Fragment() {
     }
 
     private fun populateBreakStatisticsSection() {
+        val list : MutableList<Game> = getGamesList()
+
+        //region GAMES BREAKING
+
+        //GAMES BREAKING TOTAL
+        val gamesBreaking = filterViewModel.getGamesUserBreaksList(list)
+        binding.breakStatistics.gamesBreakingTotal.text = gamesBreaking.size.toString()
+
+        //USER WINS
+        var userWins = filterViewModel.getUserWins(gamesBreaking)
+        binding.breakStatistics.winsBreakingTotal.text = userWins.toString()
+        binding.breakStatistics.winsBreakingPercentage.text = "${HelperFunctions.calculatePercentage(gamesBreaking.size, userWins)}%"
+
+        //USER LOSSES
+        var userLosses = (gamesBreaking.size - userWins)
+        binding.breakStatistics.lossesBreakingTotal.text = userLosses.toString()
+        binding.breakStatistics.lossesBreakingPercentage.text = "${HelperFunctions.calculatePercentage(gamesBreaking.size, userLosses)}%"
+
+        //endregion
+
+        //region GAMES NOT BREAKING
+
+        //GAMES NOT BREAKING TOTAL
+        val gamesNotBreaking = filterViewModel.getGamesOpponentBreaksList(list)
+        binding.breakStatistics.gamesNbTotal.text = gamesNotBreaking.size.toString()
+
+        //USER WINS
+        userWins = filterViewModel.getUserWins(gamesNotBreaking)
+        binding.breakStatistics.winsNbTotal.text = userWins.toString()
+        binding.breakStatistics.winsNbPercentage.text = "${HelperFunctions.calculatePercentage(gamesNotBreaking.size, userWins)}%"
+
+        //USER LOSSES
+        userLosses = (gamesNotBreaking.size - userWins)
+        binding.breakStatistics.lossesNbTotal.text = userLosses.toString()
+        binding.breakStatistics.lossesNbPercentage.text = "${HelperFunctions.calculatePercentage(gamesNotBreaking.size, userLosses)}%"
+
+        //endregion
 
     }
 
     private fun populateBallStatisticsSection() {
+        val list : MutableList<Game> = getGamesList()
 
     }
 

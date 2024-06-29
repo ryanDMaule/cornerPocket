@@ -89,4 +89,24 @@ class FilterViewModel : ViewModel() {
         return totalGameTime/list.size
     }
 
+    fun getGamesUserBreaksList(list : MutableList<Game>) : MutableList<Game> {
+        val filteredList: MutableList<Game> = mutableListOf()
+        list.forEach {
+            if (it.userBroke) {
+                filteredList.add(it)
+            }
+        }
+        return filteredList
+    }
+
+    fun getGamesOpponentBreaksList(list : MutableList<Game>) : MutableList<Game> {
+        val filteredList: MutableList<Game> = mutableListOf()
+        list.forEach {
+            if (!it.userBroke) {
+                filteredList.add(it)
+            }
+        }
+        return filteredList
+    }
+
 }

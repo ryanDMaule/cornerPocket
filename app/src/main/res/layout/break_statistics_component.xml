@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
-        android:id="@+id/games_total"
+        android:id="@+id/games_breaking_total"
         style="@style/GlowingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/games_heading" />
 
     <TextView
-        android:id="@+id/wins_total"
+        android:id="@+id/wins_breaking_total"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,21 +89,21 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/wins_heading"
         app:layout_constraintStart_toStartOf="@+id/wins_heading"
-        app:layout_constraintTop_toTopOf="@+id/games_total" />
+        app:layout_constraintTop_toTopOf="@+id/games_breaking_total" />
 
     <TextView
-        android:id="@+id/wins_percentage"
+        android:id="@+id/wins_breaking_percentage"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="25%"
-        app:layout_constraintBottom_toBottomOf="@+id/games_total"
+        app:layout_constraintBottom_toBottomOf="@+id/games_breaking_total"
         app:layout_constraintEnd_toEndOf="@+id/wins_heading"
         app:layout_constraintStart_toStartOf="@+id/wins_heading"
-        app:layout_constraintTop_toBottomOf="@+id/wins_total" />
+        app:layout_constraintTop_toBottomOf="@+id/wins_breaking_total" />
 
     <TextView
-        android:id="@+id/losses_total"
+        android:id="@+id/losses_breaking_total"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,18 +111,18 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/losses_heading"
         app:layout_constraintStart_toStartOf="@+id/losses_heading"
-        app:layout_constraintTop_toTopOf="@+id/games_total" />
+        app:layout_constraintTop_toTopOf="@+id/games_breaking_total" />
 
     <TextView
-        android:id="@+id/losses_percentage"
+        android:id="@+id/losses_breaking_percentage"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="75%"
-        app:layout_constraintBottom_toBottomOf="@+id/games_total"
+        app:layout_constraintBottom_toBottomOf="@+id/games_breaking_total"
         app:layout_constraintEnd_toEndOf="@+id/losses_heading"
         app:layout_constraintStart_toStartOf="@+id/losses_heading"
-        app:layout_constraintTop_toBottomOf="@+id/losses_total" />
+        app:layout_constraintTop_toBottomOf="@+id/losses_breaking_total" />
 
     <ImageView
         android:id="@+id/divider_2"
@@ -132,7 +132,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/games_total" />
+        app:layout_constraintTop_toBottomOf="@+id/games_breaking_total" />
 
     <!-- LOWER BLOCK -->
 
