@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="16dp"
-    android:background="@drawable/card_border">
+    android:background="@drawable/card_border"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- TITLE -->
 
@@ -38,25 +39,25 @@
         style="@style/iconSize"
         android:src="@drawable/red_ball_img"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/wins_heading"
-        app:layout_constraintStart_toStartOf="@+id/wins_heading"
+        app:layout_constraintEnd_toEndOf="@+id/wins_ball1_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_ball1_heading"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/ball_1_textView"
         style="@style/greyText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Games with RED"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/ball_1_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ball_1_image" />
+        app:layout_constraintEnd_toEndOf="@+id/losses_ball1_heading"
+        app:layout_constraintStart_toEndOf="@+id/ball_1_image"
+        app:layout_constraintTop_toTopOf="@+id/ball_1_image"
+        tools:text="Games with RED" />
 
 
     <TextView
-        android:id="@+id/games_heading"
+        android:id="@+id/games_ball1_heading"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,81 +69,81 @@
         app:layout_constraintTop_toBottomOf="@+id/ball_1_image" />
 
     <TextView
-        android:id="@+id/wins_heading"
+        android:id="@+id/wins_ball1_heading"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wins"
-        app:layout_constraintEnd_toStartOf="@+id/games_heading"
+        app:layout_constraintEnd_toStartOf="@+id/games_ball1_heading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/games_heading" />
+        app:layout_constraintTop_toTopOf="@+id/games_ball1_heading" />
 
     <TextView
-        android:id="@+id/losses_heading"
+        android:id="@+id/losses_ball1_heading"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Losses"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/games_heading"
-        app:layout_constraintTop_toTopOf="@+id/games_heading" />
+        app:layout_constraintStart_toEndOf="@+id/games_ball1_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_ball1_heading" />
 
     <TextView
-        android:id="@+id/games_total"
+        android:id="@+id/games_ball1_total"
         style="@style/GlowingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4"
         android:textColor="@color/white"
         android:textSize="40sp"
         android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/games_heading"
-        app:layout_constraintStart_toStartOf="@+id/games_heading"
-        app:layout_constraintTop_toBottomOf="@+id/games_heading" />
+        app:layout_constraintEnd_toEndOf="@+id/games_ball1_heading"
+        app:layout_constraintStart_toStartOf="@+id/games_ball1_heading"
+        app:layout_constraintTop_toBottomOf="@+id/games_ball1_heading"
+        tools:text="4" />
 
     <TextView
-        android:id="@+id/wins_total"
+        android:id="@+id/wins_ball1_total"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/wins_heading"
-        app:layout_constraintStart_toStartOf="@+id/wins_heading"
-        app:layout_constraintTop_toTopOf="@+id/games_total" />
+        app:layout_constraintEnd_toEndOf="@+id/wins_ball1_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_ball1_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_ball1_total"
+        tools:text="1" />
 
     <TextView
-        android:id="@+id/wins_percentage"
+        android:id="@+id/wins_ball1_percentage"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="25%"
-        app:layout_constraintBottom_toBottomOf="@+id/games_total"
-        app:layout_constraintEnd_toEndOf="@+id/wins_heading"
-        app:layout_constraintStart_toStartOf="@+id/wins_heading"
-        app:layout_constraintTop_toBottomOf="@+id/wins_total" />
+        app:layout_constraintBottom_toBottomOf="@+id/games_ball1_total"
+        app:layout_constraintEnd_toEndOf="@+id/wins_ball1_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_ball1_heading"
+        app:layout_constraintTop_toBottomOf="@+id/wins_ball1_total"
+        tools:text="25%" />
 
     <TextView
-        android:id="@+id/losses_total"
+        android:id="@+id/losses_ball1_total"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/losses_heading"
-        app:layout_constraintStart_toStartOf="@+id/losses_heading"
-        app:layout_constraintTop_toTopOf="@+id/games_total" />
+        app:layout_constraintEnd_toEndOf="@+id/losses_ball1_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_ball1_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_ball1_total"
+        tools:text="3" />
 
     <TextView
-        android:id="@+id/losses_percentage"
+        android:id="@+id/losses_ball1_percentage"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="75%"
-        app:layout_constraintBottom_toBottomOf="@+id/games_total"
-        app:layout_constraintEnd_toEndOf="@+id/losses_heading"
-        app:layout_constraintStart_toStartOf="@+id/losses_heading"
-        app:layout_constraintTop_toBottomOf="@+id/losses_total" />
+        app:layout_constraintBottom_toBottomOf="@+id/games_ball1_total"
+        app:layout_constraintEnd_toEndOf="@+id/losses_ball1_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_ball1_heading"
+        app:layout_constraintTop_toBottomOf="@+id/losses_ball1_total"
+        tools:text="75%" />
 
     <ImageView
         android:id="@+id/divider_2"
@@ -152,7 +153,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/games_total" />
+        app:layout_constraintTop_toBottomOf="@+id/games_ball1_total" />
 
     <!-- LOWER BLOCK -->
 
@@ -161,24 +162,24 @@
         style="@style/iconSize"
         android:src="@drawable/yellow_ball_img"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/losses_nb_heading"
-        app:layout_constraintStart_toStartOf="@+id/losses_nb_heading"
+        app:layout_constraintEnd_toEndOf="@+id/losses_ball2_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_ball2_heading"
         app:layout_constraintTop_toBottomOf="@+id/divider_2" />
 
     <TextView
         android:id="@+id/ball_2_text"
         style="@style/greyText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Games with YELLOW"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/ball_2_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ball_2_image" />
+        app:layout_constraintEnd_toStartOf="@+id/ball_2_image"
+        app:layout_constraintStart_toStartOf="@+id/wins_ball2_heading"
+        app:layout_constraintTop_toTopOf="@+id/ball_2_image"
+        tools:text="Games with YELLOW" />
 
     <TextView
-        android:id="@+id/games_nb_heading"
+        android:id="@+id/games_ball2_heading"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -190,80 +191,80 @@
         app:layout_constraintTop_toBottomOf="@+id/ball_2_image" />
 
     <TextView
-        android:id="@+id/wins_nb_heading"
+        android:id="@+id/wins_ball2_heading"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wins"
-        app:layout_constraintEnd_toStartOf="@+id/games_heading"
+        app:layout_constraintEnd_toStartOf="@+id/games_ball2_heading"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/games_nb_heading" />
+        app:layout_constraintTop_toTopOf="@+id/games_ball2_heading" />
 
     <TextView
-        android:id="@+id/losses_nb_heading"
+        android:id="@+id/losses_ball2_heading"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Losses"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/games_heading"
-        app:layout_constraintTop_toTopOf="@+id/games_nb_heading" />
+        app:layout_constraintStart_toEndOf="@+id/games_ball2_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_ball2_heading" />
 
     <TextView
-        android:id="@+id/games_nb_total"
+        android:id="@+id/games_ball2_total"
         style="@style/GlowingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4"
         android:textColor="@color/white"
         android:textSize="40sp"
         android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/games_nb_heading"
-        app:layout_constraintStart_toStartOf="@+id/games_nb_heading"
-        app:layout_constraintTop_toBottomOf="@+id/games_nb_heading" />
+        app:layout_constraintEnd_toEndOf="@+id/games_ball2_heading"
+        app:layout_constraintStart_toStartOf="@+id/games_ball2_heading"
+        app:layout_constraintTop_toBottomOf="@+id/games_ball2_heading"
+        tools:text="4" />
 
     <TextView
-        android:id="@+id/wins_nb_total"
+        android:id="@+id/wins_ball2_total"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/wins_nb_heading"
-        app:layout_constraintStart_toStartOf="@+id/wins_nb_heading"
-        app:layout_constraintTop_toTopOf="@+id/games_nb_total" />
+        app:layout_constraintEnd_toEndOf="@+id/wins_ball2_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_ball2_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_ball2_total"
+        tools:text="1" />
 
     <TextView
-        android:id="@+id/wins_nb_percentage"
+        android:id="@+id/wins_ball2_percentage"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="25%"
-        app:layout_constraintBottom_toBottomOf="@+id/games_nb_total"
-        app:layout_constraintEnd_toEndOf="@+id/wins_nb_heading"
-        app:layout_constraintStart_toStartOf="@+id/wins_nb_heading"
-        app:layout_constraintTop_toBottomOf="@+id/wins_nb_total" />
+        app:layout_constraintBottom_toBottomOf="@+id/games_ball2_total"
+        app:layout_constraintEnd_toEndOf="@+id/wins_ball2_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_ball2_heading"
+        app:layout_constraintTop_toBottomOf="@+id/wins_ball2_total"
+        tools:text="25%" />
 
     <TextView
-        android:id="@+id/losses_nb_total"
+        android:id="@+id/losses_ball2_total"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/losses_nb_heading"
-        app:layout_constraintStart_toStartOf="@+id/losses_nb_heading"
-        app:layout_constraintTop_toTopOf="@+id/games_nb_total" />
+        app:layout_constraintEnd_toEndOf="@+id/losses_ball2_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_ball2_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_ball2_total"
+        tools:text="3" />
 
     <TextView
-        android:id="@+id/losses_nb_percentage"
+        android:id="@+id/losses_ball2_percentage"
         style="@style/greyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="75%"
-        app:layout_constraintBottom_toBottomOf="@+id/games_nb_total"
-        app:layout_constraintEnd_toEndOf="@+id/losses_nb_heading"
-        app:layout_constraintStart_toStartOf="@+id/losses_nb_heading"
-        app:layout_constraintTop_toBottomOf="@+id/losses_nb_total" />
+        app:layout_constraintBottom_toBottomOf="@+id/games_ball2_total"
+        app:layout_constraintEnd_toEndOf="@+id/losses_ball2_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_ball2_heading"
+        app:layout_constraintTop_toBottomOf="@+id/losses_ball2_total"
+        tools:text="75%" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

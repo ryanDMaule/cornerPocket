@@ -14,6 +14,7 @@ import com.example.cornerpocket.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentStatsBinding
 import com.example.cornerpocket.models.Game
+import com.example.cornerpocket.models.gameType
 import com.example.cornerpocket.viewModels.FilterViewModel
 import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.launch
@@ -71,7 +72,6 @@ class StatsFragment : Fragment() {
             filterViewModel.filtersDialog!!.show()
         }
     }
-
     private fun resetDialogFilterLogic(dialog : SideSheetDialog) {
         filterViewModel.filteredGameList = null
         FilterFunctions.selectedOpponent = null
@@ -85,28 +85,10 @@ class StatsFragment : Fragment() {
         formatStatSections()
         dialog.dismiss()
     }
-
     private fun formatStatSections(){
+        var gameType : String? = null
         if (filterViewModel.filteredGameList != null){
-
-            val gameType = FilterFunctions.getGameTypeRadioResult(FilterFunctions.getSelectedRadioButtonText(filterViewModel.filtersDialog!!.findViewById(R.id.groupradio_gameType)!!))
-            Log.e("SF", "gameType : $gameType")
-
-            if (gameType != null) {
-                when(gameType.uppercase()){
-                    "BOTH" -> {
-                        binding.ballStatistics.parentConstraint.visibility = View.GONE
-                    }
-
-                    else -> {
-                        binding.ballStatistics.parentConstraint.visibility = View.VISIBLE
-                    }
-
-                }
-            } else {
-                binding.ballStatistics.parentConstraint.visibility = View.VISIBLE
-            }
-
+            gameType = FilterFunctions.getGameTypeRadioResult(FilterFunctions.getSelectedRadioButtonText(filterViewModel.filtersDialog!!.findViewById(R.id.groupradio_gameType)!!))?.uppercase()
 
             val gamesBreaking = FilterFunctions.getSelectedRadioButtonText(filterViewModel.filtersDialog!!.findViewById(R.id.groupradio_breaking)!!)
             Log.e("SF", "gamesBreaking : $gamesBreaking")
@@ -130,9 +112,8 @@ class StatsFragment : Fragment() {
 
         populateGameStatisticsSection()
         populateBreakStatisticsSection()
-        populateBallStatisticsSection()
+        populateBallStatisticsSection(gameType)
     }
-
     private fun populateGameStatisticsSection() {
         val list : MutableList<Game> = getGamesList()
 
@@ -164,7 +145,6 @@ class StatsFragment : Fragment() {
         }
         return list
     }
-
     private fun formatRecentGames(gamesList : List<Game>){
         for (i in 0 until 5) {
             val recentGameImg = getImage(i)
@@ -191,7 +171,6 @@ class StatsFragment : Fragment() {
             else -> throw Error()
         }
     }
-
     private fun populateBreakStatisticsSection() {
         val list : MutableList<Game> = getGamesList()
 
@@ -232,9 +211,117 @@ class StatsFragment : Fragment() {
         //endregion
 
     }
+    private fun populateBallStatisticsSection(gameType : String?) {
+        Log.e("SF", "populateBallStatisticsSection : gameType : $gameType")
 
-    private fun populateBallStatisticsSection() {
         val list : MutableList<Game> = getGamesList()
+
+        if (gameType != null) {
+            when(gameType){
+                "BOTH" -> {
+                    binding.ballStatistics.parentConstraint.visibility = View.GONE
+                }
+
+                "ENGLISH" -> {
+                    binding.ballStatistics.parentConstraint.visibility = View.VISIBLE
+
+                    //region RED BALLS
+
+                    binding.ballStatistics.ball1TextView.text = "Games with red"
+                    binding.ballStatistics.ball1Image.setImageResource(R.drawable.red_ball_img)
+                    val redBallsList = filterViewModel.getGamesWithRedBalls(list)
+
+                    //TOTAL GAMES
+                    binding.ballStatistics.gamesBall1Total.text = redBallsList.size.toString()
+
+                    //USER WINS
+                    var userWins = filterViewModel.getUserWins(redBallsList)
+                    binding.ballStatistics.winsBall1Total.text = userWins.toString()
+                    binding.ballStatistics.winsBall1Percentage.text = "${HelperFunctions.calculatePercentage(redBallsList.size, userWins)}%"
+
+                    //USER LOSSES
+                    var userLosses = (redBallsList.size - userWins)
+                    binding.ballStatistics.lossesBall1Total.text = userLosses.toString()
+                    binding.ballStatistics.lossesBall1Percentage.text = "${HelperFunctions.calculatePercentage(redBallsList.size, userLosses)}%"
+
+                    //endregion
+
+                    //region YELLOW BALLS
+
+                    binding.ballStatistics.ball2Text.text = "Games with yellow"
+                    binding.ballStatistics.ball2Image.setImageResource(R.drawable.yellow_ball_img)
+                    val yellowBallsList = filterViewModel.getGamesWithYellowBalls(list)
+
+                    //TOTAL GAMES
+                    binding.ballStatistics.gamesBall2Total.text = yellowBallsList.size.toString()
+
+                    //USER WINS
+                    userWins = filterViewModel.getUserWins(yellowBallsList)
+                    binding.ballStatistics.winsBall2Total.text = userWins.toString()
+                    binding.ballStatistics.winsBall2Percentage.text = "${HelperFunctions.calculatePercentage(yellowBallsList.size, userWins)}%"
+
+                    //USER LOSSES
+                    userLosses = (yellowBallsList.size - userWins)
+                    binding.ballStatistics.lossesBall2Total.text = userLosses.toString()
+                    binding.ballStatistics.lossesBall2Percentage.text = "${HelperFunctions.calculatePercentage(yellowBallsList.size, userLosses)}%"
+
+                    //endregion
+                }
+
+                "AMERICAN" -> {
+                    binding.ballStatistics.parentConstraint.visibility = View.VISIBLE
+
+                    //region SOLID BALLS
+
+                    binding.ballStatistics.ball1TextView.text = "Games with Solids"
+                    binding.ballStatistics.ball1Image.setImageResource(R.drawable.solid_ball_img)
+                    val solidBallsList = filterViewModel.getGamesWithSolidBalls(list)
+
+                    //TOTAL GAMES
+                    binding.ballStatistics.gamesBall1Total.text = solidBallsList.size.toString()
+
+                    //USER WINS
+                    var userWins = filterViewModel.getUserWins(solidBallsList)
+                    binding.ballStatistics.winsBall1Total.text = userWins.toString()
+                    binding.ballStatistics.winsBall1Percentage.text = "${HelperFunctions.calculatePercentage(solidBallsList.size, userWins)}%"
+
+                    //USER LOSSES
+                    var userLosses = (solidBallsList.size - userWins)
+                    binding.ballStatistics.lossesBall1Total.text = userLosses.toString()
+                    binding.ballStatistics.lossesBall1Percentage.text = "${HelperFunctions.calculatePercentage(solidBallsList.size, userLosses)}%"
+
+                    //endregion
+
+                    //region STRIPE BALLS
+
+                    binding.ballStatistics.ball2Text.text = "Games with stripes"
+                    binding.ballStatistics.ball2Image.setImageResource(R.drawable.stripe_ball_img)
+                    val stripeBallsList = filterViewModel.getGamesWithStripedBalls(list)
+
+                    //TOTAL GAMES
+                    binding.ballStatistics.gamesBall2Total.text = stripeBallsList.size.toString()
+
+                    //USER WINS
+                    userWins = filterViewModel.getUserWins(stripeBallsList)
+                    binding.ballStatistics.winsBall2Total.text = userWins.toString()
+                    binding.ballStatistics.winsBall2Percentage.text = "${HelperFunctions.calculatePercentage(stripeBallsList.size, userWins)}%"
+
+                    //USER LOSSES
+                    userLosses = (stripeBallsList.size - userWins)
+                    binding.ballStatistics.lossesBall2Total.text = userLosses.toString()
+                    binding.ballStatistics.lossesBall2Percentage.text = "${HelperFunctions.calculatePercentage(stripeBallsList.size, userLosses)}%"
+
+                    //endregion
+                }
+
+                else -> {
+                    binding.ballStatistics.parentConstraint.visibility = View.GONE
+                }
+
+            }
+        } else {
+            binding.ballStatistics.parentConstraint.visibility = View.GONE
+        }
 
     }
 

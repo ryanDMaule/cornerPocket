@@ -109,4 +109,44 @@ class FilterViewModel : ViewModel() {
         return filteredList
     }
 
+    fun getGamesWithRedBalls(list : MutableList<Game>) : MutableList<Game> {
+        val filteredList: MutableList<Game> = mutableListOf()
+        list.forEach {
+            if (it.userBallsPlayed == "RED") {
+                filteredList.add(it)
+            }
+        }
+        return filteredList
+    }
+
+    fun getGamesWithYellowBalls(list : MutableList<Game>) : MutableList<Game> {
+        val filteredList: MutableList<Game> = mutableListOf()
+        list.forEach {
+            if (it.userBallsPlayed == "YELLOW") {
+                filteredList.add(it)
+            }
+        }
+        return filteredList
+    }
+
+    fun getGamesWithSolidBalls(list : MutableList<Game>) : MutableList<Game> {
+        val filteredList: MutableList<Game> = mutableListOf()
+        list.forEach {
+            if (it.userBallsPlayed == "SOLIDS") {
+                filteredList.add(it)
+            }
+        }
+        return filteredList
+    }
+
+    fun getGamesWithStripedBalls(list : MutableList<Game>) : MutableList<Game> {
+        val filteredList: MutableList<Game> = mutableListOf()
+        list.forEach {
+            if (it.userBallsPlayed == "STRIPES") {
+                filteredList.add(it)
+            }
+        }
+        return filteredList
+    }
+
 }
