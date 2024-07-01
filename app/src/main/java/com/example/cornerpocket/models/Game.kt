@@ -20,12 +20,7 @@ class Game: RealmObject {
     var userBroke: Boolean = true
     var userBallsPlayed: String? = null
     var methodOfVictory: String = ""
-    var userBallsRemaining: Int? = null
-    var opponentBallsRemaining: Int? = null
 }
-
-const val MAX_BALLS = 15
-const val INDIVIDUAL_BALLS = 7
 
 // TODO: ALLOW THIS TO BE CHANGED IN SETTINGS 
 var defaultGameType = "ENGLISH"

@@ -127,10 +127,6 @@ class HistoryGameDetailsFragment : Fragment() {
                     //dunno
                 }
             }
-
-            //BALLS REMAINING
-            binding.userBallsLeftText.text = passedGame!!.userBallsRemaining.toString()
-            binding.opponentBallsLeftText.text = passedGame!!.opponentBallsRemaining.toString()
         }
 
         return binding.root

@@ -336,36 +336,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/opponent_balls_played"
                         tools:text="YELLOW" />
 
-                    <!-- BALLS LEFT HEADING -->
-                    <TextView
-                        android:id="@+id/balls_left_title"
-                        style="@style/greyText"
-                        android:layout_marginTop="40dp"
-                        android:text="@string/balls_remaining"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/balls_played_title" />
-
-                    <TextView
-                        android:id="@+id/user_balls_left_text"
-                        style="@style/smallCapsText"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/balls_left_title"
-                        app:layout_constraintEnd_toEndOf="@+id/user_image"
-                        app:layout_constraintStart_toStartOf="@+id/user_image"
-                        app:layout_constraintTop_toTopOf="@+id/balls_left_title"
-                        tools:text="0" />
-
-                    <TextView
-                        android:id="@+id/opponent_balls_left_text"
-                        style="@style/smallCapsText"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/balls_left_title"
-                        app:layout_constraintEnd_toEndOf="@+id/opponent_image"
-                        app:layout_constraintStart_toStartOf="@+id/opponent_image"
-                        app:layout_constraintTop_toTopOf="@+id/balls_left_title"
-                        tools:text="3" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

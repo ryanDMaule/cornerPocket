@@ -40,18 +40,17 @@ class GameReviewFragment : Fragment() {
         }
 
         binding.finishGame.setOnClickListener {
-
-            if (viewModel.getMethodOfVictory().isNotBlank()){
-                if (binding.ballsPlayedSection.redBallsLeftText.text.isNotBlank() && binding.ballsPlayedSection.yellowBallsLeftText.text.isNotBlank()){
-                    viewModel.setUserBallsRemaining(binding.ballsPlayedSection.redBallsLeftText.text.toString().toInt())
-                    viewModel.setOpponentBallsRemaining(binding.ballsPlayedSection.yellowBallsLeftText.text.toString().toInt())
-                } else {
-                    Toast.makeText(requireActivity(), "PLEASE ENTER THE BALLS REMAINING FOR BOTH BALL TYPES",Toast.LENGTH_SHORT).show()
-                }
+            if (viewModel.getMethodOfVictory().isBlank() && viewModel.getUserBallsPlayed().isBlank() && viewModel.getUserWon() == null){
+                Toast.makeText(requireActivity(), "PLEASE FILL IN ALL FIELDS",Toast.LENGTH_SHORT).show()
+            } else if (viewModel.getUserWon() == null) {
+                Toast.makeText(requireActivity(), "PLEASE ENTER THE WINNER OF THE GAME",Toast.LENGTH_SHORT).show()
+            } else if (viewModel.getMethodOfVictory().isBlank()){
+                Toast.makeText(requireActivity(), "PLEASE SELECT THE METHOD OF VICTORY",Toast.LENGTH_SHORT).show()
+            } else if (viewModel.getUserBallsPlayed().isBlank()){
+                Toast.makeText(requireActivity(), "PLEASE SELECT WHICH BALLS YOU PLAYED AS",Toast.LENGTH_SHORT).show()
+            } else {
                 createGame()
                 findNavController().navigate(R.id.action_gameReviewFragment_to_gameDetailsFragment)
-            } else {
-                Toast.makeText(requireActivity(), "PLEASE SELECT THE GAME WINNER AND METHOD OF VICTORY",Toast.LENGTH_SHORT).show()
             }
         }
 

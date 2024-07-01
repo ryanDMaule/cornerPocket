@@ -124,10 +124,6 @@ class GameDetailsFragment : Fragment() {
                     //dunno
                 }
             }
-
-            //BALLS REMAINING
-            binding.userBallsLeftText.text = game.userBallsRemaining.toString()
-            binding.opponentBallsLeftText.text = game.opponentBallsRemaining.toString()
         }
 
 

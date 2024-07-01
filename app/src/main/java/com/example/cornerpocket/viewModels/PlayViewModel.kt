@@ -95,8 +95,6 @@ class PlayViewModel: ViewModel() {
             pUserBroke = pUserBroke == true,
             pUserBallsPlayed = pUserBallsPlayed,
             pMethodOfVictory = pMethodOfVictory,
-            pUserBallsRemaining = pUserBallsRemaining,
-            pOpponentBallsRemaining = pOpponentBallsRemaining
         )
     }
 
@@ -178,28 +176,6 @@ class PlayViewModel: ViewModel() {
         pUserBallsPlayed = v
     }
 
-
-    private var pUserBallsRemaining: Int? = null
-    fun getUserBallsRemaining() : Int? {
-        Log.e("MVM", "GET - USER BALLS REMAINING : $pUserBallsRemaining")
-        return pUserBallsRemaining
-    }
-    fun setUserBallsRemaining(v : Int) {
-        Log.e("MVM", "SET - USER BALLS REMAINING : $v")
-        pUserBallsRemaining = v
-    }
-
-
-    private var pOpponentBallsRemaining: Int? = null
-    fun getOpponentBallsRemaining() : Int? {
-        Log.e("MVM", "GET - OPPONENT BALLS REMAINING : $pOpponentBallsRemaining")
-        return pOpponentBallsRemaining
-    }
-    fun setOpponentBallsRemaining(v : Int) {
-        Log.e("MVM", "SET - OPPONENT BALLS REMAINING : $v")
-        pOpponentBallsRemaining = v
-    }
-
     fun printPendingGameValues(){
         Log.i("MVM", "GAME DURATION : ${getGameLength()}")
         Log.i("MVM", "USER WON : ${getUserWon()}")
@@ -207,8 +183,6 @@ class PlayViewModel: ViewModel() {
         Log.i("MVM", "USER BROKE : ${getUserBroke()}")
         Log.i("MVM", "USER BALLS PLAYED : ${getUserBallsPlayed()}")
         Log.i("MVM", "METHOD OF VICTORY : ${getMethodOfVictory()}")
-        Log.i("MVM", "USER BALLS REMAINING : ${getUserBallsRemaining()}")
-        Log.i("MVM", "OPPONENT BALLS REMAINING : ${getOpponentBallsRemaining()}")
     }
 
     // endregion
