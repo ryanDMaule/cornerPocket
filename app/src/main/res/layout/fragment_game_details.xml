@@ -353,6 +353,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- BACK BUTTON -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/back_button_constraint"
         android:layout_width="wrap_content"
@@ -383,6 +384,41 @@
             app:layout_constraintEnd_toEndOf="@+id/back_button"
             app:layout_constraintStart_toStartOf="@+id/back_button"
             app:layout_constraintTop_toBottomOf="@+id/back_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- BACK BUTTON -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/delete_button_constraint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#CC130F1B"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/delete_button"
+            style="@style/iconSize"
+            android:contentDescription="@string/back_icon"
+            android:src="@drawable/delete_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white_80" />
+
+        <TextView
+            android:id="@+id/delete_text"
+            style="@style/smallCapsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Delete"
+            app:layout_constraintEnd_toEndOf="@+id/delete_button"
+            app:layout_constraintStart_toStartOf="@+id/delete_button"
+            app:layout_constraintTop_toBottomOf="@+id/delete_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

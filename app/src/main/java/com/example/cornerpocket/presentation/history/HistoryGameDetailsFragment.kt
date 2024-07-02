@@ -143,6 +143,16 @@ class HistoryGameDetailsFragment : Fragment() {
             )
         }
 
+        binding.deleteButtonConstraint.visibility = View.VISIBLE
+        binding.deleteButtonConstraint.setOnClickListener {
+            viewModel.removeGame(passedGame)
+            NavigationUtils.navigateAndClearBackStack(
+                findNavController(),
+                R.id.action_historyGameDetailsFragment_to_historyFragment,
+                R.id.historyGameDetailsFragment
+            )
+        }
+
         binding.fadeOutIv.visibility = View.GONE
         binding.footer.visibility = View.GONE
     }

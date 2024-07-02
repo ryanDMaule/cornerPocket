@@ -86,7 +86,11 @@ class FilterViewModel : ViewModel() {
         list.forEach {
             totalGameTime += it.gameDuration
         }
-        return totalGameTime/list.size
+        return if (list.size == 0){
+            totalGameTime
+        } else {
+            totalGameTime/list.size
+        }
     }
 
     fun getGamesUserBreaksList(list : MutableList<Game>) : MutableList<Game> {

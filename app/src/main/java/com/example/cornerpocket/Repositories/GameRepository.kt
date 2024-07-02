@@ -137,4 +137,13 @@ class GameRepository(passedRealm : Realm) {
         }
     }
 
+    suspend fun removeGame(game : Game) {
+        realm.write {
+            val latestGame = findLatest(game)
+            if (latestGame != null) {
+                this.delete(latestGame)
+            }
+        }
+    }
+
 }

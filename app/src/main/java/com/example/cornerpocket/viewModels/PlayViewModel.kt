@@ -81,6 +81,18 @@ class PlayViewModel: ViewModel() {
         return opponentRepository.getOpponentViaId(id = id)
     }
 
+    fun removeGame(game : Game?){
+        Log.e("PVM", "removeGame : $game")
+
+        viewModelScope.launch(Dispatchers.IO) {
+            if (game != null){
+                gameRepository.removeGame(game)
+            } else {
+                Log.e("PVM", "GAME IS NULL")
+            }
+        }
+    }
+
     fun getGameViaId(id : ObjectId) : Game? {
         return gameRepository.getGameViaId(id = id)
     }
