@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.HelperFunctions
+import com.example.cornerpocket.NavigationUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.models.Game
@@ -135,7 +136,11 @@ class HistoryGameDetailsFragment : Fragment() {
     private fun formatPage() {
         binding.backButtonConstraint.visibility = View.VISIBLE
         binding.backButtonConstraint.setOnClickListener {
-            findNavController().navigate(R.id.action_historyGameDetailsFragment_to_historyFragment)
+            NavigationUtils.navigateAndClearBackStack(
+                findNavController(),
+                R.id.action_historyGameDetailsFragment_to_historyFragment,
+                R.id.historyGameDetailsFragment
+            )
         }
 
         binding.fadeOutIv.visibility = View.GONE

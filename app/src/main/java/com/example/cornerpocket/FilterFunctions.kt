@@ -54,8 +54,7 @@ class FilterFunctions {
                             }
                         }
                     } catch (e : Exception){
-                        //CAUSES A CRASH IF YOU FILTER RESULTS ON HISTORY PAGE GO PLAY A GAME AND CRASHES ON "RETURN TO MENU"
-                        Log.e("HF", "EXCEPTION CAUGHT : $e")
+                        Log.e("FF", "EXCEPTION CAUGHT : $e")
                     }
                 }
             }

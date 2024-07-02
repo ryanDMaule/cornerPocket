@@ -15,6 +15,7 @@ import com.example.cornerpocket.Adapters.GameHistoryAdapter
 import com.example.cornerpocket.FilterFunctions
 import com.example.cornerpocket.FilterFunctions.Companion.createFiltersDialog
 import com.example.cornerpocket.FilterFunctions.Companion.createFilterList
+import com.example.cornerpocket.NavigationUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentHistoryBinding
 import com.example.cornerpocket.models.Game
@@ -46,16 +47,7 @@ class HistoryFragment : Fragment() {
         //  but future searches will not update the recycler view
 //        if (filterViewModel.filtersDialog == null){
             filterViewModel.filtersDialog = createFiltersDialog(context = requireContext(), li = layoutInflater, vm = filterViewModel)
-
-            val btnResetFilters = FilterFunctions.btnResetFilters
-            btnResetFilters?.setOnClickListener {
-                resetDialogFilterLogic(filterViewModel.filtersDialog!!)
-            }
-
-            val btnApply = FilterFunctions.btnApply
-            btnApply?.setOnClickListener {
-                applyFilterLogic(filterViewModel.filtersDialog!!)
-            }
+            dialogButtonsHandling()
 //        }
 
         filterViewModel.viewModelScope.launch {
@@ -80,9 +72,24 @@ class HistoryFragment : Fragment() {
         filterViewModel.filteredGameList = null
         FilterFunctions.selectedOpponent = null
         filterViewModel.filtersDialog = createFiltersDialog(requireContext(), layoutInflater, filterViewModel)
+        dialogButtonsHandling()
+
         populateGamesAdapter(filterViewModel.unfilteredGameList!!)
         dialog.dismiss()
     }
+
+    private fun dialogButtonsHandling(){
+        val btnResetFilters = FilterFunctions.btnResetFilters
+        btnResetFilters?.setOnClickListener {
+            resetDialogFilterLogic(filterViewModel.filtersDialog!!)
+        }
+
+        val btnApply = FilterFunctions.btnApply
+        btnApply?.setOnClickListener {
+            applyFilterLogic(filterViewModel.filtersDialog!!)
+        }
+    }
+
     private fun applyFilterLogic(dialog : SideSheetDialog){
         val filteredList = createFilterList(dialog, filterViewModel)
 
@@ -107,7 +114,12 @@ class HistoryFragment : Fragment() {
                 val bundle = Bundle().apply {
                     putString("gameKey", game._id.toHexString())
                 }
-                findNavController().navigate(R.id.action_historyFragment_to_historyGameDetailsFragment, bundle)
+                NavigationUtils.navigateAndClearBackStack(
+                    findNavController(),
+                    bundle,
+                    R.id.action_historyFragment_to_historyGameDetailsFragment,
+                    R.id.historyFragment
+                )
             }
         } catch (e : Exception) {
             Log.e("HF", "EXCEPTION CAUGHT : $e")
