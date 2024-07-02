@@ -30,6 +30,8 @@ class GameReviewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentGameReviewBinding.inflate(inflater, container, false)
 
+        styleBallsPlayed()
+
         actv = binding.winnerSection.actv
         adapterItems = ArrayAdapter<String>(requireContext(),
             R.layout.item_text_dropdown, dropdownItems)
@@ -130,6 +132,28 @@ class GameReviewFragment : Fragment() {
         binding.winnerSection.userSelectedImage.visibility = View.INVISIBLE
     }
 
+
+    private fun styleBallsPlayed(){
+        when (viewModel.getGameType()) {
+            "ENGLISH" -> {
+                binding.ballsPlayedSection.redBallImage.setImageResource(R.drawable.red_ball_img)
+                binding.ballsPlayedSection.redBallText.text = "RED"
+
+                binding.ballsPlayedSection.yellowBallImage.setImageResource(R.drawable.yellow_ball_img)
+                binding.ballsPlayedSection.yellowBallText.text = "YELLOW"
+            }
+            "AMERICAN" -> {
+                binding.ballsPlayedSection.redBallImage.setImageResource(R.drawable.solid_ball_img)
+                binding.ballsPlayedSection.redBallText.text = "SOLIDS"
+
+                binding.ballsPlayedSection.yellowBallImage.setImageResource(R.drawable.stripe_ball_img)
+                binding.ballsPlayedSection.yellowBallText.text = "STRIPES"
+            }
+            else -> {
+                Log.i("GRF", "Unknown game type : ${viewModel.getGameType()}")
+            }
+        }
+    }
 
     //RED / SOLIDS
     private fun balls1Played(){

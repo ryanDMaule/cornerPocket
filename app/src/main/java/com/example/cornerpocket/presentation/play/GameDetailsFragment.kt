@@ -100,10 +100,10 @@ class GameDetailsFragment : Fragment() {
                 "AMERICAN" -> {
                     when (game.userBallsPlayed) {
                         "SOLIDS" -> {
-                            binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
+                            binding.userBallsPlayed.setImageResource(R.drawable.solid_ball_img)
                             binding.userBallsPlayedText.text = "SOLIDS"
 
-                            binding.opponentBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
+                            binding.opponentBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
                             binding.opponentBallsPlayedText.text = "STRIPES"
                         }
 
