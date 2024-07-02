@@ -1,6 +1,7 @@
 package com.example.cornerpocket.presentation.history
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.viewModels.FilterViewModel
 import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class HistoryFragment : Fragment() {
     private var _binding : FragmentHistoryBinding? = null
@@ -92,20 +94,34 @@ class HistoryFragment : Fragment() {
         dialog.dismiss()
     }
     private fun populateGamesAdapter(list : MutableList<Game>) {
-        recyclerView = binding.historyRecycler
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
-        historyAdapter = GameHistoryAdapter(list, filterViewModel)
-        recyclerView.adapter = historyAdapter
+        try {
+            recyclerView = binding.historyRecycler
+            recyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
+            historyAdapter = GameHistoryAdapter(list, filterViewModel)
+            recyclerView.adapter = historyAdapter
 
-        binding.resultsCounterText.text = "${list.size} RESULTS"
+            binding.resultsCounterText.text = "${list.size} RESULTS"
 
-        //HANDLE ITEM CLICKED
-        historyAdapter.onItemClicked = { game ->
-            val bundle = Bundle().apply {
-                putString("gameKey", game._id.toHexString())
+            //HANDLE ITEM CLICKED
+            historyAdapter.onItemClicked = { game ->
+                val bundle = Bundle().apply {
+                    putString("gameKey", game._id.toHexString())
+                }
+                findNavController().navigate(R.id.action_historyFragment_to_historyGameDetailsFragment, bundle)
             }
-            findNavController().navigate(R.id.action_historyFragment_to_historyGameDetailsFragment, bundle)
+        } catch (e : Exception) {
+            Log.e("HF", "EXCEPTION CAUGHT : $e")
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e("HF", "onCreate called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("HF", "onDestroy called")
     }
 
 }

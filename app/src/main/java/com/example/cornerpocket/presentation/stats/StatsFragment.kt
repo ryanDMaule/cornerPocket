@@ -325,4 +325,14 @@ class StatsFragment : Fragment() {
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.i("SF", "onCreate called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("SF", "onDestroy called")
+    }
+
 }
