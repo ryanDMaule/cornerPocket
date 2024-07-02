@@ -57,7 +57,7 @@ class HistoryFragment : Fragment() {
 //                if (filterViewModel.filteredGameList != null){
 //                    populateGamesAdapter(filterViewModel.filteredGameList!!)
 //                } else {
-                    populateGamesAdapter(gamesList)
+                    populateGamesAdapter(filterViewModel.filterGamesByMostRecent(gamesList))
 //                }
 
             }
