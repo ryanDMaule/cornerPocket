@@ -1,5 +1,6 @@
 package com.example.cornerpocket.viewModels
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +9,7 @@ import com.example.cornerpocket.Repositories.UserRepository
 import com.example.cornerpocket.models.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.mongodb.kbson.ObjectId
 
 class UserViewModel : ViewModel()  {
 
@@ -23,7 +25,6 @@ class UserViewModel : ViewModel()  {
     suspend fun updateUser(name : String) {
         userRepository.updateUser(name = name)
     }
-
     init {
         Log.i("UVM", "init")
         val user = getUser()

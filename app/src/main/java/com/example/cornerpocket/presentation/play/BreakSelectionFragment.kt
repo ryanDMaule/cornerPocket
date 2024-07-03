@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentBreakSelectionBinding
 import com.example.cornerpocket.viewModels.PlayViewModel
@@ -25,8 +26,11 @@ class BreakSelectionFragment : Fragment() {
         val user = viewModel.getUser()
         Log.i("BSF", "user = $user")
         if (user != null){
-            binding.vsSection.userNameTv.text = viewModel.getUser()?.name
-            binding.tvUserName.text = viewModel.getUser()?.name
+            binding.vsSection.userNameTv.text = user.name
+            binding.tvUserName.text = user.name
+
+            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
+            binding.userIcon.setImageURI(pfp)
         }
 
         val opponent = viewModel.getSelectedOpponent()

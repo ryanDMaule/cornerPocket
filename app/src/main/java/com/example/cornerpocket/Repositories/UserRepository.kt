@@ -1,14 +1,9 @@
 package com.example.cornerpocket.Repositories
 
-import android.util.Log
-import androidx.lifecycle.viewModelScope
-import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.models.User
 import io.realm.kotlin.Realm
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class UserRepository(passedRealm : Realm) {
     private val realm = passedRealm

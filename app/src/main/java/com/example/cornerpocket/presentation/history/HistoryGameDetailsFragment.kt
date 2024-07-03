@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.HelperFunctions
+import com.example.cornerpocket.ImageUtils
 import com.example.cornerpocket.NavigationUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
@@ -59,6 +60,9 @@ class HistoryGameDetailsFragment : Fragment() {
             Log.i("BSF", "user = $user")
             if (user != null){
                 binding.userText.text = user.name
+
+                val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
+                binding.userImage.setImageURI(pfp)
             }
             binding.opponentText.text = opponent?.name
 
@@ -104,10 +108,10 @@ class HistoryGameDetailsFragment : Fragment() {
                 "AMERICAN" -> {
                     when (passedGame!!.userBallsPlayed) {
                         "SOLIDS" -> {
-                            binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
+                            binding.userBallsPlayed.setImageResource(R.drawable.solid_ball_img)
                             binding.userBallsPlayedText.text = "SOLIDS"
 
-                            binding.opponentBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
+                            binding.opponentBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
                             binding.opponentBallsPlayedText.text = "STRIPES"
                         }
 

@@ -12,6 +12,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameReviewBinding
 import com.example.cornerpocket.viewModels.PlayViewModel
@@ -65,6 +66,8 @@ class GameReviewFragment : Fragment() {
         Log.i("BSF", "user = $user")
         if (user != null){
             binding.winnerSection.userText.text = user.name
+            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
+            binding.winnerSection.userImage.setImageURI(pfp)
         }
 
         val opponent = viewModel.getSelectedOpponent()

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.HelperFunctions
+import com.example.cornerpocket.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.viewModels.PlayViewModel
@@ -55,6 +56,8 @@ class GameDetailsFragment : Fragment() {
             Log.i("BSF", "user = $user")
             if (user != null){
                 binding.userText.text = user.name
+                val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
+                binding.userImage.setImageURI(pfp)
             }
             binding.opponentText.text = opponent.name
 

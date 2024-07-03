@@ -86,20 +86,20 @@
                         android:contentDescription="@string/crown"
                         android:src="@drawable/crown_img"
                         android:visibility="gone"
-                        app:layout_constraintEnd_toEndOf="@+id/user_image"
-                        app:layout_constraintStart_toStartOf="@+id/user_image"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:visibility="visible"/>
-
-                    <ImageView
-                        android:id="@+id/user_image"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="56dp"
-                        android:contentDescription="@string/user_icon_blue"
-                        android:src="@drawable/user_icon_blue"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/user_image"
+                        style="@style/userIcon"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="64dp"
+                        android:contentDescription="@string/user_icon_blue"
+                        app:layout_constraintEnd_toEndOf="@+id/user_crown"
+                        app:layout_constraintStart_toStartOf="@+id/user_crown"
                         app:layout_constraintTop_toTopOf="@+id/user_crown" />
 
                     <TextView
@@ -107,6 +107,7 @@
                         style="@style/smallCapsText"
                         android:textColor="@color/white"
                         android:textSize="16sp"
+                        android:layout_marginTop="4dp"
                         app:layout_constraintEnd_toEndOf="@+id/user_image"
                         app:layout_constraintStart_toStartOf="@+id/user_image"
                         app:layout_constraintTop_toBottomOf="@+id/user_image"

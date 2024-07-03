@@ -133,5 +133,18 @@
         <item name="android:scrollbarTrackVertical">@color/dark_primary</item>
     </style>
 
+    <style name="circleImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="userIcon">
+        <item name="shapeAppearanceOverlay">@style/circleImageView</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="strokeColor">@color/cyan</item>
+        <item name="contentDescription">@string/user_icon_blue</item>
+        <item name="android:src">@drawable/user_icon_cyan_no_circle</item>
+    </style>
 
 </resources>

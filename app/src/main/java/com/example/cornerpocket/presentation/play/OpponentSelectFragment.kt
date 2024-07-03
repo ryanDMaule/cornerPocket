@@ -1,6 +1,7 @@
 package com.example.cornerpocket.presentation.play
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
 import com.example.cornerpocket.HelperFunctions
+import com.example.cornerpocket.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentOpponentSelectBinding
 import com.example.cornerpocket.models.Game
@@ -38,6 +40,14 @@ class OpponentSelectFragment : Fragment()  {
         _binding = FragmentOpponentSelectBinding.inflate(inflater, container, false)
 
         binding.userText.text = viewModel.getUser()?.name
+
+        val user = viewModel.getUser()
+        if (user != null){
+            binding.userText.text = user.name
+
+            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
+            binding.userImage.setImageURI(pfp)
+        }
 
         binding.btnNextButton.setOnClickListener {
             if (viewModel.getSelectedOpponent() != null){
