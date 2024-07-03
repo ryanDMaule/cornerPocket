@@ -50,6 +50,8 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
+
     implementation("io.realm.kotlin:library-base:1.11.0")
 
     testImplementation("junit:junit:4.13.2")

@@ -3,6 +3,7 @@ package com.example.cornerpocket
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,18 +16,20 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
 import com.example.cornerpocket.viewModels.UserViewModel
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class UserDetailsFragment : Fragment() {
     private var _binding : FragmentUserDetailsBinding? = null
     private val binding get() = _binding!!
 
     private val userViewModel: UserViewModel by viewModels()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
@@ -116,15 +119,37 @@ class UserDetailsFragment : Fragment() {
         if (requestCode == ImageUtils.PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             val imageUri = data.data
             imageUri?.let {
-                userViewModel.viewModelScope.launch {
+                val user = userViewModel.getUser()
+                if (user != null){
+                    val path = user._id.toString()
+                    ImageUtils.saveImageToLocalStorage(requireContext(), it, path)
+                }
+                binding.userImage.setImageURI(it)
+
+                try {
+                    ImageUtils.startCropActivity(it, cropImageLauncher)
+                } catch (e : Exception) {
+                    Log.i("UDF", "EXCEPTION CAUGHT : $e")
+                }
+            }
+        }
+    }
+
+    val cropImageLauncher = registerForActivityResult(CropImageContract()) { result ->
+        if (result.isSuccessful) {
+            val cropResult = result.uriContent
+            cropResult?.let { uri ->
+                val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
+                lifecycleScope.launch {
                     val user = userViewModel.getUser()
                     if (user != null){
                         val path = user._id.toString()
-                        ImageUtils.saveImageToLocalStorage(requireContext(), it, path)
+                        ImageUtils.saveCroppedImageToLocalStorage(requireContext(), bitmap, binding.userImage, path)
                     }
-                    binding.userImage.setImageURI(it)
                 }
             }
+        } else {
+            Toast.makeText(requireContext(), "Cropping failed: ${result.error?.message}", Toast.LENGTH_SHORT).show()
         }
     }
 

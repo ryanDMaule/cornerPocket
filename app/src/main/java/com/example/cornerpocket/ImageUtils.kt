@@ -4,12 +4,19 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import com.canhub.cropper.CropImage
+import com.canhub.cropper.CropImageContractOptions
+import com.canhub.cropper.CropImageOptions
+import com.canhub.cropper.CropImageView
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -66,6 +73,30 @@ object ImageUtils {
 
         val alertDialog = builder.create()
         alertDialog.show()
+    }
+
+    fun startCropActivity(sourceUri: Uri, cropLauncher: ActivityResultLauncher<CropImageContractOptions>) {
+        val options = CropImageContractOptions(
+            uri = sourceUri,
+            cropImageOptions = CropImageOptions().apply {
+                guidelines = CropImageView.Guidelines.ON
+                aspectRatioX = 1
+                aspectRatioY = 1
+                fixAspectRatio = true
+            }
+        )
+        cropLauncher.launch(options)
+    }
+
+    fun saveCroppedImageToLocalStorage(context: Context, bitmap: Bitmap, imageView: ImageView, path : String) {
+        val file = File(context.getExternalFilesDir(null), path)
+        val outputStream = FileOutputStream(file)
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+
+        outputStream.close()
+
+        imageView.setImageURI(Uri.fromFile(file))
     }
 
 }
