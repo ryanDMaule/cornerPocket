@@ -38,6 +38,9 @@ class BreakSelectionFragment : Fragment() {
         if (opponent != null){
             binding.tvOpponentName.text = opponent.name
             binding.vsSection.opponentNameTv.text = opponent.name
+
+            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), opponent._id.toString())
+            binding.opponentIcon.setImageURI(pfp)
         }
 
         binding.backButton.setOnClickListener {

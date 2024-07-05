@@ -59,7 +59,10 @@ class GameDetailsFragment : Fragment() {
                 val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
                 binding.userImage.setImageURI(pfp)
             }
+
             binding.opponentText.text = opponent.name
+            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), opponent._id.toString())
+            binding.opponentImage.setImageURI(pfp)
 
             //METHOD OF VICTORY
             binding.winningMethod.text = game.methodOfVictory

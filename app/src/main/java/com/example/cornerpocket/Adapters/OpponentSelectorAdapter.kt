@@ -1,13 +1,16 @@
 package com.example.cornerpocket.Adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cornerpocket.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.ItemOpponentBinding
 import com.example.cornerpocket.models.Game
@@ -18,7 +21,7 @@ import io.realm.kotlin.query.RealmResults
 //https://academy.realm.io/posts/android-recycler-view/
 //https://github.com/realm/realm-android-adapters?tab=readme-ov-file
 
-class OpponentSelectorAdapter(private var opponents: MutableList<Opponent>)
+class OpponentSelectorAdapter(private var opponents: MutableList<Opponent>, var context: Context)
     : RecyclerView.Adapter<OpponentSelectorAdapter.OpponentsViewHolder>() {
     inner class OpponentsViewHolder(val binding: ItemOpponentBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -39,6 +42,13 @@ class OpponentSelectorAdapter(private var opponents: MutableList<Opponent>)
     override fun onBindViewHolder(holder: OpponentsViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.binding.apply {
             tvOpponentName.text = opponents[position].name
+
+            val pfp = ImageUtils.getImageFromLocalStorage(context, opponents[position]._id.toString())
+            if (pfp != null){
+                ivOpponentImage.setImageURI(pfp)
+            } else {
+                ivOpponentImage.setImageResource(R.drawable.user_icon_red_no_circle)
+            }
 
             if (opponents[position].recyclerOpponentSelected){
                 ivSelectedItem.visibility = View.VISIBLE

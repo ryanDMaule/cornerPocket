@@ -74,6 +74,8 @@ class GameReviewFragment : Fragment() {
         Log.i("GRF", "selectedOpponent = $opponent}")
         if (opponent != null){
             binding.winnerSection.opponentText.text = opponent.name
+            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), opponent._id.toString())
+            binding.winnerSection.opponentImage.setImageURI(pfp)
         }
 
         binding.winnerSection.userImage.setOnClickListener {

@@ -260,17 +260,15 @@
                 app:layout_constraintStart_toStartOf="@+id/opponent_icon"
                 tools:text="Kieron" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/opponent_icon"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:contentDescription="@string/profile_icon_red"
-                android:src="@drawable/user_icon_red"
+                style="@style/opponentIcon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 app:layout_constraintBottom_toBottomOf="@+id/opponent_break_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/middleGuideline"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ImageContrastCheck" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

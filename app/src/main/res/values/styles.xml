@@ -147,4 +147,9 @@
         <item name="android:src">@drawable/user_icon_cyan_no_circle</item>
     </style>
 
+    <style name="opponentIcon" parent="userIcon">
+        <item name="strokeColor">@color/red</item>
+        <item name="android:src">@drawable/user_icon_red_no_circle</item>
+    </style>
+
 </resources>

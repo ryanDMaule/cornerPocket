@@ -122,4 +122,13 @@ object ImageUtils {
         imageView.setImageURI(Uri.fromFile(file))
     }
 
+    fun saveCroppedImageToLocalStorage(context: Context, bitmap: Bitmap, path : String) {
+        val file = File(context.getExternalFilesDir(null), path)
+        val outputStream = FileOutputStream(file)
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+
+        outputStream.close()
+    }
+
 }
