@@ -12,8 +12,7 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
-import com.canhub.cropper.CropImage
+import androidx.core.content.FileProvider
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
 import com.canhub.cropper.CropImageView
@@ -48,6 +47,7 @@ object ImageUtils {
     }
 
     const val PICK_IMAGE_REQUEST_CODE = 1002
+    const val CAMERA_PIC_REQUEST = 1337
     fun openImagePicker(activity: Activity) {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         activity.startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
@@ -75,7 +75,30 @@ object ImageUtils {
         alertDialog.show()
     }
 
+    private fun bitmapToUri(bitmap: Bitmap, context: Context): Uri {
+        val file = File(context.cacheDir, "temp_image_${System.currentTimeMillis()}.jpg")
+        file.outputStream().use { out ->
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+            out.flush()
+        }
+        return FileProvider.getUriForFile(context, "com.example.cornerpocket.fileprovider", file)
+    }
+
     fun startCropActivity(sourceUri: Uri, cropLauncher: ActivityResultLauncher<CropImageContractOptions>) {
+        val options = CropImageContractOptions(
+            uri = sourceUri,
+            cropImageOptions = CropImageOptions().apply {
+                guidelines = CropImageView.Guidelines.ON
+                aspectRatioX = 1
+                aspectRatioY = 1
+                fixAspectRatio = true
+            }
+        )
+        cropLauncher.launch(options)
+    }
+
+    fun startCropActivity(bitmap: Bitmap, cropLauncher: ActivityResultLauncher<CropImageContractOptions>, context: Context) {
+        val sourceUri = bitmapToUri(bitmap, context)
         val options = CropImageContractOptions(
             uri = sourceUri,
             cropImageOptions = CropImageOptions().apply {

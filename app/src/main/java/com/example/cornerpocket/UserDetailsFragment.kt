@@ -4,8 +4,10 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +26,11 @@ import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
 import com.example.cornerpocket.viewModels.UserViewModel
 import kotlinx.coroutines.launch
-import java.lang.Exception
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class UserDetailsFragment : Fragment() {
     private var _binding : FragmentUserDetailsBinding? = null
@@ -31,7 +38,7 @@ class UserDetailsFragment : Fragment() {
 
     private val userViewModel: UserViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
 
         val user = userViewModel.getUser()
@@ -106,16 +113,47 @@ class UserDetailsFragment : Fragment() {
             isGranted: Boolean ->
         if (isGranted){
             Log.i("UDF", "CAMERA PERMISSION : GRANTED")
+            openCamera()
         } else {
             Log.i("UDF", "CAMERA PERMISSION : DENIED")
         }
     }
+    private lateinit var currentPhotoPath: String
+
     private fun openImagePicker() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, ImageUtils.PICK_IMAGE_REQUEST_CODE)
     }
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val photoFile: File? = try {
+            createImageFile()
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            null
+        }
+        photoFile?.also {
+            val photoURI: Uri = FileProvider.getUriForFile(
+                requireContext(),
+                "com.example.cornerpocket.fileprovider",
+                it
+            )
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+            startActivityForResult(intent, ImageUtils.CAMERA_PIC_REQUEST)
+        }
+    }
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir: File = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir).apply {
+            currentPhotoPath = absolutePath
+        }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        //HANDLE GALLERY SELECTION
         if (requestCode == ImageUtils.PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             val imageUri = data.data
             imageUri?.let {
@@ -133,9 +171,21 @@ class UserDetailsFragment : Fragment() {
                 }
             }
         }
+
+        //HANDLE CAMERA USAGE
+        if (requestCode == ImageUtils.CAMERA_PIC_REQUEST && resultCode == Activity.RESULT_OK) {
+            val file = File(currentPhotoPath)
+            if (file.exists()) {
+                val uri = Uri.fromFile(file)
+                binding.userImage.setImageURI(uri)
+                ImageUtils.startCropActivity(uri, cropImageLauncher)
+            } else {
+                Log.e("onActivityResult", "File does not exist: $currentPhotoPath")
+            }
+        }
     }
 
-    val cropImageLauncher = registerForActivityResult(CropImageContract()) { result ->
+    private val cropImageLauncher = registerForActivityResult(CropImageContract()) { result ->
         if (result.isSuccessful) {
             val cropResult = result.uriContent
             cropResult?.let { uri ->
