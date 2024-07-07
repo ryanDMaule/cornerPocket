@@ -104,6 +104,7 @@ class PlayViewModel: ViewModel() {
             pGameLength = pGameLength,
             pUserWon = pUserWon == true,
             pGameType = pGameType,
+            pSubType = pSubType,
             pUserBroke = pUserBroke == true,
             pUserBallsPlayed = pUserBallsPlayed,
             pMethodOfVictory = pMethodOfVictory,
@@ -133,6 +134,15 @@ class PlayViewModel: ViewModel() {
         pGameType = v
     }
 
+    private var pSubType : String = "ENGLISH"
+    fun getSubType() : String {
+        Log.e("MVM", "GET - SUB TYPE : $pSubType")
+        return pGameType
+    }
+    fun setSubType(v : String) {
+        Log.e("MVM", "SET - SUB TYPE : $v")
+        pSubType = v
+    }
 
     private var pUserBroke : Boolean? = null
     fun getUserBroke() : Boolean? {
@@ -192,6 +202,7 @@ class PlayViewModel: ViewModel() {
         Log.i("MVM", "GAME DURATION : ${getGameLength()}")
         Log.i("MVM", "USER WON : ${getUserWon()}")
         Log.i("MVM", "GAME TYPE : ${getGameType()}")
+        Log.i("MVM", "SUB TYPE : ${getSubType()}")
         Log.i("MVM", "USER BROKE : ${getUserBroke()}")
         Log.i("MVM", "USER BALLS PLAYED : ${getUserBallsPlayed()}")
         Log.i("MVM", "METHOD OF VICTORY : ${getMethodOfVictory()}")

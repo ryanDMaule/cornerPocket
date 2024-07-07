@@ -12,7 +12,9 @@ import android.widget.RadioGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.viewModelScope
 import com.example.cornerpocket.Adapters.OpponentListAdapter
+import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.Game
+import com.example.cornerpocket.models.NINE_BALl
 import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.viewModels.FilterViewModel
 import com.google.android.material.button.MaterialButton
@@ -86,6 +88,13 @@ class FilterFunctions {
                 filterClick(gameTypeFilterButton, gameTypeFilterExpansion)
             }
 
+            //SUB TYPE - FILTER
+            val subTypeFilterButton = view.findViewById<ImageView>(R.id.disciplineFilterAddButton)
+            val subTypeFilterExpansion = view.findViewById<ConstraintLayout>(R.id.discipline_filter_expansion)
+            subTypeFilterButton.setOnClickListener {
+                filterClick(subTypeFilterButton, subTypeFilterExpansion)
+            }
+
             //RESULTS - FILTER
             val resultsFilterButton = view.findViewById<ImageView>(R.id.results_filter_add_button)
             val resultsFilterExpansion = view.findViewById<ConstraintLayout>(R.id.results_filter_expansion)
@@ -131,6 +140,25 @@ class FilterFunctions {
 
                 "AMERICAN" -> {
                     "AMERICAN"
+                }
+
+                "BOTH" -> {
+                    null
+                }
+
+                else -> {
+                    null
+                }
+            }
+        }
+        fun getSubTypeRadioResult(selectedOption : String) : String? {
+            return when(selectedOption){
+                "8 Ball" -> {
+                    EIGHT_BALl
+                }
+
+                "9 Ball" -> {
+                    NINE_BALl
                 }
 
                 "BOTH" -> {
@@ -213,6 +241,7 @@ class FilterFunctions {
                 fvm.unfilteredGameList!!.toMutableList(),
                 opponent = selectedOpponent,
                 gameType = getGameTypeRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_gameType)!!)),
+                subType =  getSubTypeRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_discipline)!!)),
                 userWins = getUserWonRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_results)!!)),
                 userBreaks = getUserBreaksRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_breaking)!!)),
                 orderNewest = getOrderRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_order)!!))

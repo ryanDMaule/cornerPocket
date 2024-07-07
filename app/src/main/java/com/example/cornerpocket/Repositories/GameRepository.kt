@@ -1,7 +1,8 @@
 package com.example.cornerpocket.Repositories
 
-import com.example.cornerpocket.MyApp
+import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.Game
+import com.example.cornerpocket.models.NINE_BALl
 import com.example.cornerpocket.models.Opponent
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
@@ -17,7 +18,7 @@ class GameRepository(passedRealm : Realm) {
         return realm.query<Game>().asFlow().map { it.list.toMutableList() }
     }
 
-    fun filterGames(list : MutableList<Game>, opponent : Opponent?, gameType : String?, userWins : Boolean?, userBreaks : Boolean?, orderNewest : Boolean) : MutableList<Game> {
+    fun filterGames(list : MutableList<Game>, opponent : Opponent?, gameType : String?, subType : String?, userWins : Boolean?, userBreaks : Boolean?, orderNewest : Boolean) : MutableList<Game> {
         var filteredList = list
 
         if (opponent != null){
@@ -25,6 +26,9 @@ class GameRepository(passedRealm : Realm) {
         }
         if (gameType != null){
             filteredList = filterGamesByGameType(filteredList, gameType)
+        }
+        if (subType != null){
+            filteredList = filterGamesBySubType(filteredList, subType)
         }
         if (userWins != null){
             filteredList = filterGamesByResult(filteredList, userWins)
@@ -55,6 +59,23 @@ class GameRepository(passedRealm : Realm) {
             "AMERICAN" -> {
                 //AMERICAN games played
                 list.filter { it.gameType == "AMERICAN" }.toMutableList()
+            }
+            else -> {
+                list
+            }
+        }
+    }
+
+    private fun filterGamesBySubType(list : MutableList<Game>, gameType : String) : MutableList<Game>{
+        return when(gameType){
+            EIGHT_BALl -> {
+                //ENGLISH games played
+                list.filter { it.subType == EIGHT_BALl }.toMutableList()
+            }
+
+            NINE_BALl -> {
+                //AMERICAN games played
+                list.filter { it.subType == NINE_BALl }.toMutableList()
             }
             else -> {
                 list
@@ -122,6 +143,7 @@ class GameRepository(passedRealm : Realm) {
         pGameLength : Int,
         pUserWon : Boolean,
         pGameType : String,
+        pSubType : String,
         pUserBroke : Boolean,
         pUserBallsPlayed : String,
         pMethodOfVictory : String,
@@ -131,6 +153,7 @@ class GameRepository(passedRealm : Realm) {
             gameDuration = pGameLength
             userWon = pUserWon == true
             gameType = pGameType
+            subType = pSubType
             userBroke = pUserBroke == true
             userBallsPlayed = pUserBallsPlayed
             methodOfVictory = pMethodOfVictory

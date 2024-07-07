@@ -194,7 +194,6 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/info_section_constraint">
@@ -219,12 +218,48 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- BALL VARIANT PICKER -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ball_variant_CL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            android:visibility="invisible"
+            tools:visibility="visible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/eight_ball_btn"
+                style="@style/selectedSwitchButton"
+                android:layout_marginStart="32dp"
+                android:text="8 Ball"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/nine_ball_btn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nine_ball_btn"
+                style="@style/unselectedSwitchButton"
+                android:layout_marginEnd="32dp"
+                android:text="9 ball"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/eight_ball_btn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         <ImageView
             android:id="@+id/ivGameSetUp"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:contentDescription="@string/english_rack"
-            android:padding="56dp"
+            android:padding="64dp"
             android:src="@drawable/english_setup"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameTypeBinding
+import com.example.cornerpocket.models.EIGHT_BALl
+import com.example.cornerpocket.models.NINE_BALl
 import com.example.cornerpocket.viewModels.PlayViewModel
 import com.google.android.material.button.MaterialButton
 
@@ -53,26 +56,71 @@ class GameTypeFragment : Fragment() {
             americanGamePressed()
         }
 
+        binding.eightBallBtn.setOnClickListener {
+            eightBallPressed()
+        }
+
+        binding.nineBallBtn.setOnClickListener {
+            nineBallPressed()
+        }
+
         return binding.root
     }
 
     private fun englishGamePressed(){
         viewModel.setGameType("ENGLISH")
+        viewModel.setSubType(EIGHT_BALl)
 
         styleSelectedButton(binding.englishButton)
         styleUnselectedButton(binding.americanButton)
 
         binding.ivGameSetUp.setImageResource(R.drawable.english_setup)
+        if (binding.ballVariantCL.visibility == View.VISIBLE){
+            HelperFunctions.collapseView(binding.ballVariantCL)
+        }
     }
 
     private fun americanGamePressed(){
         viewModel.setGameType("AMERICAN")
 
+        if (eightBallSelected){
+            eightBallPressed()
+        } else {
+            nineBallPressed()
+        }
+
         styleUnselectedButton(binding.englishButton)
         styleSelectedButton(binding.americanButton)
 
-        binding.ivGameSetUp.setImageResource(R.drawable.american_setup)
+        if (binding.ballVariantCL.visibility != View.VISIBLE){
+            HelperFunctions.expandView(binding.ballVariantCL)
+        }
     }
+
+    private var eightBallSelected = true
+
+    private fun eightBallPressed(){
+        eightBallSelected = true
+        viewModel.setSubType(EIGHT_BALl)
+
+        styleUnselectedButton(binding.nineBallBtn)
+        styleSelectedButton(binding.eightBallBtn)
+
+        binding.ivGameSetUp.setImageResource(R.drawable.american_setup)
+
+    }
+
+    private fun nineBallPressed(){
+        eightBallSelected = false
+        viewModel.setSubType(NINE_BALl)
+
+        styleUnselectedButton(binding.eightBallBtn)
+        styleSelectedButton(binding.nineBallBtn)
+
+        binding.ivGameSetUp.setImageResource(R.drawable.nine_ball_setup)
+
+    }
+
     private fun styleUnselectedButton(button: MaterialButton) {
         button.strokeWidth = 4
         button.setTextColor(resources.getColor(R.color.white_80))

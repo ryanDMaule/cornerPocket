@@ -14,7 +14,6 @@ import com.example.cornerpocket.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentStatsBinding
 import com.example.cornerpocket.models.Game
-import com.example.cornerpocket.models.gameType
 import com.example.cornerpocket.viewModels.FilterViewModel
 import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.launch

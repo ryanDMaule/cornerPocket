@@ -17,6 +17,7 @@ class Game: RealmObject {
     var gameDuration: Int = 0
     var userWon: Boolean = true
     var gameType: String = defaultGameType
+    var subType: String = EIGHT_BALl
     var userBroke: Boolean = true
     var userBallsPlayed: String? = null
     var methodOfVictory: String = ""
@@ -25,27 +26,16 @@ class Game: RealmObject {
 // TODO: ALLOW THIS TO BE CHANGED IN SETTINGS 
 var defaultGameType = "ENGLISH"
 
-enum class gameType {
-    AMERICAN,
-    ENGLISH
-}
+const val EIGHT_BALl = "8-BALL"
+const val NINE_BALl = "9-BALL"
 
-enum class BallType {
-    RED,
-    YELLOW,
-    SPOT,
-    STRIPE
-}
+const val AMERICAN = "AMERICAN"
+const val SPOT = "SPOT"
+const val STRIPE = "STRIPE"
 
-fun ballTypeLookup(v : BallType) : String {
-    val res = Resources.getSystem()
-    return when(v) {
-        BallType.RED -> res.getString(R.string.red)
-        BallType.YELLOW -> res.getString(R.string.yellow)
-        BallType.SPOT -> res.getString(R.string.spot)
-        BallType.STRIPE -> res.getString(R.string.stripe)
-    }
-}
+const val ENGLISH = "ENGLISH"
+const val RED = "RED"
+const val YELLOW = "YELLOW"
 
 enum class victoryMethods {
     STANDARD_VICTORY,

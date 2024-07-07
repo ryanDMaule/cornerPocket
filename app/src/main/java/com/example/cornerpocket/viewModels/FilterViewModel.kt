@@ -46,11 +46,12 @@ class FilterViewModel : ViewModel() {
         return opponentRepository.getOpponents()
     }
 
-    fun filterGames(list : MutableList<Game>, opponent : Opponent?, gameType : String?, userWins : Boolean?, userBreaks : Boolean?, orderNewest : Boolean) : MutableList<Game> {
+    fun filterGames(list : MutableList<Game>, opponent : Opponent?, gameType : String?, subType : String?, userWins : Boolean?, userBreaks : Boolean?, orderNewest : Boolean) : MutableList<Game> {
         return gameRepository.filterGames(
             list = list,
             opponent = opponent,
             gameType = gameType,
+            subType = subType,
             userWins = userWins,
             userBreaks = userBreaks,
             orderNewest = orderNewest
