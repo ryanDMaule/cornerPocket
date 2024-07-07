@@ -104,7 +104,7 @@ class HistoryFragment : Fragment() {
         try {
             recyclerView = binding.historyRecycler
             recyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
-            historyAdapter = GameHistoryAdapter(list, filterViewModel)
+            historyAdapter = GameHistoryAdapter(list, filterViewModel, requireContext())
             recyclerView.adapter = historyAdapter
 
             binding.resultsCounterText.text = "${list.size} RESULTS"

@@ -1,6 +1,7 @@
 package com.example.cornerpocket.Adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,10 +11,11 @@ import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.ItemResultBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.HelperFunctions
+import com.example.cornerpocket.ImageUtils
 import com.example.cornerpocket.viewModels.FilterViewModel
 
 
-class GameHistoryAdapter(private var games: MutableList<Game>, var vm: FilterViewModel) : RecyclerView.Adapter<GameHistoryAdapter.GamesViewHolder>()  {
+class GameHistoryAdapter(private var games: MutableList<Game>, var vm: FilterViewModel, val context: Context) : RecyclerView.Adapter<GameHistoryAdapter.GamesViewHolder>()  {
     inner class GamesViewHolder(val binding: ItemResultBinding) : RecyclerView.ViewHolder(binding.root)
     var onItemClicked : ((Game) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamesViewHolder {
@@ -38,6 +40,13 @@ class GameHistoryAdapter(private var games: MutableList<Game>, var vm: FilterVie
 
             val opponent = vm.getOpponentViaId(games[position].opponentId)
             name.text = opponent?.name
+
+            val pfp = ImageUtils.getImageFromLocalStorage(context, opponent?._id.toString())
+            if (pfp != null){
+                opponentIcon.setImageURI(pfp)
+            } else {
+                opponentIcon.setImageResource(R.drawable.user_icon_red_no_circle)
+            }
 
             val gameDate = HelperFunctions.longConversion(games[position].date)
             date.text = HelperFunctions.formatDateToString(gameDate)
