@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_stats" />
     <fragment
         android:id="@+id/playFragment"
-        android:name="com.example.cornerpocket.PlayFragment"
+        android:name="com.example.cornerpocket.presentation.play.PlayFragment"
         android:label="fragment_play"
         tools:layout="@layout/fragment_play" >
         <action
@@ -96,7 +96,7 @@
     </navigation>
     <fragment
         android:id="@+id/user_details"
-        android:name="com.example.cornerpocket.UserDetailsFragment"
+        android:name="com.example.cornerpocket.presentation.settings.UserDetailsFragment"
         android:label="fragment_user_details"
         tools:layout="@layout/fragment_user_details" />
     <navigation android:id="@+id/historyGraph"
@@ -122,7 +122,7 @@
     </navigation>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.cornerpocket.SettingsFragment"
+        android:name="com.example.cornerpocket.presentation.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -134,10 +134,18 @@
         <action
             android:id="@+id/action_settingsFragment_to_opponentDetailsFragment"
             app:destination="@id/opponentDetailsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_donationsFragment"
+            app:destination="@id/donationsFragment" />
     </fragment>
     <fragment
         android:id="@+id/opponentDetailsFragment"
-        android:name="com.example.cornerpocket.OpponentDetailsFragment"
+        android:name="com.example.cornerpocket.presentation.settings.OpponentDetailsFragment"
         android:label="fragment_opponent_details"
         tools:layout="@layout/fragment_opponent_details" />
+    <fragment
+        android:id="@+id/donationsFragment"
+        android:name="com.example.cornerpocket.presentation.settings.DonationsFragment"
+        android:label="fragment_donations"
+        tools:layout="@layout/fragment_donations" />
 </navigation>

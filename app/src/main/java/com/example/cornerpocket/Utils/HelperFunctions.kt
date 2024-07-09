@@ -1,11 +1,14 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.Utils
 
+import android.app.Activity
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.widget.ImageView
-import com.example.cornerpocket.models.Game
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDate
@@ -158,6 +161,33 @@ class HelperFunctions {
             val minutes = totalSeconds / 60
             val seconds = totalSeconds % 60
             return String.format("%02d:%02d", minutes, seconds)
+        }
+
+        fun promptUserForReview(activity: Activity) {
+            val reviewManager = ReviewManagerFactory.create(activity)
+
+            val request = reviewManager.requestReviewFlow()
+            request.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.e("HF", "reviewInfo : task successful")
+
+                    // We can get the ReviewInfo object
+                    val reviewInfo: ReviewInfo? = task.result
+                    if (reviewInfo != null){
+                        val flow = reviewManager.launchReviewFlow(activity, reviewInfo)
+                        flow.addOnCompleteListener { _ ->
+                            // The review flow has finished. The API does not indicate whether
+                            // the user reviewed or not, or even whether the review dialog was shown.
+                            // Thus, no need to do anything here.
+                        }
+                    } else {
+                        Log.e("HF", "reviewInfo : NULL")
+                    }
+                } else {
+                    // There was some problem, log or handle the error code.
+                    Log.e("HF", "Unable to show review dialog")
+                }
+            }
         }
 
     }

@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.cornerpocket.HelperFunctions
-import com.example.cornerpocket.ImageUtils
-import com.example.cornerpocket.NavigationUtils
+import com.example.cornerpocket.Utils.HelperFunctions
+import com.example.cornerpocket.Utils.ImageUtils
+import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.viewModels.PlayViewModel
-import org.mongodb.kbson.ObjectId
 
 class HistoryGameDetailsFragment : Fragment() {
     private var _binding : FragmentGameDetailsBinding? = null

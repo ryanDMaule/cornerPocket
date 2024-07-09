@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import com.example.cornerpocket.ImageUtils
+import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentBreakSelectionBinding
 import com.example.cornerpocket.viewModels.PlayViewModel

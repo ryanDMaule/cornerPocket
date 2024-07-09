@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.Utils
 
 import android.content.Context
 import android.util.Log
@@ -12,6 +12,7 @@ import android.widget.RadioGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.viewModelScope
 import com.example.cornerpocket.Adapters.OpponentListAdapter
+import com.example.cornerpocket.R
 import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.NINE_BALl
@@ -243,7 +244,11 @@ class FilterFunctions {
                 gameType = getGameTypeRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_gameType)!!)),
                 subType =  getSubTypeRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_discipline)!!)),
                 userWins = getUserWonRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_results)!!)),
-                userBreaks = getUserBreaksRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_breaking)!!)),
+                userBreaks = getUserBreaksRadioResult(
+                    getSelectedRadioButtonText(dialog.findViewById(
+                        R.id.groupradio_breaking
+                    )!!)
+                ),
                 orderNewest = getOrderRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_order)!!))
             )
         }

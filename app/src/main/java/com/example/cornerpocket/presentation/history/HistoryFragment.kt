@@ -12,10 +12,10 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.GameHistoryAdapter
-import com.example.cornerpocket.FilterFunctions
-import com.example.cornerpocket.FilterFunctions.Companion.createFiltersDialog
-import com.example.cornerpocket.FilterFunctions.Companion.createFilterList
-import com.example.cornerpocket.NavigationUtils
+import com.example.cornerpocket.Utils.FilterFunctions
+import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFiltersDialog
+import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFilterList
+import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentHistoryBinding
 import com.example.cornerpocket.models.Game

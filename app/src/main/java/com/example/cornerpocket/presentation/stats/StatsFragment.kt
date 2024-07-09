@@ -9,8 +9,8 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
-import com.example.cornerpocket.FilterFunctions
-import com.example.cornerpocket.HelperFunctions
+import com.example.cornerpocket.Utils.FilterFunctions
+import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentStatsBinding
 import com.example.cornerpocket.models.Game

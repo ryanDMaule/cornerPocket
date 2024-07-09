@@ -66,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:letterSpacing=".1"
-            android:text="profile"
+            android:text="support me"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -96,84 +96,7 @@
         app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintTop_toBottomOf="@+id/titlebar">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/userImage"
-            style="@style/userIcon"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginTop="64dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/user_name_tv"
-            style="@style/smallCapsText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/userImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="NAME" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clAddImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/userImage"
-            app:layout_constraintStart_toStartOf="@+id/userImage"
-            app:layout_constraintTop_toBottomOf="@+id/userImage">
-
-            <TextView
-                android:id="@+id/tvAddImage"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add picture"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/ivAddImage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/camera_white_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvAddImage"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:layout_margin="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clAddImage">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputTextName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:id="@+id/fade_out_iv"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/gradient_dark_primary_transparant"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -189,14 +112,34 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/apply_btn"
+            android:id="@+id/rating_btn"
             style="@style/mainButton"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Apply changes"
+            android:layout_marginEnd="16dp"
+            android:text="leave review"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineTwo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/donation_btn"
+            style="@style/mainButton"
+            android:layout_width="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
+            android:text="Make donation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineTwo"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

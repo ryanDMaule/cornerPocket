@@ -2,7 +2,6 @@ package com.example.cornerpocket.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.ItemResultBinding
 import com.example.cornerpocket.models.Game
-import com.example.cornerpocket.HelperFunctions
-import com.example.cornerpocket.ImageUtils
+import com.example.cornerpocket.Utils.HelperFunctions
+import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.viewModels.FilterViewModel
 
 

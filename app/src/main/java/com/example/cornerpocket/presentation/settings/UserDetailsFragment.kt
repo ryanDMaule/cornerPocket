@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.presentation.settings
 
 import android.Manifest
 import android.app.Activity
@@ -23,6 +23,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImageContract
+import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
 import com.example.cornerpocket.viewModels.UserViewModel
 import kotlinx.coroutines.launch
@@ -194,7 +195,12 @@ class UserDetailsFragment : Fragment() {
                     val user = userViewModel.getUser()
                     if (user != null){
                         val path = user._id.toString()
-                        ImageUtils.saveCroppedImageToLocalStorage(requireContext(), bitmap, binding.userImage, path)
+                        ImageUtils.saveCroppedImageToLocalStorage(
+                            requireContext(),
+                            bitmap,
+                            binding.userImage,
+                            path
+                        )
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.presentation.settings
 
 import android.Manifest
 import android.app.Activity
@@ -28,6 +28,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
+import com.example.cornerpocket.Utils.ImageUtils
+import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentOpponentDetailsBinding
 import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.viewModels.PlayViewModel
@@ -72,7 +74,9 @@ class OpponentDetailsFragment : Fragment() {
 
         vm.viewModelScope.launch {
             vm.getOpponents().collect{ opponentList ->
-                opponentsAdapter = OpponentSelectorAdapter(opponentList, requireContext(), R.id.opponentDetailsFragment)
+                opponentsAdapter = OpponentSelectorAdapter(opponentList, requireContext(),
+                    R.id.opponentDetailsFragment
+                )
                 recyclerView.adapter = opponentsAdapter
 
                 opponentsAdapter.onItemClicked = { opponent ->
@@ -185,11 +189,19 @@ class OpponentDetailsFragment : Fragment() {
 
                     if (croppedImage != null) {
                         //get opponent and use _id to store cropped image
-                        ImageUtils.saveCroppedImageToLocalStorage(requireContext(), croppedImage!!, this._id.toString())
+                        ImageUtils.saveCroppedImageToLocalStorage(
+                            requireContext(),
+                            croppedImage!!,
+                            this._id.toString()
+                        )
 
                     } else if (unCroppedImage != null) {
                         //get opponent and use _id to store un cropped image
-                        ImageUtils.saveImageToLocalStorage(requireContext(), unCroppedImage!!, this._id.toString())
+                        ImageUtils.saveImageToLocalStorage(
+                            requireContext(),
+                            unCroppedImage!!,
+                            this._id.toString()
+                        )
                     }
                 })
 
@@ -209,11 +221,19 @@ class OpponentDetailsFragment : Fragment() {
                 vm.updateOpponentName(opponent, textInput.text.toString())
                 if (croppedImage != null) {
                     //get opponent and use _id to store cropped image
-                    ImageUtils.saveCroppedImageToLocalStorage(requireContext(), croppedImage!!, opponent._id.toString())
+                    ImageUtils.saveCroppedImageToLocalStorage(
+                        requireContext(),
+                        croppedImage!!,
+                        opponent._id.toString()
+                    )
 
                 } else if (unCroppedImage != null) {
                     //get opponent and use _id to store un cropped image
-                    ImageUtils.saveImageToLocalStorage(requireContext(), unCroppedImage!!, opponent._id.toString())
+                    ImageUtils.saveImageToLocalStorage(
+                        requireContext(),
+                        unCroppedImage!!,
+                        opponent._id.toString()
+                    )
                 }
 
                 Toast.makeText(requireContext(), "${textInput.text.toString()} added!", Toast.LENGTH_SHORT).show()

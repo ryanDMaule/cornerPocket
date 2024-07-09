@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.Utils
 
 import android.Manifest
 import android.app.Activity

@@ -7,6 +7,7 @@ import com.example.cornerpocket.MyApp
 import com.example.cornerpocket.Repositories.GameRepository
 import com.example.cornerpocket.Repositories.OpponentRepository
 import com.example.cornerpocket.Repositories.UserRepository
+import com.example.cornerpocket.models.ENGLISH
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.models.User
@@ -152,8 +153,7 @@ class PlayViewModel: ViewModel() {
 
     // p = pending
 
-    // TODO: USE DEFAULT GAME TYPE AS DEFAULT STRING
-    private var pGameType : String = "ENGLISH"
+    private var pGameType : String = ENGLISH
     fun getGameType() : String {
         Log.e("MVM", "GET - GAME TYPE : $pGameType")
         return pGameType

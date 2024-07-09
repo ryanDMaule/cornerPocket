@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.Utils
 
 import android.os.Bundle
 import androidx.annotation.IdRes

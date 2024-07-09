@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import com.example.cornerpocket.HelperFunctions
+import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameUnderwayBinding
 import com.example.cornerpocket.viewModels.PlayViewModel

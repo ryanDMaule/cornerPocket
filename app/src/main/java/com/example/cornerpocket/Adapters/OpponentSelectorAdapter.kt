@@ -2,20 +2,14 @@ package com.example.cornerpocket.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cornerpocket.ImageUtils
+import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.ItemOpponentBinding
-import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
-import io.realm.kotlin.query.RealmResults
 
 
 //https://academy.realm.io/posts/android-recycler-view/

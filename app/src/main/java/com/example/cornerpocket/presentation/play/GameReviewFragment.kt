@@ -12,7 +12,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import com.example.cornerpocket.ImageUtils
+import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameReviewBinding
 import com.example.cornerpocket.viewModels.PlayViewModel

@@ -20,7 +20,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -28,13 +27,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
-import com.example.cornerpocket.HelperFunctions
-import com.example.cornerpocket.ImageUtils
+import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentOpponentSelectBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
-import com.example.cornerpocket.models.User
 import com.example.cornerpocket.viewModels.PlayViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.sidesheet.SideSheetDialog
