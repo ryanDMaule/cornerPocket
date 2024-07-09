@@ -49,17 +49,14 @@ class MainActivity : AppCompatActivity() {
         // Hide the ActionBar if needed
         supportActionBar?.hide()
 
-        //HIDE BOTTOM NAV ON X FRAGMENTS
+        //ONLY SHOW BOTTOM BAR ON 'HOME' FRAGMENTS
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.opponentSelectFragment ||
-                destination.id == R.id.gameTypeFragment ||
-                destination.id == R.id.breakSelectionFragment ||
-                destination.id == R.id.gameUnderwayFragment ||
-                destination.id == R.id.gameReviewFragment ||
-                destination.id == R.id.gameDetailsFragment) {
-                navView.visibility = View.GONE
-            } else {
+            if(destination.id == R.id.historyFragment ||
+                destination.id == R.id.playFragment ||
+                destination.id == R.id.statsFragment) {
                 navView.visibility = View.VISIBLE
+            } else {
+                navView.visibility = View.GONE
             }
         }
 

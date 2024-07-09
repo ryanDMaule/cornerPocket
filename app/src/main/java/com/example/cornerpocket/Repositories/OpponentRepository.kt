@@ -1,5 +1,6 @@
 package com.example.cornerpocket.Repositories
 
+import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
 import io.realm.kotlin.Realm
 import io.realm.kotlin.UpdatePolicy
@@ -35,5 +36,13 @@ class OpponentRepository(passedRealm : Realm) {
         return null
     }
 
+    suspend fun removeOpponent(opponent: Opponent) {
+        realm.write {
+            val latestOpponent = findLatest(opponent)
+            if (latestOpponent != null) {
+                this.delete(latestOpponent)
+            }
+        }
+    }
 
 }

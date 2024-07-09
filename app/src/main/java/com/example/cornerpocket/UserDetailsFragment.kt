@@ -56,7 +56,7 @@ class UserDetailsFragment : Fragment() {
         }
 
         binding.backButton.setOnClickListener {
-            findNavController().navigate(R.id.action_user_details_to_playFragment)
+            findNavController().popBackStack()
         }
 
         binding.applyBtn.setOnClickListener {

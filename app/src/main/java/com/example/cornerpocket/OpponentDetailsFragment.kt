@@ -1,4 +1,4 @@
-package com.example.cornerpocket.presentation.play
+package com.example.cornerpocket
 
 import android.Manifest
 import android.app.Activity
@@ -10,31 +10,26 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.FileProvider
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
-import com.example.cornerpocket.HelperFunctions
-import com.example.cornerpocket.ImageUtils
-import com.example.cornerpocket.R
-import com.example.cornerpocket.databinding.FragmentOpponentSelectBinding
-import com.example.cornerpocket.models.Game
+import com.example.cornerpocket.databinding.FragmentOpponentDetailsBinding
 import com.example.cornerpocket.models.Opponent
-import com.example.cornerpocket.models.User
 import com.example.cornerpocket.viewModels.PlayViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.sidesheet.SideSheetDialog
@@ -46,61 +41,46 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
-class OpponentSelectFragment : Fragment()  {
-    private var _binding : FragmentOpponentSelectBinding? = null
+class OpponentDetailsFragment : Fragment() {
+    private var _binding : FragmentOpponentDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: PlayViewModel by navGraphViewModels(R.id.gameGraph)
+    private val vm: PlayViewModel by viewModels()
+
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var opponentsAdapter: OpponentSelectorAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentOpponentSelectBinding.inflate(inflater, container, false)
+        _binding = FragmentOpponentDetailsBinding.inflate(inflater, container, false)
 
-        binding.userText.text = viewModel.getUser()?.name
+        // Inflate the layout for this fragment
+        return binding.root
+    }
 
-        val user = viewModel.getUser()
-        if (user != null){
-            binding.userText.text = user.name
-
-            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
-            binding.userImage.setImageURI(pfp)
-        }
-
-        binding.btnNextButton.setOnClickListener {
-            if (viewModel.getSelectedOpponent() != null){
-                findNavController().navigate(R.id.action_opponentSelectFragment_to_gameTypeFragment)
-            } else {
-                Toast.makeText(requireContext(), "PLEASE SELECT AN OPPONENT", Toast.LENGTH_SHORT).show()
-            }
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.backButton.setOnClickListener {
-            findNavController().navigate(R.id.action_opponentSelectFragment_to_playFragment)
+            findNavController().popBackStack()
         }
+
 
         recyclerView = binding.opponentListRecycler
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
 
-        viewModel.viewModelScope.launch {
-            viewModel.getOpponents().collect{ opponentList ->
-                opponentsAdapter = OpponentSelectorAdapter(opponentList, requireContext())
+        vm.viewModelScope.launch {
+            vm.getOpponents().collect{ opponentList ->
+                opponentsAdapter = OpponentSelectorAdapter(opponentList, requireContext(), R.id.opponentDetailsFragment)
                 recyclerView.adapter = opponentsAdapter
 
                 opponentsAdapter.onItemClicked = { opponent ->
                     itemSelected(opponent)
-                    viewModel.setSelectedOpponent(opponent)
-                    if (binding.selectedOpponentSection.visibility != View.VISIBLE){
-                        binding.noOpponentSelectedBlock.visibility = View.GONE
-                        binding.selectedOpponentSection.visibility = View.VISIBLE
-                    }
+                    vm.setSelectedOpponent(opponent)
                 }
             }
         }
-
 
         binding.fabAdd.setOnClickListener {
             val dialog = SideSheetDialog(requireContext())
@@ -134,16 +114,71 @@ class OpponentSelectFragment : Fragment()  {
             dialog.show()
         }
 
-        return binding.root
     }
 
+    private fun itemSelected(opponent: Opponent){
+        val dialog = SideSheetDialog(requireContext())
+        val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
+
+        val title = view.findViewById<TextView>(R.id.title_TV)
+        title.text = "Edit opponent"
+
+        val delete = view.findViewById<ConstraintLayout>(R.id.delete_CL)
+        delete.visibility = View.VISIBLE
+        delete.setOnClickListener {
+            vm.removeOpponent(opponent)
+            dialog.dismiss()
+        }
+
+
+        val opponentName = view.findViewById<TextView>(R.id.user_name_tv)
+        opponentName.visibility = View.VISIBLE
+        opponentName.text = opponent.name
+
+        val btnClose = view.findViewById<ImageView>(R.id.quit_button)
+        val window = view.findViewById<ConstraintLayout>(R.id.full_layout)
+        opponentImage = view.findViewById(R.id.addOponentImage)
+        val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), opponent._id.toString())
+        if (pfp != null){
+            opponentImage!!.setImageURI(pfp)
+        } else {
+            opponentImage!!.setImageResource(R.drawable.user_icon_red_no_circle)
+        }
+
+        val btnAddImage = view.findViewById<ConstraintLayout>(R.id.clAddImage)
+        val btnCreate = view.findViewById<MaterialButton>(R.id.footer_button)
+        btnCreate.text = "Edit"
+        val textInputEditText = view.findViewById<TextInputEditText>(R.id.inputTextName)
+
+        window.setOnClickListener {
+            //prevents closing the dialog by mis clicking
+        }
+
+        btnClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnCreate.setOnClickListener {
+            editOpponent(dialog = dialog, textInput = textInputEditText, opponent = opponent)
+        }
+
+        btnAddImage.setOnClickListener{
+            showPhotoAlertDialog()
+        }
+
+        dialog.setContentView(view)
+
+        dialog.show()
+
+    }
+    
     private fun createOpponent(textInput : TextInputEditText, dialog : SideSheetDialog){
         if(textInput.text?.isBlank() == true){
             Toast.makeText(requireContext(), "PLEASE ENTER A NAME", Toast.LENGTH_SHORT).show()
         } else {
             //add to realm db
-            viewModel.viewModelScope.launch {
-                viewModel.insertOpponent(opponent = Opponent().apply {
+            vm.viewModelScope.launch {
+                vm.insertOpponent(opponent = Opponent().apply {
                     name = textInput.text.toString()
 
                     if (croppedImage != null) {
@@ -163,45 +198,26 @@ class OpponentSelectFragment : Fragment()  {
         }
     }
 
-    private fun itemSelected(opponent: Opponent){
-        binding.opponentText.text = opponent.name
-        binding.winRecordText.text = "${opponent.losses} - ${opponent.wins}"
-
-        val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), opponent._id.toString())
-        if (pfp != null){
-            binding.opponentImage.setImageURI(pfp)
+    private fun editOpponent(textInput : TextInputEditText, dialog : SideSheetDialog, opponent: Opponent){
+        if(textInput.text?.isBlank() == true){
+            Toast.makeText(requireContext(), "PLEASE ENTER A NAME", Toast.LENGTH_SHORT).show()
         } else {
-            binding.opponentImage.setImageResource(R.drawable.user_icon_red_no_circle)
-        }
+            //add to realm db
+            vm.viewModelScope.launch {
+                vm.updateOpponentName(opponent, textInput.text.toString())
+                if (croppedImage != null) {
+                    //get opponent and use _id to store cropped image
+                    ImageUtils.saveCroppedImageToLocalStorage(requireContext(), croppedImage!!, opponent._id.toString())
 
-        formatRecentGames(opponent.gamesHistory.reversed().take(5))
-    }
-
-    private fun formatRecentGames(gamesList : List<Game>){
-        for (i in 0 until 5) {
-            val recentGameImg = getImage(i)
-
-            if(i >= gamesList.size){
-                recentGameImg.setImageResource(R.drawable.na_img)
-            } else {
-                if (gamesList[i].userWon){
-                    recentGameImg.setImageResource(R.drawable.win_img)
-                } else {
-                    recentGameImg.setImageResource(R.drawable.loss_img)
+                } else if (unCroppedImage != null) {
+                    //get opponent and use _id to store un cropped image
+                    ImageUtils.saveImageToLocalStorage(requireContext(), unCroppedImage!!, opponent._id.toString())
                 }
+
+                Toast.makeText(requireContext(), "${textInput.text.toString()} added!", Toast.LENGTH_SHORT).show()
+
+                dialog.dismiss()
             }
-        }
-    }
-
-    private fun getImage(position: Int) : ImageView {
-        return when(position) {
-            0 -> binding.opponentPreviousFiveSection.result1
-            1 -> binding.opponentPreviousFiveSection.result2
-            2 -> binding.opponentPreviousFiveSection.result3
-            3 -> binding.opponentPreviousFiveSection.result4
-            4 -> binding.opponentPreviousFiveSection.result5
-
-            else -> throw Error()
         }
     }
 
@@ -327,5 +343,6 @@ class OpponentSelectFragment : Fragment()  {
     }
 
     //endregion
+
 
 }

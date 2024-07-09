@@ -52,6 +52,23 @@ class PlayViewModel: ViewModel() {
         return opponentRepository.getUpdatedOpponent(passedOpponent = selectedOpponent!!)
     }
 
+    fun updateOpponentName(opponent: Opponent, name : String){
+        viewModelScope.launch(Dispatchers.IO) {
+            realm.write {
+                val queriedOpponent = this.query<Opponent>("_id == $0", opponent._id).first().find()
+
+                if (queriedOpponent != null){
+                    val queriedOpponentLatest = findLatest(queriedOpponent)
+
+                    if (queriedOpponentLatest != null){
+                        queriedOpponentLatest.name = name
+                        copyToRealm(queriedOpponentLatest, updatePolicy = UpdatePolicy.ALL)
+                    }
+                }
+            }
+        }
+    }
+
     fun updateOpponent(){
         viewModelScope.launch(Dispatchers.IO) {
             realm.write {
@@ -79,6 +96,18 @@ class PlayViewModel: ViewModel() {
 
     fun getOpponentViaId(id : ObjectId) : Opponent? {
         return opponentRepository.getOpponentViaId(id = id)
+    }
+
+    fun removeOpponent(opponent: Opponent?){
+        Log.e("PVM", "removeOpponent : $opponent")
+
+        viewModelScope.launch(Dispatchers.IO) {
+            if (opponent != null){
+                opponentRepository.removeOpponent(opponent)
+            } else {
+                Log.e("PVM", "OPPONENT IS NULL")
+            }
+        }
     }
 
     fun removeGame(game : Game?){

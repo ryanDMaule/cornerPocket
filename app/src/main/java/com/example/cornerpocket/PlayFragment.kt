@@ -24,10 +24,6 @@ class PlayFragment : Fragment() {
     ): View? {
         _binding = FragmentPlayBinding.inflate(inflater, container, false)
 
-//        val bottomNav = activity?.findViewById<ConstraintLayout>(R.id.bottom_navigation)
-//        Log.e("bottomNav", "$bottomNav")
-
-
         //creates a user if one does not exist
         // TODO: unskippable pop up dialog to "create user" if one is not found 
         userViewModel.getUser()
@@ -43,7 +39,7 @@ class PlayFragment : Fragment() {
         binding.userProfileButton.setOnClickListener {
             NavigationUtils.navigateAndClearBackStack(
                 findNavController(),
-                R.id.action_playFragment_to_user_details,
+                R.id.action_playFragment_to_settingsFragment,
                 R.id.playFragment
             )
         }

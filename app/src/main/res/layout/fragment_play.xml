@@ -20,7 +20,7 @@
             style="@style/iconSize"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/profile_icon"
-            android:src="@drawable/user_placeholder_icon_white"
+            android:src="@drawable/settings_icon_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="profile"
+            android:text="Settings"
             app:layout_constraintEnd_toEndOf="@+id/user_profile_button"
             app:layout_constraintStart_toStartOf="@+id/user_profile_button"
             app:layout_constraintTop_toBottomOf="@+id/user_profile_button" />

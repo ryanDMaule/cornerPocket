@@ -19,8 +19,8 @@
             android:id="@+id/action_playFragment_to_opponentSelectFragment"
             app:destination="@id/gameGraph" />
         <action
-            android:id="@+id/action_playFragment_to_user_details"
-            app:destination="@id/user_details" />
+            android:id="@+id/action_playFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <navigation android:id="@+id/gameGraph"
         app:startDestination="@id/opponentSelectFragment">
@@ -98,11 +98,7 @@
         android:id="@+id/user_details"
         android:name="com.example.cornerpocket.UserDetailsFragment"
         android:label="fragment_user_details"
-        tools:layout="@layout/fragment_user_details" >
-        <action
-            android:id="@+id/action_user_details_to_playFragment"
-            app:destination="@id/playFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_user_details" />
     <navigation android:id="@+id/historyGraph"
         app:startDestination="@id/historyFragment">
         <fragment
@@ -124,4 +120,24 @@
                 app:destination="@id/historyGameDetailsFragment" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.cornerpocket.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_playFragment"
+            app:destination="@id/playFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_user_details"
+            app:destination="@id/user_details" />
+        <action
+            android:id="@+id/action_settingsFragment_to_opponentDetailsFragment"
+            app:destination="@id/opponentDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/opponentDetailsFragment"
+        android:name="com.example.cornerpocket.OpponentDetailsFragment"
+        android:label="fragment_opponent_details"
+        tools:layout="@layout/fragment_opponent_details" />
 </navigation>

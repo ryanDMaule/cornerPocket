@@ -21,7 +21,7 @@ import io.realm.kotlin.query.RealmResults
 //https://academy.realm.io/posts/android-recycler-view/
 //https://github.com/realm/realm-android-adapters?tab=readme-ov-file
 
-class OpponentSelectorAdapter(private var opponents: MutableList<Opponent>, var context: Context)
+class OpponentSelectorAdapter(private var opponents: MutableList<Opponent>, var context: Context, var fragmentId: Int? = null)
     : RecyclerView.Adapter<OpponentSelectorAdapter.OpponentsViewHolder>() {
     inner class OpponentsViewHolder(val binding: ItemOpponentBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -50,10 +50,12 @@ class OpponentSelectorAdapter(private var opponents: MutableList<Opponent>, var 
                 ivOpponentImage.setImageResource(R.drawable.user_icon_red_no_circle)
             }
 
-            if (opponents[position].recyclerOpponentSelected){
-                ivSelectedItem.visibility = View.VISIBLE
-            } else {
-                ivSelectedItem.visibility = View.INVISIBLE
+            if (fragmentId != R.id.opponentDetailsFragment){
+                if (opponents[position].recyclerOpponentSelected){
+                    ivSelectedItem.visibility = View.VISIBLE
+                } else {
+                    ivSelectedItem.visibility = View.INVISIBLE
+                }
             }
 
         }
