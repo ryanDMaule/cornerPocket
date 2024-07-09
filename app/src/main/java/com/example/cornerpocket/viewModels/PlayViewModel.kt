@@ -99,7 +99,7 @@ class PlayViewModel: ViewModel() {
     }
 
     fun removeOpponent(opponent: Opponent?){
-        Log.e("PVM", "removeOpponent : $opponent")
+        Log.e("PVM", "removeOpponent : ${opponent?.name}")
 
         viewModelScope.launch(Dispatchers.IO) {
             if (opponent != null){

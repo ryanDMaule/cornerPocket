@@ -16,15 +16,12 @@ class Game: RealmObject {
     var date: Long = System.currentTimeMillis()
     var gameDuration: Int = 0
     var userWon: Boolean = true
-    var gameType: String = defaultGameType
+    var gameType: String = ENGLISH
     var subType: String = EIGHT_BALl
     var userBroke: Boolean = true
     var userBallsPlayed: String? = null
     var methodOfVictory: String = ""
 }
-
-// TODO: ALLOW THIS TO BE CHANGED IN SETTINGS 
-var defaultGameType = "ENGLISH"
 
 const val EIGHT_BALl = "8-BALL"
 const val NINE_BALl = "9-BALL"

@@ -1,5 +1,6 @@
 package com.example.cornerpocket.Repositories
 
+import android.util.Log
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
 import io.realm.kotlin.Realm
@@ -8,6 +9,7 @@ import io.realm.kotlin.ext.query
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.mongodb.kbson.ObjectId
+import java.lang.Exception
 
 class OpponentRepository(passedRealm : Realm) {
     private val realm = passedRealm

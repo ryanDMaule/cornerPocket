@@ -77,7 +77,6 @@ class OpponentDetailsFragment : Fragment() {
 
                 opponentsAdapter.onItemClicked = { opponent ->
                     itemSelected(opponent)
-                    vm.setSelectedOpponent(opponent)
                 }
             }
         }
@@ -126,6 +125,9 @@ class OpponentDetailsFragment : Fragment() {
         val delete = view.findViewById<ConstraintLayout>(R.id.delete_CL)
         delete.visibility = View.VISIBLE
         delete.setOnClickListener {
+            opponent.gamesHistory.forEach {
+                vm.removeGame(it)
+            }
             vm.removeOpponent(opponent)
             dialog.dismiss()
         }
