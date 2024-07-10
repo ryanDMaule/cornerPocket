@@ -15,6 +15,7 @@ import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.viewModels.PlayViewModel
+import org.mongodb.kbson.ObjectId
 
 class HistoryGameDetailsFragment : Fragment() {
     private var _binding : FragmentGameDetailsBinding? = null

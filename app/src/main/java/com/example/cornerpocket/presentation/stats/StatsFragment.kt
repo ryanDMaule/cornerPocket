@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.Utils.FilterFunctions
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.R
@@ -31,6 +32,10 @@ class StatsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         // TODO: remove this when the onDestroy fragment stuff works 
         filterViewModel.filteredGameList = null

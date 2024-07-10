@@ -50,6 +50,10 @@ class HistoryFragment : Fragment() {
             dialogButtonsHandling()
 //        }
 
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         filterViewModel.viewModelScope.launch {
             filterViewModel.getGames().collect { gamesList ->
                 filterViewModel.unfilteredGameList = gamesList

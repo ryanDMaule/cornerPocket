@@ -29,6 +29,25 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/back_button"
+                style="@style/iconSize"
+                android:contentDescription="@string/back_icon"
+                android:src="@drawable/back_icon_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/back_text"
+                style="@style/smallCapsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/back"
+                app:layout_constraintEnd_toEndOf="@+id/back_button"
+                app:layout_constraintStart_toStartOf="@+id/back_button"
+                app:layout_constraintTop_toBottomOf="@+id/back_button" />
+
+            <ImageView
                 android:id="@+id/filters_button"
                 style="@style/iconSize"
                 android:src="@drawable/filters_icon"

@@ -19,8 +19,20 @@
             android:id="@+id/action_playFragment_to_opponentSelectFragment"
             app:destination="@id/gameGraph" />
         <action
-            android:id="@+id/action_playFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_playFragment_to_historyGraph"
+            app:destination="@id/historyGraph" />
+        <action
+            android:id="@+id/action_playFragment_to_statsFragment"
+            app:destination="@id/statsFragment" />
+        <action
+            android:id="@+id/action_playFragment_to_user_details"
+            app:destination="@id/user_details" />
+        <action
+            android:id="@+id/action_playFragment_to_opponentDetailsFragment"
+            app:destination="@id/opponentDetailsFragment" />
+        <action
+            android:id="@+id/action_playFragment_to_donationsFragment"
+            app:destination="@id/donationsFragment" />
     </fragment>
     <navigation android:id="@+id/gameGraph"
         app:startDestination="@id/opponentSelectFragment">
@@ -119,25 +131,10 @@
                 android:id="@+id/action_historyFragment_to_historyGameDetailsFragment"
                 app:destination="@id/historyGameDetailsFragment" />
         </fragment>
-    </navigation>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.cornerpocket.presentation.settings.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
         <action
-            android:id="@+id/action_settingsFragment_to_playFragment"
+            android:id="@+id/action_global_playFragment"
             app:destination="@id/playFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_user_details"
-            app:destination="@id/user_details" />
-        <action
-            android:id="@+id/action_settingsFragment_to_opponentDetailsFragment"
-            app:destination="@id/opponentDetailsFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_donationsFragment"
-            app:destination="@id/donationsFragment" />
-    </fragment>
+    </navigation>
     <fragment
         android:id="@+id/opponentDetailsFragment"
         android:name="com.example.cornerpocket.presentation.settings.OpponentDetailsFragment"
