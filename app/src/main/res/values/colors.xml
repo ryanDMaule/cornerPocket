@@ -2,6 +2,7 @@
 <resources>
     <color name="dark_primary">#130F1B</color>
     <color name="dark_primary_60">#99130F1B</color>
+    <color name="dark_primary_40">#66130F1B</color>
     <color name="dark_alternate">#1E1B26</color>
     <color name="grey">#B8B7BA</color>
     <color name="grey_60">#99B8B7BA</color>

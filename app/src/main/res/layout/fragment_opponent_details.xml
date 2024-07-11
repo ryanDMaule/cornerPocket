@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_purple_blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.play.OpponentSelectFragment">
@@ -90,7 +91,6 @@
         android:id="@+id/body"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/new_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlebar">
 
@@ -136,14 +136,13 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             style="@style/floatingActionButton"
-            app:layout_constraintBottom_toTopOf="@+id/fade_out_iv"
+            app:layout_constraintBottom_toTopOf="@+id/spacer"
             app:layout_constraintEnd_toEndOf="@+id/opponentListRecycler" />
 
         <ImageView
-            android:id="@+id/fade_out_iv"
-            android:layout_width="match_parent"
+            android:id="@+id/spacer"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:background="@drawable/gradient_dark_primary_transparant"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

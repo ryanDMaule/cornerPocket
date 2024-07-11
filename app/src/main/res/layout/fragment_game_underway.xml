@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_purple_blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.play.GameUnderwayFragment">
@@ -82,7 +83,6 @@
         android:id="@+id/body"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/new_background"
         app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintTop_toBottomOf="@+id/titlebar">
 
