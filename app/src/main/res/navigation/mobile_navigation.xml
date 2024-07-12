@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_stats" />
     <fragment
         android:id="@+id/playFragment"
-        android:name="com.example.cornerpocket.presentation.play.PlayFragment"
+        android:name="com.example.cornerpocket.presentation.HomeFragment"
         android:label="fragment_play"
         tools:layout="@layout/fragment_play" >
         <action

@@ -1,4 +1,4 @@
-package com.example.cornerpocket.presentation.play
+package com.example.cornerpocket.presentation
 
 import android.content.Intent
 import android.net.Uri
@@ -12,16 +12,16 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.HelperFunctions
+import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentPlayBinding
 import com.example.cornerpocket.viewModels.UserViewModel
 import java.time.LocalDate
 import java.time.ZoneId
-import java.time.temporal.TemporalQueries.localDate
 import java.util.Date
 
 
-class PlayFragment : Fragment() {
+class HomeFragment : Fragment() {
     private var _binding : FragmentPlayBinding? = null
     private val binding get() = _binding!!
     private val userViewModel: UserViewModel by viewModels()
@@ -30,7 +30,7 @@ class PlayFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPlayBinding.inflate(inflater, container, false)
 
         //creates a user if one does not exist
@@ -39,10 +39,9 @@ class PlayFragment : Fragment() {
             binding.userNameTV.text = "Game time, ${user.name}"
             HelperFunctions.setTextColorSection(requireContext(), binding.userNameTV, binding.userNameTV.text.toString(), "${user.name}", R.color.cyan)
 
-        } else {
-            // TODO: unskippable pop up dialog to "create user" if one is not found
+            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
+            binding.userIcon.setImageURI(pfp)
         }
-
         val date: Date = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())
         binding.dateTV.text = HelperFunctions.formatDate(date)
 
@@ -51,11 +50,7 @@ class PlayFragment : Fragment() {
         }
 
         binding.playCL.setOnClickListener {
-            NavigationUtils.navigateAndClearBackStack(
-                findNavController(),
-                R.id.action_playFragment_to_opponentSelectFragment,
-                R.id.playFragment
-            )
+            findNavController().navigate(R.id.action_playFragment_to_opponentSelectFragment)
         }
 
         binding.historyCL.setOnClickListener {
@@ -71,7 +66,7 @@ class PlayFragment : Fragment() {
         }
 
         binding.learnCL.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://billiards.colostate.edu/resource_files/rules_summary.pdf"))
             startActivity(i)
         }
 
