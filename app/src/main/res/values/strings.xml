@@ -78,5 +78,11 @@
     <string name="add_picture">Add picture</string>
     <string name="enter_name">Enter Name</string>
     <string name="apply_changes">Apply changes</string>
+    <string name="play_game">Play game</string>
+    <string name="games_history">Games \nhistory</string>
+    <string name="game_statistics">Game \nstatistics</string>
+    <string name="edit_opponents">Edit\nopponents</string>
+    <string name="rules">Rules</string>
+    <string name="donations">Donations</string>
 
 </resources>

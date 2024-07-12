@@ -14,7 +14,7 @@
         android:id="@+id/playFragment"
         android:name="com.example.cornerpocket.presentation.HomeFragment"
         android:label="fragment_play"
-        tools:layout="@layout/fragment_play" >
+        tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_playFragment_to_opponentSelectFragment"
             app:destination="@id/gameGraph" />

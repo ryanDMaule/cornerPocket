@@ -13,8 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
-import com.example.cornerpocket.Utils.NavigationUtils
-import com.example.cornerpocket.databinding.FragmentPlayBinding
+import com.example.cornerpocket.databinding.FragmentHomeBinding
 import com.example.cornerpocket.viewModels.UserViewModel
 import java.time.LocalDate
 import java.time.ZoneId
@@ -22,7 +21,7 @@ import java.util.Date
 
 
 class HomeFragment : Fragment() {
-    private var _binding : FragmentPlayBinding? = null
+    private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val userViewModel: UserViewModel by viewModels()
 
@@ -31,7 +30,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPlayBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         //creates a user if one does not exist
         val user = userViewModel.getUser()
