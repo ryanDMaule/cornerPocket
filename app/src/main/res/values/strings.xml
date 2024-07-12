@@ -104,5 +104,7 @@
     <string name="game_review_description">Enter some details about your game! \n\nTap the ‘i’ icons for more details about the sections.</string>
     <string name="submit">Submit</string>
     <string name="delete">Delete</string>
+    <string name="filters">Filters</string>
+    <string name="statistics">Game statistics</string>
 
 </resources>
