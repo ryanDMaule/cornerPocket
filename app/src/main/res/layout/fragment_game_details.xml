@@ -8,14 +8,6 @@
     android:background="@drawable/gradient_purple_blue"
     tools:context=".presentation.play.GameDetailsFragment">
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/random_icon"-->
-<!--        style="@style/floatingActionButton"-->
-<!--        android:layout_width="48dp"-->
-<!--        android:foreground="@drawable/back_icon_white"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <!-- BODY SECTION -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/body"
@@ -300,6 +292,7 @@
                         android:id="@+id/user_balls_played"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
+                        android:contentDescription="@string/image_description"
                         app:layout_constraintBottom_toBottomOf="@+id/balls_played_title"
                         app:layout_constraintEnd_toEndOf="@+id/user_record_text"
                         app:layout_constraintStart_toStartOf="@+id/user_record_text"
@@ -320,6 +313,7 @@
                         android:id="@+id/opponent_balls_played"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
+                        android:contentDescription="@string/image_description"
                         app:layout_constraintBottom_toBottomOf="@+id/balls_played_title"
                         app:layout_constraintEnd_toEndOf="@+id/opponent_record_text"
                         app:layout_constraintStart_toStartOf="@+id/opponent_record_text"
@@ -344,6 +338,7 @@
         <ImageView
             android:id="@+id/divider_2"
             style="@style/buttonDivider"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -413,7 +408,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Delete"
+            android:text="@string/delete"
             app:layout_constraintEnd_toEndOf="@+id/delete_button"
             app:layout_constraintStart_toStartOf="@+id/delete_button"
             app:layout_constraintTop_toBottomOf="@+id/delete_button" />
