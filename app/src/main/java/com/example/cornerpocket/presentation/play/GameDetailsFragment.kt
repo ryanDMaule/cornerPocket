@@ -13,6 +13,7 @@ import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
+import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.viewModels.PlayViewModel
 
 class GameDetailsFragment : Fragment() {
@@ -39,8 +40,13 @@ class GameDetailsFragment : Fragment() {
             val date = HelperFunctions.longConversion(game.date)
             binding.dateTitle.text = HelperFunctions.formatDate(date)
 
+            //GAME TYPE
+            binding.gameTypeTitle.text = "${game.gameType}: ${game.subType}"
+
             //GAME TIME
-            binding.gameDurationText.text = HelperFunctions.formatSecondsToMMSS(game.gameDuration)
+            val gameTime = HelperFunctions.formatSecondsToMMSS(game.gameDuration)
+            binding.gameDurationTitle.text = "GAME DURATION : $gameTime"
+            HelperFunctions.setTextColorSection(requireContext(), binding.gameDurationTitle, binding.gameDurationTitle.text.toString(), gameTime, R.color.white)
 
             //WINNERS CROWN / RECORD UP ARROW
             if (game.userWon){
@@ -78,58 +84,69 @@ class GameDetailsFragment : Fragment() {
                 binding.opponentBrokeImage.visibility = View.VISIBLE
             }
 
-            //BALLS PLAYED
-            when (game.gameType) {
-                "ENGLISH" -> {
-                    when (game.userBallsPlayed) {
-                        "RED" -> {
-                            binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
-                            binding.userBallsPlayedText.text = "RED"
+            if (game.subType == EIGHT_BALl){
+                //BALLS PLAYED
+                when (game.gameType) {
+                    "ENGLISH" -> {
+                        when (game.userBallsPlayed) {
+                            "RED" -> {
+                                binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
+                                binding.userBallsPlayedText.text = "RED"
 
-                            binding.opponentBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
-                            binding.opponentBallsPlayedText.text = "YELLOW"
-                        }
+                                binding.opponentBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
+                                binding.opponentBallsPlayedText.text = "YELLOW"
+                            }
 
-                        "YELLOW" -> {
-                            binding.userBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
-                            binding.userBallsPlayedText.text = "YELLOW"
+                            "YELLOW" -> {
+                                binding.userBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
+                                binding.userBallsPlayedText.text = "YELLOW"
 
-                            binding.opponentBallsPlayed.setImageResource(R.drawable.red_ball_img)
-                            binding.opponentBallsPlayedText.text = "RED"
-                        }
+                                binding.opponentBallsPlayed.setImageResource(R.drawable.red_ball_img)
+                                binding.opponentBallsPlayedText.text = "RED"
+                            }
 
-                        else -> {
-                            //dunno
-                        }
-                    }
-                }
-                "AMERICAN" -> {
-                    when (game.userBallsPlayed) {
-                        "SOLIDS" -> {
-                            binding.userBallsPlayed.setImageResource(R.drawable.solid_ball_img)
-                            binding.userBallsPlayedText.text = "SOLIDS"
-
-                            binding.opponentBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
-                            binding.opponentBallsPlayedText.text = "STRIPES"
-                        }
-
-                        "STRIPES" -> {
-                            binding.userBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
-                            binding.userBallsPlayedText.text = "STRIPES"
-
-                            binding.opponentBallsPlayed.setImageResource(R.drawable.solid_ball_img)
-                            binding.opponentBallsPlayedText.text = "SOLIDS"
-                        }
-
-                        else -> {
-                            //dunno
+                            else -> {
+                                //dunno
+                            }
                         }
                     }
+                    "AMERICAN" -> {
+                        when (game.userBallsPlayed) {
+                            "SOLIDS" -> {
+                                binding.userBallsPlayed.setImageResource(R.drawable.solid_ball_img)
+                                binding.userBallsPlayedText.text = "SOLIDS"
+
+                                binding.opponentBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
+                                binding.opponentBallsPlayedText.text = "STRIPES"
+                            }
+
+                            "STRIPES" -> {
+                                binding.userBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
+                                binding.userBallsPlayedText.text = "STRIPES"
+
+                                binding.opponentBallsPlayed.setImageResource(R.drawable.solid_ball_img)
+                                binding.opponentBallsPlayedText.text = "SOLIDS"
+                            }
+
+                            else -> {
+                                //dunno
+                            }
+                        }
+                    }
+                    else -> {
+                        //dunno
+                    }
                 }
-                else -> {
-                    //dunno
-                }
+            } else {
+                binding.userBallsPlayed.visibility = View.GONE
+                binding.userBallsPlayedText.visibility = View.GONE
+
+                binding.ballsPlayedTitle.visibility = View.GONE
+
+                binding.opponentBallsPlayed.visibility = View.GONE
+                binding.opponentBallsPlayedText.visibility = View.GONE
             }
+
         }
 
 

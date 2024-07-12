@@ -1,12 +1,18 @@
 package com.example.cornerpocket.Utils
 
 import android.app.Activity
+import android.content.Context
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
 import java.text.SimpleDateFormat
@@ -188,6 +194,27 @@ class HelperFunctions {
                     Log.e("HF", "Unable to show review dialog")
                 }
             }
+        }
+
+        fun setTextColorSection(context: Context, textView: TextView, fullText: String, sectionText: String, color: Int) {
+            // Get the color from the color resource ID
+            val color = ContextCompat.getColor(context, color)
+
+            // Create a SpannableString from the full text
+            val spannableString = SpannableString(fullText)
+
+            // Find the start and end indexes of the section to color
+            val startIndex = fullText.indexOf(sectionText)
+            val endIndex = startIndex + sectionText.length
+
+            if (startIndex != -1) {
+                // Apply the color to the specified section
+                val colorSpan = ForegroundColorSpan(color)
+                spannableString.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+
+            // Set the text on the TextView
+            textView.text = spannableString
         }
 
     }

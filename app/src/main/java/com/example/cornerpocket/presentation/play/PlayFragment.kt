@@ -37,6 +37,8 @@ class PlayFragment : Fragment() {
         val user = userViewModel.getUser()
         if (user != null){
             binding.userNameTV.text = "Game time, ${user.name}"
+            HelperFunctions.setTextColorSection(requireContext(), binding.userNameTV, binding.userNameTV.text.toString(), "${user.name}", R.color.cyan)
+
         } else {
             // TODO: unskippable pop up dialog to "create user" if one is not found
         }

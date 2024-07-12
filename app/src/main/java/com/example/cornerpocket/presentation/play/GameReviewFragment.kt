@@ -15,6 +15,9 @@ import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentGameReviewBinding
+import com.example.cornerpocket.models.EIGHT_BALl
+import com.example.cornerpocket.models.ENGLISH
+import com.example.cornerpocket.models.NINE_BALl
 import com.example.cornerpocket.viewModels.PlayViewModel
 
 class GameReviewFragment : Fragment() {
@@ -31,7 +34,11 @@ class GameReviewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentGameReviewBinding.inflate(inflater, container, false)
 
-        styleBallsPlayed()
+        if (viewModel.getSubType() == EIGHT_BALl){
+            styleBallsPlayed()
+        } else {
+            binding.ballsPlayedSection.root.visibility = View.GONE
+        }
 
         actv = binding.winnerSection.actv
         adapterItems = ArrayAdapter<String>(requireContext(),
@@ -43,18 +50,32 @@ class GameReviewFragment : Fragment() {
         }
 
         binding.finishGame.setOnClickListener {
-            if (viewModel.getMethodOfVictory().isBlank() && viewModel.getUserBallsPlayed().isBlank() && viewModel.getUserWon() == null){
-                Toast.makeText(requireActivity(), "PLEASE FILL IN ALL FIELDS",Toast.LENGTH_SHORT).show()
-            } else if (viewModel.getUserWon() == null) {
-                Toast.makeText(requireActivity(), "PLEASE ENTER THE WINNER OF THE GAME",Toast.LENGTH_SHORT).show()
-            } else if (viewModel.getMethodOfVictory().isBlank()){
-                Toast.makeText(requireActivity(), "PLEASE SELECT THE METHOD OF VICTORY",Toast.LENGTH_SHORT).show()
-            } else if (viewModel.getUserBallsPlayed().isBlank()){
-                Toast.makeText(requireActivity(), "PLEASE SELECT WHICH BALLS YOU PLAYED AS",Toast.LENGTH_SHORT).show()
-            } else {
-                createGame()
-                findNavController().navigate(R.id.action_gameReviewFragment_to_gameDetailsFragment)
+            if (viewModel.getSubType() == EIGHT_BALl){
+                if (viewModel.getMethodOfVictory().isBlank() && viewModel.getUserBallsPlayed().isBlank() && viewModel.getUserWon() == null){
+                    Toast.makeText(requireActivity(), "PLEASE FILL IN ALL FIELDS",Toast.LENGTH_SHORT).show()
+                } else if (viewModel.getUserWon() == null) {
+                    Toast.makeText(requireActivity(), "PLEASE ENTER THE WINNER OF THE GAME",Toast.LENGTH_SHORT).show()
+                } else if (viewModel.getMethodOfVictory().isBlank()){
+                    Toast.makeText(requireActivity(), "PLEASE SELECT THE METHOD OF VICTORY",Toast.LENGTH_SHORT).show()
+                } else if (viewModel.getUserBallsPlayed().isBlank()){
+                    Toast.makeText(requireActivity(), "PLEASE SELECT WHICH BALLS YOU PLAYED AS",Toast.LENGTH_SHORT).show()
+                } else {
+                    createGame()
+                    findNavController().navigate(R.id.action_gameReviewFragment_to_gameDetailsFragment)
+                }
+            } else if (viewModel.getSubType() == NINE_BALl){
+                if (viewModel.getMethodOfVictory().isBlank() && viewModel.getUserWon() == null){
+                    Toast.makeText(requireActivity(), "PLEASE FILL IN ALL FIELDS",Toast.LENGTH_SHORT).show()
+                } else if (viewModel.getUserWon() == null) {
+                    Toast.makeText(requireActivity(), "PLEASE ENTER THE WINNER OF THE GAME",Toast.LENGTH_SHORT).show()
+                } else if (viewModel.getMethodOfVictory().isBlank()){
+                    Toast.makeText(requireActivity(), "PLEASE SELECT THE METHOD OF VICTORY",Toast.LENGTH_SHORT).show()
+                } else {
+                    createGame()
+                    findNavController().navigate(R.id.action_gameReviewFragment_to_gameDetailsFragment)
+                }
             }
+
         }
 
         binding.quitButton.setOnClickListener {

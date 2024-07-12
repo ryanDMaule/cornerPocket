@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentIntroBinding
 import com.example.cornerpocket.viewModels.UserViewModel
@@ -26,6 +27,8 @@ class IntroFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        HelperFunctions.setTextColorSection(requireContext(), binding.title, binding.title.text.toString(), "Corner Pocket", R.color.cyan)
 
         val user = userViewModel.getUser()
         if (user != null){

@@ -166,7 +166,7 @@ class PlayViewModel: ViewModel() {
     private var pSubType : String = "ENGLISH"
     fun getSubType() : String {
         Log.e("MVM", "GET - SUB TYPE : $pSubType")
-        return pGameType
+        return pSubType
     }
     fun setSubType(v : String) {
         Log.e("MVM", "SET - SUB TYPE : $v")
