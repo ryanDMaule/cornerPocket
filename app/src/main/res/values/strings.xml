@@ -74,5 +74,9 @@
     <string name="intro_description">Track your results and learn more about your game. Set up yor account now! no email addresses or subscription plans to worry about.</string>
     <string name="welcome">Welcome to\nCorner Pocket</string>
     <string name="make_account">make account</string>
+    <string name="profile">Profile</string>
+    <string name="add_picture">Add picture</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="apply_changes">Apply changes</string>
 
 </resources>

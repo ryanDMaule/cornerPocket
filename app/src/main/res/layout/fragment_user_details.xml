@@ -57,6 +57,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="18dp"
             android:visibility="invisible"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section" />
@@ -67,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:letterSpacing=".1"
-            android:text="profile"
+            android:text="@string/profile"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -81,6 +82,7 @@
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:background="@color/grey"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -132,7 +134,7 @@
                 style="@style/smallCapsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add picture"
+                android:text="@string/add_picture"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -143,6 +145,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/camera_white_icon"
+                android:contentDescription="@string/image_description"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvAddImage"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -152,7 +155,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField"
             style="@style/TextInputLayout"
-            android:hint="Enter Name"
+            android:hint="@string/enter_name"
             android:layout_margin="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +163,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputTextName"
-                style="@style/TextInputEditText" />
+                style="@style/TextInputEditText"
+                tools:ignore="VisualLintTextFieldSize" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,11 +185,12 @@
             style="@style/mainButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apply changes"
+            android:text="@string/apply_changes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VisualLintButtonSize" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
