@@ -97,5 +97,8 @@
     <string name="nine_ball">9-Ball</string>
     <string name="break_selection">Break selection</string>
     <string name="break_description">Who takes the first shot?\n\nTap icon to select*</string>
+    <string name="quit">Quit</string>
+    <string name="game_underway">Game underway</string>
+    <string name="game_underway_content">Play your game and finish when you have a winner!</string>
 
 </resources>
