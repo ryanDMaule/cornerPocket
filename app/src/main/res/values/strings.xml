@@ -108,5 +108,7 @@
     <string name="statistics">Game statistics</string>
     <string name="opponent_list">Opponent list</string>
     <string name="edit_opponent_text">Tap an icon below to edit an opponent or add a new opponent by pressing the plus icon in the bottom corner.</string>
+    <string name="leave_review">Leave review</string>
+    <string name="make_donation">Make donation</string>
 
 </resources>
