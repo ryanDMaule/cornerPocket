@@ -43,7 +43,7 @@
     <string name="back">Back</string>
 
     <!-- CONTENT DESCRIPTIONS -->
-    <string name="image_description">Settings icon</string>
+    <string name="image_description">Image</string>
     <string name="settings_icon">Settings icon</string>
     <string name="profile_icon">Profile icon</string>
     <string name="profile_icon_red">Red profile icon</string>
@@ -84,5 +84,12 @@
     <string name="edit_opponents">Edit\nopponents</string>
     <string name="rules">Rules</string>
     <string name="donations">Donations</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="add_opponent_text">Tap an icon below to select an opponent or add a new opponent by pressing the plus icon in the bottom corner.</string>
+    <string name="win_record">Win record</string>
+    <string name="last_5_games">Last 5 games</string>
+    <string name="add_opponent">Add\nopponent</string>
 
 </resources>

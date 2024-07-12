@@ -60,6 +60,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="18dp"
             android:src="@drawable/circle_outline"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section"
@@ -67,7 +68,7 @@
 
         <TextView
             style="@style/titleBarStepText"
-            android:text="1"
+            android:text="@string/_1"
             android:textColor="@color/green"
             app:layout_constraintBottom_toBottomOf="@+id/step_1_image"
             app:layout_constraintEnd_toEndOf="@+id/step_1_image"
@@ -105,7 +106,7 @@
         <TextView
             android:id="@+id/step_2_text"
             style="@style/titleBarStepText"
-            android:text="2"
+            android:text="@string/_2"
             app:layout_constraintBottom_toBottomOf="@+id/step_2_image"
             app:layout_constraintEnd_toEndOf="@+id/step_2_image"
             app:layout_constraintStart_toStartOf="@+id/step_2_image"
@@ -125,7 +126,7 @@
         <TextView
             android:id="@+id/step_3_text"
             style="@style/titleBarStepText"
-            android:text="3"
+            android:text="@string/_3"
             app:layout_constraintBottom_toBottomOf="@+id/step_3_image"
             app:layout_constraintEnd_toEndOf="@+id/step_3_image"
             app:layout_constraintStart_toStartOf="@+id/step_3_image"
@@ -136,6 +137,7 @@
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:background="@color/grey"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -145,6 +147,7 @@
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:background="@color/green"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="parent" />
@@ -174,7 +177,7 @@
                 style="@style/smallCapsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tap an icon below to select an opponent or add a new opponent by pressing the plus icon in the bottom corner."
+                android:text="@string/add_opponent_text"
                 android:textSize="16sp"
                 android:textAlignment="center"
                 android:textAllCaps="false"
@@ -234,7 +237,7 @@
             <TextView
                 android:id="@+id/opponent_text"
                 style="@style/smallCapsText"
-                android:text="NA"
+                android:text="@string/na"
                 app:layout_constraintEnd_toEndOf="@+id/opponent_image"
                 app:layout_constraintStart_toStartOf="@+id/opponent_image"
                 app:layout_constraintTop_toTopOf="parent"
@@ -246,7 +249,7 @@
                 style="@style/greyText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Win record"
+                android:text="@string/win_record"
                 app:layout_constraintEnd_toStartOf="@+id/opponent_image"
                 app:layout_constraintStart_toEndOf="@+id/user_image"
                 app:layout_constraintTop_toTopOf="@+id/user_image" />
@@ -256,7 +259,6 @@
                 style="@style/TitleTextStyling"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0 - 0"
                 android:textSize="32sp"
                 app:layout_constraintEnd_toStartOf="@+id/opponent_image"
                 app:layout_constraintStart_toEndOf="@+id/user_image"
@@ -268,7 +270,7 @@
                 style="@style/greyText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Last 5 games"
+                android:text="@string/last_5_games"
                 android:layout_marginBottom="14dp"
                 app:layout_constraintBottom_toBottomOf="@+id/user_image"
                 app:layout_constraintEnd_toStartOf="@+id/opponent_image"
@@ -317,7 +319,7 @@
             android:padding="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="add\nopponent"
+            android:text="@string/add_opponent"
             android:background="@color/dark_primary_40"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/fabAdd"
@@ -326,12 +328,14 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             style="@style/floatingActionButton"
+            android:contentDescription="@string/add_opponent"
             app:layout_constraintBottom_toTopOf="@+id/add_opponent_TV"
             app:layout_constraintEnd_toEndOf="@+id/opponentListRecycler" />
 
         <ImageView
             android:id="@+id/divider_2"
             style="@style/buttonDivider"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -356,7 +360,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VisualLintButtonSize" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
