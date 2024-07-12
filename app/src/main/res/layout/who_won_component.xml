@@ -133,7 +133,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/menu"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:background="w"
         app:endIconTint="@color/cyan"
         android:textColorHint="@color/white"
         android:layout_width="match_parent"

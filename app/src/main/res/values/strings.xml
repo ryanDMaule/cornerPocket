@@ -1,20 +1,11 @@
 <resources>
     <string name="app_name">CornerPocket</string>
 
-    <!-- PAGES -->
-    <string name="title_play">PLAY</string>
-    <string name="title_stats">STATS</string>
-    <string name="title_history">HISTORY</string>
-
     <!-- TITLES -->
     <string name="select_opponent">Select opponent</string>
-    <string name="rack_them_up">Rack em\' up</string>
-    <string name="who_breaks">Who \nbreaks?</string>
     <string name="game_review">Game \nreview</string>
-    <string name="game_time">Game time</string>
 
     <!-- GENERAL-->
-    <string name="tap_to_select">Tap to select*</string>
     <string name="english">English</string>
     <string name="american">American</string>
     <string name="random">Random</string>
@@ -25,15 +16,12 @@
     <string name="yellow">Yellow</string>
     <string name="spot">Spot</string>
     <string name="stripe">Stripe</string>
-    <string name="balls_remaining">Balls remaining</string>
-    <string name="ellipses">…</string>
     <string name="game_duration">Game duration</string>
     <string name="vs">Vs</string>
     <string name="winner_via">Winner via:</string>
     <string name="record">Record</string>
     <string name="broke">Broke</string>
     <string name="main_menu">Main menu</string>
-    <string name="none_selected">None selected</string>
     <string name="na">NA</string>
 
     <!-- BUTTONS -->
