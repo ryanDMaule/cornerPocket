@@ -95,5 +95,7 @@
     <string name="game_type_description">What type of pool is being played?</string>
     <string name="eight_ball">8-Ball</string>
     <string name="nine_ball">9-Ball</string>
+    <string name="break_selection">Break selection</string>
+    <string name="break_description">Who takes the first shot?\n\nTap icon to select*</string>
 
 </resources>
