@@ -281,21 +281,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playersContainer" />
 
-        <ImageView
-            android:id="@+id/fade_out_iv"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/gradient_dark_primary_transparant"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- FOOTER SECTION -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/footer"
-        android:background="@color/dark_primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"

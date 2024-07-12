@@ -133,10 +133,23 @@
             tools:layout_editor_absoluteX="16dp"
             tools:listitem="@layout/item_opponent" />
 
+        <TextView
+            android:id="@+id/add_opponent_TV"
+            style="@style/smallCapsText"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add\nopponent"
+            android:layout_marginBottom="16dp"
+            android:background="@color/dark_primary_40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fabAdd"
+            app:layout_constraintStart_toStartOf="@+id/fabAdd" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             style="@style/floatingActionButton"
-            app:layout_constraintBottom_toTopOf="@+id/spacer"
+            app:layout_constraintBottom_toTopOf="@+id/add_opponent_TV"
             app:layout_constraintEnd_toEndOf="@+id/opponentListRecycler" />
 
         <ImageView

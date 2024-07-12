@@ -1,4 +1,4 @@
-package com.example.cornerpocket.presentation.settings
+package com.example.cornerpocket.presentation.registration
 
 import android.Manifest
 import android.app.Activity
@@ -9,7 +9,10 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +20,16 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImageContract
+import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.ImageUtils
+import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
+import com.example.cornerpocket.models.User
 import com.example.cornerpocket.viewModels.UserViewModel
 import kotlinx.coroutines.launch
 import java.io.File
@@ -33,52 +38,105 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class UserDetailsFragment : Fragment() {
+class RegistrationFragment : Fragment() {
     private var _binding : FragmentUserDetailsBinding? = null
     private val binding get() = _binding!!
-
     private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
 
-        val user = userViewModel.getUser()
-        Log.i("UDF", "user: $user")
+        // Inflate the layout for this fragment
+        return binding.root
+    }
 
-        if (user != null){
-            binding.userNameTv.text = user.name
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
-            binding.userImage.setImageURI(pfp)
-        }
+        formatPage()
 
         binding.clAddImage.setOnClickListener {
             showPhotoAlertDialog()
         }
 
-        binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
+        // Add TextWatcher to the EditText
+        binding.inputTextName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Enable the button if the EditText is not empty, otherwise disable it
+                if (s.isNullOrEmpty()){
+                    disableButton()
+                } else {
+                    enableButton()
+                }
+            }
+        })
+
+    }
+
+    private fun formatPage(){
+        binding.backText.visibility = View.GONE
+        binding.backButton.visibility = View.GONE
+
+        binding.textView2.text = "Create account"
+        binding.applyBtn.text = "Create"
+
+        disableButton()
+    }
+
+    private fun disableButton() {
+        binding.applyBtn.isClickable = false
+        binding.applyBtn.alpha = .5f
+
+        binding.applyBtn.setOnClickListener {
+            Toast.makeText(requireActivity(), "Please enter a name", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun enableButton() {
+        binding.applyBtn.isClickable = true
+        binding.applyBtn.alpha = 1f
 
         binding.applyBtn.setOnClickListener {
             userViewModel.viewModelScope.launch {
-                val updatedName = binding.inputTextName.text.toString()
-                if (updatedName.isNotBlank()){
-                    userViewModel.updateUser(updatedName)
-                    val updatedUser = userViewModel.getUser()
-                    if (updatedUser != null){
-                        binding.userNameTv.text = updatedUser.name
+
+                userViewModel.insertUser(user = User().apply {
+                    name = binding.inputTextName.text.toString()
+
+                    if (croppedImage != null) {
+                        //get opponent and use _id to store cropped image
+                        ImageUtils.saveCroppedImageToLocalStorage(
+                            requireContext(),
+                            croppedImage!!,
+                            this._id.toString()
+                        )
+
+                    } else if (unCroppedImage != null) {
+                        //get opponent and use _id to store un cropped image
+                        ImageUtils.saveImageToLocalStorage(
+                            requireContext(),
+                            unCroppedImage!!,
+                            this._id.toString()
+                        )
                     }
-                } else {
-                    Toast.makeText(requireActivity(), "TEXT FIELD CANNOT BE BLANK", Toast.LENGTH_SHORT).show()
-                }
+                })
+
+                NavigationUtils.navigateAndClearBackStack(
+                    findNavController(),
+                    R.id.action_registrationFragment_to_playFragment,
+                    R.id.registrationFragment
+                )
             }
         }
-
-        return binding.root
     }
 
     //region PHOTO FUNCTIONS
+
+    private var croppedImage : Bitmap? = null
+    private var unCroppedImage : Uri? = null
 
     private fun showPhotoAlertDialog() {
         val builder = AlertDialog.Builder(requireContext())
@@ -104,7 +162,7 @@ class UserDetailsFragment : Fragment() {
     }
 
     private val requestPermissionLauncherMedia = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-        isGranted: Boolean ->
+            isGranted: Boolean ->
         if (isGranted){
             Log.i("UDF", "MEDIA PERMISSION : GRANTED")
             openImagePicker()
@@ -160,12 +218,8 @@ class UserDetailsFragment : Fragment() {
         if (requestCode == ImageUtils.PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             val imageUri = data.data
             imageUri?.let {
-                val user = userViewModel.getUser()
-                if (user != null){
-                    val path = user._id.toString()
-                    ImageUtils.saveImageToLocalStorage(requireContext(), it, path)
-                }
                 binding.userImage.setImageURI(it)
+                unCroppedImage = it
 
                 try {
                     ImageUtils.startCropActivity(it, cropImageLauncher)
@@ -180,6 +234,7 @@ class UserDetailsFragment : Fragment() {
             val file = File(currentPhotoPath)
             if (file.exists()) {
                 val uri = Uri.fromFile(file)
+                unCroppedImage = uri
                 binding.userImage.setImageURI(uri)
                 ImageUtils.startCropActivity(uri, cropImageLauncher)
             } else {
@@ -192,18 +247,9 @@ class UserDetailsFragment : Fragment() {
         if (result.isSuccessful) {
             val cropResult = result.uriContent
             cropResult?.let { uri ->
-                val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
                 lifecycleScope.launch {
-                    val user = userViewModel.getUser()
-                    if (user != null){
-                        val path = user._id.toString()
-                        ImageUtils.saveCroppedImageToLocalStorage(
-                            requireContext(),
-                            bitmap,
-                            binding.userImage,
-                            path
-                        )
-                    }
+                    croppedImage = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
+                    binding.userImage.setImageBitmap(croppedImage)
                 }
             }
         } else {
@@ -212,5 +258,6 @@ class UserDetailsFragment : Fragment() {
     }
 
     //endregion
+
 
 }

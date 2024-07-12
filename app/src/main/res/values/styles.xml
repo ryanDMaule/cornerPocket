@@ -152,4 +152,27 @@
         <item name="android:src">@drawable/user_icon_red_no_circle</item>
     </style>
 
+    <style name="TextInputLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="errorTextColor">@color/white_80</item>
+        <item name="hintTextColor">@color/white_80</item>
+        <item name="android:textColorHint">@color/white_80</item>
+        <item name="android:background">@drawable/white_square_border</item>
+    </style>
+
+    <style name="TextInputEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/transparant</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="buttonDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">.5dp</item>
+        <item name="android:contentDescription">@string/divider</item>
+        <item name="android:background">@color/white_80</item>
+    </style>
+
 </resources>

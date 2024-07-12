@@ -162,7 +162,6 @@ class HistoryGameDetailsFragment : Fragment() {
             )
         }
 
-        binding.fadeOutIv.visibility = View.GONE
         binding.footer.visibility = View.GONE
     }
 

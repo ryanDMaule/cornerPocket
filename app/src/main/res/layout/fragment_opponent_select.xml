@@ -304,7 +304,6 @@
             android:id="@+id/opponentListRecycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -312,17 +311,27 @@
             tools:itemCount="1"
             tools:listitem="@layout/item_opponent" />
 
+        <TextView
+            android:id="@+id/add_opponent_TV"
+            style="@style/smallCapsText"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add\nopponent"
+            android:background="@color/dark_primary_40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fabAdd"
+            app:layout_constraintStart_toStartOf="@+id/fabAdd" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             style="@style/floatingActionButton"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/add_opponent_TV"
             app:layout_constraintEnd_toEndOf="@+id/opponentListRecycler" />
 
         <ImageView
-            android:id="@+id/fade_out_iv"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/gradient_dark_primary_transparant"
+            android:id="@+id/divider_2"
+            style="@style/buttonDivider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -331,7 +340,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/footer"
-        android:background="@color/dark_primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
