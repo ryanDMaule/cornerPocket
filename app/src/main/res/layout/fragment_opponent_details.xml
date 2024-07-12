@@ -55,6 +55,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="18dp"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section"
@@ -67,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:letterSpacing=".1"
-            android:text="opponent list"
+            android:text="@string/opponent_list"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -81,6 +82,7 @@
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:background="@color/grey"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -109,7 +111,7 @@
                 style="@style/smallCapsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tap an icon below to select an opponent or add a new opponent by pressing the plus icon in the bottom corner."
+                android:text="@string/edit_opponent_text"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/white_80"
@@ -139,7 +141,7 @@
             android:padding="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="add\nopponent"
+            android:text="@string/add_opponent"
             android:layout_marginBottom="16dp"
             android:background="@color/dark_primary_40"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -149,6 +151,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             style="@style/floatingActionButton"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toTopOf="@+id/add_opponent_TV"
             app:layout_constraintEnd_toEndOf="@+id/opponentListRecycler" />
 
@@ -156,6 +159,7 @@
             android:id="@+id/spacer"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
