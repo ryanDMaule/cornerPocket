@@ -79,20 +79,42 @@ class PlayViewModel: ViewModel() {
                     val queriedOpponentLatest = findLatest(queriedOpponent)
 
                     if (queriedOpponentLatest != null){
-                        if (pUserWon != null){
-                            if (pUserWon == true){
-                                queriedOpponentLatest.losses++
-                            } else {
-                                queriedOpponent.wins++
-                            }
-                        }
-
                         queriedOpponentLatest.gamesHistory.add(createGame())
                         copyToRealm(queriedOpponentLatest, updatePolicy = UpdatePolicy.ALL)
+
+                        updateOpponentRecord(queriedOpponentLatest)
                     }
                 }
             }
         }
+    }
+
+    private fun updateOpponentRecord(opponent: Opponent){
+        var userWins = 0
+        var opponentWins = 0
+
+        viewModelScope.launch(Dispatchers.IO) {
+            realm.write {
+                val queriedOpponentLatest = findLatest(opponent)
+                if (queriedOpponentLatest != null){
+                    opponent.gamesHistory.forEach { game ->
+                        if (game.userWon){
+                            userWins++
+                        } else {
+                            opponentWins++
+                        }
+                    }
+
+                    Log.e("PVM", "OPPONENT [${queriedOpponentLatest.name}] WINS : $opponentWins")
+                    Log.e("PVM", "OPPONENT [${queriedOpponentLatest.name}] LOSSES : $userWins")
+
+                    queriedOpponentLatest.wins = opponentWins
+                    queriedOpponentLatest.losses = userWins
+                    copyToRealm(queriedOpponentLatest, updatePolicy = UpdatePolicy.ALL)
+                }
+            }
+        }
+
     }
 
     fun getOpponentViaId(id : ObjectId) : Opponent? {
@@ -117,6 +139,10 @@ class PlayViewModel: ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             if (game != null){
                 gameRepository.removeGame(game)
+                val opponent = getOpponentViaId(game.opponentId)
+                if (opponent != null){
+                    updateOpponentRecord(opponent)
+                }
             } else {
                 Log.e("PVM", "GAME IS NULL")
             }
@@ -239,11 +265,14 @@ class PlayViewModel: ViewModel() {
 
     // endregion
 
-    init {
-        Log.i("MVM", "init")
 
-        //createSampleEntries()
+    //region ADD SAMPLE ENTRIES
 
+    //    init {
+//        Log.i("MVM", "init")
+//
+//        createSampleEntries()
+//
 //        viewModelScope.launch {
 //            getOpponents().collect() {
 //                Log.i("MVM", "OPPONENTS LIST SIZE [ ${it.size} ]")
@@ -252,8 +281,8 @@ class PlayViewModel: ViewModel() {
 //                }
 //            }
 //        }
-
-    }
+//
+//    }
 
 //    private fun createSampleEntries(){
 //        Log.i("MVM", "createSampleEntries")
@@ -358,5 +387,7 @@ class PlayViewModel: ViewModel() {
 //            }
 //        }
 //    }
+
+    //endregion
 
 }
