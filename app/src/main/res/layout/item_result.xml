@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingStart="16dp"
-    android:paddingEnd="16dp">
+    android:paddingEnd="16dp"
+    tools:background="@color/dark_primary">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -56,6 +57,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:textAlignment="textStart"
+        android:maxLines="1"
+        android:ellipsize="end"
         tools:text="Aysha"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelineTwo"
@@ -80,7 +83,7 @@
         style="@style/smallCapsText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="View"
+        android:text="@string/view"
         android:textColor="@color/cyan"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,6 +95,7 @@
         android:layout_height="1dp"
         android:background="#66FFFFFF"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/result"

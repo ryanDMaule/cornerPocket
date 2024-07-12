@@ -110,5 +110,10 @@
     <string name="edit_opponent_text">Tap an icon below to edit an opponent or add a new opponent by pressing the plus icon in the bottom corner.</string>
     <string name="leave_review">Leave review</string>
     <string name="make_donation">Make donation</string>
+    <string name="game_history">Game history</string>
+    <string name="result">Result</string>
+    <string name="opponent">Opponent</string>
+    <string name="date">Date</string>
+    <string name="view">View</string>
 
 </resources>
