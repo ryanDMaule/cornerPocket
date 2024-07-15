@@ -124,7 +124,7 @@ class OpponentDetailsFragment : Fragment() {
         val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
 
         val title = view.findViewById<TextView>(R.id.title_TV)
-        title.text = "Edit opponent"
+        title.text = getString(R.string.edit_opponent)
 
         val delete = view.findViewById<ConstraintLayout>(R.id.delete_CL)
         delete.visibility = View.VISIBLE
@@ -153,7 +153,7 @@ class OpponentDetailsFragment : Fragment() {
 
         val btnAddImage = view.findViewById<ConstraintLayout>(R.id.clAddImage)
         val btnCreate = view.findViewById<MaterialButton>(R.id.footer_button)
-        btnCreate.text = "Edit"
+        btnCreate.text = getString(R.string.edit)
         val textInputEditText = view.findViewById<TextInputEditText>(R.id.inputTextName)
 
         window.setOnClickListener {

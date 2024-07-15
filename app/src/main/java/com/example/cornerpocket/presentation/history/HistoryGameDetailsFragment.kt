@@ -45,12 +45,12 @@ class HistoryGameDetailsFragment : Fragment() {
             binding.dateTitle.text = HelperFunctions.formatDate(date)
 
             //GAME TYPE
-            binding.gameTypeTitle.text = "GAME TYPE : ${passedGame!!.gameType} ${passedGame!!.subType}"
+            binding.gameTypeTitle.text = getString(R.string.var_gameType, passedGame!!.gameType, passedGame!!.subType)
             HelperFunctions.setTextColorSection(requireContext(), binding.gameTypeTitle, binding.gameTypeTitle.text.toString(), "${passedGame!!.gameType} ${passedGame!!.subType}", R.color.white)
 
             //GAME TIME
             val gameTime = HelperFunctions.formatSecondsToMMSS(passedGame!!.gameDuration)
-            binding.gameDurationTitle.text = "GAME DURATION : $gameTime"
+            binding.gameDurationTitle.text = getString(R.string.var_gameDuration, gameTime)
             HelperFunctions.setTextColorSection(requireContext(), binding.gameDurationTitle, binding.gameDurationTitle.text.toString(), gameTime, R.color.white)
 
             //WINNERS CROWN / RECORD UP ARROW
@@ -99,18 +99,18 @@ class HistoryGameDetailsFragment : Fragment() {
                         when (passedGame!!.userBallsPlayed) {
                             "RED" -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
-                                binding.userBallsPlayedText.text = "RED"
+                                binding.userBallsPlayedText.text = getString(R.string.red)
 
                                 binding.opponentBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
-                                binding.opponentBallsPlayedText.text = "YELLOW"
+                                binding.opponentBallsPlayedText.text = getString(R.string.yellow)
                             }
 
                             "YELLOW" -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
-                                binding.userBallsPlayedText.text = "YELLOW"
+                                binding.userBallsPlayedText.text = getString(R.string.yellow)
 
                                 binding.opponentBallsPlayed.setImageResource(R.drawable.red_ball_img)
-                                binding.opponentBallsPlayedText.text = "RED"
+                                binding.opponentBallsPlayedText.text = getString(R.string.red)
                             }
 
                             else -> {
@@ -122,18 +122,18 @@ class HistoryGameDetailsFragment : Fragment() {
                         when (passedGame!!.userBallsPlayed) {
                             "SOLIDS" -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.solid_ball_img)
-                                binding.userBallsPlayedText.text = "SOLIDS"
+                                binding.userBallsPlayedText.text = getString(R.string.spot)
 
                                 binding.opponentBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
-                                binding.opponentBallsPlayedText.text = "STRIPES"
+                                binding.opponentBallsPlayedText.text = getString(R.string.stripe)
                             }
 
                             "STRIPES" -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
-                                binding.userBallsPlayedText.text = "STRIPES"
+                                binding.userBallsPlayedText.text = getString(R.string.stripe)
 
                                 binding.opponentBallsPlayed.setImageResource(R.drawable.solid_ball_img)
-                                binding.opponentBallsPlayedText.text = "SOLIDS"
+                                binding.opponentBallsPlayedText.text = getString(R.string.spot)
                             }
 
                             else -> {

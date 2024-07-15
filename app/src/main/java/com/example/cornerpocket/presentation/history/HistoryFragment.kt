@@ -111,7 +111,7 @@ class HistoryFragment : Fragment() {
             historyAdapter = GameHistoryAdapter(list, filterViewModel, requireContext())
             recyclerView.adapter = historyAdapter
 
-            binding.resultsCounterText.text = "${list.size} RESULTS"
+            binding.resultsCounterText.text = getString(R.string.var_listResults, list.size.toString())
 
             //HANDLE ITEM CLICKED
             historyAdapter.onItemClicked = { game ->

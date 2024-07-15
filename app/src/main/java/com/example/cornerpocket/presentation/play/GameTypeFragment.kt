@@ -22,7 +22,7 @@ class GameTypeFragment : Fragment() {
 
     private val viewModel: PlayViewModel by navGraphViewModels(R.id.gameGraph)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGameTypeBinding.inflate(inflater, container, false)
 
         binding.vsSection.userNameTv.text = viewModel.getUser()?.name

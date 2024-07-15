@@ -14,8 +14,8 @@
     <string name="balls_played">Balls played</string>
     <string name="red">Red</string>
     <string name="yellow">Yellow</string>
-    <string name="spot">Spot</string>
-    <string name="stripe">Stripe</string>
+    <string name="spot">Spots</string>
+    <string name="stripe">Stripes</string>
     <string name="game_duration">Game duration</string>
     <string name="vs">Vs</string>
     <string name="winner_via">Winner via:</string>
@@ -70,6 +70,8 @@
     <string name="games_history">Games \nhistory</string>
     <string name="game_statistics">Game \nstatistics</string>
     <string name="edit_opponents">Edit\nopponents</string>
+    <string name="edit_opponent">Edit opponent</string>
+    <string name="edit">Edit</string>
     <string name="rules">Rules</string>
     <string name="donations">Donations</string>
     <string name="_1">1</string>
@@ -103,5 +105,17 @@
     <string name="opponent">Opponent</string>
     <string name="date">Date</string>
     <string name="view">View</string>
+
+    <!-- VARIABLE STRINGS -->
+    <string name="var_listResults">%1$s results</string>
+    <string name="var_gameType">Game type : %1$s %2$s</string>
+    <string name="var_gameDuration">Game duration : %1$s</string>
+    <string name="var_double">%1$s %2$s</string>
+    <string name="var_record">%1$s - %2$s</string>
+    <string name="var_average_duration">Average game duration : %1$s</string>
+    <string name="var_percentage">%1$s%%</string>
+    <string name="var_games_with">Games with %1$s</string>
+    <string name="var_game_time">Game time, %1$s</string>
+
 
 </resources>

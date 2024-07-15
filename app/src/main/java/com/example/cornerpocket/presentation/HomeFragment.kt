@@ -35,8 +35,8 @@ class HomeFragment : Fragment() {
         //creates a user if one does not exist
         val user = userViewModel.getUser()
         if (user != null){
-            binding.userNameTV.text = "Game time, ${user.name}"
-            HelperFunctions.setTextColorSection(requireContext(), binding.userNameTV, binding.userNameTV.text.toString(), "${user.name}", R.color.cyan)
+            binding.userNameTV.text = getString(R.string.var_game_time, user.name)
+            HelperFunctions.setTextColorSection(requireContext(), binding.userNameTV, binding.userNameTV.text.toString(), user.name, R.color.cyan)
 
             val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), user._id.toString())
             binding.userIcon.setImageURI(pfp)

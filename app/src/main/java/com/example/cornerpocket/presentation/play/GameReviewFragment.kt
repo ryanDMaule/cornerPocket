@@ -163,17 +163,17 @@ class GameReviewFragment : Fragment() {
         when (viewModel.getGameType()) {
             "ENGLISH" -> {
                 binding.ballsPlayedSection.redBallImage.setImageResource(R.drawable.red_ball_img)
-                binding.ballsPlayedSection.redBallText.text = "RED"
+                binding.ballsPlayedSection.redBallText.text = getString(R.string.red)
 
                 binding.ballsPlayedSection.yellowBallImage.setImageResource(R.drawable.yellow_ball_img)
-                binding.ballsPlayedSection.yellowBallText.text = "YELLOW"
+                binding.ballsPlayedSection.yellowBallText.text = getString(R.string.yellow)
             }
             "AMERICAN" -> {
                 binding.ballsPlayedSection.redBallImage.setImageResource(R.drawable.solid_ball_img)
-                binding.ballsPlayedSection.redBallText.text = "SOLIDS"
+                binding.ballsPlayedSection.redBallText.text = getString(R.string.spot)
 
                 binding.ballsPlayedSection.yellowBallImage.setImageResource(R.drawable.stripe_ball_img)
-                binding.ballsPlayedSection.yellowBallText.text = "STRIPES"
+                binding.ballsPlayedSection.yellowBallText.text = getString(R.string.stripe)
             }
             else -> {
                 Log.i("GRF", "Unknown game type : ${viewModel.getGameType()}")

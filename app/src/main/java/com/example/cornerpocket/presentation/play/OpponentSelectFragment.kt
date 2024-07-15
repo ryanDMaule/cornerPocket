@@ -70,7 +70,7 @@ class OpponentSelectFragment : Fragment()  {
             if (viewModel.getSelectedOpponent() != null){
                 findNavController().navigate(R.id.action_opponentSelectFragment_to_gameTypeFragment)
             } else {
-                Toast.makeText(requireContext(), "PLEASE SELECT AN OPPONENT", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.select_opponent), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -162,7 +162,7 @@ class OpponentSelectFragment : Fragment()  {
 
     private fun itemSelected(opponent: Opponent){
         binding.opponentText.text = opponent.name
-        binding.winRecordText.text = "${opponent.losses} - ${opponent.wins}"
+        binding.winRecordText.text = getString(R.string.var_record, opponent.losses.toString(), opponent.wins.toString())
 
         val pfp = ImageUtils.getImageFromLocalStorage(requireContext(), opponent._id.toString())
         if (pfp != null){

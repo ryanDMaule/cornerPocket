@@ -123,7 +123,7 @@ class StatsFragment : Fragment() {
 
         //SET AVERAGE GAME LENGTH
         val averageGameLength = filterViewModel.getAverageGameLength(list)
-        binding.gameStatistics.gameLength.text = "Average game duration : ${HelperFunctions.formatSecondsToMMSS(averageGameLength)}"
+        binding.gameStatistics.gameLength.text = getString(R.string.var_average_duration, HelperFunctions.formatSecondsToMMSS(averageGameLength))
 
         //TOTAL GAMES
         binding.gameStatistics.gamesTotal.text = list.size.toString()
@@ -131,12 +131,14 @@ class StatsFragment : Fragment() {
         //USER WINS
         val userWins = filterViewModel.getUserWins(list)
         binding.gameStatistics.winsTotal.text = userWins.toString()
-        binding.gameStatistics.winsPercentage.text = "${HelperFunctions.calculatePercentage(list.size, userWins)}%"
+        val winPercentage = HelperFunctions.calculatePercentage(list.size, userWins)
+        binding.gameStatistics.winsPercentage.text = getString(R.string.var_percentage, winPercentage)
 
         //USER LOSSES
         val userLosses = (list.size - userWins)
         binding.gameStatistics.lossesTotal.text = userLosses.toString()
-        binding.gameStatistics.lossesPercentage.text = "${HelperFunctions.calculatePercentage(list.size, userLosses)}%"
+        val lossPercentage = HelperFunctions.calculatePercentage(list.size, userLosses)
+        binding.gameStatistics.lossesPercentage.text = getString(R.string.var_percentage, lossPercentage)
 
         //RECENT 5 GAMES
         formatRecentGames(list.reversed().take(5))
@@ -187,12 +189,13 @@ class StatsFragment : Fragment() {
         //USER WINS
         var userWins = filterViewModel.getUserWins(gamesBreaking)
         binding.breakStatistics.winsBreakingTotal.text = userWins.toString()
-        binding.breakStatistics.winsBreakingPercentage.text = "${HelperFunctions.calculatePercentage(gamesBreaking.size, userWins)}%"
+        binding.breakStatistics.winsBreakingPercentage.text = getString(R.string.var_percentage,HelperFunctions.calculatePercentage(gamesBreaking.size, userWins))
+
 
         //USER LOSSES
         var userLosses = (gamesBreaking.size - userWins)
         binding.breakStatistics.lossesBreakingTotal.text = userLosses.toString()
-        binding.breakStatistics.lossesBreakingPercentage.text = "${HelperFunctions.calculatePercentage(gamesBreaking.size, userLosses)}%"
+        binding.breakStatistics.lossesBreakingPercentage.text = getString(R.string.var_percentage,HelperFunctions.calculatePercentage(gamesBreaking.size, userLosses))
 
         //endregion
 
@@ -205,12 +208,12 @@ class StatsFragment : Fragment() {
         //USER WINS
         userWins = filterViewModel.getUserWins(gamesNotBreaking)
         binding.breakStatistics.winsNbTotal.text = userWins.toString()
-        binding.breakStatistics.winsNbPercentage.text = "${HelperFunctions.calculatePercentage(gamesNotBreaking.size, userWins)}%"
+        binding.breakStatistics.winsNbPercentage.text = getString(R.string.var_percentage,HelperFunctions.calculatePercentage(gamesNotBreaking.size, userWins))
 
         //USER LOSSES
         userLosses = (gamesNotBreaking.size - userWins)
         binding.breakStatistics.lossesNbTotal.text = userLosses.toString()
-        binding.breakStatistics.lossesNbPercentage.text = "${HelperFunctions.calculatePercentage(gamesNotBreaking.size, userLosses)}%"
+        binding.breakStatistics.lossesNbPercentage.text = getString(R.string.var_percentage,HelperFunctions.calculatePercentage(gamesNotBreaking.size, userLosses))
 
         //endregion
 
@@ -231,7 +234,8 @@ class StatsFragment : Fragment() {
 
                     //region RED BALLS
 
-                    binding.ballStatistics.ball1TextView.text = "Games with red"
+                    var ballString = getString(R.string.red)
+                    binding.ballStatistics.ball1TextView.text = getString(R.string.var_games_with, ballString)
                     binding.ballStatistics.ball1Image.setImageResource(R.drawable.red_ball_img)
                     val redBallsList = filterViewModel.getGamesWithRedBalls(list)
 
@@ -241,18 +245,19 @@ class StatsFragment : Fragment() {
                     //USER WINS
                     var userWins = filterViewModel.getUserWins(redBallsList)
                     binding.ballStatistics.winsBall1Total.text = userWins.toString()
-                    binding.ballStatistics.winsBall1Percentage.text = "${HelperFunctions.calculatePercentage(redBallsList.size, userWins)}%"
+                    binding.ballStatistics.winsBall1Percentage.text =  getString(R.string.var_percentage, HelperFunctions.calculatePercentage(redBallsList.size, userWins))
 
                     //USER LOSSES
                     var userLosses = (redBallsList.size - userWins)
                     binding.ballStatistics.lossesBall1Total.text = userLosses.toString()
-                    binding.ballStatistics.lossesBall1Percentage.text = "${HelperFunctions.calculatePercentage(redBallsList.size, userLosses)}%"
+                    binding.ballStatistics.lossesBall1Percentage.text = getString(R.string.var_percentage, HelperFunctions.calculatePercentage(redBallsList.size, userLosses))
 
                     //endregion
 
                     //region YELLOW BALLS
 
-                    binding.ballStatistics.ball2Text.text = "Games with yellow"
+                    ballString = getString(R.string.yellow)
+                    binding.ballStatistics.ball2Text.text = getString(R.string.var_games_with, ballString)
                     binding.ballStatistics.ball2Image.setImageResource(R.drawable.yellow_ball_img)
                     val yellowBallsList = filterViewModel.getGamesWithYellowBalls(list)
 
@@ -262,12 +267,12 @@ class StatsFragment : Fragment() {
                     //USER WINS
                     userWins = filterViewModel.getUserWins(yellowBallsList)
                     binding.ballStatistics.winsBall2Total.text = userWins.toString()
-                    binding.ballStatistics.winsBall2Percentage.text = "${HelperFunctions.calculatePercentage(yellowBallsList.size, userWins)}%"
+                    binding.ballStatistics.winsBall2Percentage.text = getString(R.string.var_percentage, HelperFunctions.calculatePercentage(yellowBallsList.size, userWins))
 
                     //USER LOSSES
                     userLosses = (yellowBallsList.size - userWins)
                     binding.ballStatistics.lossesBall2Total.text = userLosses.toString()
-                    binding.ballStatistics.lossesBall2Percentage.text = "${HelperFunctions.calculatePercentage(yellowBallsList.size, userLosses)}%"
+                    binding.ballStatistics.lossesBall2Percentage.text = getString(R.string.var_percentage, HelperFunctions.calculatePercentage(yellowBallsList.size, userLosses))
 
                     //endregion
                 }
@@ -277,7 +282,8 @@ class StatsFragment : Fragment() {
 
                     //region SOLID BALLS
 
-                    binding.ballStatistics.ball1TextView.text = "Games with Solids"
+                    var ballString = getString(R.string.spot)
+                    binding.ballStatistics.ball2Text.text = getString(R.string.var_games_with, ballString)
                     binding.ballStatistics.ball1Image.setImageResource(R.drawable.solid_ball_img)
                     val solidBallsList = filterViewModel.getGamesWithSolidBalls(list)
 
@@ -287,18 +293,19 @@ class StatsFragment : Fragment() {
                     //USER WINS
                     var userWins = filterViewModel.getUserWins(solidBallsList)
                     binding.ballStatistics.winsBall1Total.text = userWins.toString()
-                    binding.ballStatistics.winsBall1Percentage.text = "${HelperFunctions.calculatePercentage(solidBallsList.size, userWins)}%"
+                    binding.ballStatistics.winsBall1Percentage.text = getString(R.string.var_percentage, HelperFunctions.calculatePercentage(solidBallsList.size, userWins))
 
                     //USER LOSSES
                     var userLosses = (solidBallsList.size - userWins)
                     binding.ballStatistics.lossesBall1Total.text = userLosses.toString()
-                    binding.ballStatistics.lossesBall1Percentage.text = "${HelperFunctions.calculatePercentage(solidBallsList.size, userLosses)}%"
+                    binding.ballStatistics.lossesBall1Percentage.text = getString(R.string.var_percentage, HelperFunctions.calculatePercentage(solidBallsList.size, userLosses))
 
                     //endregion
 
                     //region STRIPE BALLS
 
-                    binding.ballStatistics.ball2Text.text = "Games with stripes"
+                    ballString = getString(R.string.stripe)
+                    binding.ballStatistics.ball2Text.text = getString(R.string.var_games_with, ballString)
                     binding.ballStatistics.ball2Image.setImageResource(R.drawable.stripe_ball_img)
                     val stripeBallsList = filterViewModel.getGamesWithStripedBalls(list)
 
@@ -308,12 +315,12 @@ class StatsFragment : Fragment() {
                     //USER WINS
                     userWins = filterViewModel.getUserWins(stripeBallsList)
                     binding.ballStatistics.winsBall2Total.text = userWins.toString()
-                    binding.ballStatistics.winsBall2Percentage.text = "${HelperFunctions.calculatePercentage(stripeBallsList.size, userWins)}%"
+                    binding.ballStatistics.winsBall2Percentage.text = getString(R.string.var_percentage, HelperFunctions.calculatePercentage(stripeBallsList.size, userWins))
 
                     //USER LOSSES
                     userLosses = (stripeBallsList.size - userWins)
                     binding.ballStatistics.lossesBall2Total.text = userLosses.toString()
-                    binding.ballStatistics.lossesBall2Percentage.text = "${HelperFunctions.calculatePercentage(stripeBallsList.size, userLosses)}%"
+                    binding.ballStatistics.winsBall2Percentage.text = getString(R.string.var_percentage, HelperFunctions.calculatePercentage(stripeBallsList.size, userLosses))
 
                     //endregion
                 }
