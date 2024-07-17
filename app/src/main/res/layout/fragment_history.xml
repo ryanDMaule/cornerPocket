@@ -39,10 +39,7 @@
 
             <TextView
                 android:id="@+id/back_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                style="@style/navButtonText"
                 android:text="@string/back"
                 app:layout_constraintEnd_toEndOf="@+id/back_button"
                 app:layout_constraintStart_toStartOf="@+id/back_button"
@@ -58,10 +55,7 @@
 
             <TextView
                 android:id="@+id/filters_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                style="@style/navButtonText"
                 android:text="@string/filters"
                 app:layout_constraintEnd_toEndOf="@+id/filters_button"
                 app:layout_constraintStart_toStartOf="@+id/filters_button"
@@ -71,15 +65,10 @@
 
         <TextView
             android:id="@+id/textView2"
-            style="@style/smallCapsText"
+            style="@style/h2"
             android:layout_width="0dp"
             android:layout_marginTop="16dp"
-            android:letterSpacing=".1"
-            android:padding="8dp"
             android:text="@string/game_history"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/resultsCounterText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,13 +76,8 @@
 
         <TextView
             android:id="@+id/resultsCounterText"
-            style="@style/smallCapsText"
-            android:layout_width="0dp"
+            style="@style/navButtonText"
             android:layout_marginBottom="16dp"
-            android:letterSpacing=".1"
-            android:textAlignment="center"
-            android:textColor="@color/white_80"
-            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +126,8 @@
 
             <TextView
                 android:id="@+id/result_heading"
-                style="@style/smallCapsText"
+                style="@style/h4"
+                android:textSize="12sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/result"
@@ -152,7 +137,8 @@
 
             <TextView
                 android:id="@+id/name_heading"
-                style="@style/smallCapsText"
+                style="@style/h4"
+                android:textSize="12sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/opponent"
@@ -162,7 +148,8 @@
 
             <TextView
                 android:id="@+id/date_heading"
-                style="@style/smallCapsText"
+                style="@style/h4"
+                android:textSize="12sp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/date"

@@ -16,12 +16,10 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/smallCapsText"
+            style="@style/h2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/balls_played"
-            android:textAlignment="center"
-            android:textSize="20sp"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,7 +68,7 @@
 
         <TextView
             android:id="@+id/red_ball_text"
-            style="@style/smallCapsText"
+            style="@style/h4"
             android:text="@string/red"
             app:layout_constraintEnd_toEndOf="@+id/red_ball_image"
             app:layout_constraintStart_toStartOf="@+id/red_ball_image"
@@ -99,7 +97,7 @@
 
         <TextView
             android:id="@+id/yellow_ball_text"
-            style="@style/smallCapsText"
+            style="@style/h4"
             android:text="@string/yellow"
             app:layout_constraintEnd_toEndOf="@+id/yellow_ball_image"
             app:layout_constraintStart_toStartOf="@+id/yellow_ball_image"

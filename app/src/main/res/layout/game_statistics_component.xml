@@ -5,21 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card_border"
+    android:background="@drawable/dialog_border"
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- TITLE -->
 
     <TextView
         android:id="@+id/title"
-        style="@style/smallCapsText"
+        style="@style/h2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GAME STATISTICS"
-        android:textStyle="bold"
-        android:textSize="16sp"
+        android:text="@string/game_statistics_flat"
         android:padding="16dp"
-        android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -35,7 +32,8 @@
 
     <TextView
         android:id="@+id/game_length"
-        style="@style/greyText"
+        style="@style/lightFont"
+        android:textColor="@color/grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -44,30 +42,31 @@
 
     <TextView
         android:id="@+id/games_heading"
-        style="@style/greyText"
+        style="@style/h3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Games"
-        android:textColor="@color/white"
+        android:text="@string/games"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_length" />
 
     <TextView
         android:id="@+id/wins_heading"
-        style="@style/greyText"
+        style="@style/h4"
+        android:textColor="@color/grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Wins"
+        android:text="@string/wins"
         app:layout_constraintEnd_toStartOf="@+id/games_heading"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_length" />
 
     <TextView
         android:id="@+id/losses_heading"
-        style="@style/greyText"
+        style="@style/h4"
+        android:textColor="@color/grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -78,23 +77,24 @@
 
     <TextView
         android:id="@+id/games_total"
-        style="@style/GlowingText"
+        style="@style/h1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="4"
         android:textColor="@color/white"
         android:textSize="40sp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="@+id/games_heading"
         app:layout_constraintStart_toStartOf="@+id/games_heading"
-        app:layout_constraintTop_toBottomOf="@+id/games_heading" />
+        app:layout_constraintTop_toBottomOf="@+id/games_heading"
+        tools:text="4" />
 
     <TextView
         android:id="@+id/wins_total"
-        style="@style/greyText"
+        style="@style/lightFont"
+        android:textColor="@color/grey"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/wins_heading"
         app:layout_constraintStart_toStartOf="@+id/wins_heading"
         app:layout_constraintTop_toTopOf="@+id/games_total"
@@ -102,9 +102,7 @@
 
     <TextView
         android:id="@+id/wins_percentage"
-        style="@style/greyText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/lightFont"
         app:layout_constraintBottom_toBottomOf="@+id/games_total"
         app:layout_constraintEnd_toEndOf="@+id/wins_heading"
         app:layout_constraintStart_toStartOf="@+id/wins_heading"
@@ -113,10 +111,11 @@
 
     <TextView
         android:id="@+id/losses_total"
-        style="@style/greyText"
+        style="@style/lightFont"
+        android:textColor="@color/grey"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/losses_heading"
         app:layout_constraintStart_toStartOf="@+id/losses_heading"
         app:layout_constraintTop_toTopOf="@+id/games_total"
@@ -124,9 +123,7 @@
 
     <TextView
         android:id="@+id/losses_percentage"
-        style="@style/greyText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/lightFont"
         app:layout_constraintBottom_toBottomOf="@+id/games_total"
         app:layout_constraintEnd_toEndOf="@+id/losses_heading"
         app:layout_constraintStart_toStartOf="@+id/losses_heading"
@@ -147,7 +144,7 @@
 
     <TextView
         android:id="@+id/recent_form"
-        style="@style/greyText"
+        style="@style/h3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

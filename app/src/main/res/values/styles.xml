@@ -1,44 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="GlowingText">
-        <item name="android:padding">5dp</item>
-        <item name="android:shadowColor">@color/white</item>
-        <item name="android:shadowDx">0.0</item>
-        <item name="android:shadowDy">0.0</item>
-        <item name="android:shadowRadius">16</item>
-        <item name="android:letterSpacing">.05</item>
-    </style>
-
-    <style name="TitleTextStyling" parent="GlowingText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">50sp</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="newTitleText">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/white_80</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:letterSpacing">.1</item>
-    </style>
-
-    <style name="p">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/jost_regular</item>
-        <item name="android:textAlignment">textStart</item>
-        <item name="android:textColor">@color/white_80</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="smallCapsText">
+    <style name="h1">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/jost_regular</item>
@@ -48,8 +11,76 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="greyText" parent="smallCapsText">
-        <item name="android:textColor">@color/grey</item>
+    <style name="h2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">.15</item>
+    </style>
+
+    <style name="h3">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="h4">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="p">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/white_80</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="lightFont">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_light</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white_80</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="subTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/white_80</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="navButtonText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white_80</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginTop">2dp</item>
     </style>
 
     <style name="navigationSection">
@@ -75,7 +106,7 @@
         <item name="strokeColor">@color/cyan</item>
         <item name="android:padding">24dp</item>
         <item name="android:textColor">@color/cyan</item>
-        <item name="android:fontFamily">@font/jost_regular</item>
+        <item name="android:fontFamily">@font/jost_semi_bold</item>
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">.2</item>
         <item name="android:textAllCaps">true</item>
@@ -86,8 +117,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/white_80</item>
         <item name="strokeColor">@color/white_80</item>
+        <item name="android:fontFamily">@font/jost_semi_bold</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:letterSpacing">.2</item>
         <item name="android:padding">8dp</item>
         <item name="android:paddingStart">32dp</item>
         <item name="android:paddingEnd">32dp</item>
@@ -112,10 +143,19 @@
         <item name="android:letterSpacing">.05</item>
     </style>
 
-    <style name="titleBarStepText">
+    <style name="selectedTitleBarStepText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:fontFamily">@font/jost_light</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="unselectedTitleBarStepText">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/grey_60</item>
+        <item name="android:fontFamily">@font/jost_light</item>
         <item name="android:textAlignment">center</item>
     </style>
 

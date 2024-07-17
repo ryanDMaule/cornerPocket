@@ -39,10 +39,7 @@
 
             <TextView
                 android:id="@+id/back_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                style="@style/navButtonText"
                 android:text="@string/back"
                 app:layout_constraintEnd_toEndOf="@+id/back_button"
                 app:layout_constraintStart_toStartOf="@+id/back_button"
@@ -77,14 +74,10 @@
 
         <TextView
             android:id="@+id/textView2"
-            style="@style/smallCapsText"
+            style="@style/h4"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:letterSpacing=".1"
             android:text="@string/game_type"
             android:textAlignment="textStart"
-            android:textColor="@color/white"
-            android:textSize="16sp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/step_1_image"
@@ -105,7 +98,7 @@
 
         <TextView
             android:id="@+id/step_2_text"
-            style="@style/titleBarStepText"
+            style="@style/selectedTitleBarStepText"
             android:textColor="@color/green"
             android:text="@string/_2"
             app:layout_constraintBottom_toBottomOf="@+id/step_2_image"
@@ -126,7 +119,7 @@
 
         <TextView
             android:id="@+id/step_3_text"
-            style="@style/titleBarStepText"
+            style="@style/unselectedTitleBarStepText"
             android:text="@string/_3"
             app:layout_constraintBottom_toBottomOf="@+id/step_3_image"
             app:layout_constraintEnd_toEndOf="@+id/step_3_image"
@@ -181,10 +174,8 @@
             app:layout_constraintTop_toBottomOf="@+id/vs_section">
 
             <TextView
-                style="@style/smallCapsText"
+                style="@style/p"
                 android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/game_type_description"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -205,6 +196,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/english_button"
                 style="@style/selectedSwitchButton"
+                android:fontFamily="@font/jost_bold"
                 android:layout_marginStart="32dp"
                 android:text="@string/english"
                 app:layout_constraintBottom_toBottomOf="parent"

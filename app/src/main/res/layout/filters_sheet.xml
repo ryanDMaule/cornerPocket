@@ -37,11 +37,8 @@
 
             <TextView
                 android:id="@+id/quit_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Close"
+                style="@style/navButtonText"
+                android:text="@string/close"
                 app:layout_constraintEnd_toEndOf="@+id/quit_button"
                 app:layout_constraintStart_toStartOf="@+id/quit_button"
                 app:layout_constraintTop_toBottomOf="@+id/quit_button" />
@@ -59,11 +56,8 @@
 
             <TextView
                 android:id="@+id/clear_filters_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Clear\nfilters"
+                style="@style/navButtonText"
+                android:text="@string/clear_filters"
                 app:layout_constraintEnd_toEndOf="@+id/clear_filters_button"
                 app:layout_constraintStart_toStartOf="@+id/clear_filters_button"
                 app:layout_constraintTop_toBottomOf="@+id/clear_filters_button" />
@@ -72,14 +66,9 @@
 
         <TextView
             android:id="@+id/textView2"
-            style="@style/smallCapsText"
+            style="@style/h1"
             android:layout_width="0dp"
-            android:padding="8dp"
-            android:letterSpacing=".1"
-            android:text="Filters"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:text="@string/filters"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +83,8 @@
             android:background="@color/grey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/image_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -103,7 +93,8 @@
         android:layout_width="2dp"
         android:layout_height="match_parent"
         android:background="@color/white"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/image_description" />
 
     <!-- BODY SECTION -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -134,13 +125,12 @@
 
                     <TextView
                         android:id="@+id/opponentFilterTitle"
-                        style="@style/smallCapsText"
+                        style="@style/h3"
                         android:layout_width="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="Opponent"
+                        android:text="@string/opponent"
                         android:textAlignment="textStart"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -155,7 +145,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/opponentFilterAddButton"
                         app:layout_constraintStart_toEndOf="@+id/opponentFilterTitle"
                         app:layout_constraintTop_toTopOf="@+id/opponentFilterTitle"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <ImageView
                         android:id="@+id/opponentFilterAddButton"
@@ -166,7 +157,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/opponentFilterTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/opponentFilterTitle"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/opponent_filter_expansion"
@@ -185,7 +177,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="OPPONENT"
+                            android:hint="@string/opponent"
                             android:textColorHint="@color/white"
                             app:endIconTint="@color/cyan"
                             app:layout_constraintTop_toTopOf="parent">
@@ -208,7 +200,8 @@
                             android:background="@color/cyan"
                             app:layout_constraintBottom_toBottomOf="@+id/menu"
                             app:layout_constraintEnd_toEndOf="@+id/menu"
-                            app:layout_constraintStart_toStartOf="@+id/menu" />
+                            app:layout_constraintStart_toStartOf="@+id/menu"
+                            android:contentDescription="@string/image_description" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -224,13 +217,10 @@
 
                     <TextView
                         android:id="@+id/gameTypeFilterTitle"
-                        style="@style/smallCapsText"
+                        style="@style/h3"
                         android:layout_width="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="Game type"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:text="@string/game_type"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -245,7 +235,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/gameTypeFilterAddButton"
                         app:layout_constraintStart_toEndOf="@+id/gameTypeFilterTitle"
                         app:layout_constraintTop_toTopOf="@+id/gameTypeFilterTitle"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <ImageView
                         android:id="@+id/gameTypeFilterAddButton"
@@ -278,28 +269,23 @@
 
                             <RadioButton
                                 android:id="@+id/radio_gameType_1"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:checked="true"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Both" />
+                                android:text="@string/both" />
 
                             <RadioButton
                                 android:id="@+id/radio_gameType_2"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="English" />
+                                android:text="@string/english" />
 
                             <RadioButton
                                 android:id="@+id/radio_gameType_3"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="American" />
+
+                                android:text="@string/american" />
 
                         </RadioGroup>
 
@@ -317,13 +303,10 @@
 
                     <TextView
                         android:id="@+id/disciplineFilterTitle"
-                        style="@style/smallCapsText"
+                        style="@style/h3"
                         android:layout_width="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="Discipline"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:text="@string/discipline"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -338,7 +321,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/disciplineFilterAddButton"
                         app:layout_constraintStart_toEndOf="@+id/disciplineFilterTitle"
                         app:layout_constraintTop_toTopOf="@+id/disciplineFilterTitle"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <ImageView
                         android:id="@+id/disciplineFilterAddButton"
@@ -349,7 +333,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/disciplineFilterTitle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/disciplineFilterTitle"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/discipline_filter_expansion"
@@ -371,27 +356,23 @@
 
                             <RadioButton
                                 android:id="@+id/radio_discipline_1"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:checked="true"
-                                android:text="Both"
+                                android:text="@string/both"
                                 android:textAlignment="textStart" />
 
                             <RadioButton
                                 android:id="@+id/radio_discipline_2"
-                                style="@style/smallCapsText"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="8 Ball"
+                                style="@style/h4"
+                                android:text="@string/eight_ball"
                                 android:textAlignment="textStart" />
 
                             <RadioButton
                                 android:id="@+id/radio_discipline_3"
-                                style="@style/smallCapsText"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="9 Ball"
+                                style="@style/h4"
+                                android:text="@string/nine_ball"
                                 android:textAlignment="textStart" />
 
                         </RadioGroup>
@@ -410,13 +391,11 @@
 
                     <TextView
                         android:id="@+id/results_filter_title"
-                        style="@style/smallCapsText"
+                        style="@style/h3"
                         android:layout_width="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="Results"
+                        android:text="@string/results"
                         android:textAlignment="textStart"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -431,7 +410,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/results_filter_add_button"
                         app:layout_constraintStart_toEndOf="@+id/results_filter_title"
                         app:layout_constraintTop_toTopOf="@+id/results_filter_title"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <ImageView
                         android:id="@+id/results_filter_add_button"
@@ -442,7 +422,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/results_filter_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/results_filter_title"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/results_filter_expansion"
@@ -464,28 +445,24 @@
 
                             <RadioButton
                                 android:id="@+id/radio_results_1"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:checked="true"
                                 android:textAlignment="textStart"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Both" />
+                                android:text="@string/both" />
 
                             <RadioButton
                                 android:id="@+id/radio_results_2"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Wins" />
+                                android:text="@string/wins" />
 
                             <RadioButton
                                 android:id="@+id/radio_results_3"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Losses" />
+                                android:text="@string/losses" />
 
                         </RadioGroup>
 
@@ -503,13 +480,11 @@
 
                     <TextView
                         android:id="@+id/breaking_filter_title"
-                        style="@style/smallCapsText"
+                        style="@style/h3"
                         android:layout_width="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="Games breaking"
+                        android:text="@string/games_breaking_flat"
                         android:textAlignment="textStart"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -524,7 +499,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/breaking_filter_add_button"
                         app:layout_constraintStart_toEndOf="@+id/breaking_filter_title"
                         app:layout_constraintTop_toTopOf="@+id/breaking_filter_title"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <ImageView
                         android:id="@+id/breaking_filter_add_button"
@@ -535,7 +511,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/breaking_filter_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/breaking_filter_title"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/breaking_filter_expansion"
@@ -557,28 +534,24 @@
 
                             <RadioButton
                                 android:id="@+id/radio_breaking_1"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:checked="true"
                                 android:textAlignment="textStart"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Both" />
+                                android:text="@string/both" />
 
                             <RadioButton
                                 android:id="@+id/radio_breaking_2"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Me" />
+                                android:text="@string/me" />
 
                             <RadioButton
                                 android:id="@+id/radio_breaking_3"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Opponent" />
+                                android:text="@string/opponent" />
 
                         </RadioGroup>
 
@@ -597,13 +570,11 @@
 
                     <TextView
                         android:id="@+id/order_filter_title"
-                        style="@style/smallCapsText"
+                        style="@style/h3"
                         android:layout_width="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="Order"
+                        android:text="@string/order"
                         android:textAlignment="textStart"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -618,7 +589,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/order_filter_add_button"
                         app:layout_constraintStart_toEndOf="@+id/order_filter_title"
                         app:layout_constraintTop_toTopOf="@+id/order_filter_title"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <ImageView
                         android:id="@+id/order_filter_add_button"
@@ -629,7 +601,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/order_filter_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/order_filter_title"
-                        app:tint="@color/cyan" />
+                        app:tint="@color/cyan"
+                        android:contentDescription="@string/image_description" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/order_filter_expansion"
@@ -651,20 +624,16 @@
 
                             <RadioButton
                                 android:id="@+id/radio_order_1"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:checked="true"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Date: Newest to oldest" />
+                                android:text="@string/date_newest_to_oldest" />
 
                             <RadioButton
                                 android:id="@+id/radio_order_2"
-                                style="@style/smallCapsText"
+                                style="@style/h4"
                                 android:textAlignment="textStart"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Date: Oldest to newest" />
+                                android:text="@string/date_oldest_to_newest" />
 
                         </RadioGroup>
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -692,7 +661,7 @@
             style="@style/mainButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apply"
+            android:text="@string/apply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

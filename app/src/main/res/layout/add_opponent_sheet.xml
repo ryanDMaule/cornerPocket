@@ -38,11 +38,8 @@
 
             <TextView
                 android:id="@+id/quit_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Close"
+                style="@style/navButtonText"
+                android:text="@string/close"
                 app:layout_constraintEnd_toEndOf="@+id/quit_button"
                 app:layout_constraintStart_toStartOf="@+id/quit_button"
                 app:layout_constraintTop_toBottomOf="@+id/quit_button" />
@@ -68,11 +65,8 @@
 
                 <TextView
                     android:id="@+id/delete_text"
-                    style="@style/smallCapsText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Delete"
+                    style="@style/navButtonText"
+                    android:text="@string/delete"
                     app:layout_constraintEnd_toEndOf="@+id/delete_button"
                     app:layout_constraintStart_toStartOf="@+id/delete_button"
                     app:layout_constraintTop_toBottomOf="@+id/delete_button" />
@@ -95,13 +89,9 @@
 
         <TextView
             android:id="@+id/title_TV"
-            style="@style/smallCapsText"
+            style="@style/h1"
             android:layout_width="0dp"
-            android:letterSpacing=".1"
-            android:text="Add opponent"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:text="@string/add_opponent_flat"
             app:layout_constraintBottom_toBottomOf="@+id/spacer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -128,12 +118,10 @@
 
         <TextView
             android:id="@+id/user_name_tv"
-            style="@style/smallCapsText"
+            style="@style/h1"
             android:layout_width="0dp"
             android:layout_marginTop="64dp"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -162,10 +150,8 @@
 
             <TextView
                 android:id="@+id/tvAddImage"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add picture"
+                style="@style/navButtonText"
+                android:text="@string/add_picture"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

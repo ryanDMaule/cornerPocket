@@ -69,6 +69,7 @@
     <string name="play_game">Play game</string>
     <string name="games_history">Games \nhistory</string>
     <string name="game_statistics">Game \nstatistics</string>
+    <string name="game_statistics_flat">Game statistics</string>
     <string name="edit_opponents">Edit\nopponents</string>
     <string name="edit_opponent">Edit opponent</string>
     <string name="edit">Edit</string>
@@ -81,6 +82,7 @@
     <string name="win_record">Win record</string>
     <string name="last_5_games">Last 5 games</string>
     <string name="add_opponent">Add\nopponent</string>
+    <string name="add_opponent_flat">Add opponent</string>
     <string name="game_type">Game type</string>
     <string name="game_type_description">What type of pool is being played?</string>
     <string name="eight_ball">8-Ball</string>
@@ -95,7 +97,7 @@
     <string name="submit">Submit</string>
     <string name="delete">Delete</string>
     <string name="filters">Filters</string>
-    <string name="statistics">Game statistics</string>
+    <string name="statistics">Statistics</string>
     <string name="opponent_list">Opponent list</string>
     <string name="edit_opponent_text">Tap an icon below to edit an opponent or add a new opponent by pressing the plus icon in the bottom corner.</string>
     <string name="leave_review">Leave review</string>
@@ -142,5 +144,22 @@
     <string name="use_photo_from">"Use photo from: "</string>
     <string name="camera">Camera</string>
     <string name="camera_roll">Camera roll</string>
+    <string name="wins">Wins</string>
+    <string name="games">Games</string>
+    <string name="break_statistics">Break statistics</string>
+    <string name="games_breaking">Games\nbreaking</string>
+    <string name="losses">losses</string>
+    <string name="games_not_breaking">Games <b>NOT</b>\nbreaking</string>
+    <string name="ball_statistics">Ball statistics</string>
+    <string name="clear_filters">Clear\nfilters</string>
+    <string name="both">Both</string>
+    <string name="discipline">Discipline</string>
+    <string name="results">Results</string>
+    <string name="games_breaking_flat">Games breaking</string>
+    <string name="me">Me</string>
+    <string name="order">Order</string>
+    <string name="date_newest_to_oldest">Date: Newest to oldest</string>
+    <string name="date_oldest_to_newest">Date: Oldest to newest</string>
+    <string name="apply">Apply</string>
 
 </resources>

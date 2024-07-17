@@ -39,10 +39,7 @@
 
             <TextView
                 android:id="@+id/quit_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                style="@style/navButtonText"
                 android:text="@string/quit"
                 app:layout_constraintEnd_toEndOf="@+id/quit_button"
                 app:layout_constraintStart_toStartOf="@+id/quit_button"
@@ -50,22 +47,27 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/smallCapsText"
-            android:layout_width="0dp"
-            android:padding="8dp"
-            android:letterSpacing=".1"
-            android:text="@string/game_underway"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+        <ImageView
+            android:id="@+id/nav_spacer"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="18dp"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/h4"
+            android:layout_width="0dp"
+            android:text="@string/game_underway"
+            app:layout_constraintBottom_toBottomOf="@+id/nav_spacer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nav_spacer" />
 
         <ImageView
             android:id="@+id/background_completion_bar"
@@ -104,11 +106,8 @@
             app:layout_constraintTop_toBottomOf="@+id/vs_section">
 
             <TextView
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/p"
                 android:text="@string/game_underway_content"
-                android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,11 +117,11 @@
 
         <Chronometer
             android:id="@+id/timer"
-            style="@style/TitleTextStyling"
+            style="@style/h1"
+            android:letterSpacing=".1"
             android:shadowColor="@color/purple"
-            android:textColor="@color/white"
             android:textSize="60sp"
-            android:layout_marginTop="54dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/info_section_constraint" />

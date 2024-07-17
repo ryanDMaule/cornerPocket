@@ -39,10 +39,7 @@
 
             <TextView
                 android:id="@+id/back_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                style="@style/navButtonText"
                 android:text="@string/back"
                 app:layout_constraintEnd_toEndOf="@+id/back_button"
                 app:layout_constraintStart_toStartOf="@+id/back_button"
@@ -58,10 +55,7 @@
 
             <TextView
                 android:id="@+id/filters_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                style="@style/navButtonText"
                 android:text="@string/filters"
                 app:layout_constraintEnd_toEndOf="@+id/filters_button"
                 app:layout_constraintStart_toStartOf="@+id/filters_button"
@@ -69,22 +63,29 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageView
+            android:id="@+id/step_1_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="18dp"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section"
+            android:visibility="invisible"
+            app:tint="@color/green" />
+
         <TextView
             android:id="@+id/textView2"
-            style="@style/smallCapsText"
+            style="@style/h2"
             android:layout_width="0dp"
-            android:padding="8dp"
-            android:letterSpacing=".1"
             android:text="@string/statistics"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/step_1_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section" />
+            app:layout_constraintTop_toTopOf="@+id/step_1_image" />
 
         <ImageView
             android:id="@+id/background_completion_bar"

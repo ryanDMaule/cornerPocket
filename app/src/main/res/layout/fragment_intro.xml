@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/smallCapsText"
+        style="@style/h1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/jost_bold"

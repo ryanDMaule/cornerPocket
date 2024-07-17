@@ -39,10 +39,7 @@
 
             <TextView
                 android:id="@+id/back_text"
-                style="@style/smallCapsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                style="@style/navButtonText"
                 android:text="@string/back"
                 app:layout_constraintEnd_toEndOf="@+id/back_button"
                 app:layout_constraintStart_toStartOf="@+id/back_button"
@@ -64,14 +61,9 @@
 
         <TextView
             android:id="@+id/textView2"
-            style="@style/smallCapsText"
+            style="@style/h2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:letterSpacing=".1"
             android:text="@string/profile"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/spacer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -110,10 +102,8 @@
 
         <TextView
             android:id="@+id/user_name_tv"
-            style="@style/smallCapsText"
+            style="@style/h1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/userImage"
             app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +121,7 @@
 
             <TextView
                 android:id="@+id/tvAddImage"
-                style="@style/smallCapsText"
+                style="@style/navButtonText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_picture"

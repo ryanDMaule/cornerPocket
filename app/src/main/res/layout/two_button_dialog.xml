@@ -9,27 +9,20 @@
 
     <TextView
         android:id="@+id/dialog_title"
-        style="@style/smallCapsText"
+        style="@style/h1"
+        android:textAlignment="textStart"
+        android:layout_width="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Dialog title" />
 
-    <ImageView
-        android:id="@+id/dialog_divider"
-        style="@style/buttonDivider"
-        android:contentDescription="@string/image_description"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_title" />
-
     <TextView
         android:id="@+id/dialog_description"
         style="@style/p"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dialog_divider"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_title"
         tools:text="Dialog content" />
 
     <com.google.android.material.button.MaterialButton
@@ -37,7 +30,7 @@
         style="@style/mainButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:padding="16dp"
         app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
@@ -58,7 +51,7 @@
         style="@style/mainButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginStart="8dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"

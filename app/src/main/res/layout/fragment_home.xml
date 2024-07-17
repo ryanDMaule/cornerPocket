@@ -37,23 +37,19 @@
 
         <TextView
             android:id="@+id/date_TV"
-            style="@style/smallCapsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/subTitle"
             android:textAllCaps="false"
             android:layout_marginStart="4dp"
             app:layout_constraintBottom_toTopOf="@+id/user_name_TV"
             app:layout_constraintStart_toEndOf="@+id/user_icon"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Wed, 10 Jul" />
+            tools:text="17th July, 2024" />
 
         <TextView
             android:id="@+id/user_name_TV"
-            style="@style/smallCapsText"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
+            style="@style/p"
+            android:textColor="@color/white"
+            android:letterSpacing=".05"
             android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_icon"
@@ -76,11 +72,9 @@
 
         <TextView
             android:id="@+id/play_TV"
-            style="@style/smallCapsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/h2"
+            android:letterSpacing=".2"
             android:text="@string/play_game"
-            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -114,9 +108,7 @@
 
         <TextView
             android:id="@+id/history_TV"
-            style="@style/smallCapsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/h4"
             android:textAlignment="textStart"
             android:text="@string/games_history"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,9 +142,7 @@
 
         <TextView
             android:id="@+id/statistics_TV"
-            style="@style/smallCapsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/h4"
             android:text="@string/game_statistics"
             android:textAlignment="textStart"
             app:layout_constraintStart_toStartOf="parent"
@@ -187,9 +177,7 @@
 
         <TextView
             android:id="@+id/edit_opponents_TV"
-            style="@style/smallCapsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/h4"
             android:text="@string/edit_opponents"
             android:textAlignment="textStart"
             app:layout_constraintStart_toStartOf="parent"
@@ -223,9 +211,7 @@
 
         <TextView
             android:id="@+id/learn_TV"
-            style="@style/smallCapsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/h4"
             android:text="@string/rules"
             android:textAlignment="textStart"
             android:layout_marginStart="8dp"
@@ -260,9 +246,7 @@
 
         <TextView
             android:id="@+id/donations_TV"
-            style="@style/smallCapsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/h4"
             android:layout_marginStart="8dp"
             android:text="@string/donations"
             android:textAlignment="textStart"
@@ -287,7 +271,8 @@
         android:id="@+id/logo"
         android:layout_marginTop="16dp"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:maxHeight="100dp"
+        android:layout_height="0dp"
         android:src="@drawable/logo_2"
         android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toBottomOf="parent"
