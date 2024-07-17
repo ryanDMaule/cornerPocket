@@ -88,6 +88,11 @@ class GameReviewFragment : Fragment() {
         }
 
         //WINNER SECTION
+        binding.winnerSection.infoButton.setOnClickListener {
+            DialogUtils.methodOfVictoryDialog(requireContext())
+        }
+
+
         val user = viewModel.getUser()
         Log.i("BSF", "user = $user")
         if (user != null){

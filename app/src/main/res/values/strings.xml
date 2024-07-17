@@ -91,7 +91,7 @@
     <string name="game_underway">Game underway</string>
     <string name="game_underway_content">Play your game and finish when you have a winner!</string>
     <string name="game_review_title">Game review</string>
-    <string name="game_review_description">Enter some details about your game! \n\nTap the ‘i’ icons for more details about the sections.</string>
+    <string name="game_review_description">Enter some details about your game!</string>
     <string name="submit">Submit</string>
     <string name="delete">Delete</string>
     <string name="filters">Filters</string>
@@ -120,6 +120,17 @@
     <string name="return_to_menu_content">Are you sure you would like to exit to menu? All progress will be lost.</string>
     <string name="cancel">Cancel</string>
     <string name="exit">Exit</string>
+
+
+    <string name="method_of_victory_content">The ways of winning pool simplify down to a legal victory or an opponent foul.
+        These can differ somewhat dependent on the game type you are playing or the rule set you abide by, but typically it will be something like: \n\n
+        Legal Victory: \n
+        &#8226; You legally pocket all your balls and the 8-ball before your opponent. \n\n
+        Foul: \n
+        &#8226; You pocket the 8-ball any time during the game before sinking all your balls.\n
+        &#8226; You jump the 8-ball off the table.\n
+        &#8226; You do not pocket the 8-ball into the pocket you called.</string>
+    <string name="close">Close</string>
 
 
 </resources>
