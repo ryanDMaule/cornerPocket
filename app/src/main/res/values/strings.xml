@@ -161,5 +161,7 @@
     <string name="date_newest_to_oldest">Date: Newest to oldest</string>
     <string name="date_oldest_to_newest">Date: Oldest to newest</string>
     <string name="apply">Apply</string>
+    <string name="name">Name</string>
+    <string name="create">Create</string>
 
 </resources>

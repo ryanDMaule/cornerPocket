@@ -170,11 +170,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/TextInputLayout"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:hint="Name"
+            android:hint="@string/name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,6 +181,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputTextName"
+                style="@style/TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -204,7 +204,7 @@
             style="@style/mainButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create"
+            android:text="@string/create"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
