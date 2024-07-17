@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/card_border">
+    android:background="@drawable/dialog_border">
 
     <!-- TITLE SECTION -->
     <androidx.constraintlayout.widget.ConstraintLayout

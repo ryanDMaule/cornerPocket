@@ -273,7 +273,7 @@
         android:layout_width="100dp"
         android:maxHeight="100dp"
         android:layout_height="0dp"
-        android:src="@drawable/logo_2"
+        android:src="@drawable/logo"
         android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
