@@ -29,12 +29,22 @@
         <item name="android:letterSpacing">.1</item>
     </style>
 
+    <style name="p">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">@color/white_80</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="smallCapsText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/white_80</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
@@ -61,12 +71,14 @@
     <style name="mainButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/cyan</item>
         <item name="android:backgroundTint">@color/dark_primary</item>
         <item name="strokeColor">@color/cyan</item>
+        <item name="android:padding">24dp</item>
+        <item name="android:textColor">@color/cyan</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">.2</item>
-        <item name="android:padding">24dp</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="unselectedSwitchButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
@@ -166,6 +178,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/transparant</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/jost_regular</item>
     </style>
 
     <style name="buttonDivider">

@@ -41,28 +41,22 @@
         style="@style/smallCapsText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_bold"
         android:text="@string/welcome"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="20sp"
-        android:lineSpacingExtra="4sp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/content"
-        style="@style/smallCapsText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/p"
+        android:padding="16dp"
         android:text="@string/intro_description"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:lineSpacingExtra="2sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:ignore="VisualLintLongText" />
 

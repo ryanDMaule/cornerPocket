@@ -10,14 +10,10 @@
     <TextView
         android:id="@+id/dialog_title"
         style="@style/smallCapsText"
-        android:textSize="16sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textAlignment="center"
-        tools:text="Quit game?" />
+        tools:text="Dialog title" />
 
     <ImageView
         android:id="@+id/dialog_divider"
@@ -30,14 +26,11 @@
 
     <TextView
         android:id="@+id/dialog_description"
-        style="@style/smallCapsText"
-        android:textAlignment="textStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/p"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialog_divider"
-        tools:text="Are you sure you want to quit the game? all progress will be deleted." />
+        tools:text="Dialog content" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/dialog_button"
@@ -50,6 +43,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialog_description"
         tools:ignore="VisualLintButtonSize"
-        tools:text="close" />
+        tools:text="button text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
