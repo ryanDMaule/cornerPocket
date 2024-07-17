@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -29,6 +32,7 @@ import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.DialogUtils
 import com.example.cornerpocket.databinding.FragmentOpponentSelectBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
@@ -75,7 +79,11 @@ class OpponentSelectFragment : Fragment()  {
         }
 
         binding.backButton.setOnClickListener {
-            findNavController().navigate(R.id.action_opponentSelectFragment_to_playFragment)
+            DialogUtils.returnToMenuDialog(
+                requireContext(),
+                findNavController(),
+                R.id.action_opponentSelectFragment_to_playFragment
+            )
         }
 
         recyclerView = binding.opponentListRecycler

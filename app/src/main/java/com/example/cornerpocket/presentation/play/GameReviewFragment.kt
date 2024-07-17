@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.DialogUtils
 import com.example.cornerpocket.databinding.FragmentGameReviewBinding
 import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.ENGLISH
@@ -79,7 +80,11 @@ class GameReviewFragment : Fragment() {
         }
 
         binding.quitButton.setOnClickListener {
-            findNavController().navigate(R.id.action_gameReviewFragment_to_playFragment)
+            DialogUtils.returnToMenuDialog(
+                requireContext(),
+                findNavController(),
+                R.id.action_gameReviewFragment_to_playFragment
+            )
         }
 
         //WINNER SECTION

@@ -116,6 +116,10 @@
     <string name="var_percentage">%1$s%%</string>
     <string name="var_games_with">Games with %1$s</string>
     <string name="var_game_time">Game time, %1$s</string>
+    <string name="return_to_menu">Return to menu?</string>
+    <string name="return_to_menu_content">Are you sure you would like to exit to menu? All progress will be lost.</string>
+    <string name="cancel">Cancel</string>
+    <string name="exit">Exit</string>
 
 
 </resources>
