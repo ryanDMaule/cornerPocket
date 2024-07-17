@@ -136,5 +136,11 @@
     <string name="delete_game">Delete game?</string>
     <string name="delete_game_content">Are you sure you would like to delete this game? It will be permanently deleted.</string>
     <string name="delete_opponent">Delete opponent?</string>
+    <string name="abandon_changes">Abandon changes?</string>
+    <string name="unsaved_changes_content">All your changes are currently unsaved, are you sure you want to close?</string>
+    <string name="add_photo">Add photo</string>
+    <string name="use_photo_from">"Use photo from: "</string>
+    <string name="camera">Camera</string>
+    <string name="camera_roll">Camera roll</string>
 
 </resources>

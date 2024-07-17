@@ -89,6 +89,7 @@ class OpponentDetailsFragment : Fragment() {
 
         binding.fabAdd.setOnClickListener {
             val dialog = SideSheetDialog(requireContext())
+            dialog.setCancelable(false)
             val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
 
             val btnClose = view.findViewById<ImageView>(R.id.quit_button)
@@ -103,7 +104,14 @@ class OpponentDetailsFragment : Fragment() {
             }
 
             btnClose.setOnClickListener {
-                dialog.dismiss()
+                if (unCroppedImage == null &&
+                    croppedImage == null &&
+                    textInputEditText.text.isNullOrBlank()){
+
+                    dialog.dismiss()
+                } else {
+                    editOpponentWarningDialog(dialog)
+                }
             }
 
             btnCreate.setOnClickListener {
@@ -115,7 +123,6 @@ class OpponentDetailsFragment : Fragment() {
             }
 
             dialog.setContentView(view)
-
             dialog.show()
         }
 
@@ -123,6 +130,8 @@ class OpponentDetailsFragment : Fragment() {
 
     private fun itemSelected(opponent: Opponent){
         val dialog = SideSheetDialog(requireContext())
+        dialog.setCancelable(false)
+
         val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
 
         val title = view.findViewById<TextView>(R.id.title_TV)
@@ -159,7 +168,14 @@ class OpponentDetailsFragment : Fragment() {
         }
 
         btnClose.setOnClickListener {
-            dialog.dismiss()
+            if (unCroppedImage == null &&
+                croppedImage == null &&
+                textInputEditText.text.isNullOrBlank()){
+
+                dialog.dismiss()
+            } else {
+                editOpponentWarningDialog(dialog)
+            }
         }
 
         btnCreate.setOnClickListener {
@@ -236,6 +252,9 @@ class OpponentDetailsFragment : Fragment() {
 
                 Toast.makeText(requireContext(), "${textInput.text.toString()} added!", Toast.LENGTH_SHORT).show()
 
+                unCroppedImage = null
+                croppedImage = null
+
                 dialog.dismiss()
             }
         }
@@ -282,18 +301,58 @@ class OpponentDetailsFragment : Fragment() {
         dialog.show()
     }
 
+    private fun editOpponentWarningDialog(ssd : SideSheetDialog) {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(requireContext()).inflate(R.layout.two_button_dialog, null)
+
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        // Initialize dialog views
+        val dialogTitle: TextView = dialogView.findViewById(R.id.dialog_title)
+        val dialogDescription: TextView = dialogView.findViewById(R.id.dialog_description)
+        val dialogButton1: MaterialButton = dialogView.findViewById(R.id.dialog_button_1)
+        val dialogButton2: MaterialButton = dialogView.findViewById(R.id.dialog_button_2)
+
+        dialogTitle.text = getString(R.string.abandon_changes)
+        dialogDescription.text = getString(R.string.unsaved_changes_content)
+        dialogButton1.text = getString(R.string.cancel)
+        dialogButton2.text = getString(R.string.close)
+
+        dialogButton1.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogButton2.setOnClickListener {
+            unCroppedImage = null
+            croppedImage = null
+
+            dialog.dismiss()
+            ssd.dismiss()
+        }
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Show the dialog
+        dialog.show()
+    }
+
+
     //region IMAGE HANDLING
     private fun showPhotoAlertDialog() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Add photo")
-        builder.setMessage("Use photo from: ")
+        builder.setTitle(getString(R.string.add_photo))
+        builder.setMessage(getString(R.string.use_photo_from))
 
-        builder.setPositiveButton("camera") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.camera)) { dialog, _ ->
             requestPermissionLauncherCamera.launch(Manifest.permission.CAMERA)
             dialog.dismiss()
         }
 
-        builder.setNegativeButton("Camera roll") { dialog, _ ->
+        builder.setNegativeButton(getString(R.string.camera_roll)) { dialog, _ ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncherMedia.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {

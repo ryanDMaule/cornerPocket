@@ -109,8 +109,9 @@ class OpponentSelectFragment : Fragment()  {
 
         binding.fabAdd.setOnClickListener {
             val dialog = SideSheetDialog(requireContext())
-            val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
+            dialog.setCancelable(false)
 
+            val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
             val btnClose = view.findViewById<ImageView>(R.id.quit_button)
             val window = view.findViewById<ConstraintLayout>(R.id.full_layout)
             opponentImage = view.findViewById(R.id.addOponentImage)
@@ -123,7 +124,14 @@ class OpponentSelectFragment : Fragment()  {
             }
 
             btnClose.setOnClickListener {
-                dialog.dismiss()
+                if (unCroppedImage == null &&
+                    croppedImage == null &&
+                    textInputEditText.text.isNullOrBlank()){
+
+                    dialog.dismiss()
+                } else {
+                    editOpponentWarningDialog(dialog)
+                }
             }
 
             btnCreate.setOnClickListener {
@@ -140,6 +148,45 @@ class OpponentSelectFragment : Fragment()  {
         }
 
         return binding.root
+    }
+
+    private fun editOpponentWarningDialog(ssd : SideSheetDialog) {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(requireContext()).inflate(R.layout.two_button_dialog, null)
+
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        // Initialize dialog views
+        val dialogTitle: TextView = dialogView.findViewById(R.id.dialog_title)
+        val dialogDescription: TextView = dialogView.findViewById(R.id.dialog_description)
+        val dialogButton1: MaterialButton = dialogView.findViewById(R.id.dialog_button_1)
+        val dialogButton2: MaterialButton = dialogView.findViewById(R.id.dialog_button_2)
+
+        dialogTitle.text = getString(R.string.abandon_changes)
+        dialogDescription.text = getString(R.string.unsaved_changes_content)
+        dialogButton1.text = getString(R.string.cancel)
+        dialogButton2.text = getString(R.string.close)
+
+        dialogButton1.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogButton2.setOnClickListener {
+            unCroppedImage = null
+            croppedImage = null
+
+            dialog.dismiss()
+            ssd.dismiss()
+        }
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Show the dialog
+        dialog.show()
     }
 
     private fun createOpponent(textInput : TextInputEditText, dialog : SideSheetDialog){
