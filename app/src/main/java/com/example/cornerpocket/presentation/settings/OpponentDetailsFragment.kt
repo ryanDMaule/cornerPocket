@@ -4,13 +4,14 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
@@ -28,8 +30,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
-import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.databinding.FragmentOpponentDetailsBinding
 import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.viewModels.PlayViewModel
@@ -129,11 +131,7 @@ class OpponentDetailsFragment : Fragment() {
         val delete = view.findViewById<ConstraintLayout>(R.id.delete_CL)
         delete.visibility = View.VISIBLE
         delete.setOnClickListener {
-            opponent.gamesHistory.forEach {
-                vm.removeGame(it)
-            }
-            vm.removeOpponent(opponent)
-            dialog.dismiss()
+            deleteOpponentWarningDialog(opponent, dialog)
         }
 
 
@@ -241,6 +239,47 @@ class OpponentDetailsFragment : Fragment() {
                 dialog.dismiss()
             }
         }
+    }
+
+    private fun deleteOpponentWarningDialog(opponent: Opponent, ssd : SideSheetDialog) {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(requireContext()).inflate(R.layout.two_button_dialog, null)
+
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        // Initialize dialog views
+        val dialogTitle: TextView = dialogView.findViewById(R.id.dialog_title)
+        val dialogDescription: TextView = dialogView.findViewById(R.id.dialog_description)
+        val dialogButton1: MaterialButton = dialogView.findViewById(R.id.dialog_button_1)
+        val dialogButton2: MaterialButton = dialogView.findViewById(R.id.dialog_button_2)
+
+        dialogTitle.text = getString(R.string.delete_opponent)
+        dialogDescription.text = getString(R.string.var_delete_opponent, opponent.name)
+        dialogButton1.text = getString(R.string.cancel)
+        dialogButton2.text = getString(R.string.delete)
+
+        dialogButton1.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogButton2.setOnClickListener {
+            opponent.gamesHistory.forEach {
+                vm.removeGame(it)
+            }
+            vm.removeOpponent(opponent)
+
+            dialog.dismiss()
+            ssd.dismiss()
+        }
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Show the dialog
+        dialog.show()
     }
 
     //region IMAGE HANDLING

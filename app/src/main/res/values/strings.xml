@@ -116,12 +116,14 @@
     <string name="var_percentage">%1$s%%</string>
     <string name="var_games_with">Games with %1$s</string>
     <string name="var_game_time">Game time, %1$s</string>
+    <string name="var_delete_opponent">Are you sure you would like to delete %1$s? They and all their games will be permanently deleted.</string>
+
+
+
     <string name="return_to_menu">Return to menu?</string>
     <string name="return_to_menu_content">Are you sure you would like to exit to menu? All progress will be lost.</string>
     <string name="cancel">Cancel</string>
     <string name="exit">Exit</string>
-
-
     <string name="method_of_victory_content">The ways of winning pool simplify down to a legal victory or an opponent foul.
         These can differ somewhat dependent on the game type you are playing or the rule set you abide by, but typically it will be something like: \n\n
         Legal Victory: \n
@@ -131,6 +133,8 @@
         &#8226; You jump the 8-ball off the table.\n
         &#8226; You do not pocket the 8-ball into the pocket you called.</string>
     <string name="close">Close</string>
-
+    <string name="delete_game">Delete game?</string>
+    <string name="delete_game_content">Are you sure you would like to delete this game? It will be permanently deleted.</string>
+    <string name="delete_opponent">Delete opponent?</string>
 
 </resources>

@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.R
 import com.google.android.material.button.MaterialButton
 

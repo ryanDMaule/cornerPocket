@@ -1,21 +1,29 @@
 package com.example.cornerpocket.presentation.history
 
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.DialogUtils
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.viewModels.PlayViewModel
+import com.google.android.material.button.MaterialButton
 import org.mongodb.kbson.ObjectId
 
 class HistoryGameDetailsFragment : Fragment() {
@@ -171,15 +179,58 @@ class HistoryGameDetailsFragment : Fragment() {
 
         binding.deleteButtonConstraint.visibility = View.VISIBLE
         binding.deleteButtonConstraint.setOnClickListener {
+            removeGameWarningDialog()
+//            viewModel.removeGame(passedGame)
+//            NavigationUtils.navigateAndClearBackStack(
+//                findNavController(),
+//                R.id.action_historyGameDetailsFragment_to_historyFragment,
+//                R.id.historyGameDetailsFragment
+//            )
+        }
+
+        binding.footer.visibility = View.GONE
+    }
+
+    private fun removeGameWarningDialog() {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(requireContext()).inflate(R.layout.two_button_dialog, null)
+
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        // Initialize dialog views
+        val dialogTitle: TextView = dialogView.findViewById(R.id.dialog_title)
+        val dialogDescription: TextView = dialogView.findViewById(R.id.dialog_description)
+        val dialogButton1: MaterialButton = dialogView.findViewById(R.id.dialog_button_1)
+        val dialogButton2: MaterialButton = dialogView.findViewById(R.id.dialog_button_2)
+
+        dialogTitle.text = getString(R.string.delete_game)
+        dialogDescription.text = getString(R.string.delete_game_content)
+        dialogButton1.text = getString(R.string.cancel)
+        dialogButton2.text = getString(R.string.delete)
+
+        dialogButton1.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogButton2.setOnClickListener {
             viewModel.removeGame(passedGame)
             NavigationUtils.navigateAndClearBackStack(
                 findNavController(),
                 R.id.action_historyGameDetailsFragment_to_historyFragment,
                 R.id.historyGameDetailsFragment
             )
+
+            dialog.dismiss()
         }
 
-        binding.footer.visibility = View.GONE
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Show the dialog
+        dialog.show()
     }
 
 }
