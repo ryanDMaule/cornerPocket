@@ -1,4 +1,4 @@
-package com.example.cornerpocket
+package com.example.cornerpocket.Activities
 
 import android.os.Bundle
 import android.util.Log

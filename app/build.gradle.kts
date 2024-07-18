@@ -53,6 +53,11 @@ dependencies {
     // Image cropping
     implementation("com.vanniktech:android-image-cropper:4.5.0")
 
+    //PDF viewer
+//    implementation("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
+    implementation("com.github.barteksc:android-pdf-viewer:2.8.2")
+//    implementation("com.github.bartekpdfium:android-pdfium:1.9.0")
+
     implementation("io.realm.kotlin:library-base:1.11.0")
 
     // In app reviews

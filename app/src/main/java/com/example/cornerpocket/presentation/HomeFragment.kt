@@ -10,11 +10,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.cornerpocket.Activities.MainActivity
+import com.example.cornerpocket.Activities.PdfActivity
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.databinding.FragmentHomeBinding
 import com.example.cornerpocket.viewModels.UserViewModel
+import java.io.IOException
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.Date
@@ -65,8 +68,8 @@ class HomeFragment : Fragment() {
         }
 
         binding.learnCL.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://billiards.colostate.edu/resource_files/rules_summary.pdf"))
-            startActivity(i)
+            val intent = Intent(requireContext(), PdfActivity::class.java)
+            startActivity(intent)
         }
 
         binding.donationsCL.setOnClickListener {
