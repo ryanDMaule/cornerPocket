@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
@@ -12,17 +14,16 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.GameHistoryAdapter
-import com.example.cornerpocket.Utils.FilterFunctions
-import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFiltersDialog
-import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFilterList
-import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.FilterFunctions
+import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFilterList
+import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFiltersDialog
+import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentHistoryBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.viewModels.FilterViewModel
 import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class HistoryFragment : Fragment() {
     private var _binding : FragmentHistoryBinding? = null
@@ -42,6 +43,15 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //region BACK PRESS
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
+        //endregion
+
 
         // TODO: if the if is brought back in then the dialog and its filters will be retained when navigating back from the details fragment
         //  but future searches will not update the recycler view

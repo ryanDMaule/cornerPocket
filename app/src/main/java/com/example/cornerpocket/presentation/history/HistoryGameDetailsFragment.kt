@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -33,6 +34,18 @@ class HistoryGameDetailsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGameDetailsBinding.inflate(inflater, container, false)
+
+        //region BACK PRESS
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                NavigationUtils.navigateAndClearBackStack(
+                    findNavController(),
+                    R.id.action_historyGameDetailsFragment_to_historyFragment,
+                    R.id.historyGameDetailsFragment
+                )
+            }
+        })
+        //endregion
 
         formatPage()
 

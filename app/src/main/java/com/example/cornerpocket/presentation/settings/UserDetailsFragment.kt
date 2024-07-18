@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
@@ -43,6 +44,18 @@ class UserDetailsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
 
+        //region BACK PRESS
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
+        //endregion
+
         val user = userViewModel.getUser()
         Log.i("UDF", "user: $user")
 
@@ -55,10 +68,6 @@ class UserDetailsFragment : Fragment() {
 
         binding.clAddImage.setOnClickListener {
             showPhotoAlertDialog()
-        }
-
-        binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
         }
 
         binding.applyBtn.setOnClickListener {

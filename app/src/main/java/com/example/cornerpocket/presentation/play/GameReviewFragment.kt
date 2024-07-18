@@ -10,11 +10,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.DialogUtils
+import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentGameReviewBinding
 import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.ENGLISH
@@ -34,6 +36,18 @@ class GameReviewFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentGameReviewBinding.inflate(inflater, container, false)
+
+        //region BACK PRESS
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                DialogUtils.returnToMenuDialog(
+                    requireContext(),
+                    findNavController(),
+                    R.id.action_gameReviewFragment_to_playFragment
+                )
+            }
+        })
+        //endregion
 
         if (viewModel.getSubType() == EIGHT_BALl){
             styleBallsPlayed()
@@ -62,7 +76,11 @@ class GameReviewFragment : Fragment() {
                     Toast.makeText(requireActivity(), "PLEASE SELECT WHICH BALLS YOU PLAYED AS",Toast.LENGTH_SHORT).show()
                 } else {
                     createGame()
-                    findNavController().navigate(R.id.action_gameReviewFragment_to_gameDetailsFragment)
+                    NavigationUtils.navigateAndClearBackStack(
+                        findNavController(),
+                        R.id.action_gameReviewFragment_to_gameDetailsFragment,
+                        R.id.gameReviewFragment
+                    )
                 }
             } else if (viewModel.getSubType() == NINE_BALl){
                 if (viewModel.getMethodOfVictory().isBlank() && viewModel.getUserWon() == null){
@@ -73,7 +91,11 @@ class GameReviewFragment : Fragment() {
                     Toast.makeText(requireActivity(), "PLEASE SELECT THE METHOD OF VICTORY",Toast.LENGTH_SHORT).show()
                 } else {
                     createGame()
-                    findNavController().navigate(R.id.action_gameReviewFragment_to_gameDetailsFragment)
+                    NavigationUtils.navigateAndClearBackStack(
+                        findNavController(),
+                        R.id.action_gameReviewFragment_to_gameDetailsFragment,
+                        R.id.gameReviewFragment
+                    )
                 }
             }
 

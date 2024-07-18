@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.viewModels.PlayViewModel
@@ -25,14 +27,31 @@ class GameDetailsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentGameDetailsBinding.inflate(inflater, container, false)
 
+        //region BACK PRESS
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                NavigationUtils.navigateAndClearBackStack(
+                    findNavController(),
+                    R.id.action_gameDetailsFragment_to_playFragment,
+                    R.id.gameDetailsFragment
+                )
+            }
+        })
+        //endregion
+
         binding.menuButton.setOnClickListener {
-            findNavController().navigate(R.id.action_gameDetailsFragment_to_playFragment)
+            NavigationUtils.navigateAndClearBackStack(
+                findNavController(),
+                R.id.action_gameDetailsFragment_to_playFragment,
+                R.id.gameDetailsFragment
+            )
         }
 
         val game = viewModel.getOpponentMostRecentGame()
         val opponent = viewModel.getUpdatedOpponent()
 
         if (game == null || opponent == null){
+            // TODO: empty formatting and toast displayed
 //            Toast.makeText(requireActivity(), "NO GAME/OPPONENT FOUND!",Toast.LENGTH_SHORT).show()
         } else {
 
@@ -41,12 +60,10 @@ class GameDetailsFragment : Fragment() {
             binding.dateTitle.text = HelperFunctions.formatDate(date)
 
             //GAME TYPE
-//            binding.gameTypeTitle.text = "${game.gameType}: ${game.subType}"
             binding.gameTypeTitle.text = getString(R.string.var_double, game.gameType, game.subType)
 
             //GAME TIME
             val gameTime = HelperFunctions.formatSecondsToMMSS(game.gameDuration)
-//            binding.gameDurationTitle.text = "GAME DURATION : $gameTime"
             binding.gameDurationTitle.text = getString(R.string.var_gameDuration, gameTime)
             HelperFunctions.setTextColorSection(requireContext(), binding.gameDurationTitle, binding.gameDurationTitle.text.toString(), gameTime, R.color.white)
 

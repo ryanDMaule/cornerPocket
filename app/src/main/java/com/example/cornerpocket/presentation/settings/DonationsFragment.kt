@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.databinding.FragmentDonationsBinding
@@ -24,9 +25,17 @@ class DonationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //region BACK PRESS
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
+        //endregion
 
         // TODO: needs to be tested with actual build
        binding.ratingBtn.setOnClickListener {

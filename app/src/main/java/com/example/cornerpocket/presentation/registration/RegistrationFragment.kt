@@ -17,6 +17,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
@@ -53,6 +54,14 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //region BACK PRESS
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                //disable back button
+            }
+        })
+        //endregion
+
         formatPage()
 
         binding.clAddImage.setOnClickListener {
@@ -81,8 +90,8 @@ class RegistrationFragment : Fragment() {
         binding.backText.visibility = View.GONE
         binding.backButton.visibility = View.GONE
 
-        binding.textView2.text = "Create account"
-        binding.applyBtn.text = "Create"
+        binding.textView2.text = getString(R.string.create_account)
+        binding.applyBtn.text = getString(R.string.create)
 
         disableButton()
     }
@@ -92,7 +101,7 @@ class RegistrationFragment : Fragment() {
         binding.applyBtn.alpha = .5f
 
         binding.applyBtn.setOnClickListener {
-            Toast.makeText(requireActivity(), "Please enter a name", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), R.string.please_enter_a_name, Toast.LENGTH_SHORT).show()
         }
     }
 

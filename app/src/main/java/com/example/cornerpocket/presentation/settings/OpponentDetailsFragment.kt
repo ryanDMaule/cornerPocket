@@ -18,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -65,10 +66,19 @@ class OpponentDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //region BACK PRESS
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // TODO: if dialog is showing just dismiss dialog 
+                
+                findNavController().popBackStack()
+            }
+        })
+        //endregion
 
         recyclerView = binding.opponentListRecycler
         recyclerView.setHasFixedSize(true)

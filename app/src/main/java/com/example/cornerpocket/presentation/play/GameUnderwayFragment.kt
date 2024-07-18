@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.DialogUtils
+import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentGameUnderwayBinding
 import com.example.cornerpocket.viewModels.PlayViewModel
 
@@ -23,6 +25,18 @@ class GameUnderwayFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGameUnderwayBinding.inflate(inflater, container, false)
+
+        //region BACK PRESS
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                DialogUtils.returnToMenuDialog(
+                    requireContext(),
+                    findNavController(),
+                    R.id.action_gameUnderwayFragment_to_playFragment
+                )
+            }
+        })
+        //endregion
 
         binding.timer.start()
 
@@ -45,7 +59,11 @@ class GameUnderwayFragment : Fragment() {
             viewModel.setGameLength(chronometerTimer)
             binding.timer.stop()
 
-            findNavController().navigate(R.id.action_gameUnderwayFragment_to_gameReviewFragment)
+            NavigationUtils.navigateAndClearBackStack(
+                findNavController(),
+                R.id.action_gameUnderwayFragment_to_gameReviewFragment,
+                R.id.gameUnderwayFragment
+            )
         }
 
         binding.quitButton.setOnClickListener {

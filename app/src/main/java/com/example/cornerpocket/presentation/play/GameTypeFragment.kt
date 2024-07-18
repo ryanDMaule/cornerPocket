@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.DialogUtils
 import com.example.cornerpocket.databinding.FragmentGameTypeBinding
 import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.NINE_BALl
@@ -25,6 +27,18 @@ class GameTypeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGameTypeBinding.inflate(inflater, container, false)
 
+        //region BACK PRESS
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
+        //endregion
+
         binding.vsSection.userNameTv.text = viewModel.getUser()?.name
         binding.vsSection.opponentNameTv.text = viewModel.getSelectedOpponent()?.name
 
@@ -38,10 +52,6 @@ class GameTypeFragment : Fragment() {
             else -> {
                 //handle
             }
-        }
-
-        binding.backButton.setOnClickListener {
-            findNavController().navigate(R.id.action_gameTypeFragment_to_opponentSelectFragment)
         }
 
         binding.btnNextButton.setOnClickListener {

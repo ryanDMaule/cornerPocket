@@ -172,5 +172,6 @@
     <string name="opponent_updated">Opponent updated</string>
     <string name="opponent_deleted">Opponent deleted</string>
     <string name="user_updated">User updated</string>
+    <string name="create_account">Create account</string>
 
 </resources>

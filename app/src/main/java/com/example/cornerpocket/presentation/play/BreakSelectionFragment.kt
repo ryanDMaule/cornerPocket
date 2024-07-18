@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentBreakSelectionBinding
 import com.example.cornerpocket.viewModels.PlayViewModel
 
@@ -22,6 +24,18 @@ class BreakSelectionFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBreakSelectionBinding.inflate(inflater, container, false)
+
+        //region BACK PRESS
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        })
+        //endregion
 
         val user = viewModel.getUser()
         Log.i("BSF", "user = $user")
@@ -43,13 +57,13 @@ class BreakSelectionFragment : Fragment() {
             binding.opponentIcon.setImageURI(pfp)
         }
 
-        binding.backButton.setOnClickListener {
-            findNavController().navigate(R.id.action_breakSelectionFragment_to_gameTypeFragment)
-        }
-
         binding.btnNextButton.setOnClickListener {
             if (viewModel.getUserBroke() != null){
-                findNavController().navigate(R.id.action_breakSelectionFragment_to_gameUnderwayFragment)
+                NavigationUtils.navigateAndClearBackStack(
+                    findNavController(),
+                    R.id.action_breakSelectionFragment_to_gameUnderwayFragment,
+                    R.id.breakSelectionFragment
+                )
             }
         }
 

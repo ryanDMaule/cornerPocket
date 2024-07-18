@@ -18,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -60,6 +61,26 @@ class OpponentSelectFragment : Fragment()  {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentOpponentSelectBinding.inflate(inflater, container, false)
 
+        //region BACK PRESS
+        binding.backButton.setOnClickListener {
+            DialogUtils.returnToMenuDialog(
+                requireContext(),
+                findNavController(),
+                R.id.action_opponentSelectFragment_to_playFragment
+            )
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                DialogUtils.returnToMenuDialog(
+                    requireContext(),
+                    findNavController(),
+                    R.id.action_opponentSelectFragment_to_playFragment
+                )
+            }
+        })
+        //endregion
+
         binding.userText.text = viewModel.getUser()?.name
 
         val user = viewModel.getUser()
@@ -76,14 +97,6 @@ class OpponentSelectFragment : Fragment()  {
             } else {
                 Toast.makeText(requireContext(), getString(R.string.select_opponent), Toast.LENGTH_SHORT).show()
             }
-        }
-
-        binding.backButton.setOnClickListener {
-            DialogUtils.returnToMenuDialog(
-                requireContext(),
-                findNavController(),
-                R.id.action_opponentSelectFragment_to_playFragment
-            )
         }
 
         recyclerView = binding.opponentListRecycler

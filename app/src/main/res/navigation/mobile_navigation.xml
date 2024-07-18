@@ -44,9 +44,6 @@
             <action
                 android:id="@+id/action_gameTypeFragment_to_breakSelectionFragment"
                 app:destination="@id/breakSelectionFragment" />
-            <action
-                android:id="@+id/action_gameTypeFragment_to_opponentSelectFragment"
-                app:destination="@id/opponentSelectFragment" />
         </fragment>
         <fragment
             android:id="@+id/gameReviewFragment"
@@ -92,9 +89,6 @@
             <action
                 android:id="@+id/action_breakSelectionFragment_to_gameUnderwayFragment"
                 app:destination="@id/gameUnderwayFragment" />
-            <action
-                android:id="@+id/action_breakSelectionFragment_to_gameTypeFragment"
-                app:destination="@id/gameTypeFragment" />
         </fragment>
         <fragment
             android:id="@+id/gameDetailsFragment"
