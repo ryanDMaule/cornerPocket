@@ -194,7 +194,7 @@ class OpponentDetailsFragment : Fragment() {
     
     private fun createOpponent(textInput : TextInputEditText, dialog : SideSheetDialog){
         if(textInput.text?.isBlank() == true){
-            Toast.makeText(requireContext(), "PLEASE ENTER A NAME", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.please_enter_a_name), Toast.LENGTH_SHORT).show()
         } else {
             //add to realm db
             vm.viewModelScope.launch {
@@ -219,7 +219,7 @@ class OpponentDetailsFragment : Fragment() {
                     }
                 })
 
-                Toast.makeText(requireContext(), "${textInput.text.toString()} added!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.opponent_created), Toast.LENGTH_SHORT).show()
 
                 dialog.dismiss()
             }
@@ -228,7 +228,7 @@ class OpponentDetailsFragment : Fragment() {
 
     private fun editOpponent(textInput : TextInputEditText, dialog : SideSheetDialog, opponent: Opponent){
         if(textInput.text?.isBlank() == true){
-            Toast.makeText(requireContext(), "PLEASE ENTER A NAME", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.please_enter_a_name), Toast.LENGTH_SHORT).show()
         } else {
             //add to realm db
             vm.viewModelScope.launch {
@@ -249,8 +249,7 @@ class OpponentDetailsFragment : Fragment() {
                         opponent._id.toString()
                     )
                 }
-
-                Toast.makeText(requireContext(), "${textInput.text.toString()} added!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.opponent_updated), Toast.LENGTH_SHORT).show()
 
                 unCroppedImage = null
                 croppedImage = null
@@ -285,6 +284,8 @@ class OpponentDetailsFragment : Fragment() {
         }
 
         dialogButton2.setOnClickListener {
+            Toast.makeText(context, getString(R.string.opponent_deleted), Toast.LENGTH_SHORT).show()
+
             opponent.gamesHistory.forEach {
                 vm.removeGame(it)
             }

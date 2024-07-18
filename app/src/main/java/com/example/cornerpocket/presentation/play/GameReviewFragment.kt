@@ -228,6 +228,8 @@ class GameReviewFragment : Fragment() {
     }
 
     private fun createGame(){
+//        Toast.makeText(context, getString(R.string.game_created), Toast.LENGTH_SHORT).show()
+
 //        viewModel.printPendingGameValues()
         viewModel.updateOpponent()
     }

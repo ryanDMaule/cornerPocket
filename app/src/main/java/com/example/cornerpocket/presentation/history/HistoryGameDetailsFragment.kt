@@ -1,24 +1,22 @@
 package com.example.cornerpocket.presentation.history
 
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.Utils.NavigationUtils
-import com.example.cornerpocket.R
-import com.example.cornerpocket.Utils.DialogUtils
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
 import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.Game
@@ -216,6 +214,8 @@ class HistoryGameDetailsFragment : Fragment() {
         }
 
         dialogButton2.setOnClickListener {
+            Toast.makeText(context, getString(R.string.game_deleted), Toast.LENGTH_SHORT).show()
+
             viewModel.removeGame(passedGame)
             NavigationUtils.navigateAndClearBackStack(
                 findNavController(),

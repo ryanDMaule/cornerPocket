@@ -208,7 +208,7 @@ class OpponentSelectFragment : Fragment()  {
                     }
                 })
 
-                Toast.makeText(requireContext(), "${textInput.text.toString()} added!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.opponent_created), Toast.LENGTH_SHORT).show()
 
                 dialog.dismiss()
             }

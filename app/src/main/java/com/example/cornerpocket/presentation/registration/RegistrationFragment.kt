@@ -124,6 +124,8 @@ class RegistrationFragment : Fragment() {
                     }
                 })
 
+                Toast.makeText(context, getString(R.string.profile_created), Toast.LENGTH_SHORT).show()
+
                 NavigationUtils.navigateAndClearBackStack(
                     findNavController(),
                     R.id.action_registrationFragment_to_playFragment,

@@ -23,6 +23,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImageContract
+import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
 import com.example.cornerpocket.viewModels.UserViewModel
@@ -69,8 +70,9 @@ class UserDetailsFragment : Fragment() {
                     if (updatedUser != null){
                         binding.userNameTv.text = updatedUser.name
                     }
+                    Toast.makeText(context, getString(R.string.user_updated), Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(requireActivity(), "TEXT FIELD CANNOT BE BLANK", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), getString(R.string.please_enter_a_name), Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -164,5 +164,13 @@
     <string name="create">Create</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_created">Profile created</string>
+    <string name="game_deleted">Game deleted</string>
+    <string name="opponent_created">Opponent created</string>
+    <string name="game_created">Game created</string>
+    <string name="please_enter_a_name">Please enter a name</string>
+    <string name="opponent_updated">Opponent updated</string>
+    <string name="opponent_deleted">Opponent deleted</string>
+    <string name="user_updated">User updated</string>
 
 </resources>
