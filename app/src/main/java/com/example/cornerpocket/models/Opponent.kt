@@ -13,7 +13,6 @@ class Opponent: RealmObject {
     var _id: ObjectId = ObjectId()
     @Index // Allows queries to run faster when using this variable
     var name: String = ""
-    // var image??? - store image path
     var wins: Int = 0
     var losses:Int = 0
     var gamesHistory: RealmList<Game> = realmListOf()

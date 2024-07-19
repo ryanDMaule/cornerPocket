@@ -1,6 +1,5 @@
 package com.example.cornerpocket.Repositories
 
-import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.models.User
 import io.realm.kotlin.Realm
 import io.realm.kotlin.UpdatePolicy

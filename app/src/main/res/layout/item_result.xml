@@ -26,6 +26,7 @@
     <TextView
         android:id="@+id/result"
         style="@style/p"
+        android:textAllCaps="true"
         android:textSize="12sp"
         android:layout_marginEnd="16dp"
         android:textAlignment="textStart"

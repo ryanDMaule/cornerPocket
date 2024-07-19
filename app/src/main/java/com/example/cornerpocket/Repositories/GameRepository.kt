@@ -1,6 +1,8 @@
 package com.example.cornerpocket.Repositories
 
+import com.example.cornerpocket.models.AMERICAN
 import com.example.cornerpocket.models.EIGHT_BALl
+import com.example.cornerpocket.models.ENGLISH
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.NINE_BALl
 import com.example.cornerpocket.models.Opponent
@@ -51,14 +53,14 @@ class GameRepository(passedRealm : Realm) {
 
     private fun filterGamesByGameType(list : MutableList<Game>, gameType : String) : MutableList<Game>{
         return when(gameType){
-            "ENGLISH" -> {
+            ENGLISH -> {
                 //ENGLISH games played
-                list.filter { it.gameType == "ENGLISH" }.toMutableList()
+                list.filter { it.gameType == ENGLISH }.toMutableList()
             }
 
-            "AMERICAN" -> {
+            AMERICAN -> {
                 //AMERICAN games played
-                list.filter { it.gameType == "AMERICAN" }.toMutableList()
+                list.filter { it.gameType == AMERICAN }.toMutableList()
             }
             else -> {
                 list

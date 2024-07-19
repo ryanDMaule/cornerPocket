@@ -19,21 +19,36 @@ import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
+import com.example.cornerpocket.databinding.FragmentHistoryBinding
+import com.example.cornerpocket.models.AMERICAN
 import com.example.cornerpocket.models.EIGHT_BALl
+import com.example.cornerpocket.models.ENGLISH
 import com.example.cornerpocket.models.Game
+import com.example.cornerpocket.models.RED
+import com.example.cornerpocket.models.YELLOW
 import com.example.cornerpocket.viewModels.PlayViewModel
 import com.google.android.material.button.MaterialButton
 import org.mongodb.kbson.ObjectId
 
 class HistoryGameDetailsFragment : Fragment() {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentGameDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: PlayViewModel by viewModels()
 
     private var passedGame: Game? = null
+    //endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGameDetailsBinding.inflate(inflater, container, false)
+
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //region BACK PRESS
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -49,6 +64,7 @@ class HistoryGameDetailsFragment : Fragment() {
 
         formatPage()
 
+        //Get game from bundle
         arguments?.let {
             val objectIdString = it.getString("gameKey")
             if (objectIdString != null) {
@@ -114,9 +130,9 @@ class HistoryGameDetailsFragment : Fragment() {
             if (passedGame!!.subType == EIGHT_BALl){
                 //BALLS PLAYED
                 when (passedGame!!.gameType) {
-                    "ENGLISH" -> {
+                    ENGLISH -> {
                         when (passedGame!!.userBallsPlayed) {
-                            "RED" -> {
+                            RED -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
                                 binding.userBallsPlayedText.text = getString(R.string.red)
 
@@ -124,7 +140,7 @@ class HistoryGameDetailsFragment : Fragment() {
                                 binding.opponentBallsPlayedText.text = getString(R.string.yellow)
                             }
 
-                            "YELLOW" -> {
+                            YELLOW -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
                                 binding.userBallsPlayedText.text = getString(R.string.yellow)
 
@@ -137,7 +153,7 @@ class HistoryGameDetailsFragment : Fragment() {
                             }
                         }
                     }
-                    "AMERICAN" -> {
+                    AMERICAN -> {
                         when (passedGame!!.userBallsPlayed) {
                             "SOLIDS" -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.solid_ball_img)
@@ -175,9 +191,11 @@ class HistoryGameDetailsFragment : Fragment() {
             }
         }
 
-        return binding.root
     }
 
+    /**
+     * Sets certain elements for the fragment visible as this view is shared
+     */
     private fun formatPage() {
         binding.backButtonConstraint.visibility = View.VISIBLE
         binding.backButtonConstraint.setOnClickListener {
@@ -191,17 +209,14 @@ class HistoryGameDetailsFragment : Fragment() {
         binding.deleteButtonConstraint.visibility = View.VISIBLE
         binding.deleteButtonConstraint.setOnClickListener {
             removeGameWarningDialog()
-//            viewModel.removeGame(passedGame)
-//            NavigationUtils.navigateAndClearBackStack(
-//                findNavController(),
-//                R.id.action_historyGameDetailsFragment_to_historyFragment,
-//                R.id.historyGameDetailsFragment
-//            )
         }
 
         binding.footer.visibility = View.GONE
     }
 
+    /**
+     * Create a dialog for the deletion of a game
+     */
     private fun removeGameWarningDialog() {
         // Inflate the dialog layout
         val dialogView: View = LayoutInflater.from(requireContext()).inflate(R.layout.two_button_dialog, null)

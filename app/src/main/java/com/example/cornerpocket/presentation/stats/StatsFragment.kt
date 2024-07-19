@@ -15,15 +15,20 @@ import com.example.cornerpocket.Utils.FilterFunctions
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.databinding.FragmentStatsBinding
+import com.example.cornerpocket.models.AMERICAN
+import com.example.cornerpocket.models.ENGLISH
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.viewModels.FilterViewModel
 import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.launch
 
 class StatsFragment : Fragment() {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentStatsBinding? = null
     private val binding get() = _binding!!
     private val filterViewModel: FilterViewModel by viewModels()
+    //endregion
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentStatsBinding.inflate(inflater, container, false)
 
@@ -58,7 +63,6 @@ class StatsFragment : Fragment() {
                 formatStatSections()
             }
         }
-
 
     }
 
@@ -238,7 +242,7 @@ class StatsFragment : Fragment() {
                     binding.ballStatistics.parentConstraint.visibility = View.GONE
                 }
 
-                "ENGLISH" -> {
+                ENGLISH -> {
                     binding.ballStatistics.parentConstraint.visibility = View.VISIBLE
 
                     //region RED BALLS
@@ -286,7 +290,7 @@ class StatsFragment : Fragment() {
                     //endregion
                 }
 
-                "AMERICAN" -> {
+                AMERICAN -> {
                     binding.ballStatistics.parentConstraint.visibility = View.VISIBLE
 
                     //region SOLID BALLS
@@ -343,16 +347,6 @@ class StatsFragment : Fragment() {
             binding.ballStatistics.parentConstraint.visibility = View.GONE
         }
 
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.i("SF", "onCreate called")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i("SF", "onDestroy called")
     }
 
 }

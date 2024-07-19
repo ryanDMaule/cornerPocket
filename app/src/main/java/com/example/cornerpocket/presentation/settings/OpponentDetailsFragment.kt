@@ -47,14 +47,16 @@ import java.util.Date
 import java.util.Locale
 
 class OpponentDetailsFragment : Fragment() {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentOpponentDetailsBinding? = null
     private val binding get() = _binding!!
 
     private val vm: PlayViewModel by viewModels()
 
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var opponentsAdapter: OpponentSelectorAdapter
+    //endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentOpponentDetailsBinding.inflate(inflater, container, false)
@@ -351,7 +353,6 @@ class OpponentDetailsFragment : Fragment() {
         dialog.show()
     }
 
-
     //region IMAGE HANDLING
     private fun showPhotoAlertDialog() {
         val builder = AlertDialog.Builder(requireContext())
@@ -469,11 +470,10 @@ class OpponentDetailsFragment : Fragment() {
                 opponentImage?.setImageBitmap(croppedImage)
             }
         } else {
-            Toast.makeText(requireContext(), "Cropping failed: ${result.error?.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.cropping_failed), Toast.LENGTH_SHORT).show()
         }
     }
 
     //endregion
-
 
 }

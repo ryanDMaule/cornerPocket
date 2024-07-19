@@ -15,9 +15,12 @@ import com.example.cornerpocket.databinding.FragmentIntroBinding
 import com.example.cornerpocket.viewModels.UserViewModel
 
 class IntroFragment : Fragment() {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentIntroBinding? = null
     private val binding get() = _binding!!
     private val userViewModel: UserViewModel by viewModels()
+    //endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentIntroBinding.inflate(inflater, container, false)

@@ -14,18 +14,32 @@ import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.NavigationUtils
+import com.example.cornerpocket.databinding.FragmentBreakSelectionBinding
 import com.example.cornerpocket.databinding.FragmentGameDetailsBinding
+import com.example.cornerpocket.models.AMERICAN
 import com.example.cornerpocket.models.EIGHT_BALl
+import com.example.cornerpocket.models.ENGLISH
+import com.example.cornerpocket.models.RED
+import com.example.cornerpocket.models.YELLOW
 import com.example.cornerpocket.viewModels.PlayViewModel
 
 class GameDetailsFragment : Fragment() {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentGameDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: PlayViewModel by navGraphViewModels(R.id.gameGraph)
+    //endregion
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGameDetailsBinding.inflate(inflater, container, false)
+
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //region BACK PRESS
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -106,9 +120,9 @@ class GameDetailsFragment : Fragment() {
             if (game.subType == EIGHT_BALl){
                 //BALLS PLAYED
                 when (game.gameType) {
-                    "ENGLISH" -> {
+                    ENGLISH -> {
                         when (game.userBallsPlayed) {
-                            "RED" -> {
+                            RED -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.red_ball_img)
                                 binding.userBallsPlayedText.text = getString(R.string.red)
 
@@ -116,7 +130,7 @@ class GameDetailsFragment : Fragment() {
                                 binding.opponentBallsPlayedText.text = getString(R.string.yellow)
                             }
 
-                            "YELLOW" -> {
+                            YELLOW -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.yellow_ball_img)
                                 binding.userBallsPlayedText.text = getString(R.string.yellow)
 
@@ -129,7 +143,7 @@ class GameDetailsFragment : Fragment() {
                             }
                         }
                     }
-                    "AMERICAN" -> {
+                    AMERICAN -> {
                         when (game.userBallsPlayed) {
                             "SOLIDS" -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.solid_ball_img)
@@ -168,7 +182,5 @@ class GameDetailsFragment : Fragment() {
 
         }
 
-
-        return binding.root
     }
 }

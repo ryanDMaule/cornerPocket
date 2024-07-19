@@ -18,13 +18,23 @@ import com.example.cornerpocket.viewModels.PlayViewModel
 
 class GameUnderwayFragment : Fragment() {
 
+    //region GLOBAL VARIABLES
+
     private var _binding : FragmentGameUnderwayBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: PlayViewModel by navGraphViewModels(R.id.gameGraph)
+    //endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGameUnderwayBinding.inflate(inflater, container, false)
+
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //region BACK PRESS
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -74,8 +84,6 @@ class GameUnderwayFragment : Fragment() {
             )
         }
 
-
-        return binding.root
     }
 
 }

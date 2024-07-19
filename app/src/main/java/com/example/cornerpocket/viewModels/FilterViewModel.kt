@@ -6,6 +6,8 @@ import com.example.cornerpocket.Repositories.GameRepository
 import com.example.cornerpocket.Repositories.OpponentRepository
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
+import com.example.cornerpocket.models.RED
+import com.example.cornerpocket.models.YELLOW
 import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.flow.Flow
 import org.mongodb.kbson.ObjectId
@@ -117,7 +119,7 @@ class FilterViewModel : ViewModel() {
     fun getGamesWithRedBalls(list : MutableList<Game>) : MutableList<Game> {
         val filteredList: MutableList<Game> = mutableListOf()
         list.forEach {
-            if (it.userBallsPlayed == "RED") {
+            if (it.userBallsPlayed == RED) {
                 filteredList.add(it)
             }
         }
@@ -127,7 +129,7 @@ class FilterViewModel : ViewModel() {
     fun getGamesWithYellowBalls(list : MutableList<Game>) : MutableList<Game> {
         val filteredList: MutableList<Game> = mutableListOf()
         list.forEach {
-            if (it.userBallsPlayed == "YELLOW") {
+            if (it.userBallsPlayed == YELLOW) {
                 filteredList.add(it)
             }
         }

@@ -173,5 +173,16 @@
     <string name="opponent_deleted">Opponent deleted</string>
     <string name="user_updated">User updated</string>
     <string name="create_account">Create account</string>
+    <string name="win">Win</string>
+    <string name="loss">Loss</string>
+    <string name="all">All</string>
+    <string name="select_a_player_to_break">Select a player to break</string>
+    <string name="standard_victory">Standard victory</string>
+    <string name="opponent_foul">Opponent foul</string>
+    <string name="please_fill_in_all_fields">PLEASE FILL IN ALL FIELDS</string>
+    <string name="please_select_the_winner_of_the_game">PLEASE SELECT THE WINNER OF THE GAME</string>
+    <string name="please_select_the_method_of_victory">PLEASE SELECT THE METHOD OF VICTORY</string>
+    <string name="please_select_which_balls_you_played_as">PLEASE SELECT WHICH BALLS YOU PLAYED AS</string>
+    <string name="cropping_failed">Cropping failed: %1$s</string>
 
 </resources>

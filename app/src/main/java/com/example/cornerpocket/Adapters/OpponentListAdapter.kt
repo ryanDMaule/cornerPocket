@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.example.cornerpocket.R
 import com.example.cornerpocket.models.Opponent
 
 class OpponentListAdapter(context: Context, private val opponentList: MutableList<Opponent>) :
     ArrayAdapter<Opponent>(context, android.R.layout.simple_list_item_1, opponentList) {
 
-    private val allItem = Opponent().apply { name = "All" }
+    private val allItem = Opponent().apply { name = context.getString(R.string.all) }
 
     init {
         setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

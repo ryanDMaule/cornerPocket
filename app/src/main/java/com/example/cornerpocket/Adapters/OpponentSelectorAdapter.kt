@@ -31,6 +31,7 @@ class OpponentSelectorAdapter(private var opponents: MutableList<Opponent>, var 
         return opponents.size
     }
 
+    //Used for removing the tick icon from the previously selected opponent
     private var previousPositionIndex : Int? = null
 
     override fun onBindViewHolder(holder: OpponentsViewHolder, @SuppressLint("RecyclerView") position: Int) {
@@ -54,7 +55,11 @@ class OpponentSelectorAdapter(private var opponents: MutableList<Opponent>, var 
 
         }
 
+        /**
+         * If there is a previously selected item, deselect it and update the var
+         */
         holder.itemView.setOnClickListener {
+            //Pass back the opponent so the on click listener in the fragment can use it
             onItemClicked?.invoke(opponents[position])
 
             if (previousPositionIndex != null){

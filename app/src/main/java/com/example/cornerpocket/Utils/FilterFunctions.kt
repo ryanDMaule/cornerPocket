@@ -13,7 +13,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.viewModelScope
 import com.example.cornerpocket.Adapters.OpponentListAdapter
 import com.example.cornerpocket.R
+import com.example.cornerpocket.models.AMERICAN
 import com.example.cornerpocket.models.EIGHT_BALl
+import com.example.cornerpocket.models.ENGLISH
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.NINE_BALl
 import com.example.cornerpocket.models.Opponent
@@ -46,7 +48,7 @@ class FilterFunctions {
                             val selectedPerson = adapter.getItem(i) as? Opponent
                             selectedPerson?.let {
                                 actv.setText(it.name, false) // Display only the name
-                                if (selectedPerson.name == "All") {
+                                if (selectedPerson.name == context.getString(R.string.all)) {
                                     selectedOpponent = null
                                 } else {
                                     // Handle the selectedPerson object
@@ -128,19 +130,21 @@ class FilterFunctions {
             dialog.setContentView(view)
             return dialog
         }
+
         fun getSelectedRadioButtonText(radioGroup: RadioGroup): String {
             val selectedRadioButtonId = radioGroup.checkedRadioButtonId
             val selectedRadioButton = radioGroup.findViewById<RadioButton>(selectedRadioButtonId)
             return selectedRadioButton.text.toString()
         }
+
         fun getGameTypeRadioResult(selectedOption : String) : String? {
             return when(selectedOption.uppercase()){
-                "ENGLISH" -> {
-                    "ENGLISH"
+                ENGLISH -> {
+                    ENGLISH
                 }
 
-                "AMERICAN" -> {
-                    "AMERICAN"
+                AMERICAN -> {
+                    AMERICAN
                 }
 
                 "BOTH" -> {

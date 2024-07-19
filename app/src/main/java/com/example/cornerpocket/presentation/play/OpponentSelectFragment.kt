@@ -48,8 +48,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
 class OpponentSelectFragment : Fragment()  {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentOpponentSelectBinding? = null
     private val binding get() = _binding!!
 
@@ -57,9 +58,17 @@ class OpponentSelectFragment : Fragment()  {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var opponentsAdapter: OpponentSelectorAdapter
+    //endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentOpponentSelectBinding.inflate(inflater, container, false)
+
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //region BACK PRESS
         binding.backButton.setOnClickListener {
@@ -160,7 +169,6 @@ class OpponentSelectFragment : Fragment()  {
             dialog.show()
         }
 
-        return binding.root
     }
 
     private fun editOpponentWarningDialog(ssd : SideSheetDialog) {
@@ -204,7 +212,7 @@ class OpponentSelectFragment : Fragment()  {
 
     private fun createOpponent(textInput : TextInputEditText, dialog : SideSheetDialog){
         if(textInput.text?.isBlank() == true){
-            Toast.makeText(requireContext(), "PLEASE ENTER A NAME", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.please_enter_a_name), Toast.LENGTH_SHORT).show()
         } else {
             //add to realm db
             viewModel.viewModelScope.launch {
@@ -273,15 +281,15 @@ class OpponentSelectFragment : Fragment()  {
     //region IMAGE HANDLING
     private fun showPhotoAlertDialog() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Add photo")
-        builder.setMessage("Use photo from: ")
+        builder.setTitle(R.string.add_photo)
+        builder.setMessage(R.string.use_photo_from)
 
-        builder.setPositiveButton("camera") { dialog, _ ->
+        builder.setPositiveButton(R.string.camera) { dialog, _ ->
             requestPermissionLauncherCamera.launch(Manifest.permission.CAMERA)
             dialog.dismiss()
         }
 
-        builder.setNegativeButton("Camera roll") { dialog, _ ->
+        builder.setNegativeButton(R.string.camera_roll) { dialog, _ ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncherMedia.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {
@@ -387,7 +395,7 @@ class OpponentSelectFragment : Fragment()  {
                 opponentImage?.setImageBitmap(croppedImage)
             }
         } else {
-            Toast.makeText(requireContext(), "Cropping failed: ${result.error?.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.cropping_failed, result.error?.message), Toast.LENGTH_SHORT).show()
         }
     }
 

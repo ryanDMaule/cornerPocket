@@ -13,8 +13,11 @@ import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.databinding.FragmentDonationsBinding
 
 class DonationsFragment : Fragment() {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentDonationsBinding? = null
     private val binding get() = _binding!!
+    //endregion
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDonationsBinding.inflate(inflater, container, false)
 
@@ -38,7 +41,7 @@ class DonationsFragment : Fragment() {
         //endregion
 
         // TODO: needs to be tested with actual build
-       binding.ratingBtn.setOnClickListener {
+        binding.ratingBtn.setOnClickListener {
            HelperFunctions.promptUserForReview(requireActivity())
        }
 

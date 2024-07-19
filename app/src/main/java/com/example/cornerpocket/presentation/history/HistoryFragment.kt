@@ -26,6 +26,7 @@ import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment() {
+    //region GLOBAL VARIABLES
     private var _binding : FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
@@ -33,6 +34,7 @@ class HistoryFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var historyAdapter: GameHistoryAdapter
+    //endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
@@ -45,6 +47,10 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //region BACK PRESS
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().popBackStack()
@@ -52,17 +58,12 @@ class HistoryFragment : Fragment() {
         })
         //endregion
 
-
         // TODO: if the if is brought back in then the dialog and its filters will be retained when navigating back from the details fragment
         //  but future searches will not update the recycler view
 //        if (filterViewModel.filtersDialog == null){
             filterViewModel.filtersDialog = createFiltersDialog(context = requireContext(), li = layoutInflater, vm = filterViewModel)
             dialogButtonsHandling()
 //        }
-
-        binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         filterViewModel.viewModelScope.launch {
             filterViewModel.getGames().collect { gamesList ->
@@ -82,6 +83,15 @@ class HistoryFragment : Fragment() {
         }
 
     }
+
+    /**
+     * This will reset the filtered game list
+     * Reset the selected opponent
+     * Create a new filter dialog to remove all set filters
+     * Then repopulate the recycler view with the original unfiltered game list
+     *
+     * @param dialog used to dismiss the dialog when finished.
+     */
     private fun resetDialogFilterLogic(dialog : SideSheetDialog) {
         filterViewModel.filteredGameList = null
         FilterFunctions.selectedOpponent = null
@@ -92,6 +102,9 @@ class HistoryFragment : Fragment() {
         dialog.dismiss()
     }
 
+    /**
+     * Handles the dialog buttons unique to this fragment, the rest is handled in DialogUtils
+     */
     private fun dialogButtonsHandling(){
         val btnResetFilters = FilterFunctions.btnResetFilters
         btnResetFilters?.setOnClickListener {
@@ -104,6 +117,13 @@ class HistoryFragment : Fragment() {
         }
     }
 
+    /**
+     * Creates the filtered list based on the applied filters
+     * populates the recycler with this list
+     * and saves the list to the filterViewModel
+     *
+     * @param dialog used to dismiss the dialog when finished.
+     */
     private fun applyFilterLogic(dialog : SideSheetDialog){
         val filteredList = createFilterList(dialog, filterViewModel)
 
@@ -114,6 +134,13 @@ class HistoryFragment : Fragment() {
 
         dialog.dismiss()
     }
+
+    /**
+     * Populates the recycler with a passed List
+     * Handles the onClick for any of the items in the recycler
+     *
+     * @param list The passed List of Games used to populate the recycler
+     */
     private fun populateGamesAdapter(list : MutableList<Game>) {
         try {
             recyclerView = binding.historyRecycler
@@ -138,16 +165,6 @@ class HistoryFragment : Fragment() {
         } catch (e : Exception) {
             Log.e("HF", "EXCEPTION CAUGHT : $e")
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.e("HF", "onCreate called")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("HF", "onDestroy called")
     }
 
 }

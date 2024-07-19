@@ -26,6 +26,7 @@ import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.ImageUtils
+import com.example.cornerpocket.databinding.FragmentOpponentDetailsBinding
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
 import com.example.cornerpocket.viewModels.UserViewModel
 import kotlinx.coroutines.launch
@@ -36,13 +37,24 @@ import java.util.Date
 import java.util.Locale
 
 class UserDetailsFragment : Fragment() {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentUserDetailsBinding? = null
     private val binding get() = _binding!!
 
     private val userViewModel: UserViewModel by viewModels()
+    //endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
+
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //region BACK PRESS
         binding.backButton.setOnClickListener {
@@ -86,22 +98,21 @@ class UserDetailsFragment : Fragment() {
             }
         }
 
-        return binding.root
     }
 
     //region PHOTO FUNCTIONS
 
     private fun showPhotoAlertDialog() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Add photo")
-        builder.setMessage("Use photo from: ")
+        builder.setTitle(R.string.add_photo)
+        builder.setMessage(R.string.use_photo_from)
 
-        builder.setPositiveButton("camera") { dialog, _ ->
+        builder.setPositiveButton(R.string.camera) { dialog, _ ->
             requestPermissionLauncherCamera.launch(Manifest.permission.CAMERA)
             dialog.dismiss()
         }
 
-        builder.setNegativeButton("Camera roll") { dialog, _ ->
+        builder.setNegativeButton(R.string.camera_roll) { dialog, _ ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncherMedia.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {
@@ -218,7 +229,7 @@ class UserDetailsFragment : Fragment() {
                 }
             }
         } else {
-            Toast.makeText(requireContext(), "Cropping failed: ${result.error?.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.cropping_failed), Toast.LENGTH_SHORT).show()
         }
     }
 

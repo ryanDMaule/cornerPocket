@@ -1,9 +1,7 @@
 package com.example.cornerpocket.presentation
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,30 +9,33 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.cornerpocket.Activities.MainActivity
 import com.example.cornerpocket.Activities.PdfActivity
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.databinding.FragmentHomeBinding
 import com.example.cornerpocket.viewModels.UserViewModel
-import java.io.IOException
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.Date
 
-
 class HomeFragment : Fragment() {
+
+    //region GLOBAL VARIABLES
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val userViewModel: UserViewModel by viewModels()
+    //endregion
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         //region BACK PRESS
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -85,17 +86,6 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_playFragment_to_donationsFragment)
         }
 
-        return binding.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d("PF", "onCreate called")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("PF", "onDestroy called")
     }
 
 }
