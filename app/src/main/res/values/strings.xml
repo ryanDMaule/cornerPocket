@@ -109,7 +109,8 @@
     <string name="view">View</string>
 
     <!-- VARIABLE STRINGS -->
-    <string name="var_listResults">%1$s results</string>
+    <string name="var_listResults">%1$s result(s)</string>
+    <string name="var_opponentsCounter">%1$s opponent(s)</string>
     <string name="var_gameType">Game type : %1$s %2$s</string>
     <string name="var_gameDuration">Game duration : %1$s</string>
     <string name="var_double">%1$s %2$s</string>

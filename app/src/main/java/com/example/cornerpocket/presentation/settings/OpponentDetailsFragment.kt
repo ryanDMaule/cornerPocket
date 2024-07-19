@@ -88,6 +88,8 @@ class OpponentDetailsFragment : Fragment() {
 
         vm.viewModelScope.launch {
             vm.getOpponents().collect{ opponentList ->
+                binding.resultsCounterText.text = getString(R.string.var_opponentsCounter, opponentList.size.toString())
+
                 opponentsAdapter = OpponentSelectorAdapter(opponentList, requireContext(),
                     R.id.opponentDetailsFragment
                 )

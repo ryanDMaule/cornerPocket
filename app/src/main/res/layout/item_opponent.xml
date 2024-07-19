@@ -2,34 +2,40 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="150dp"
     tools:background="@color/dark_primary"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/tvOpponentName"
         style="@style/p"
-        android:textSize="12sp"
-        android:textAllCaps="true"
-        android:textAlignment="center"
         android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:gravity="bottom"
+        android:textAllCaps="true"
+        android:textSize="12sp"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toTopOf="@+id/ivOpponentImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
-        tools:text="Name" />
+        tools:text="xxxxxxxxxxxxxxxxxxxx" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivOpponentImage"
         style="@style/opponentIcon"
-        android:layout_marginTop="8dp"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        app:strokeWidth="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/user_icon_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvOpponentName" />
+        app:strokeWidth="2dp" />
 
     <ImageView
         android:id="@+id/ivSelectedItem"
@@ -39,7 +45,8 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOpponentName"
-        tools:visibility="visible"/>
+        tools:visibility="visible"
+        android:contentDescription="@string/image_description" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
