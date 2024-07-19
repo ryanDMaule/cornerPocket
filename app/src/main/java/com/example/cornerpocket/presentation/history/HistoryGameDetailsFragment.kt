@@ -25,6 +25,8 @@ import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.ENGLISH
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.RED
+import com.example.cornerpocket.models.SPOT
+import com.example.cornerpocket.models.STRIPE
 import com.example.cornerpocket.models.YELLOW
 import com.example.cornerpocket.viewModels.PlayViewModel
 import com.google.android.material.button.MaterialButton
@@ -155,7 +157,7 @@ class HistoryGameDetailsFragment : Fragment() {
                     }
                     AMERICAN -> {
                         when (passedGame!!.userBallsPlayed) {
-                            "SOLIDS" -> {
+                            SPOT -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.solid_ball_img)
                                 binding.userBallsPlayedText.text = getString(R.string.spot)
 
@@ -163,7 +165,7 @@ class HistoryGameDetailsFragment : Fragment() {
                                 binding.opponentBallsPlayedText.text = getString(R.string.stripe)
                             }
 
-                            "STRIPES" -> {
+                            STRIPE -> {
                                 binding.userBallsPlayed.setImageResource(R.drawable.stripe_ball_img)
                                 binding.userBallsPlayedText.text = getString(R.string.stripe)
 

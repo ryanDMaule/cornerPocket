@@ -23,6 +23,8 @@ import com.example.cornerpocket.models.EIGHT_BALl
 import com.example.cornerpocket.models.ENGLISH
 import com.example.cornerpocket.models.NINE_BALl
 import com.example.cornerpocket.models.RED
+import com.example.cornerpocket.models.SPOT
+import com.example.cornerpocket.models.STRIPE
 import com.example.cornerpocket.models.YELLOW
 import com.example.cornerpocket.viewModels.PlayViewModel
 
@@ -177,7 +179,7 @@ class GameReviewFragment : Fragment() {
             val ballsPlayed = viewModel.getUserBallsPlayed()
             Log.i("GRF", "ballsPlayed = $ballsPlayed")
 
-            if (ballsPlayed == YELLOW || ballsPlayed == "STRIPES" || ballsPlayed.isBlank()){
+            if (ballsPlayed == YELLOW || ballsPlayed == STRIPE || ballsPlayed.isBlank()){
                 ballsPlayed(redSolidBallsPlayed = true)
             }
         }
@@ -186,7 +188,7 @@ class GameReviewFragment : Fragment() {
             val ballsPlayed = viewModel.getUserBallsPlayed()
             Log.i("GRF", "ballsPlayed = $ballsPlayed")
 
-            if (ballsPlayed == RED || ballsPlayed == "SOLIDS" || ballsPlayed.isBlank()){
+            if (ballsPlayed == RED || ballsPlayed == SPOT || ballsPlayed.isBlank()){
                 ballsPlayed(redSolidBallsPlayed = false)
             }
         }
@@ -264,9 +266,9 @@ class GameReviewFragment : Fragment() {
             }
             AMERICAN -> {
                 if (redSolidBallsPlayed){
-                    viewModel.setUserBallsPlayed("SOLIDS")
+                    viewModel.setUserBallsPlayed(SPOT)
                 } else {
-                    viewModel.setUserBallsPlayed("STRIPES")
+                    viewModel.setUserBallsPlayed(STRIPE)
                 }
             }
             else -> {

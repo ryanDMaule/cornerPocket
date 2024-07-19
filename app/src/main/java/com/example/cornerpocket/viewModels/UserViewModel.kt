@@ -33,7 +33,7 @@ class UserViewModel : ViewModel()  {
             Log.e("UVM", "NO USER! INSERTING : ${user.name}")
             userRepository.insertUser(user = user)
         } else {
-            Log.e("UVM", "USER POPULATED : ${existingUser.name}")
+//            Log.e("UVM", "USER POPULATED : ${existingUser.name}")
         }
 
     }
@@ -42,7 +42,7 @@ class UserViewModel : ViewModel()  {
         Log.i("UVM", "init")
         val user = getUser()
         if (user != null){
-            Log.e("UVM", "USER POPULATED : ${user.name}")
+//            Log.e("UVM", "USER POPULATED : ${user.name}")
         } else {
 //            Log.e("UVM", "NO USER... CREATING NEW USER")
 //            viewModelScope.launch(Dispatchers.IO) {

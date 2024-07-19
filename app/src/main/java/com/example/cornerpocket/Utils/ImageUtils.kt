@@ -31,7 +31,7 @@ object ImageUtils {
 
     fun getImageFromLocalStorage(context : Context, path : String) : Uri? {
         val file = File(context.getExternalFilesDir(null), path)
-        Log.i("UDF", "FILE : $file")
+//        Log.i("UDF", "FILE : $file")
 
         return if (file.exists()) {
             Uri.fromFile(file)

@@ -1,7 +1,5 @@
 package com.example.cornerpocket.models
 
-import android.content.res.Resources
-import com.example.cornerpocket.R
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.Index
 import io.realm.kotlin.types.annotations.PrimaryKey
@@ -33,8 +31,3 @@ const val STRIPE = "STRIPE"
 const val ENGLISH = "ENGLISH"
 const val RED = "RED"
 const val YELLOW = "YELLOW"
-
-enum class victoryMethods {
-    STANDARD_VICTORY,
-    OPPONENT_FOUL
-}

@@ -7,6 +7,8 @@ import com.example.cornerpocket.Repositories.OpponentRepository
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.models.Opponent
 import com.example.cornerpocket.models.RED
+import com.example.cornerpocket.models.SPOT
+import com.example.cornerpocket.models.STRIPE
 import com.example.cornerpocket.models.YELLOW
 import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.flow.Flow
@@ -139,7 +141,7 @@ class FilterViewModel : ViewModel() {
     fun getGamesWithSolidBalls(list : MutableList<Game>) : MutableList<Game> {
         val filteredList: MutableList<Game> = mutableListOf()
         list.forEach {
-            if (it.userBallsPlayed == "SOLIDS") {
+            if (it.userBallsPlayed == SPOT) {
                 filteredList.add(it)
             }
         }
@@ -149,7 +151,7 @@ class FilterViewModel : ViewModel() {
     fun getGamesWithStripedBalls(list : MutableList<Game>) : MutableList<Game> {
         val filteredList: MutableList<Game> = mutableListOf()
         list.forEach {
-            if (it.userBallsPlayed == "STRIPES") {
+            if (it.userBallsPlayed == STRIPE) {
                 filteredList.add(it)
             }
         }
