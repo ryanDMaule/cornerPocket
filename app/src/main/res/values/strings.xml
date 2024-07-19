@@ -139,6 +139,7 @@
     <string name="delete_opponent">Delete opponent?</string>
     <string name="abandon_changes">Abandon changes?</string>
     <string name="unsaved_changes_content">All your changes are currently unsaved, are you sure you want to close?</string>
+    <string name="unsaved_changes_content_exit">All your changes are currently unsaved, are you sure you want to exit?</string>
     <string name="add_photo">Add photo</string>
     <string name="use_photo_from">"Use photo from: "</string>
     <string name="camera">Camera</string>
@@ -194,5 +195,6 @@
     <string name="donation_subheading">Hi, I\'m Ryan and I made this app</string>
     <string name="review">Review</string>
     <string name="donate">Donate</string>
+    <string name="no_details_updated">No details updated</string>
 
 </resources>

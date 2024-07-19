@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -13,6 +15,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,6 +32,8 @@ import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.databinding.FragmentOpponentDetailsBinding
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
 import com.example.cornerpocket.viewModels.UserViewModel
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
@@ -58,12 +63,26 @@ class UserDetailsFragment : Fragment() {
 
         //region BACK PRESS
         binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
+            if (unCroppedImage == null &&
+                croppedImage == null &&
+                binding.inputTextName.text.isNullOrBlank())
+            {
+                findNavController().popBackStack()
+            } else {
+                editOpponentWarningDialog()
+            }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().popBackStack()
+                if (unCroppedImage == null &&
+                    croppedImage == null &&
+                    binding.inputTextName.text.isNullOrBlank())
+                {
+                    findNavController().popBackStack()
+                } else {
+                    editOpponentWarningDialog()
+                }
             }
         })
         //endregion
@@ -84,24 +103,61 @@ class UserDetailsFragment : Fragment() {
 
         binding.applyBtn.setOnClickListener {
             userViewModel.viewModelScope.launch {
+
                 val updatedName = binding.inputTextName.text.toString()
-                if (updatedName.isNotBlank()){
-                    userViewModel.updateUser(updatedName)
-                    val updatedUser = userViewModel.getUser()
-                    if (updatedUser != null){
-                        binding.userNameTv.text = updatedUser.name
+                if (updatedName.isNotBlank() || croppedImage != null || unCroppedImage != null){
+                    if (updatedName.isNotBlank()){
+                        userViewModel.updateUser(updatedName)
+
+                        val updatedUser = userViewModel.getUser()
+                        if (updatedUser != null){
+                            binding.userNameTv.text = updatedUser.name
+                        }
                     }
+
+                    if (croppedImage != null) {
+                        //get opponent and use _id to store cropped image
+                        ImageUtils.saveCroppedImageToLocalStorage(
+                            requireContext(),
+                            croppedImage!!,
+                            user?._id.toString()
+                        )
+
+                    } else if (unCroppedImage != null) {
+                        //get opponent and use _id to store un cropped image
+                        ImageUtils.saveImageToLocalStorage(
+                            requireContext(),
+                            unCroppedImage!!,
+                            user?._id.toString()
+                        )
+                    }
+
+                    clearFields()
                     Toast.makeText(context, getString(R.string.user_updated), Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(requireActivity(), getString(R.string.please_enter_a_name), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(),
+                        getString(R.string.no_details_updated), Toast.LENGTH_SHORT).show()
                 }
+
             }
         }
 
     }
 
+    /**
+     * Clears the fields that prompt for the warning dialog to appear
+     * called when updating the user so it doesnt display the warning dialog after changes are made
+     */
+    private fun clearFields(){
+        unCroppedImage = null
+        croppedImage = null
+        binding.inputTextName.text?.clear()
+    }
+
     //region PHOTO FUNCTIONS
 
+    private var croppedImage : Bitmap? = null
+    private var unCroppedImage : Uri? = null
     private fun showPhotoAlertDialog() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(R.string.add_photo)
@@ -182,12 +238,8 @@ class UserDetailsFragment : Fragment() {
         if (requestCode == ImageUtils.PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             val imageUri = data.data
             imageUri?.let {
-                val user = userViewModel.getUser()
-                if (user != null){
-                    val path = user._id.toString()
-                    ImageUtils.saveImageToLocalStorage(requireContext(), it, path)
-                }
                 binding.userImage.setImageURI(it)
+                unCroppedImage = it
 
                 try {
                     ImageUtils.startCropActivity(it, cropImageLauncher)
@@ -202,6 +254,7 @@ class UserDetailsFragment : Fragment() {
             val file = File(currentPhotoPath)
             if (file.exists()) {
                 val uri = Uri.fromFile(file)
+                unCroppedImage = uri
                 binding.userImage.setImageURI(uri)
                 ImageUtils.startCropActivity(uri, cropImageLauncher)
             } else {
@@ -214,18 +267,9 @@ class UserDetailsFragment : Fragment() {
         if (result.isSuccessful) {
             val cropResult = result.uriContent
             cropResult?.let { uri ->
-                val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
                 lifecycleScope.launch {
-                    val user = userViewModel.getUser()
-                    if (user != null){
-                        val path = user._id.toString()
-                        ImageUtils.saveCroppedImageToLocalStorage(
-                            requireContext(),
-                            bitmap,
-                            binding.userImage,
-                            path
-                        )
-                    }
+                    croppedImage = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
+                    binding.userImage.setImageBitmap(croppedImage)
                 }
             }
         } else {
@@ -234,5 +278,44 @@ class UserDetailsFragment : Fragment() {
     }
 
     //endregion
+
+    private fun editOpponentWarningDialog() {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(requireContext()).inflate(R.layout.two_button_dialog, null)
+
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        // Initialize dialog views
+        val dialogTitle: TextView = dialogView.findViewById(R.id.dialog_title)
+        val dialogDescription: TextView = dialogView.findViewById(R.id.dialog_description)
+        val dialogButton1: MaterialButton = dialogView.findViewById(R.id.dialog_button_1)
+        val dialogButton2: MaterialButton = dialogView.findViewById(R.id.dialog_button_2)
+
+        dialogTitle.text = getString(R.string.abandon_changes)
+        dialogDescription.text = getString(R.string.unsaved_changes_content_exit)
+        dialogButton1.text = getString(R.string.cancel)
+        dialogButton2.text = getString(R.string.exit)
+
+        dialogButton1.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogButton2.setOnClickListener {
+            unCroppedImage = null
+            croppedImage = null
+
+            dialog.dismiss()
+            findNavController().popBackStack()
+        }
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Show the dialog
+        dialog.show()
+    }
 
 }
