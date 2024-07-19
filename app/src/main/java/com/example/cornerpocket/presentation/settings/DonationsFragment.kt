@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
+import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.databinding.FragmentDonationsBinding
 
@@ -39,6 +40,9 @@ class DonationsFragment : Fragment() {
             }
         })
         //endregion
+
+        HelperFunctions.setTextColorSection(requireContext(), binding.subheading, binding.subheading.text.toString(), "Ryan", R.color.cyan)
+
 
         // TODO: needs to be tested with actual build
         binding.ratingBtn.setOnClickListener {

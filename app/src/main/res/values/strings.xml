@@ -184,5 +184,15 @@
     <string name="please_select_the_method_of_victory">PLEASE SELECT THE METHOD OF VICTORY</string>
     <string name="please_select_which_balls_you_played_as">PLEASE SELECT WHICH BALLS YOU PLAYED AS</string>
     <string name="cropping_failed">Cropping failed: %1$s</string>
+    <string name="donation_text">First of all thank you for downloading the app! I hope you get some use out of it.
+        \n\nVery brief backstory! Ive had this idea in the back of my mind since my 2nd year of uni in 2019 or so. I learned that going to the pub, playing pool and drinking made it much easier to tolerate people talking to me about computer science.
+        I used to play at least five games a day and I tracked my wins and losses against my mates but started to wonder about some more advanced stats, do I win more when I break? am I better with red balls or yellow balls? etc … and here we are!
+        \n\nI wanted to make something simple that just did its job and didn\'t need your email address or your mothers maiden name to use.
+        \n\nI made this app mostly because I wanted to but also to show to potential employers. With this in mind if you did want to support me, leaving a rating on the play-store would help massively.
+        \n\nIf you wanted to chuck a quid my way there is a link below which will take you to my ‘buy me a coffee’ page. Please in no way feel obligated! I wanted this app to be free and not have annoying ads.
+        \n\nThanks again and have a good game!</string>
+    <string name="donation_subheading">Hi, I\'m Ryan and I made this app</string>
+    <string name="review">Review</string>
+    <string name="donate">Donate</string>
 
 </resources>
