@@ -50,8 +50,7 @@ class DonationsFragment : Fragment() {
        }
 
         binding.donationBtn.setOnClickListener {
-            // TODO: replace with buy me a coffee link
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://buymeacoffee.com/ryanmaule"))
             startActivity(i)
         }
 
