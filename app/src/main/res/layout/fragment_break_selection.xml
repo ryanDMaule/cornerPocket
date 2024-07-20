@@ -180,6 +180,7 @@
                 style="@style/p"
                 android:text="@string/break_description"
                 android:textAlignment="center"
+                android:paddingBottom="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -196,6 +197,53 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/info_section_constraint">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/players_constraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    style="@style/h4"
+                    android:layout_width="0dp"
+                    android:gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_primary_60"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toStartOf="@+id/middleGuideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Ryan\nMaule" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/middleGuideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/tvOpponentName"
+                    style="@style/h4"
+                    android:layout_width="0dp"
+                    android:gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_primary_60"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/middleGuideline2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Kieron\nName" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <ImageView
                 android:id="@+id/user_break_icon"
                 android:layout_width="200dp"
@@ -203,25 +251,19 @@
                 android:contentDescription="@string/break_icon"
                 android:src="@drawable/break_icon_cut"
                 android:visibility="invisible"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/tv_user_name"
-                style="@style/h4"
-                android:background="@color/dark_primary_60"
-                app:layout_constraintBottom_toTopOf="@+id/user_icon"
-                app:layout_constraintEnd_toEndOf="@+id/user_icon"
-                app:layout_constraintStart_toStartOf="@+id/user_icon"
-                tools:text="Ryan" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/user_icon"
                 style="@style/userIcon"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="@string/user_icon_blue"
                 app:layout_constraintBottom_toBottomOf="@+id/user_break_icon"
                 app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
@@ -242,28 +284,21 @@
                 android:contentDescription="@string/break_icon"
                 android:src="@drawable/break_icon_cut"
                 android:visibility="invisible"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/middleGuideline"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvOpponentName"
-                style="@style/h4"
-                android:background="@color/dark_primary_60"
-                app:layout_constraintBottom_toTopOf="@+id/opponent_icon"
-                app:layout_constraintEnd_toEndOf="@+id/opponent_icon"
-                app:layout_constraintStart_toStartOf="@+id/opponent_icon"
-                tools:text="Kieron" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/opponent_icon"
                 style="@style/opponentIcon"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/opponent_break_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/middleGuideline"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

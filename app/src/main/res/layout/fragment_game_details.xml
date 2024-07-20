@@ -74,7 +74,7 @@
                         android:layout_height="80dp"
                         android:contentDescription="@string/crown"
                         android:src="@drawable/crown_img"
-                        android:visibility="gone"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="@+id/user_image"
                         app:layout_constraintStart_toStartOf="@+id/user_image"
                         app:layout_constraintTop_toTopOf="parent"
@@ -94,13 +94,16 @@
                     <TextView
                         android:id="@+id/user_text"
                         style="@style/h4"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="4dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:layout_marginTop="4dp"
-                        app:layout_constraintEnd_toEndOf="@+id/user_image"
-                        app:layout_constraintStart_toStartOf="@+id/user_image"
+                        app:layout_constraintEnd_toEndOf="@+id/user_crown"
+                        app:layout_constraintStart_toStartOf="@+id/user_crown"
                         app:layout_constraintTop_toBottomOf="@+id/user_image"
-                        tools:text="Ryan" />
+                        tools:text="Ryan\nMaule" />
 
                     <TextView
                         android:id="@+id/vs_text"
@@ -123,7 +126,7 @@
                         android:layout_height="80dp"
                         android:contentDescription="@string/crown"
                         android:src="@drawable/crown_img"
-                        android:visibility="gone"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="@+id/opponent_image"
                         app:layout_constraintStart_toStartOf="@+id/opponent_image"
                         app:layout_constraintTop_toTopOf="parent"
@@ -143,11 +146,14 @@
                     <TextView
                         android:id="@+id/opponent_text"
                         style="@style/h4"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="4dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:layout_marginTop="4dp"
-                        app:layout_constraintEnd_toEndOf="@+id/opponent_image"
-                        app:layout_constraintStart_toStartOf="@+id/opponent_image"
+                        app:layout_constraintEnd_toEndOf="@+id/opponent_crown"
+                        app:layout_constraintStart_toStartOf="@+id/opponent_crown"
                         app:layout_constraintTop_toBottomOf="@+id/opponent_image"
                         tools:text="Kieron" />
 
