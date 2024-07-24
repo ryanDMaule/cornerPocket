@@ -6,287 +6,303 @@
     android:background="@drawable/gradient_purple_blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".presentation.HomeFragment">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <!-- ACCOUNT BLOCK -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/account_block"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ScrollView
+        style="@style/scNoBars"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/user_icon"
-            style="@style/userIcon"
-            app:strokeWidth="1dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:contentDescription="@string/user_icon_blue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/date_TV"
-            style="@style/subTitle"
-            android:textAllCaps="false"
-            android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/user_name_TV"
-            app:layout_constraintStart_toEndOf="@+id/user_icon"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="17th July, 2024" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
-        <TextView
-            android:id="@+id/user_name_TV"
-            style="@style/p"
-            android:textColor="@color/white"
-            android:letterSpacing=".05"
-            android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/user_icon"
-            app:layout_constraintTop_toBottomOf="@+id/date_TV"
-            tools:text="Game time, Ryan" />
+            <!-- ACCOUNT BLOCK -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/account_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/user_icon"
+                    style="@style/userIcon"
+                    app:strokeWidth="1dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="@string/user_icon_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- PLAY GAME -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/play_CL"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:padding="16dp"
-        android:background="@drawable/cyan_border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_block">
+                <TextView
+                    android:id="@+id/date_TV"
+                    style="@style/subTitle"
+                    android:textAllCaps="false"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/user_name_TV"
+                    app:layout_constraintStart_toEndOf="@+id/user_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="17th July, 2024" />
 
-        <TextView
-            android:id="@+id/play_TV"
-            style="@style/h2"
-            android:letterSpacing=".2"
-            android:text="@string/play_game"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/user_name_TV"
+                    style="@style/p"
+                    android:textColor="@color/white"
+                    android:letterSpacing=".05"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/user_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/date_TV"
+                    tools:text="Game time, Ryan" />
 
-        <ImageView
-            android:id="@+id/play_IV"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/home_eight_ball"
-            android:contentDescription="@string/image_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/play_TV" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- PLAY GAME -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/play_CL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:padding="16dp"
+                android:background="@drawable/cyan_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/account_block">
 
-    <!-- GAMES HISTORY -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/history_CL"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/white_border"
-        android:padding="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play_CL">
+                <TextView
+                    android:id="@+id/play_TV"
+                    style="@style/h2"
+                    android:letterSpacing=".2"
+                    android:text="@string/play_game"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/history_TV"
-            style="@style/menuItems"
-            android:maxLines="2"
-            android:text="@string/games_history"
-            android:textAlignment="textStart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/play_IV"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/home_eight_ball"
+                    android:contentDescription="@string/image_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/play_TV" />
 
-        <ImageView
-            android:id="@+id/history_IV"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/home_history"
-            android:contentDescription="@string/image_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/history_TV" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- GAMES HISTORY -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/history_CL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_border"
+                android:padding="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/play_CL">
 
-    <!-- GAME STATISTICS -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/statistics_CL"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/white_border"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/play_CL">
+                <TextView
+                    android:id="@+id/history_TV"
+                    style="@style/menuItems"
+                    android:maxLines="2"
+                    android:text="@string/games_history"
+                    android:textAlignment="textStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/statistics_TV"
-            style="@style/menuItems"
-            android:maxLines="2"
-            android:text="@string/game_statistics"
-            android:textAlignment="textStart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/history_IV"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/home_history"
+                    android:contentDescription="@string/image_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/history_TV" />
 
-        <ImageView
-            android:id="@+id/statistics_IV"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/home_stats"
-            android:contentDescription="@string/image_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/statistics_TV" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- GAME STATISTICS -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/statistics_CL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/white_border"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/play_CL">
 
-    <!-- EDIT OPPONENTS -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/edit_opponents_CL"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/white_border"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/donations_CL"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/history_CL">
+                <TextView
+                    android:id="@+id/statistics_TV"
+                    style="@style/menuItems"
+                    android:maxLines="2"
+                    android:text="@string/game_statistics"
+                    android:textAlignment="textStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/edit_opponents_TV"
-            style="@style/menuItems"
-            android:maxLines="2"
-            android:text="@string/edit_opponents"
-            android:textAlignment="textStart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/statistics_IV"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/home_stats"
+                    android:contentDescription="@string/image_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/statistics_TV" />
 
-        <ImageView
-            android:id="@+id/edit_opponents_IV"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/home_opponent"
-            android:contentDescription="@string/image_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_opponents_TV" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- EDIT OPPONENTS -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/edit_opponents_CL"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/white_border"
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/donations_CL"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/history_CL">
 
-    <!-- LEARN MORE -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/learn_CL"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/white_border"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/history_CL">
+                <TextView
+                    android:id="@+id/edit_opponents_TV"
+                    style="@style/menuItems"
+                    android:maxLines="2"
+                    android:text="@string/edit_opponents"
+                    android:textAlignment="textStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/learn_TV"
-            style="@style/menuItems"
-            android:layout_marginStart="8dp"
-            android:text="@string/rules"
-            android:textAlignment="textStart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/learn_IV"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/edit_opponents_IV"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/home_opponent"
+                    android:contentDescription="@string/image_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_opponents_TV" />
 
-        <ImageView
-            android:id="@+id/learn_IV"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/home_info"
-            android:contentDescription="@string/image_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- LEARN MORE -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/learn_CL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/white_border"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/history_CL">
 
-    <!-- DONATIONS -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/donations_CL"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/white_border"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/learn_CL">
+                <TextView
+                    android:id="@+id/learn_TV"
+                    style="@style/menuItems"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/rules"
+                    android:textAlignment="textStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/learn_IV"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/donations_TV"
-            style="@style/menuItems"
-            android:layout_marginStart="8dp"
-            android:text="@string/donations"
-            android:textAlignment="textStart"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/donations_IV"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/learn_IV"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/home_info"
+                    android:contentDescription="@string/image_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/donations_IV"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/home_donations"
-            android:contentDescription="@string/image_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- DONATIONS -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/donations_CL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_border"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/learn_CL">
 
-    <!-- LOGO -->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_marginTop="16dp"
-        android:layout_width="100dp"
-        android:maxHeight="100dp"
-        android:layout_height="0dp"
-        android:src="@drawable/logo"
-        android:contentDescription="@string/image_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_opponents_CL" />
+                <TextView
+                    android:id="@+id/donations_TV"
+                    style="@style/menuItems"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/donations"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/donations_IV"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/donations_IV"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/home_donations"
+                    android:contentDescription="@string/image_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- LOGO -->
+<!--            <ImageView-->
+<!--                android:id="@+id/logo"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:maxHeight="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:src="@drawable/logo"-->
+<!--                android:contentDescription="@string/image_description"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/edit_opponents_CL" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

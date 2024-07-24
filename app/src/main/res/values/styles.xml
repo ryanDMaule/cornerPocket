@@ -200,6 +200,10 @@
         <item name="android:scrollbarTrackVertical">@color/dark_primary</item>
     </style>
 
+    <style name="scNoBars" parent="customScrollView">
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">false</item>
+    </style>
+
     <style name="circleImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
