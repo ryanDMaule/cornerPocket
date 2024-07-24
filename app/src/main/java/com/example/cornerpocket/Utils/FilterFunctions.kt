@@ -158,11 +158,11 @@ class FilterFunctions {
         }
         fun getSubTypeRadioResult(selectedOption : String) : String? {
             return when(selectedOption){
-                "8 Ball" -> {
+                "8-Ball" -> {
                     EIGHT_BALl
                 }
 
-                "9 Ball" -> {
+                "9-Ball" -> {
                     NINE_BALl
                 }
 
