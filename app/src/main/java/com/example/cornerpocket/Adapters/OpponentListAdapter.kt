@@ -45,5 +45,12 @@ class OpponentListAdapter(context: Context, private val opponentList: MutableLis
         return view
     }
 
+    fun selectItem(opponent: Opponent) {
+        opponentList.forEach {
+            if (it == opponent) {
+
+            }
+        }
+    }
 
 }

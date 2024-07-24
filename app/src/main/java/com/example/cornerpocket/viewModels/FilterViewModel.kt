@@ -1,5 +1,6 @@
 package com.example.cornerpocket.viewModels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.cornerpocket.MyApp
 import com.example.cornerpocket.Repositories.GameRepository
@@ -26,6 +27,38 @@ class FilterViewModel : ViewModel() {
     var filtersDialog : SideSheetDialog? = null
 
     //endregion
+
+    //region FILTER VALUES
+
+    var f_opponent : Opponent? = null
+    var f_gameType : String? = null
+    var f_discipline : String? = null
+    var f_results : String? = null
+    var f_gamesBreaking : String? = null
+    var f_order : String? = null
+
+    fun printStoredFilters(){
+        Log.e("FVM", "printStoredFilters")
+        Log.d("FVM", "OPPONENT : $f_opponent")
+        Log.d("FVM", "GAME TYPE : $f_gameType")
+        Log.d("FVM", "DISCIPLINE : $f_discipline")
+        Log.d("FVM", "RESULTS : $f_results")
+        Log.d("FVM", "GAMES BREAKING : $f_gamesBreaking")
+        Log.d("FVM", "ORDER : $f_order")
+    }
+
+    fun clearStoredFilters() {
+        Log.e("FVM", "clearStoredFilters")
+        f_opponent = null
+        f_gameType = null
+        f_discipline = null
+        f_results = null
+        f_gamesBreaking = null
+        f_order = null
+    }
+
+    //endregion
+
 
     private val gameRepository: GameRepository by lazy {
         GameRepository(realm)

@@ -48,32 +48,30 @@ class HistoryFragment : Fragment() {
 
         //region BACK PRESS
         binding.backButton.setOnClickListener {
+            clearStuffs()
             findNavController().popBackStack()
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                clearStuffs()
                 findNavController().popBackStack()
             }
         })
         //endregion
 
-        // TODO: if the if is brought back in then the dialog and its filters will be retained when navigating back from the details fragment
-        //  but future searches will not update the recycler view
-//        if (filterViewModel.filtersDialog == null){
-            filterViewModel.filtersDialog = createFiltersDialog(context = requireContext(), li = layoutInflater, vm = filterViewModel)
-            dialogButtonsHandling()
-//        }
+        filterViewModel.filtersDialog = createFiltersDialog(context = requireContext(), li = layoutInflater, vm = filterViewModel)
+        dialogButtonsHandling()
 
         filterViewModel.viewModelScope.launch {
             filterViewModel.getGames().collect { gamesList ->
                 filterViewModel.unfilteredGameList = gamesList
 
-//                if (filterViewModel.filteredGameList != null){
-//                    populateGamesAdapter(filterViewModel.filteredGameList!!)
-//                } else {
+                if (filterViewModel.filteredGameList != null){
+                    populateGamesAdapter(filterViewModel.filteredGameList!!)
+                } else {
                     populateGamesAdapter(filterViewModel.filterGamesByMostRecent(gamesList))
-//                }
+                }
 
             }
         }
@@ -93,13 +91,22 @@ class HistoryFragment : Fragment() {
      * @param dialog used to dismiss the dialog when finished.
      */
     private fun resetDialogFilterLogic(dialog : SideSheetDialog) {
-        filterViewModel.filteredGameList = null
-        FilterFunctions.selectedOpponent = null
+        clearStuffs()
+
         filterViewModel.filtersDialog = createFiltersDialog(requireContext(), layoutInflater, filterViewModel)
         dialogButtonsHandling()
 
         populateGamesAdapter(filterViewModel.unfilteredGameList!!)
         dialog.dismiss()
+    }
+
+    /**
+     * Stuff that needs to be cleared in certain places within the fragment
+     */
+    private fun clearStuffs(){
+        filterViewModel.filteredGameList = null
+        FilterFunctions.selectedOpponent = null
+        filterViewModel.clearStoredFilters()
     }
 
     /**
@@ -126,6 +133,8 @@ class HistoryFragment : Fragment() {
      */
     private fun applyFilterLogic(dialog : SideSheetDialog){
         val filteredList = createFilterList(dialog, filterViewModel)
+
+        filterViewModel.printStoredFilters()
 
         //region HISTORY ADAPTER
         populateGamesAdapter(filteredList)

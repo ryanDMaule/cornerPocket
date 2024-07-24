@@ -59,7 +59,7 @@ class FilterFunctions {
                             }
                         }
                     } catch (e : Exception){
-                        Log.e("FF", "EXCEPTION CAUGHT : $e")
+                        Log.e("FF", "EXCEPTION CAUGHT : $e ")
                     }
                 }
             }
@@ -83,42 +83,127 @@ class FilterFunctions {
             opponentFilterButton.setOnClickListener {
                 filterClick(opponentFilterButton, opponentFilterExpansion)
             }
+            if (selectedOpponent == null){
+                Log.e("FF", "selectedOpponent == null ++++++++++++++++++++++")
+                collapseZone(opponentFilterButton, opponentFilterExpansion)
+            } else {
+                Log.e("FF", "selectedOpponent != null ++++++++++++++++++++++")
+                expandZone(opponentFilterButton, opponentFilterExpansion)
+                if (vm.f_opponent != null){
+                    actv.setText(vm.f_opponent!!.name, false)
+                }
+            }
 
-            //GAME TYPE - FILTER
+            //region GAME TYPE - FILTER
             val gameTypeFilterButton = view.findViewById<ImageView>(R.id.gameTypeFilterAddButton)
             val gameTypeFilterExpansion = view.findViewById<ConstraintLayout>(R.id.gameType_filter_expansion)
             gameTypeFilterButton.setOnClickListener {
                 filterClick(gameTypeFilterButton, gameTypeFilterExpansion)
             }
+            //BOTH
+            if (view.findViewById<RadioButton>(R.id.radio_gameType_1).text == vm.f_gameType){
+                view.findViewById<RadioButton>(R.id.radio_gameType_1).isChecked = true
+                collapseZone(gameTypeFilterButton, gameTypeFilterExpansion)
+            }
+            //ENGLISH
+            if (view.findViewById<RadioButton>(R.id.radio_gameType_2).text == vm.f_gameType){
+                view.findViewById<RadioButton>(R.id.radio_gameType_2).isChecked = true
+                expandZone(gameTypeFilterButton, gameTypeFilterExpansion)
+            }
+            //AMERICAN
+            if (view.findViewById<RadioButton>(R.id.radio_gameType_3).text == vm.f_gameType){
+                view.findViewById<RadioButton>(R.id.radio_gameType_3).isChecked = true
+                expandZone(gameTypeFilterButton, gameTypeFilterExpansion)
+            }
+            //endregion
 
-            //SUB TYPE - FILTER
+            //region SUB TYPE - FILTER
             val subTypeFilterButton = view.findViewById<ImageView>(R.id.disciplineFilterAddButton)
             val subTypeFilterExpansion = view.findViewById<ConstraintLayout>(R.id.discipline_filter_expansion)
             subTypeFilterButton.setOnClickListener {
                 filterClick(subTypeFilterButton, subTypeFilterExpansion)
             }
+            //BOTH
+            if (view.findViewById<RadioButton>(R.id.radio_discipline_1).text == vm.f_discipline){
+                view.findViewById<RadioButton>(R.id.radio_discipline_1).isChecked = true
+                collapseZone(subTypeFilterButton, subTypeFilterExpansion)
+            }
+            //8-BALL
+            if (view.findViewById<RadioButton>(R.id.radio_discipline_2).text == vm.f_discipline){
+                view.findViewById<RadioButton>(R.id.radio_discipline_2).isChecked = true
+                expandZone(subTypeFilterButton, subTypeFilterExpansion)
+            }
+            //9-BALL
+            if (view.findViewById<RadioButton>(R.id.radio_discipline_3).text == vm.f_discipline){
+                view.findViewById<RadioButton>(R.id.radio_discipline_3).isChecked = true
+                expandZone(subTypeFilterButton, subTypeFilterExpansion)
+            }
+            //endregion
 
-            //RESULTS - FILTER
+            //region RESULTS - FILTER
             val resultsFilterButton = view.findViewById<ImageView>(R.id.results_filter_add_button)
             val resultsFilterExpansion = view.findViewById<ConstraintLayout>(R.id.results_filter_expansion)
             resultsFilterButton.setOnClickListener {
                 filterClick(resultsFilterButton, resultsFilterExpansion)
             }
+            //BOTH
+            if (view.findViewById<RadioButton>(R.id.radio_results_1).text == vm.f_results){
+                view.findViewById<RadioButton>(R.id.radio_results_1).isChecked = true
+                collapseZone(resultsFilterButton, resultsFilterExpansion)
+            }
+            //WINS
+            if (view.findViewById<RadioButton>(R.id.radio_results_2).text == vm.f_results){
+                view.findViewById<RadioButton>(R.id.radio_results_2).isChecked = true
+                expandZone(resultsFilterButton, resultsFilterExpansion)
+            }
+            //LOSSES
+            if (view.findViewById<RadioButton>(R.id.radio_results_3).text == vm.f_results){
+                view.findViewById<RadioButton>(R.id.radio_results_3).isChecked = true
+                expandZone(resultsFilterButton, resultsFilterExpansion)
+            }
+            //endregion
 
-            //BREAK - FILTER
+            //region BREAK - FILTER
             val breakingFilterButton = view.findViewById<ImageView>(R.id.breaking_filter_add_button)
             val breakingFilterExpansion = view.findViewById<ConstraintLayout>(R.id.breaking_filter_expansion)
             breakingFilterButton.setOnClickListener {
                 filterClick(breakingFilterButton, breakingFilterExpansion)
             }
+            //BOTH
+            if (view.findViewById<RadioButton>(R.id.radio_breaking_1).text == vm.f_gamesBreaking){
+                view.findViewById<RadioButton>(R.id.radio_breaking_1).isChecked = true
+                collapseZone(breakingFilterButton, breakingFilterExpansion)
+            }
+            //ME
+            if (view.findViewById<RadioButton>(R.id.radio_breaking_2).text == vm.f_gamesBreaking){
+                view.findViewById<RadioButton>(R.id.radio_breaking_2).isChecked = true
+                expandZone(breakingFilterButton, breakingFilterExpansion)
+            }
+            //OPPONENT
+            if (view.findViewById<RadioButton>(R.id.radio_breaking_3).text == vm.f_gamesBreaking){
+                view.findViewById<RadioButton>(R.id.radio_breaking_3).isChecked = true
+                expandZone(breakingFilterButton, breakingFilterExpansion)
+            }
+            //endregion
 
-            //ORDER - FILTER
+            //region ORDER - FILTER
             orderConstraint = view.findViewById(R.id.order_filter_constraint)
             val orderFilterButton = view.findViewById<ImageView>(R.id.order_filter_add_button)
             val orderFilterExpansion = view.findViewById<ConstraintLayout>(R.id.order_filter_expansion)
             orderFilterButton.setOnClickListener {
                 filterClick(orderFilterButton, orderFilterExpansion)
             }
+            //NEWEST TO OLDEST
+            if (view.findViewById<RadioButton>(R.id.radio_order_1).text == vm.f_order){
+                view.findViewById<RadioButton>(R.id.radio_order_1).isChecked = true
+                collapseZone(orderFilterButton, orderFilterExpansion)
+            }
+            //OLDEST TO NEWEST
+            if (view.findViewById<RadioButton>(R.id.radio_order_2).text == vm.f_order){
+                view.findViewById<RadioButton>(R.id.radio_order_2).isChecked = true
+                expandZone(orderFilterButton, orderFilterExpansion)
+            }
+            //endregion
 
             //endregion
 
@@ -136,7 +221,6 @@ class FilterFunctions {
             val selectedRadioButton = radioGroup.findViewById<RadioButton>(selectedRadioButtonId)
             return selectedRadioButton.text.toString()
         }
-
         fun getGameTypeRadioResult(selectedOption : String) : String? {
             return when(selectedOption.uppercase()){
                 ENGLISH -> {
@@ -231,16 +315,29 @@ class FilterFunctions {
         private fun filterClick(button : ImageView, expansionZone : View) {
             // CURRENTLY NOT EXPANDED '+'
             if (expansionZone.visibility != View.VISIBLE){
-                HelperFunctions.expandView(expansionZone)
-                HelperFunctions.rotate45clockwise(button)
+                expandZone(button, expansionZone)
             }
             // CURRENTLY EXPANDED 'X'
             else {
-                HelperFunctions.collapseView(expansionZone)
-                HelperFunctions.rotate45anticlockwise(button)
+                collapseZone(button, expansionZone)
             }
         }
+        private fun expandZone(button : ImageView, expansionZone : View){
+            HelperFunctions.expandView(expansionZone)
+            HelperFunctions.rotate45clockwise(button)
+        }
+        private fun collapseZone(button : ImageView, expansionZone : View){
+            HelperFunctions.collapseView(expansionZone)
+            HelperFunctions.rotate45anticlockwise(button)
+        }
         fun createFilterList(dialog : SideSheetDialog, fvm: FilterViewModel): MutableList<Game> {
+
+            fvm.f_opponent = selectedOpponent
+            fvm.f_gameType = getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_gameType)!!)
+            fvm.f_discipline = getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_discipline)!!)
+            fvm.f_results = getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_results)!!)
+            fvm.f_gamesBreaking = getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_breaking)!!)
+            fvm.f_order = getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_order)!!)
 
             return fvm.filterGames(
                 fvm.unfilteredGameList!!.toMutableList(),
@@ -248,11 +345,7 @@ class FilterFunctions {
                 gameType = getGameTypeRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_gameType)!!)),
                 subType =  getSubTypeRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_discipline)!!)),
                 userWins = getUserWonRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_results)!!)),
-                userBreaks = getUserBreaksRadioResult(
-                    getSelectedRadioButtonText(dialog.findViewById(
-                        R.id.groupradio_breaking
-                    )!!)
-                ),
+                userBreaks = getUserBreaksRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_breaking)!!)),
                 orderNewest = getOrderRadioResult(getSelectedRadioButtonText(dialog.findViewById(R.id.groupradio_order)!!))
             )
         }
