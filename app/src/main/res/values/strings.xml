@@ -196,5 +196,8 @@
     <string name="review">Review</string>
     <string name="donate">Donate</string>
     <string name="no_details_updated">No details updated</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="populating_games_list">Populating games list</string>
+    <string name="generating_stats">Generating stats</string>
 
 </resources>

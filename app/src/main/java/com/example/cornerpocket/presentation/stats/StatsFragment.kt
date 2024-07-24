@@ -1,12 +1,16 @@
 package com.example.cornerpocket.presentation.stats
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
@@ -20,7 +24,12 @@ import com.example.cornerpocket.models.ENGLISH
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.viewModels.FilterViewModel
 import com.google.android.material.sidesheet.SideSheetDialog
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StatsFragment : Fragment() {
 
@@ -57,13 +66,50 @@ class StatsFragment : Fragment() {
 
         createDialog()
 
+        showLoadingDialogAndPerformTask()
+
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun showLoadingDialogAndPerformTask() {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(context).inflate(R.layout.loading_dialog, null)
+
+        val dialogTitle: TextView = dialogView.findViewById(R.id.dialog_title)
+        dialogTitle.text = getString(R.string.generating_stats)
+
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(false) // Prevents user from dismissing it manually
+            .create()
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialog.show()
+
+        // Use a coroutine to manage timing
+        GlobalScope.launch(Dispatchers.Main) {
+            // Perform the task asynchronously
+            withContext(Dispatchers.IO) {
+                populateStats()
+            }
+
+            // Ensure the dialog is shown for at least .75 second
+            delay(750)
+
+            dialog.dismiss()
+        }
+    }
+
+    private suspend fun populateStats() {
         filterViewModel.viewModelScope.launch {
             filterViewModel.getGames().collect { gamesList ->
                 filterViewModel.unfilteredGameList = gamesList
                 formatStatSections()
             }
         }
-
     }
 
     private fun createDialog(){

@@ -1,5 +1,7 @@
 package com.example.cornerpocket.presentation.history
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.GameHistoryAdapter
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.DialogUtils
 import com.example.cornerpocket.Utils.FilterFunctions
 import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFilterList
 import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFiltersDialog
@@ -23,7 +27,12 @@ import com.example.cornerpocket.databinding.FragmentHistoryBinding
 import com.example.cornerpocket.models.Game
 import com.example.cornerpocket.viewModels.FilterViewModel
 import com.google.android.material.sidesheet.SideSheetDialog
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HistoryFragment : Fragment() {
     //region GLOBAL VARIABLES
@@ -63,6 +72,45 @@ class HistoryFragment : Fragment() {
         filterViewModel.filtersDialog = createFiltersDialog(context = requireContext(), li = layoutInflater, vm = filterViewModel)
         dialogButtonsHandling()
 
+        showLoadingDialogAndPerformTask()
+
+        binding.filtersButton.setOnClickListener {
+            filterViewModel.filtersDialog!!.show()
+        }
+
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun showLoadingDialogAndPerformTask() {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(context).inflate(R.layout.loading_dialog, null)
+
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(false) // Prevents user from dismissing it manually
+            .create()
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialog.show()
+
+        // Use a coroutine to manage timing
+        GlobalScope.launch(Dispatchers.Main) {
+            // Perform the task asynchronously
+            withContext(Dispatchers.IO) {
+                populateGames()
+            }
+
+            // Ensure the dialog is shown for at least .75 second
+            delay(750)
+
+            dialog.dismiss()
+        }
+    }
+
+    private suspend fun populateGames() {
         filterViewModel.viewModelScope.launch {
             filterViewModel.getGames().collect { gamesList ->
                 filterViewModel.unfilteredGameList = gamesList
@@ -72,14 +120,8 @@ class HistoryFragment : Fragment() {
                 } else {
                     populateGamesAdapter(filterViewModel.filterGamesByMostRecent(gamesList))
                 }
-
             }
         }
-
-        binding.filtersButton.setOnClickListener {
-            filterViewModel.filtersDialog!!.show()
-        }
-
     }
 
     /**

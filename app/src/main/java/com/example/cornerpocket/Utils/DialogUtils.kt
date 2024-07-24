@@ -78,4 +78,19 @@ object DialogUtils {
         dialog.show()
     }
 
+    fun loadingDialog(context : Context) : AlertDialog  {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(context).inflate(R.layout.loading_dialog, null)
+
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .create()
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        return dialog
+    }
+
 }
