@@ -108,9 +108,11 @@
 
         <TextView
             android:id="@+id/history_TV"
-            style="@style/h4"
-            android:textAlignment="textStart"
+            style="@style/menuItems"
+            android:maxLines="2"
             android:text="@string/games_history"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,9 +144,11 @@
 
         <TextView
             android:id="@+id/statistics_TV"
-            style="@style/h4"
+            style="@style/menuItems"
+            android:maxLines="2"
             android:text="@string/game_statistics"
             android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -177,9 +181,11 @@
 
         <TextView
             android:id="@+id/edit_opponents_TV"
-            style="@style/h4"
+            style="@style/menuItems"
+            android:maxLines="2"
             android:text="@string/edit_opponents"
             android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -211,11 +217,12 @@
 
         <TextView
             android:id="@+id/learn_TV"
-            style="@style/h4"
+            style="@style/menuItems"
+            android:layout_marginStart="8dp"
             android:text="@string/rules"
             android:textAlignment="textStart"
-            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/learn_IV"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -246,11 +253,13 @@
 
         <TextView
             android:id="@+id/donations_TV"
-            style="@style/h4"
+            style="@style/menuItems"
             android:layout_marginStart="8dp"
             android:text="@string/donations"
             android:textAlignment="textStart"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/donations_IV"
             app:layout_constraintTop_toTopOf="parent" />
 

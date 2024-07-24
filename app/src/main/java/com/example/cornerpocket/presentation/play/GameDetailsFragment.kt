@@ -76,7 +76,8 @@ class GameDetailsFragment : Fragment() {
             binding.dateTitle.text = HelperFunctions.formatDate(date)
 
             //GAME TYPE
-            binding.gameTypeTitle.text = getString(R.string.var_double, game.gameType, game.subType)
+            binding.gameTypeTitle.text = getString(R.string.var_gameType, game.gameType, game.subType)
+            HelperFunctions.setTextColorSection(requireContext(), binding.gameTypeTitle, binding.gameTypeTitle.text.toString(), "${game.gameType} ${game.subType}", R.color.white)
 
             //GAME TIME
             val gameTime = HelperFunctions.formatSecondsToMMSS(game.gameDuration)

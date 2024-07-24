@@ -72,7 +72,13 @@ class HistoryFragment : Fragment() {
         filterViewModel.filtersDialog = createFiltersDialog(context = requireContext(), li = layoutInflater, vm = filterViewModel)
         dialogButtonsHandling()
 
-        showLoadingDialogAndPerformTask()
+        if (filterViewModel.filteredGameList != null){
+            populateGamesAdapter(filterViewModel.filteredGameList!!)
+        } else if(filterViewModel.unfilteredGameList != null) {
+            populateGamesAdapter(filterViewModel.filterGamesByMostRecent(filterViewModel.unfilteredGameList!!))
+        } else {
+            showLoadingDialogAndPerformTask()
+        }
 
         binding.filtersButton.setOnClickListener {
             filterViewModel.filtersDialog!!.show()
@@ -114,12 +120,7 @@ class HistoryFragment : Fragment() {
         filterViewModel.viewModelScope.launch {
             filterViewModel.getGames().collect { gamesList ->
                 filterViewModel.unfilteredGameList = gamesList
-
-                if (filterViewModel.filteredGameList != null){
-                    populateGamesAdapter(filterViewModel.filteredGameList!!)
-                } else {
-                    populateGamesAdapter(filterViewModel.filterGamesByMostRecent(gamesList))
-                }
+                populateGamesAdapter(filterViewModel.filterGamesByMostRecent(gamesList))
             }
         }
     }
