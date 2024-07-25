@@ -346,7 +346,7 @@ class StatsFragment : Fragment() {
                     //region SOLID BALLS
 
                     var ballString = getString(R.string.spot)
-                    binding.ballStatistics.ball2Text.text = getString(R.string.var_games_with, ballString)
+                    binding.ballStatistics.ball1TextView.text = getString(R.string.var_games_with, ballString)
                     binding.ballStatistics.ball1Image.setImageResource(R.drawable.solid_ball_img)
                     val solidBallsList = filterViewModel.getGamesWithSolidBalls(list)
 
