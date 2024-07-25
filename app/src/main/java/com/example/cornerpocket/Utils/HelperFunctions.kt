@@ -169,6 +169,41 @@ class HelperFunctions {
             return String.format("%02d:%02d", minutes, seconds)
         }
 
+        /**
+         * @param seconds time to be converted
+         * @return time formatted to "3H 11M 42S"
+         */
+        fun formatTime(seconds: Int) : String {
+            val hours = seconds / 3600
+            val minutes = (seconds % 3600) / 60
+            val remainingSeconds = seconds % 60
+
+            val formattedTime = StringBuilder()
+
+            if (hours > 0) {
+                formattedTime.append("${hours}H ")
+            }
+            if (minutes > 0 || hours > 0) {
+                formattedTime.append("${minutes}M ")
+            }
+            formattedTime.append("${remainingSeconds}S")
+
+            return formattedTime.toString().trim()
+        }
+
+        fun formatSecondsToHHMMSS(seconds: Int): String {
+            val hours = seconds / 3600
+            val minutes = (seconds % 3600) / 60
+            val remainingSeconds = seconds % 60
+
+            // Format the time string using String.format to ensure zero-padding
+            return if (hours == 0){
+                String.format("%02d:%02d", minutes, remainingSeconds)
+            } else {
+                String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds)
+            }
+        }
+
         fun promptUserForReview(activity: Activity) {
             val reviewManager = ReviewManagerFactory.create(activity)
 

@@ -180,6 +180,10 @@ class StatsFragment : Fragment() {
     private fun populateGameStatisticsSection() {
         val list : MutableList<Game> = getGamesList()
 
+        //SET TOTAL GAME LENGTH
+        val totalGameLength = filterViewModel.getTotalGameLength(list)
+        binding.gameStatistics.gameLengthTotal.text = getString(R.string.var_total_duration, HelperFunctions.formatSecondsToHHMMSS(totalGameLength))
+
         //SET AVERAGE GAME LENGTH
         val averageGameLength = filterViewModel.getAverageGameLength(list)
         binding.gameStatistics.gameLength.text = getString(R.string.var_average_duration, HelperFunctions.formatSecondsToMMSS(averageGameLength))

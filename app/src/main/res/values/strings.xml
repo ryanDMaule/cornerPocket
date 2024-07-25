@@ -116,6 +116,7 @@
     <string name="var_double">%1$s %2$s</string>
     <string name="var_record">%1$s - %2$s</string>
     <string name="var_average_duration">Average game duration : %1$s</string>
+    <string name="var_total_duration">Total game duration : %1$s</string>
     <string name="var_percentage">%1$s%%</string>
     <string name="var_games_with">Games with %1$s</string>
     <string name="var_game_time">Game time, %1$s</string>

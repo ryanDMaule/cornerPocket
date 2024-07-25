@@ -31,13 +31,23 @@
     <!-- MIDDLE BLOCK -->
 
     <TextView
-        android:id="@+id/game_length"
+        android:id="@+id/game_length_total"
         style="@style/lightFont"
         android:textColor="@color/grey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:text="Total game duration : 2H 37M 12S"/>
+
+    <TextView
+        android:id="@+id/game_length"
+        style="@style/lightFont"
+        android:textColor="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/game_length_total"
         tools:text="Average game duration : xx:xx"/>
 
     <TextView

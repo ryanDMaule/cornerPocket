@@ -131,6 +131,14 @@ class FilterViewModel : ViewModel() {
         }
     }
 
+    fun getTotalGameLength(list : MutableList<Game>) : Int {
+        var totalGameTime = 0
+        list.forEach {
+            totalGameTime += it.gameDuration
+        }
+        return totalGameTime
+    }
+
     fun getGamesUserBreaksList(list : MutableList<Game>) : MutableList<Game> {
         val filteredList: MutableList<Game> = mutableListOf()
         list.forEach {
