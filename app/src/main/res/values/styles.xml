@@ -235,6 +235,7 @@
     <style name="TextInputEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textCapSentences|textAutoCorrect</item>
         <item name="android:background">@color/transparant</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/jost_regular</item>

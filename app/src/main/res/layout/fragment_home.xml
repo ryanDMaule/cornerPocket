@@ -8,12 +8,56 @@
     android:layout_height="match_parent"
     tools:context=".presentation.HomeFragment">
 
-    <ScrollView
-        style="@style/scNoBars"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- ACCOUNT BLOCK -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/account_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/user_icon"
+            style="@style/userIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/user_icon_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="1dp" />
+
+        <TextView
+            android:id="@+id/date_TV"
+            style="@style/subTitle"
+            android:layout_marginStart="4dp"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/user_name_TV"
+            app:layout_constraintStart_toEndOf="@+id/user_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="17th July, 2024" />
+
+        <TextView
+            android:id="@+id/user_name_TV"
+            style="@style/p"
+            android:layout_marginStart="4dp"
+            android:letterSpacing=".05"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_icon"
+            app:layout_constraintTop_toBottomOf="@+id/date_TV"
+            tools:text="Game time, Ryan" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        style="@style/scNoBars"
+        app:layout_constraintBottom_toTopOf="@+id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_block">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,59 +71,16 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
 
-            <!-- ACCOUNT BLOCK -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/account_block"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/user_icon"
-                    style="@style/userIcon"
-                    app:strokeWidth="1dp"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:contentDescription="@string/user_icon_blue"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/date_TV"
-                    style="@style/subTitle"
-                    android:textAllCaps="false"
-                    android:layout_marginStart="4dp"
-                    app:layout_constraintBottom_toTopOf="@+id/user_name_TV"
-                    app:layout_constraintStart_toEndOf="@+id/user_icon"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="17th July, 2024" />
-
-                <TextView
-                    android:id="@+id/user_name_TV"
-                    style="@style/p"
-                    android:textColor="@color/white"
-                    android:letterSpacing=".05"
-                    android:layout_marginStart="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/user_icon"
-                    app:layout_constraintTop_toBottomOf="@+id/date_TV"
-                    tools:text="Game time, Ryan" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <!-- PLAY GAME -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/play_CL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:padding="16dp"
                 android:background="@drawable/cyan_border"
+                android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/account_block">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/play_TV"
@@ -95,8 +96,8 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/home_eight_ball"
                     android:contentDescription="@string/image_description"
+                    android:src="@drawable/home_eight_ball"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -109,10 +110,10 @@
                 android:id="@+id/history_CL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/white_border"
-                android:padding="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/white_border"
+                android:padding="16dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/play_CL">
@@ -131,8 +132,8 @@
                     android:id="@+id/history_IV"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/home_history"
                     android:contentDescription="@string/image_description"
+                    android:src="@drawable/home_history"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -145,8 +146,8 @@
                 android:id="@+id/statistics_CL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/white_border"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,8 +168,8 @@
                     android:id="@+id/statistics_IV"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/home_stats"
                     android:contentDescription="@string/image_description"
+                    android:src="@drawable/home_stats"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -204,8 +205,8 @@
                     android:id="@+id/edit_opponents_IV"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/home_opponent"
                     android:contentDescription="@string/image_description"
+                    android:src="@drawable/home_opponent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -218,8 +219,8 @@
                 android:id="@+id/learn_CL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/white_border"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -241,8 +242,8 @@
                     android:id="@+id/learn_IV"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/home_info"
                     android:contentDescription="@string/image_description"
+                    android:src="@drawable/home_info"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -278,31 +279,27 @@
                     android:id="@+id/donations_IV"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/home_donations"
                     android:contentDescription="@string/image_description"
+                    android:src="@drawable/home_donations"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- LOGO -->
-<!--            <ImageView-->
-<!--                android:id="@+id/logo"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_width="100dp"-->
-<!--                android:maxHeight="100dp"-->
-<!--                android:layout_height="100dp"-->
-<!--                android:src="@drawable/logo"-->
-<!--                android:contentDescription="@string/image_description"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/edit_opponents_CL" />-->
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-
+    <!-- LOGO -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/image_description"
+        android:maxHeight="100dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
