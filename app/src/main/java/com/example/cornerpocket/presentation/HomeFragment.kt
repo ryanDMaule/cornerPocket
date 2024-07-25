@@ -15,6 +15,7 @@ import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.databinding.FragmentHomeBinding
 import com.example.cornerpocket.viewModels.UserViewModel
+import com.google.android.gms.ads.AdRequest
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.Date
@@ -36,6 +37,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //LOAD AD
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         //region BACK PRESS
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {

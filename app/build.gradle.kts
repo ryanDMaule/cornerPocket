@@ -50,6 +50,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 
+    //Ad integration
+    implementation("com.google.android.gms:play-services-ads:23.2.0")
+
     // Image cropping
     implementation("com.vanniktech:android-image-cropper:4.5.0")
 
