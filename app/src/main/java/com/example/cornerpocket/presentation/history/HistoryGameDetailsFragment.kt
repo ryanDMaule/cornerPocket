@@ -199,6 +199,8 @@ class HistoryGameDetailsFragment : Fragment() {
      * Sets certain elements for the fragment visible as this view is shared
      */
     private fun formatPage() {
+        binding.recordCl.visibility = View.GONE
+
         binding.backButtonConstraint.visibility = View.VISIBLE
         binding.backButtonConstraint.setOnClickListener {
             NavigationUtils.navigateAndClearBackStack(
