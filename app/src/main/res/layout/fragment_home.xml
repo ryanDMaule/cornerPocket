@@ -266,6 +266,7 @@
                 <TextView
                     android:id="@+id/donations_TV"
                     style="@style/menuItems"
+                    android:maxLines="2"
                     android:layout_marginStart="8dp"
                     android:text="@string/donations"
                     android:textAlignment="textStart"

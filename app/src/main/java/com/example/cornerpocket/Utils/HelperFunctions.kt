@@ -2,12 +2,16 @@ package com.example.cornerpocket.Utils
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.widget.ImageView
@@ -25,7 +29,7 @@ import kotlin.math.absoluteValue
 
 class HelperFunctions {
     companion object {
-        fun ordinalOf(i: Int): String {
+        private fun ordinalOf(i: Int): String {
             val iAbs = i.absoluteValue // if you want negative ordinals, or just use i
             return "$i" + if (iAbs % 100 in 11..13) "th" else when (iAbs % 10) {
                 1 -> "st"
@@ -38,7 +42,7 @@ class HelperFunctions {
         /**
          * Takes a Date and returns a LocalDate object
          */
-        fun convertDateToLocalDate(date: Date): LocalDate {
+        private fun convertDateToLocalDate(date: Date): LocalDate {
             return Instant.ofEpochMilli(date.time)
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate()
@@ -201,6 +205,24 @@ class HelperFunctions {
                 String.format("%02d:%02d", minutes, remainingSeconds)
             } else {
                 String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds)
+            }
+        }
+
+        fun getScreenWidth(context: Context): Int {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                // For API 30+ (Android 11+)
+                val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+                val windowMetrics = windowManager.currentWindowMetrics
+                val insets = windowMetrics.windowInsets
+                    .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
+                val bounds = windowMetrics.bounds
+                bounds.width() - insets.left - insets.right
+            } else {
+                // For older versions
+                val displayMetrics = DisplayMetrics()
+                val windowManager = ContextCompat.getSystemService(context, WindowManager::class.java)
+                windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+                displayMetrics.widthPixels
             }
         }
 

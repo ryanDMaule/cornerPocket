@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.Adapters.OpponentSelectorAdapter
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.databinding.FragmentOpponentDetailsBinding
 import com.example.cornerpocket.models.Opponent
@@ -104,14 +105,14 @@ class OpponentDetailsFragment : Fragment() {
         binding.fabAdd.setOnClickListener {
             val dialog = SideSheetDialog(requireContext())
             dialog.setCancelable(false)
-            val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
+            val addView = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
 
-            val btnClose = view.findViewById<ImageView>(R.id.quit_button)
-            val window = view.findViewById<ConstraintLayout>(R.id.full_layout)
-            opponentImage = view.findViewById(R.id.addOponentImage)
-            val btnAddImage = view.findViewById<ConstraintLayout>(R.id.clAddImage)
-            val btnCreate = view.findViewById<MaterialButton>(R.id.footer_button)
-            val textInputEditText = view.findViewById<TextInputEditText>(R.id.inputTextName)
+            val btnClose = addView.findViewById<ImageView>(R.id.quit_button)
+            val window = addView.findViewById<ConstraintLayout>(R.id.full_layout)
+            opponentImage = addView.findViewById(R.id.addOponentImage)
+            val btnAddImage = addView.findViewById<ConstraintLayout>(R.id.clAddImage)
+            val btnCreate = addView.findViewById<MaterialButton>(R.id.footer_button)
+            val textInputEditText = addView.findViewById<TextInputEditText>(R.id.inputTextName)
 
             window.setOnClickListener {
                 //prevents closing the dialog by mis clicking
@@ -136,7 +137,7 @@ class OpponentDetailsFragment : Fragment() {
                 showPhotoAlertDialog()
             }
 
-            dialog.setContentView(view)
+            dialog.setContentView(addView)
             dialog.show()
         }
 
