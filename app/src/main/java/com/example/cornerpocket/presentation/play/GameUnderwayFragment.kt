@@ -1,5 +1,6 @@
 package com.example.cornerpocket.presentation.play
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.cornerpocket.Activities.PdfActivity
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.DialogUtils
@@ -47,6 +49,11 @@ class GameUnderwayFragment : Fragment() {
             }
         })
         //endregion
+
+        binding.infoButton.setOnClickListener {
+            val intent = Intent(requireContext(), PdfActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.timer.start()
 
