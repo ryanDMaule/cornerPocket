@@ -104,7 +104,7 @@ class OpponentDetailsFragment : Fragment() {
 
         binding.fabAdd.setOnClickListener {
             val dialog = SideSheetDialog(requireContext())
-            dialog.setCancelable(false)
+//            dialog.setCancelable(false)
             val addView = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
 
             val btnClose = addView.findViewById<ImageView>(R.id.quit_button)
@@ -145,7 +145,7 @@ class OpponentDetailsFragment : Fragment() {
 
     private fun itemSelected(opponent: Opponent){
         val dialog = SideSheetDialog(requireContext())
-        dialog.setCancelable(false)
+//        dialog.setCancelable(false)
 
         val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
 
