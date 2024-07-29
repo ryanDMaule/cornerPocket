@@ -318,6 +318,7 @@ class OpponentSelectFragment : Fragment()  {
             openImagePicker()
         } else {
             Log.i("UDF", "MEDIA PERMISSION : DENIED")
+            DialogUtils.permissionRejectedDialog(requireContext())
         }
     }
     private val requestPermissionLauncherCamera = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
@@ -327,6 +328,7 @@ class OpponentSelectFragment : Fragment()  {
             openCamera()
         } else {
             Log.i("UDF", "CAMERA PERMISSION : DENIED")
+            DialogUtils.permissionRejectedDialog(requireContext())
         }
     }
     private lateinit var currentPhotoPath: String

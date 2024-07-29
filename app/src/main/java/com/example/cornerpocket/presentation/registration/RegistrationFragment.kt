@@ -27,6 +27,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.canhub.cropper.CropImageContract
 import com.example.cornerpocket.R
+import com.example.cornerpocket.Utils.DialogUtils
 import com.example.cornerpocket.Utils.ImageUtils
 import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
@@ -182,6 +183,7 @@ class RegistrationFragment : Fragment() {
             openImagePicker()
         } else {
             Log.i("UDF", "MEDIA PERMISSION : DENIED")
+            DialogUtils.permissionRejectedDialog(requireContext())
         }
     }
     private val requestPermissionLauncherCamera = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
@@ -191,6 +193,7 @@ class RegistrationFragment : Fragment() {
             openCamera()
         } else {
             Log.i("UDF", "CAMERA PERMISSION : DENIED")
+            DialogUtils.permissionRejectedDialog(requireContext())
         }
     }
     private lateinit var currentPhotoPath: String

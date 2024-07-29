@@ -205,5 +205,8 @@
     <string name="game_details">Game details</string>
     <string name="creation_cancelled">Creation cancelled</string>
     <string name="edit_cancelled">Edit cancelled</string>
+    <string name="permission_required">Permission required</string>
+    <string name="permission_required_details">If you wish to add a photo you need to grant this permission. You can enable this permission in the settings.</string>
+    <string name="settings">Settings</string>
 
 </resources>

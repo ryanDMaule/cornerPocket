@@ -2,7 +2,10 @@ package com.example.cornerpocket.Utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -16,6 +19,7 @@ import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
@@ -272,6 +276,26 @@ class HelperFunctions {
 
             // Set the text on the TextView
             textView.text = spannableString
+        }
+
+        /**
+         * Opens the app settings screen for the current application.
+         *
+         * @param context: Context from which the function is called, such as Activity or Fragment context.
+         */
+        fun openAppSettings(context: Context) {
+            try {
+                // Create an intent to open the application details settings
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                    // Set the data URI to the current application package
+                    data = Uri.fromParts("package", context.packageName, null)
+                }
+                // Start the activity using the provided context
+                context.startActivity(intent)
+            } catch (e: Exception) {
+                // Show a Toast message if there is an error while trying to open settings
+                Toast.makeText(context, "Unable to open settings", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
