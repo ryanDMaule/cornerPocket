@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -18,7 +17,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cornerpocket.Adapters.GameHistoryAdapter
 import com.example.cornerpocket.R
-import com.example.cornerpocket.Utils.DialogUtils
 import com.example.cornerpocket.Utils.FilterFunctions
 import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFilterList
 import com.example.cornerpocket.Utils.FilterFunctions.Companion.createFiltersDialog

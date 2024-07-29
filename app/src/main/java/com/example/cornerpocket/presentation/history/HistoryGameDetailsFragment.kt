@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.cornerpocket.R
 import com.example.cornerpocket.Utils.HelperFunctions
 import com.example.cornerpocket.Utils.ImageUtils
@@ -28,6 +29,7 @@ import com.example.cornerpocket.models.RED
 import com.example.cornerpocket.models.SPOT
 import com.example.cornerpocket.models.STRIPE
 import com.example.cornerpocket.models.YELLOW
+import com.example.cornerpocket.viewModels.FilterViewModel
 import com.example.cornerpocket.viewModels.PlayViewModel
 import com.google.android.material.button.MaterialButton
 import org.mongodb.kbson.ObjectId
@@ -38,6 +40,7 @@ class HistoryGameDetailsFragment : Fragment() {
     private var _binding : FragmentGameDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: PlayViewModel by viewModels()
+    private val filterViewModel: FilterViewModel by navGraphViewModels(R.id.historyGraph)
 
     private var passedGame: Game? = null
     //endregion
@@ -201,8 +204,9 @@ class HistoryGameDetailsFragment : Fragment() {
     private fun formatPage() {
         binding.recordCl.visibility = View.GONE
 
-        binding.backButtonConstraint.visibility = View.VISIBLE
-        binding.backButtonConstraint.setOnClickListener {
+        binding.backButton.visibility = View.VISIBLE
+        binding.backText.visibility = View.VISIBLE
+        binding.backButton.setOnClickListener {
             NavigationUtils.navigateAndClearBackStack(
                 findNavController(),
                 R.id.action_historyGameDetailsFragment_to_historyFragment,
@@ -210,8 +214,9 @@ class HistoryGameDetailsFragment : Fragment() {
             )
         }
 
-        binding.deleteButtonConstraint.visibility = View.VISIBLE
-        binding.deleteButtonConstraint.setOnClickListener {
+        binding.deleteButton.visibility = View.VISIBLE
+        binding.deleteText.visibility = View.VISIBLE
+        binding.deleteButton.setOnClickListener {
             removeGameWarningDialog()
         }
 
@@ -247,7 +252,12 @@ class HistoryGameDetailsFragment : Fragment() {
 
         dialogButton2.setOnClickListener {
             Toast.makeText(context, getString(R.string.game_deleted), Toast.LENGTH_SHORT).show()
-
+            if (filterViewModel.unfilteredGameList != null){
+                filterViewModel.unfilteredGameList!!.remove(passedGame)
+            }
+            if (filterViewModel.filteredGameList != null){
+                filterViewModel.filteredGameList!!.remove(passedGame)
+            }
             viewModel.removeGame(passedGame)
             NavigationUtils.navigateAndClearBackStack(
                 findNavController(),
