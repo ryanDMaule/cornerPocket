@@ -104,7 +104,6 @@ class OpponentDetailsFragment : Fragment() {
 
         binding.fabAdd.setOnClickListener {
             val dialog = SideSheetDialog(requireContext())
-//            dialog.setCancelable(false)
             val addView = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
 
             val btnClose = addView.findViewById<ImageView>(R.id.quit_button)
@@ -113,6 +112,16 @@ class OpponentDetailsFragment : Fragment() {
             val btnAddImage = addView.findViewById<ConstraintLayout>(R.id.clAddImage)
             val btnCreate = addView.findViewById<MaterialButton>(R.id.footer_button)
             val textInputEditText = addView.findViewById<TextInputEditText>(R.id.inputTextName)
+
+            dialog.setOnDismissListener {
+                if (unCroppedImage == null &&
+                    croppedImage == null &&
+                    textInputEditText.text.isNullOrBlank()){
+                    //do nothing
+                } else {
+                    Toast.makeText(requireActivity(), getString(R.string.creation_cancelled),Toast.LENGTH_SHORT).show()
+                }
+            }
 
             window.setOnClickListener {
                 //prevents closing the dialog by mis clicking
@@ -145,8 +154,6 @@ class OpponentDetailsFragment : Fragment() {
 
     private fun itemSelected(opponent: Opponent){
         val dialog = SideSheetDialog(requireContext())
-//        dialog.setCancelable(false)
-
         val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
 
         val title = view.findViewById<TextView>(R.id.title_TV)
@@ -180,6 +187,16 @@ class OpponentDetailsFragment : Fragment() {
 
         window.setOnClickListener {
             //prevents closing the dialog by mis clicking
+        }
+
+        dialog.setOnDismissListener {
+            if (unCroppedImage == null &&
+                croppedImage == null &&
+                textInputEditText.text.isNullOrBlank()){
+                //do nothing
+            } else {
+                Toast.makeText(requireActivity(), getString(R.string.edit_cancelled),Toast.LENGTH_SHORT).show()
+            }
         }
 
         btnClose.setOnClickListener {

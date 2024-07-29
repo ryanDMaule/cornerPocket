@@ -131,7 +131,6 @@ class OpponentSelectFragment : Fragment()  {
 
         binding.fabAdd.setOnClickListener {
             val dialog = SideSheetDialog(requireContext())
-//            dialog.setCancelable(false)
 
             val view = layoutInflater.inflate(R.layout.add_opponent_sheet, null)
             val btnClose = view.findViewById<ImageView>(R.id.quit_button)
@@ -140,6 +139,16 @@ class OpponentSelectFragment : Fragment()  {
             val btnAddImage = view.findViewById<ConstraintLayout>(R.id.clAddImage)
             val btnCreate = view.findViewById<MaterialButton>(R.id.footer_button)
             val textInputEditText = view.findViewById<TextInputEditText>(R.id.inputTextName)
+
+            dialog.setOnDismissListener {
+                if (unCroppedImage == null &&
+                    croppedImage == null &&
+                    textInputEditText.text.isNullOrBlank()){
+                    //do nothing
+                } else {
+                    Toast.makeText(requireActivity(), getString(R.string.creation_cancelled),Toast.LENGTH_SHORT).show()
+                }
+            }
 
             window.setOnClickListener {
                 //prevents closing the dialog by mis clicking
