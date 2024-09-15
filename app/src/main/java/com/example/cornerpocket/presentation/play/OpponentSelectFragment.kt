@@ -170,7 +170,7 @@ class OpponentSelectFragment : Fragment()  {
             }
 
             btnAddImage.setOnClickListener{
-                showPhotoAlertDialog()
+                profilePicDialog()
             }
 
             dialog.setContentView(view)
@@ -287,18 +287,28 @@ class OpponentSelectFragment : Fragment()  {
         }
     }
 
-    //region IMAGE HANDLING
-    private fun showPhotoAlertDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(R.string.add_photo)
-        builder.setMessage(R.string.use_photo_from)
+    //region IMAGE HANDLING#
+    private fun profilePicDialog() {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(requireContext()).inflate(R.layout.two_button_dialog, null)
 
-        builder.setPositiveButton(R.string.camera) { dialog, _ ->
-            requestPermissionLauncherCamera.launch(Manifest.permission.CAMERA)
-            dialog.dismiss()
-        }
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
 
-        builder.setNegativeButton(R.string.camera_roll) { dialog, _ ->
+        // Initialize dialog views
+        val dialogTitle: TextView = dialogView.findViewById(R.id.dialog_title)
+        val dialogDescription: TextView = dialogView.findViewById(R.id.dialog_description)
+        val dialogButton1: MaterialButton = dialogView.findViewById(R.id.dialog_button_1)
+        val dialogButton2: MaterialButton = dialogView.findViewById(R.id.dialog_button_2)
+
+        dialogTitle.text = requireContext().getString(R.string.add_profile_pic)
+        dialogDescription.text = requireContext().getString(R.string.use_photo_from)
+        dialogButton1.text = requireContext().getString(R.string.camera_roll)
+        dialogButton2.text = requireContext().getString(R.string.camera)
+
+        dialogButton1.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncherMedia.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {
@@ -307,8 +317,16 @@ class OpponentSelectFragment : Fragment()  {
             dialog.dismiss()
         }
 
-        val alertDialog = builder.create()
-        alertDialog.show()
+        dialogButton2.setOnClickListener {
+            requestPermissionLauncherCamera.launch(Manifest.permission.CAMERA)
+            dialog.dismiss()
+        }
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Show the dialog
+        dialog.show()
     }
 
     private val requestPermissionLauncherMedia = registerForActivityResult(ActivityResultContracts.RequestPermission()) {

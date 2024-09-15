@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -16,6 +18,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -33,6 +36,7 @@ import com.example.cornerpocket.Utils.NavigationUtils
 import com.example.cornerpocket.databinding.FragmentUserDetailsBinding
 import com.example.cornerpocket.models.User
 import com.example.cornerpocket.viewModels.UserViewModel
+import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
@@ -69,7 +73,7 @@ class RegistrationFragment : Fragment() {
         formatPage()
 
         binding.clAddImage.setOnClickListener {
-            showPhotoAlertDialog()
+            profilePicDialog()
         }
 
         // Add TextWatcher to the EditText
@@ -153,17 +157,27 @@ class RegistrationFragment : Fragment() {
     private var croppedImage : Bitmap? = null
     private var unCroppedImage : Uri? = null
 
-    private fun showPhotoAlertDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(R.string.add_photo)
-        builder.setMessage(R.string.use_photo_from)
+    private fun profilePicDialog() {
+        // Inflate the dialog layout
+        val dialogView: View = LayoutInflater.from(requireContext()).inflate(R.layout.two_button_dialog, null)
 
-        builder.setPositiveButton(R.string.camera) { dialog, _ ->
-            requestPermissionLauncherCamera.launch(Manifest.permission.CAMERA)
-            dialog.dismiss()
-        }
+        // Create the AlertDialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
 
-        builder.setNegativeButton(R.string.camera_roll) { dialog, _ ->
+        // Initialize dialog views
+        val dialogTitle: TextView = dialogView.findViewById(R.id.dialog_title)
+        val dialogDescription: TextView = dialogView.findViewById(R.id.dialog_description)
+        val dialogButton1: MaterialButton = dialogView.findViewById(R.id.dialog_button_1)
+        val dialogButton2: MaterialButton = dialogView.findViewById(R.id.dialog_button_2)
+
+        dialogTitle.text = requireContext().getString(R.string.add_profile_pic)
+        dialogDescription.text = requireContext().getString(R.string.use_photo_from)
+        dialogButton1.text = requireContext().getString(R.string.camera_roll)
+        dialogButton2.text = requireContext().getString(R.string.camera)
+
+        dialogButton1.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncherMedia.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {
@@ -172,8 +186,16 @@ class RegistrationFragment : Fragment() {
             dialog.dismiss()
         }
 
-        val alertDialog = builder.create()
-        alertDialog.show()
+        dialogButton2.setOnClickListener {
+            requestPermissionLauncherCamera.launch(Manifest.permission.CAMERA)
+            dialog.dismiss()
+        }
+
+        //prevents showing solid whit in the corners where the edges are rounded
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Show the dialog
+        dialog.show()
     }
 
     private val requestPermissionLauncherMedia = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
