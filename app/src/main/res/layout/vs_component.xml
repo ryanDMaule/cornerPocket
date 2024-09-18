@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/dark_primary">
+
+        <TextView
+            android:id="@+id/user_name_tv"
+            style="@style/lightFont"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_width="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/vs_tv"
+            app:layout_constraintEnd_toStartOf="@+id/vs_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vs_tv"
+            tools:text="Ryan"/>
+
+        <TextView
+            android:id="@+id/vs_tv"
+            style="@style/h4"
+            android:text="@string/vs"
+            app:layout_constraintEnd_toEndOf="@+id/vs_underline"
+            app:layout_constraintStart_toStartOf="@+id/vs_underline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/opponent_name_tv"
+            style="@style/lightFont"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_width="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/vs_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vs_tv"
+            app:layout_constraintTop_toTopOf="@+id/vs_tv"
+            tools:text="Aysha"/>
+
+        <ImageView
+            android:id="@+id/vs_underline"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fade_underline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vs_tv"
+            android:contentDescription="@string/image_description" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

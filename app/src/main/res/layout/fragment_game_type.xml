@@ -3,201 +3,287 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_purple_blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_red_orange"
-    tools:context=".GameTypeFragment">
+    tools:context=".presentation.play.GameTypeFragment">
 
     <!-- NAV SECTION -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topNavigationConstraint"
-        style="@style/navigationSection"
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/navigation_icons_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/back_button"
+                style="@style/iconSize"
+                android:contentDescription="@string/back_icon"
+                android:src="@drawable/back_icon_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/back_text"
+                style="@style/navButtonText"
+                android:text="@string/back"
+                app:layout_constraintEnd_toEndOf="@+id/back_button"
+                app:layout_constraintStart_toStartOf="@+id/back_button"
+                app:layout_constraintTop_toBottomOf="@+id/back_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ImageView
-            android:id="@+id/settings_button"
-            style="@style/iconSize"
+            android:id="@+id/step_1_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/back_icon_white"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="18dp"
+            android:src="@drawable/circle_outline"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/back_icon"/>
+            app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section"
+            app:tint="@color/green" />
+
+        <ImageView
+            android:id="@+id/step_1_icon"
+            android:src="@drawable/tick_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintBottom_toBottomOf="@+id/step_1_image"
+            app:layout_constraintEnd_toEndOf="@+id/step_1_image"
+            app:layout_constraintStart_toStartOf="@+id/step_1_image"
+            app:layout_constraintTop_toTopOf="@+id/step_1_image" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/h4"
+            android:layout_width="0dp"
+            android:text="@string/game_type"
+            android:textAlignment="textStart"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/step_1_image"
+            app:layout_constraintEnd_toStartOf="@+id/step_3_image"
+            app:layout_constraintStart_toEndOf="@+id/step_2_image"
+            app:layout_constraintTop_toTopOf="@+id/step_1_image" />
+
+        <ImageView
+            android:id="@+id/step_2_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/tick"
+            android:src="@drawable/circle_outline"
+            app:layout_constraintStart_toEndOf="@+id/step_1_image"
+            app:layout_constraintTop_toTopOf="@+id/step_1_image"
+            app:tint="@color/green" />
+
+        <TextView
+            android:id="@+id/step_2_text"
+            style="@style/selectedTitleBarStepText"
+            android:textColor="@color/green"
+            android:text="@string/_2"
+            app:layout_constraintBottom_toBottomOf="@+id/step_2_image"
+            app:layout_constraintEnd_toEndOf="@+id/step_2_image"
+            app:layout_constraintStart_toStartOf="@+id/step_2_image"
+            app:layout_constraintTop_toTopOf="@+id/step_2_image" />
+
+        <ImageView
+            android:id="@+id/step_3_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/tick"
+            android:src="@drawable/circle_outline"
+            app:tint="@color/grey_60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/step_1_image" />
+
+        <TextView
+            android:id="@+id/step_3_text"
+            style="@style/unselectedTitleBarStepText"
+            android:text="@string/_3"
+            app:layout_constraintBottom_toBottomOf="@+id/step_3_image"
+            app:layout_constraintEnd_toEndOf="@+id/step_3_image"
+            app:layout_constraintStart_toStartOf="@+id/step_3_image"
+            app:layout_constraintTop_toTopOf="@+id/step_3_image" />
+
+        <ImageView
+            android:id="@+id/background_completion_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/grey"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/completed_section_completion_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- VERSUS SECTION
+    <!-- BODY SECTION -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/versusBlock"
+        android:id="@+id/body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/topNavigationConstraint">
-
-        <TextView
-            android:id="@+id/user_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="USER"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/user_image"
-            app:layout_constraintStart_toStartOf="@+id/user_image"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/user_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="56dp"
-            android:src="@drawable/user_icon_blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_text" />
-
-        <TextView
-            android:id="@+id/opponent_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OPPONENT"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
-            app:layout_constraintStart_toStartOf="@+id/opponent_image"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/opponent_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/user_icon_purple"
-            android:layout_marginEnd="56dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/opponent_text" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    -->
-
-    <TextView
-        android:id="@+id/rackTitle"
-        style="@style/TitleTextStyling"
-        android:text="@string/rack_them_up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topNavigationConstraint" />
-
-    <!-- GAME TYPE PICKER -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/gameTypeContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rackTitle">
-
-        <TextView
-            android:id="@+id/englishGameTypeText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/english"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/cyan"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/english_bar"
-            android:layout_width="0dp"
-            android:layout_height="4dp"
-            android:background="@drawable/gradient_blue_purple"
-            android:contentDescription="@string/selected_bar"
-            app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/englishGameTypeText"
-            tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/middleGuideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
-
-        <TextView
-            android:id="@+id/americanGameTypeText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/american"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/middleGuideline"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="4dp"
-            android:background="@color/white"
-            android:contentDescription="@string/unselected_bar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/middleGuideline"
-            app:layout_constraintTop_toBottomOf="@+id/americanGameTypeText"
-            tools:ignore="RedundantDescriptionCheck" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--
-
-    https://m2.material.io/components/tabs/android#using-tabs
-
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rackTitle">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ENGLISH"
-            />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AMERICAN"
-            />
-
-    </com.google.android.material.tabs.TabLayout>
-    -->
-
-    <ImageView
-        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:padding="64dp"
-        android:src="@drawable/english_setup"
-        app:layout_constraintBottom_toTopOf="@+id/materialButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameTypeContainer"
-        android:contentDescription="@string/english_rack"/>
+        app:layout_constraintBottom_toTopOf="@+id/footer"
+        app:layout_constraintTop_toBottomOf="@+id/titlebar">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
-        style="@style/mainButton"
-        android:text="@string/next"
+        <!-- VS SECTION -->
+        <include
+            android:id="@+id/vs_section"
+            layout="@layout/vs_component"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- INFO SECTION -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/info_section_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vs_section">
+
+            <TextView
+                style="@style/p"
+                android:textAllCaps="false"
+                android:text="@string/game_type_description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- GAME TYPE PICKER -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info_section_constraint">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/english_button"
+                style="@style/selectedSwitchButton"
+                android:fontFamily="@font/jost_bold"
+                android:layout_marginStart="32dp"
+                android:text="@string/english"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/american_button"
+                style="@style/unselectedSwitchButton"
+                android:layout_marginEnd="32dp"
+                android:text="@string/american"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- BALL VARIANT PICKER -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ball_variant_CL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            android:visibility="invisible"
+            tools:visibility="visible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/eight_ball_btn"
+                style="@style/selectedSwitchButton"
+                android:layout_marginStart="32dp"
+                android:text="@string/eight_ball"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/nine_ball_btn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nine_ball_btn"
+                style="@style/unselectedSwitchButton"
+                android:layout_marginEnd="32dp"
+                android:text="@string/nine_ball"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/eight_ball_btn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageView
+            android:id="@+id/ivGameSetUp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:contentDescription="@string/english_rack"
+            android:padding="64dp"
+            android:src="@drawable/english_setup"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNextButton"
+            style="@style/mainButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

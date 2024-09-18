@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/parent_constraint"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:background="@drawable/dialog_border"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- TITLE -->
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/h2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/break_statistics"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:src="@drawable/divider_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <!-- MIDDLE BLOCK -->
+
+    <TextView
+        android:id="@+id/games_heading"
+        style="@style/h3"
+        android:text="@string/games_breaking"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/wins_heading"
+        style="@style/h4"
+        android:textColor="@color/grey"
+        android:text="@string/wins"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/games_heading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/losses_heading"
+        style="@style/h4"
+        android:textColor="@color/grey"
+        android:text="@string/losses"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/games_heading"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/games_breaking_total"
+        style="@style/h1"
+        tools:text="4"
+        android:textSize="40sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/games_heading"
+        app:layout_constraintStart_toStartOf="@+id/games_heading"
+        app:layout_constraintTop_toBottomOf="@+id/games_heading" />
+
+    <TextView
+        android:id="@+id/wins_breaking_total"
+        style="@style/lightFont"
+        android:textColor="@color/grey"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="1"
+        app:layout_constraintEnd_toEndOf="@+id/wins_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_breaking_total" />
+
+    <TextView
+        android:id="@+id/wins_breaking_percentage"
+        style="@style/lightFont"
+        tools:text="25%"
+        app:layout_constraintBottom_toBottomOf="@+id/games_breaking_total"
+        app:layout_constraintEnd_toEndOf="@+id/wins_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_heading"
+        app:layout_constraintTop_toBottomOf="@+id/wins_breaking_total" />
+
+    <TextView
+        android:id="@+id/losses_breaking_total"
+        style="@style/lightFont"
+        android:textColor="@color/grey"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3"
+        app:layout_constraintEnd_toEndOf="@+id/losses_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_breaking_total" />
+
+    <TextView
+        android:id="@+id/losses_breaking_percentage"
+        style="@style/lightFont"
+        tools:text="75%"
+        app:layout_constraintBottom_toBottomOf="@+id/games_breaking_total"
+        app:layout_constraintEnd_toEndOf="@+id/losses_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_heading"
+        app:layout_constraintTop_toBottomOf="@+id/losses_breaking_total" />
+
+    <ImageView
+        android:id="@+id/divider_2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:src="@drawable/divider_line"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/games_breaking_total" />
+
+    <!-- LOWER BLOCK -->
+
+    <TextView
+        android:id="@+id/games_nb_heading"
+        style="@style/h3"
+        android:text="@string/games_not_breaking"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_2" />
+
+    <TextView
+        android:id="@+id/wins_nb_heading"
+        style="@style/h4"
+        android:textColor="@color/grey"
+        android:text="@string/wins"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/games_heading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_2" />
+
+    <TextView
+        android:id="@+id/losses_nb_heading"
+        style="@style/h4"
+        android:textColor="@color/grey"
+        android:text="@string/losses"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/games_heading"
+        app:layout_constraintTop_toBottomOf="@+id/divider_2" />
+
+    <TextView
+        android:id="@+id/games_nb_total"
+        style="@style/h1"
+        tools:text="4"
+        android:textSize="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/games_nb_heading"
+        app:layout_constraintStart_toStartOf="@+id/games_nb_heading"
+        app:layout_constraintTop_toBottomOf="@+id/games_nb_heading" />
+
+    <TextView
+        android:id="@+id/wins_nb_total"
+        style="@style/lightFont"
+        android:textColor="@color/grey"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="1"
+        app:layout_constraintEnd_toEndOf="@+id/wins_nb_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_nb_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_nb_total" />
+
+    <TextView
+        android:id="@+id/wins_nb_percentage"
+        style="@style/lightFont"
+        tools:text="25%"
+        app:layout_constraintBottom_toBottomOf="@+id/games_nb_total"
+        app:layout_constraintEnd_toEndOf="@+id/wins_nb_heading"
+        app:layout_constraintStart_toStartOf="@+id/wins_nb_heading"
+        app:layout_constraintTop_toBottomOf="@+id/wins_nb_total" />
+
+    <TextView
+        android:id="@+id/losses_nb_total"
+        style="@style/lightFont"
+        android:textColor="@color/grey"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3"
+        app:layout_constraintEnd_toEndOf="@+id/losses_nb_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_nb_heading"
+        app:layout_constraintTop_toTopOf="@+id/games_nb_total" />
+
+    <TextView
+        android:id="@+id/losses_nb_percentage"
+        style="@style/lightFont"
+        tools:text="75%"
+        app:layout_constraintBottom_toBottomOf="@+id/games_nb_total"
+        app:layout_constraintEnd_toEndOf="@+id/losses_nb_heading"
+        app:layout_constraintStart_toStartOf="@+id/losses_nb_heading"
+        app:layout_constraintTop_toBottomOf="@+id/losses_nb_total" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

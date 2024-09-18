@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/dialog_border">
+
+    <!-- TITLE SECTION -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/h2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/who_won"
+            app:layout_constraintBottom_toBottomOf="@+id/info_button"
+            app:layout_constraintTop_toTopOf="@+id/info_button" />
+
+        <TextView
+            android:id="@+id/helperText"
+            style="@style/p"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/who_won_helper"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/info_button" />
+
+        <ImageView
+            android:id="@+id/info_button"
+            style="@style/iconSize"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/info_icon"
+            android:src="@drawable/info_icon_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/underline"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fade_underline"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/helperText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- WINNER SECTION -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/versusBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        <!-- USER SECTION -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/user_image"
+            style="@style/userIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:contentDescription="@string/user_icon_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/user_selected_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:contentDescription="@string/tick"
+            android:src="@drawable/green_tick_icon_solid_background"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/user_text"
+            style="@style/h4"
+            android:layout_width="0dp"
+            android:layout_marginTop="2dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="@+id/user_image"
+            app:layout_constraintStart_toStartOf="@+id/user_image"
+            app:layout_constraintTop_toBottomOf="@+id/user_image"
+            tools:text="Ryan" />
+
+        <!-- OPPONENT SECTION -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/opponent_image"
+            style="@style/opponentIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/opponent_selected_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:contentDescription="@string/tick"
+            android:src="@drawable/green_tick_icon_solid_background"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/opponent_text"
+            style="@style/h4"
+            android:layout_width="0dp"
+            android:layout_marginTop="2dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="@+id/opponent_image"
+            app:layout_constraintStart_toStartOf="@+id/opponent_image"
+            app:layout_constraintTop_toBottomOf="@+id/opponent_image"
+            tools:text="Aysha\nZain"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/h1"
+            android:text="@string/vs"
+            app:layout_constraintBottom_toBottomOf="@+id/user_image"
+            app:layout_constraintEnd_toStartOf="@+id/opponent_image"
+            app:layout_constraintStart_toEndOf="@+id/user_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- METHOD OF VICTORY SECTION -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/menu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:endIconTint="@color/cyan"
+        android:textColorHint="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/method_of_victory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/versusBlock">
+
+        <AutoCompleteTextView
+            android:id="@+id/actv"
+            android:backgroundTint="@color/transparant"
+            android:fontFamily="@font/jost_regular"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/cyan"
+        android:contentDescription="@string/image_description"
+        app:layout_constraintBottom_toBottomOf="@+id/menu"
+        app:layout_constraintEnd_toEndOf="@+id/menu"
+        app:layout_constraintStart_toStartOf="@+id/menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

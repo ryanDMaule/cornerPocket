@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_primary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navigation_icons_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/left_icon_IV"
+            style="@style/iconSize"
+            android:contentDescription="@string/back_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/back_icon_white"/>
+
+        <TextView
+            android:id="@+id/left_icon_TV"
+            style="@style/navButtonText"
+            app:layout_constraintEnd_toEndOf="@+id/left_icon_IV"
+            app:layout_constraintStart_toStartOf="@+id/left_icon_IV"
+            app:layout_constraintTop_toBottomOf="@+id/left_icon_IV"
+            tools:text="@string/back"/>
+
+        <ImageView
+            android:id="@+id/right_icon_IV"
+            style="@style/iconSize"
+            android:contentDescription="@string/back_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/quit_icon_red"/>
+
+        <TextView
+            android:id="@+id/right_icon_TV"
+            style="@style/navButtonText"
+            app:layout_constraintEnd_toEndOf="@+id/right_icon_IV"
+            app:layout_constraintStart_toStartOf="@+id/right_icon_IV"
+            app:layout_constraintTop_toBottomOf="@+id/left_icon_IV"
+            tools:text="@string/quit"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/nav_spacer"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section"
+        android:contentDescription="@string/image_description" />
+
+    <TextView
+        android:id="@+id/nav_title"
+        style="@style/h1"
+        android:layout_width="0dp"
+        android:text="@string/select_opponent"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_spacer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nav_spacer"
+        tools:text="nav title"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

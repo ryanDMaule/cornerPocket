@@ -3,163 +3,345 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_purple_blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_red_orange"
-    tools:context=".BreakSelectionFragment">
+    tools:context=".presentation.play.BreakSelectionFragment">
 
-    <!-- NAVIGATION SECTION-->
+    <!-- NAV SECTION -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topNavigationConstraint"
-        style="@style/navigationSection"
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/navigation_icons_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/back_button"
+                style="@style/iconSize"
+                android:contentDescription="@string/back_icon"
+                android:src="@drawable/back_icon_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/back_text"
+                style="@style/navButtonText"
+                android:text="@string/back"
+                app:layout_constraintEnd_toEndOf="@+id/back_button"
+                app:layout_constraintStart_toStartOf="@+id/back_button"
+                app:layout_constraintTop_toBottomOf="@+id/back_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ImageView
-            android:id="@+id/settings_button"
-            style="@style/iconSize"
+            android:id="@+id/step_1_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/back_icon_white"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="18dp"
+            android:src="@drawable/circle_outline"
+            android:contentDescription="@string/image_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/back_icon"/>
+            app:layout_constraintTop_toBottomOf="@+id/navigation_icons_section"
+            app:tint="@color/green" />
+
+        <ImageView
+            android:id="@+id/step_1_icon"
+            android:src="@drawable/tick_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintBottom_toBottomOf="@+id/step_1_image"
+            app:layout_constraintEnd_toEndOf="@+id/step_1_image"
+            app:layout_constraintStart_toStartOf="@+id/step_1_image"
+            app:layout_constraintTop_toTopOf="@+id/step_1_image" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/h4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/break_selection"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textAlignment="textStart"
+            app:layout_constraintBottom_toBottomOf="@+id/step_1_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/step_3_image"
+            app:layout_constraintTop_toTopOf="@+id/step_1_image" />
+
+        <ImageView
+            android:id="@+id/step_2_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/tick"
+            android:src="@drawable/circle_outline"
+            app:layout_constraintStart_toEndOf="@+id/step_1_image"
+            app:layout_constraintTop_toTopOf="@+id/step_1_image"
+            app:tint="@color/green" />
+
+        <ImageView
+            android:id="@+id/step_2_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/tick_icon"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintBottom_toBottomOf="@+id/step_2_image"
+            app:layout_constraintEnd_toEndOf="@+id/step_2_image"
+            app:layout_constraintStart_toStartOf="@+id/step_2_image"
+            app:layout_constraintTop_toTopOf="@+id/step_2_image" />
+
+        <ImageView
+            android:id="@+id/step_3_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/tick"
+            android:src="@drawable/circle_outline"
+            app:layout_constraintStart_toEndOf="@+id/step_2_image"
+            app:layout_constraintTop_toTopOf="@+id/step_1_image"
+            app:tint="@color/green" />
+
+        <TextView
+            android:id="@+id/step_3_text"
+            style="@style/selectedTitleBarStepText"
+            android:textColor="@color/green"
+            android:text="@string/_3"
+            app:layout_constraintBottom_toBottomOf="@+id/step_3_image"
+            app:layout_constraintEnd_toEndOf="@+id/step_3_image"
+            app:layout_constraintStart_toStartOf="@+id/step_3_image"
+            app:layout_constraintTop_toTopOf="@+id/step_3_image" />
+
+        <ImageView
+            android:id="@+id/background_completion_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/grey"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/completed_section_completion_bar"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/green"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/breaksTitle"
-        style="@style/TitleTextStyling"
-        android:text="@string/who_breaks"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topNavigationConstraint" />
-
-    <TextView
-        android:id="@+id/textView"
-        style="@style/smallCapsText"
-        android:layout_marginTop="24dp"
-        android:text="@string/tap_to_select"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breaksTitle" />
-
-    <!-- BREAK PICKER-->
+    <!-- BODY SECTION -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/playersContainer"
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/footer"
+        app:layout_constraintTop_toBottomOf="@+id/titlebar">
+
+        <!-- VS SECTION -->
+        <include
+            android:id="@+id/vs_section"
+            layout="@layout/vs_component"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- INFO SECTION -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/info_section_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vs_section">
+
+            <TextView
+                style="@style/p"
+                android:text="@string/break_description"
+                android:textAlignment="center"
+                android:paddingBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- BREAK PICKER-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/playersContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info_section_constraint">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/players_constraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    style="@style/h4"
+                    android:layout_width="0dp"
+                    android:gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_primary_60"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toStartOf="@+id/middleGuideline2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Ryan\nMaule" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/middleGuideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/tvOpponentName"
+                    style="@style/h4"
+                    android:layout_width="0dp"
+                    android:gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_primary_60"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/middleGuideline2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Kieron\nName" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/user_break_icon"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/break_icon"
+                android:src="@drawable/break_icon_cut"
+                android:visibility="invisible"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/user_icon"
+                style="@style/userIcon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/user_icon_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/user_break_icon"
+                app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/middleGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <ImageView
+                android:id="@+id/opponent_break_icon"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/break_icon"
+                android:src="@drawable/break_icon_cut"
+                android:visibility="invisible"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/middleGuideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/opponent_icon"
+                style="@style/opponentIcon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/opponent_break_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/middleGuideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/random_icon"
+            style="@style/floatingActionButton"
+            android:contentDescription="@string/image_description"
+            android:foreground="@drawable/random_icon"
+            app:layout_constraintBottom_toTopOf="@+id/random_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/random_text"
+            style="@style/navButtonText"
+            android:text="@string/random"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/random_icon"
+            app:layout_constraintStart_toStartOf="@+id/random_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- FOOTER SECTION -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <ImageView
-            android:id="@+id/user_break_icon"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/break_icon"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/break_icon"
-            tools:visibility="visible" />
-
-        <TextView
-            style="@style/smallCapsText"
-            android:textSize="16sp"
-            android:background="@color/dark_primary_60"
-            app:layout_constraintBottom_toTopOf="@+id/user_icon"
-            app:layout_constraintEnd_toEndOf="@+id/user_icon"
-            app:layout_constraintStart_toStartOf="@+id/user_icon"
-            tools:text="Ryan" />
-
-        <ImageView
-            android:id="@+id/user_icon"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:src="@drawable/user_icon_cyan_solid_background"
-            app:layout_constraintBottom_toBottomOf="@+id/user_break_icon"
-            app:layout_constraintEnd_toStartOf="@+id/middleGuideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/user_icon_blue"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/middleGuideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
-
-        <ImageView
-            android:id="@+id/opponent_break_icon"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/break_icon"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/middleGuideline"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/break_icon"/>
-
-        <TextView
-            style="@style/smallCapsText"
-            android:textSize="16sp"
-            android:background="@color/dark_primary_60"
-            app:layout_constraintBottom_toTopOf="@+id/opponent_icon"
-            app:layout_constraintEnd_toEndOf="@+id/opponent_icon"
-            app:layout_constraintStart_toStartOf="@+id/opponent_icon"
-            tools:text="Kieron" />
-
-        <ImageView
-            android:id="@+id/opponent_icon"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:contentDescription="@string/profile_icon_red"
-            android:src="@drawable/opponent_icon_red_solid_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/opponent_break_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/middleGuideline"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ImageContrastCheck" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/randomIcon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/random_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playersContainer"
-        android:contentDescription="@string/random_icon"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/GlowingText"
-        android:shadowRadius="2"
-        android:text="@string/random"
-        android:textColor="@color/cyan"
-        android:textSize="16sp"
-        android:textAllCaps="true"
-        android:letterSpacing="0.05"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/randomIcon" />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
-        style="@style/mainButton"
-        android:text="@string/start_game"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNextButton"
+            style="@style/mainButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/start_game"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

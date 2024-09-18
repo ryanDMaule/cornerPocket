@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("io.realm.kotlin")
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.cornerpocket"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -48,6 +49,24 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+
+    //Ad integration
+    implementation("com.google.android.gms:play-services-ads:23.2.0")
+
+    // Image cropping
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
+
+    //PDF viewer
+//    implementation("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
+    implementation("com.github.barteksc:android-pdf-viewer:2.8.2")
+//    implementation("com.github.bartekpdfium:android-pdfium:1.9.0")
+
+    implementation("io.realm.kotlin:library-base:1.11.0")
+
+    // In app reviews
+    implementation("com.google.android.play:review:2.0.1")
+    implementation("com.google.android.play:review-ktx:2.0.1")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

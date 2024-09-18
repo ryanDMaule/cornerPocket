@@ -1,20 +1,11 @@
 <resources>
-    <string name="app_name">CornerPocket</string>
-    
-    <!-- PAGES -->
-    <string name="title_play">PLAY</string>
-    <string name="title_stats">STATS</string>
-    <string name="title_history">HISTORY</string>
+    <string name="app_name">Corner Pocket</string>
 
     <!-- TITLES -->
     <string name="select_opponent">Select opponent</string>
-    <string name="rack_them_up">Rack em\' up</string>
-    <string name="who_breaks">Who \nbreaks?</string>
     <string name="game_review">Game \nreview</string>
-    <string name="game_time">Game time</string>
 
     <!-- GENERAL-->
-    <string name="tap_to_select">Tap to select*</string>
     <string name="english">English</string>
     <string name="american">American</string>
     <string name="random">Random</string>
@@ -23,21 +14,24 @@
     <string name="balls_played">Balls played</string>
     <string name="red">Red</string>
     <string name="yellow">Yellow</string>
-    <string name="balls_remaining">Balls remaining</string>
-    <string name="ellipses">…</string>
+    <string name="spot">Spots</string>
+    <string name="stripe">Stripes</string>
     <string name="game_duration">Game duration</string>
     <string name="vs">Vs</string>
     <string name="winner_via">Winner via:</string>
     <string name="record">Record</string>
     <string name="broke">Broke</string>
     <string name="main_menu">Main menu</string>
+    <string name="na">NA</string>
 
     <!-- BUTTONS -->
     <string name="start_game">Start game</string>
     <string name="finish_game">Finish game</string>
     <string name="next">Next</string>
+    <string name="back">Back</string>
 
     <!-- CONTENT DESCRIPTIONS -->
+    <string name="image_description">Image</string>
     <string name="settings_icon">Settings icon</string>
     <string name="profile_icon">Profile icon</string>
     <string name="profile_icon_red">Red profile icon</string>
@@ -65,5 +59,157 @@
     <string name="loss_img">Loss image</string>
     <string name="recent_game">Recent game result</string>
 
+    <string name="intro_description">Track your results and learn more about your game. Set up yor account now! no email addresses or subscription plans to worry about.</string>
+    <string name="welcome">Welcome to\nCorner Pocket</string>
+    <string name="make_account">make account</string>
+    <string name="profile">My Profile</string>
+    <string name="add_picture">Add picture</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="apply_changes">Apply changes</string>
+    <string name="play_game">Play game</string>
+    <string name="games_history">Games \nhistory</string>
+    <string name="game_statistics">Game \nstatistics</string>
+    <string name="game_statistics_flat">Game statistics</string>
+    <string name="edit_opponents">Edit\nopponents</string>
+    <string name="edit_opponent">Edit opponent</string>
+    <string name="edit">Edit</string>
+    <string name="rules">Rules</string>
+    <string name="donations">Donations</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="add_opponent_text">Tap an icon below to select an opponent or add a new opponent by pressing the plus icon in the bottom corner.</string>
+    <string name="win_record">Win record</string>
+    <string name="last_5_games">Last 5 games</string>
+    <string name="add_opponent">Add\nopponent</string>
+    <string name="add_opponent_flat">Add opponent</string>
+    <string name="game_type">Game type</string>
+    <string name="game_type_description">What type of pool is being played?</string>
+    <string name="eight_ball">8-Ball</string>
+    <string name="nine_ball">9-Ball</string>
+    <string name="break_selection">Break selection</string>
+    <string name="break_description">Who takes the first shot?</string>
+    <string name="quit">Quit</string>
+    <string name="game_underway">Game underway</string>
+    <string name="game_underway_content">Play your game and finish when you have a winner!</string>
+    <string name="game_review_title">Game review</string>
+    <string name="game_review_description">Enter some details about your game!</string>
+    <string name="submit">Submit</string>
+    <string name="delete">Delete</string>
+    <string name="filters">Filters</string>
+    <string name="statistics">Statistics</string>
+    <string name="opponent_list">Opponent list</string>
+    <string name="edit_opponent_text">Tap an icon below to edit an opponent or add a new opponent by pressing the plus icon in the bottom corner.</string>
+    <string name="leave_review">Leave review</string>
+    <string name="make_donation">Make donation</string>
+    <string name="game_history">Game history</string>
+    <string name="result">Result</string>
+    <string name="opponent">Opponent</string>
+    <string name="date">Date</string>
+    <string name="view">View</string>
+
+    <!-- VARIABLE STRINGS -->
+    <string name="var_listResults">%1$s result(s)</string>
+    <string name="var_opponentsCounter">%1$s opponent(s)</string>
+    <string name="var_gameType">Game type : %1$s %2$s</string>
+    <string name="var_gameDuration">Game duration : %1$s</string>
+    <string name="var_double">%1$s %2$s</string>
+    <string name="var_record">%1$s - %2$s</string>
+    <string name="var_average_duration">Average game duration : %1$s</string>
+    <string name="var_total_duration">Total game duration : %1$s</string>
+    <string name="var_percentage">%1$s%%</string>
+    <string name="var_games_with">Games with %1$s</string>
+    <string name="var_game_time">Game time, %1$s</string>
+    <string name="var_delete_opponent">Are you sure you would like to delete %1$s? They and all their games will be permanently deleted.</string>
+
+
+    <string name="return_to_menu">Return to menu?</string>
+    <string name="return_to_menu_content">Are you sure you would like to exit to menu? All progress will be lost.</string>
+    <string name="cancel">Cancel</string>
+    <string name="exit">Exit</string>
+    <string name="method_of_victory_content">The ways of winning pool simplify down to a legal victory or an opponent foul.
+        These can differ somewhat dependent on the game type you are playing or the rule set you abide by, but typically it will be something like: \n\n
+        Legal Victory: \n
+        &#8226; You legally pocket all your balls and the 8-ball before your opponent. \n\n
+        Foul: \n
+        &#8226; You pocket the 8-ball any time during the game before sinking all your balls.\n
+        &#8226; You jump the 8-ball off the table.\n
+        &#8226; You do not pocket the 8-ball into the pocket you called.</string>
+    <string name="close">Close</string>
+    <string name="delete_game">Delete game?</string>
+    <string name="delete_game_content">Are you sure you would like to delete this game? It will be permanently deleted.</string>
+    <string name="delete_opponent">Delete opponent?</string>
+    <string name="abandon_changes">Abandon changes?</string>
+    <string name="unsaved_changes_content">All your changes are currently unsaved, are you sure you want to close?</string>
+    <string name="unsaved_changes_content_exit">All your changes are currently unsaved, are you sure you want to exit?</string>
+    <string name="add_photo">Add photo</string>
+    <string name="add_profile_pic">Add profile picture</string>
+    <string name="use_photo_from">"Use photo from: "</string>
+    <string name="camera">Camera</string>
+    <string name="camera_roll">Camera roll</string>
+    <string name="wins">Wins</string>
+    <string name="games">Games</string>
+    <string name="break_statistics">Break statistics</string>
+    <string name="games_breaking">Games\nbreaking</string>
+    <string name="losses">losses</string>
+    <string name="games_not_breaking">Games <b>NOT</b>\nbreaking</string>
+    <string name="ball_statistics">Ball statistics</string>
+    <string name="clear_filters">Clear\nfilters</string>
+    <string name="both">Both</string>
+    <string name="discipline">Discipline</string>
+    <string name="results">Results</string>
+    <string name="games_breaking_flat">Games breaking</string>
+    <string name="me">Me</string>
+    <string name="order">Order</string>
+    <string name="date_newest_to_oldest">Date: Newest to oldest</string>
+    <string name="date_oldest_to_newest">Date: Oldest to newest</string>
+    <string name="apply">Apply</string>
+    <string name="name">Name</string>
+    <string name="create">Create</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="profile_created">Profile created</string>
+    <string name="game_deleted">Game deleted</string>
+    <string name="opponent_created">Opponent created</string>
+    <string name="game_created">Game created</string>
+    <string name="please_enter_a_name">Please enter a name</string>
+    <string name="opponent_updated">Opponent updated</string>
+    <string name="opponent_deleted">Opponent deleted</string>
+    <string name="user_updated">User updated</string>
+    <string name="create_account">Create account</string>
+    <string name="win">Win</string>
+    <string name="loss">Loss</string>
+    <string name="all">All</string>
+    <string name="select_a_player_to_break">Select a player to break</string>
+    <string name="standard_victory">Standard victory</string>
+    <string name="opponent_foul">Opponent foul</string>
+    <string name="please_fill_in_all_fields">PLEASE FILL IN ALL FIELDS</string>
+    <string name="please_select_the_winner_of_the_game">PLEASE SELECT THE WINNER OF THE GAME</string>
+    <string name="please_select_the_method_of_victory">PLEASE SELECT THE METHOD OF VICTORY</string>
+    <string name="please_select_which_balls_you_played_as">PLEASE SELECT WHICH BALLS YOU PLAYED AS</string>
+    <string name="cropping_failed">Cropping failed: %1$s</string>
+    <string name="donation_text">First of all thank you for downloading the app! I hope you get some use out of it.
+        \n\nVery brief backstory! Ive had this idea in the back of my mind since my 2nd year of uni in 2019 or so. I learned that going to the pub, playing pool and drinking made it much easier to tolerate people talking to me about computer science.
+        I used to play at least five games a day and I tracked my wins and losses against my mates but started to wonder about some more advanced stats, do I win more when I break? am I better with red balls or yellow balls? etc … and here we are!
+        \n\nIf you did want to support me, one great way would be leaving a review (preferably a good one) so I look good to any potential employers who see this.
+        \n\nIf you wanted to chuck a quid my way there is a link below which will take you to my ‘buy me a coffee’ page. Please in no way feel obligated!
+        \n\nThanks again and have a good game!</string>
+    <string name="donation_subheading">Hi, I\'m Ryan and I made this app</string>
+    <string name="review">Review</string>
+    <string name="donate">Donate</string>
+    <string name="no_details_updated">No details updated</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="populating_games_list">Populating games list</string>
+    <string name="generating_stats">Generating stats</string>
+    <string name="balls_played_helper">Tap the balls you were attempting to pocket</string>
+    <string name="who_won_helper">Tap the winner and select how they won from the dropdown box</string>
+    <string name="game_details">Game details</string>
+    <string name="creation_cancelled">Creation cancelled</string>
+    <string name="edit_cancelled">Edit cancelled</string>
+    <string name="permission_required">Permission required</string>
+    <string name="permission_required_details">If you wish to add a photo you need to grant this permission. You can enable this permission in the settings.</string>
+    <string name="settings">Settings</string>
 
 </resources>

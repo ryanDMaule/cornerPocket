@@ -2,12 +2,16 @@
 <resources>
     <color name="dark_primary">#130F1B</color>
     <color name="dark_primary_60">#99130F1B</color>
+    <color name="dark_primary_40">#66130F1B</color>
     <color name="dark_alternate">#1E1B26</color>
     <color name="grey">#B8B7BA</color>
+    <color name="grey_60">#99B8B7BA</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_80">#CCFFFFFF</color>
+    <color name="transparant">#00FFFFFF</color>
 
     <color name="cyan">#28E7C4</color>
+    <color name="dark_cyan">#41A4C0</color>
     <color name="purple">#711DB1</color>
     <color name="orange">#E78B28</color>
     <color name="red">#C70102</color>
