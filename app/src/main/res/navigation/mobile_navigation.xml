@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/statsFragment"
-        android:name="com.example.cornerpocket.presentation.stats.StatsFragment"
+        android:name="com.mauleCo.cornerpocket.presentation.stats.StatsFragment"
         android:label="fragment_stats"
         tools:layout="@layout/fragment_stats" />
     <fragment
         android:id="@+id/playFragment"
-        android:name="com.example.cornerpocket.presentation.HomeFragment"
+        android:name="com.mauleCo.cornerpocket.presentation.HomeFragment"
         android:label="fragment_play"
         tools:layout="@layout/fragment_home" >
         <action
@@ -38,7 +38,7 @@
         app:startDestination="@id/opponentSelectFragment">
         <fragment
             android:id="@+id/gameTypeFragment"
-            android:name="com.example.cornerpocket.presentation.play.GameTypeFragment"
+            android:name="com.mauleCo.cornerpocket.presentation.play.GameTypeFragment"
             android:label="fragment_game_type"
             tools:layout="@layout/fragment_game_type">
             <action
@@ -47,7 +47,7 @@
         </fragment>
         <fragment
             android:id="@+id/gameReviewFragment"
-            android:name="com.example.cornerpocket.presentation.play.GameReviewFragment"
+            android:name="com.mauleCo.cornerpocket.presentation.play.GameReviewFragment"
             android:label="fragment_game_review"
             tools:layout="@layout/fragment_game_review">
             <action
@@ -59,7 +59,7 @@
         </fragment>
         <fragment
             android:id="@+id/gameUnderwayFragment"
-            android:name="com.example.cornerpocket.presentation.play.GameUnderwayFragment"
+            android:name="com.mauleCo.cornerpocket.presentation.play.GameUnderwayFragment"
             android:label="fragment_game_underway"
             tools:layout="@layout/fragment_game_underway">
             <action
@@ -71,7 +71,7 @@
         </fragment>
         <fragment
             android:id="@+id/opponentSelectFragment"
-            android:name="com.example.cornerpocket.presentation.play.OpponentSelectFragment"
+            android:name="com.mauleCo.cornerpocket.presentation.play.OpponentSelectFragment"
             android:label="fragment_opponent_select"
             tools:layout="@layout/fragment_opponent_select">
             <action
@@ -83,7 +83,7 @@
         </fragment>
         <fragment
             android:id="@+id/breakSelectionFragment"
-            android:name="com.example.cornerpocket.presentation.play.BreakSelectionFragment"
+            android:name="com.mauleCo.cornerpocket.presentation.play.BreakSelectionFragment"
             android:label="fragment_break_selection"
             tools:layout="@layout/fragment_break_selection">
             <action
@@ -92,7 +92,7 @@
         </fragment>
         <fragment
             android:id="@+id/gameDetailsFragment"
-            android:name="com.example.cornerpocket.presentation.play.GameDetailsFragment"
+            android:name="com.mauleCo.cornerpocket.presentation.play.GameDetailsFragment"
             android:label="fragment_game_details"
             tools:layout="@layout/fragment_game_details">
             <action
@@ -102,14 +102,14 @@
     </navigation>
     <fragment
         android:id="@+id/user_details"
-        android:name="com.example.cornerpocket.presentation.settings.UserDetailsFragment"
+        android:name="com.mauleCo.cornerpocket.presentation.settings.UserDetailsFragment"
         android:label="fragment_user_details"
         tools:layout="@layout/fragment_user_details" />
     <navigation android:id="@+id/historyGraph"
         app:startDestination="@id/historyFragment">
         <fragment
             android:id="@+id/historyGameDetailsFragment"
-            android:name="com.example.cornerpocket.presentation.history.HistoryGameDetailsFragment"
+            android:name="com.mauleCo.cornerpocket.presentation.history.HistoryGameDetailsFragment"
             android:label="fragment_history_game_details"
             tools:layout="@layout/fragment_game_details">
             <action
@@ -118,7 +118,7 @@
         </fragment>
         <fragment
             android:id="@+id/historyFragment"
-            android:name="com.example.cornerpocket.presentation.history.HistoryFragment"
+            android:name="com.mauleCo.cornerpocket.presentation.history.HistoryFragment"
             android:label="fragment_history"
             tools:layout="@layout/fragment_history">
             <action
@@ -131,17 +131,17 @@
     </navigation>
     <fragment
         android:id="@+id/opponentDetailsFragment"
-        android:name="com.example.cornerpocket.presentation.settings.OpponentDetailsFragment"
+        android:name="com.mauleCo.cornerpocket.presentation.settings.OpponentDetailsFragment"
         android:label="fragment_opponent_details"
         tools:layout="@layout/fragment_opponent_details" />
     <fragment
         android:id="@+id/donationsFragment"
-        android:name="com.example.cornerpocket.presentation.settings.DonationsFragment"
+        android:name="com.mauleCo.cornerpocket.presentation.settings.DonationsFragment"
         android:label="fragment_donations"
         tools:layout="@layout/fragment_donations" />
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.example.cornerpocket.presentation.registration.IntroFragment"
+        android:name="com.mauleCo.cornerpocket.presentation.registration.IntroFragment"
         android:label="fragment_intro"
         tools:layout="@layout/fragment_intro" >
         <action
@@ -153,7 +153,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.cornerpocket.presentation.registration.RegistrationFragment"
+        android:name="com.mauleCo.cornerpocket.presentation.registration.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_user_details" >
         <action

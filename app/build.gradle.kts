@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cornerpocket"
+    namespace = "com.mauleCo.cornerpocket"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cornerpocket"
+        applicationId = "com.mauleCo.cornerpocket"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
