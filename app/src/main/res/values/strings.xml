@@ -127,14 +127,17 @@
     <string name="return_to_menu_content">Are you sure you would like to exit to menu? All progress will be lost.</string>
     <string name="cancel">Cancel</string>
     <string name="exit">Exit</string>
-    <string name="method_of_victory_content">The ways of winning pool simplify down to a legal victory or an opponent foul.
-        These can differ somewhat dependent on the game type you are playing or the rule set you abide by, but typically it will be something like: \n\n
+    <string name="method_of_victory_content">
+        The ways to achieve victory in a game of pool can generally be categorized into two scenarios: a legal victory or a win resulting from an opponents foul. While the specifics may vary depending on the game type or the ruleset being followed, the principles typically align as follows: \n\n
+
         Legal Victory: \n
-        &#8226; You legally pocket all your balls and the 8-ball before your opponent. \n\n
-        Foul: \n
-        &#8226; You pocket the 8-ball any time during the game before sinking all your balls.\n
-        &#8226; You jump the 8-ball off the table.\n
-        &#8226; You do not pocket the 8-ball into the pocket you called.</string>
+        &#8226; You successfully pocket all your designated balls, followed by the 8-ball, without committing any fouls, and in accordance with the rules of the game. \n\n
+
+        Opponent Foul: \n
+        &#8226; Your opponent pockets the 8-ball prematurely, before clearing all their designated balls. \n
+        &#8226; Your opponent causes the 8-ball to jump off the table during play. \n
+        &#8226; Your opponent fails to pocket the 8-ball into their declared (called) pocket during their winning shot.
+    </string>
     <string name="close">Close</string>
     <string name="delete_game">Delete game?</string>
     <string name="delete_game_content">Are you sure you would like to delete this game? It will be permanently deleted.</string>
@@ -190,12 +193,15 @@
     <string name="please_select_the_method_of_victory">PLEASE SELECT THE METHOD OF VICTORY</string>
     <string name="please_select_which_balls_you_played_as">PLEASE SELECT WHICH BALLS YOU PLAYED AS</string>
     <string name="cropping_failed">Cropping failed: %1$s</string>
-    <string name="donation_text">First of all thank you for downloading the app! I hope you get some use out of it.
-        \n\nVery brief backstory! Ive had this idea in the back of my mind since my 2nd year of uni in 2019 or so. I learned that going to the pub, playing pool and drinking made it much easier to tolerate people talking to me about computer science.
-        I used to play at least five games a day and I tracked my wins and losses against my mates but started to wonder about some more advanced stats, do I win more when I break? am I better with red balls or yellow balls? etc … and here we are!
-        \n\nIf you did want to support me, one great way would be leaving a review (preferably a good one) so I look good to any potential employers who see this.
-        \n\nIf you wanted to chuck a quid my way there is a link below which will take you to my ‘buy me a coffee’ page. Please in no way feel obligated!
-        \n\nThanks again and have a good game!</string>
+    <string name="donation_text">
+        Thank you for downloading the app! I hope it proves useful to you.\n\n
+        A Brief Backstory\n
+        Ive had this idea in the back of my mind since my 2nd year of uni in 2019 or so. I learned that going to the pub, playing pool and drinking made it much easier to tolerate people talking to me about computer science.\n\n
+        I used to play at least five games a day and I tracked my wins and losses against my mates but started to wonder about some more advanced stats, do I win more when I break? am I better with red balls or yellow balls? etc … and here we are!\n\n
+        Support the App\n
+        If you’d like to support me, leaving a review (preferably a good one!) would be amazing. It helps me look good to potential employers who might come across this project.\n\n
+        If you’d like to go the extra mile, there’s a link below to my Buy Me a Coffee page where you can send a small contribution. Of course, there’s no obligation—your support by just using the app is more than enough!\n\n
+        Thanks again, and have a great game!</string>
     <string name="donation_subheading">Hi, I\'m Ryan and I made this app</string>
     <string name="review">Review</string>
     <string name="donate">Donate</string>
@@ -203,13 +209,14 @@
     <string name="please_wait">Please wait…</string>
     <string name="populating_games_list">Populating games list</string>
     <string name="generating_stats">Generating stats</string>
-    <string name="balls_played_helper">Tap the balls you were attempting to pocket</string>
-    <string name="who_won_helper">Tap the winner and select how they won from the dropdown box</string>
+    <string name="balls_played_helper">Tap the balls you aimed to pocket</string>
+    <string name="who_won_helper">Tap the winner and select how they won via the dropdown box</string>
     <string name="game_details">Game details</string>
     <string name="creation_cancelled">Creation cancelled</string>
     <string name="edit_cancelled">Edit cancelled</string>
     <string name="permission_required">Permission required</string>
     <string name="permission_required_details">If you wish to add a photo you need to grant this permission. You can enable this permission in the settings.</string>
     <string name="settings">Settings</string>
+    <string name="lock_warning">Feel free to lock your phone during your game</string>
 
 </resources>
