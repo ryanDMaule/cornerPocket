@@ -370,8 +370,15 @@ class OpponentSelectFragment : Fragment()  {
                 "com.mauleCo.cornerpocket.fileprovider",
                 it
             )
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-            startActivityForResult(intent, ImageUtils.CAMERA_PIC_REQUEST)
+            if (intent.resolveActivity(requireContext().packageManager) != null) {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                startActivityForResult(intent, ImageUtils.CAMERA_PIC_REQUEST)
+            } else {
+                // Handle the case where no camera app is available.
+                // Log the issue, display a message to the user, etc.
+                Toast.makeText(requireActivity(), getString(R.string.please_fill_in_all_fields),Toast.LENGTH_SHORT).show()
+                Log.e("RegistrationFragment", "No camera app found")
+            }
         }
     }
     @Throws(IOException::class)

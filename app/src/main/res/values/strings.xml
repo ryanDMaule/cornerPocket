@@ -218,5 +218,5 @@
     <string name="permission_required_details">If you wish to add a photo you need to grant this permission. You can enable this permission in the settings.</string>
     <string name="settings">Settings</string>
     <string name="lock_warning">Feel free to lock your phone during your game</string>
-
+    <string name="camera_issue">An error occurred opening the camera</string>
 </resources>
