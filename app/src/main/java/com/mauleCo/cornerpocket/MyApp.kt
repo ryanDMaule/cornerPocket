@@ -19,15 +19,19 @@ class MyApp: Application() {
 
         Log.i("MA", "OPEN REALM")
 
-        realm = Realm.open(
-            configuration = RealmConfiguration.create(
-                schema = setOf(
-                    Game::class,
-                    Opponent::class,
-                    User::class
-                )
+        val config = RealmConfiguration.Builder(
+            schema = setOf(
+                Game::class,
+                Opponent::class,
+                User::class
             )
         )
+        .schemaVersion(2) // Increment version for the new schema
+        .build()
+
+        // Open the Realm
+        realm = Realm.open(config)
+
     }
 
 }
