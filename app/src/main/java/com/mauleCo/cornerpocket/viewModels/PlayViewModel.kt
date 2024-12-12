@@ -164,6 +164,7 @@ class PlayViewModel: ViewModel() {
             pUserBroke = pUserBroke == true,
             pUserBallsPlayed = pUserBallsPlayed,
             pMethodOfVictory = pMethodOfVictory,
+            pNote = pNote
         )
     }
 
@@ -251,6 +252,17 @@ class PlayViewModel: ViewModel() {
     fun setUserBallsPlayed(v : String) {
         Log.e("MVM", "SET - USER BALLS PLAYED : $v")
         pUserBallsPlayed = v
+    }
+
+    private var pNote: String? = null
+    fun setNote(v : String) {
+        Log.e("MVM", "SET - NOTE : $v")
+        pNote = v
+    }
+
+    fun getNote() : String? {
+        Log.e("MVM", "GET - NOTE : $pNote")
+        return pNote
     }
 
     fun printPendingGameValues(){

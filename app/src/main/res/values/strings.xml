@@ -219,4 +219,6 @@
     <string name="settings">Settings</string>
     <string name="lock_warning">Feel free to lock your phone during your game</string>
     <string name="camera_issue">An error occurred opening the camera</string>
+    <string name="add_note">Add note</string>
+    <string name="game_note">Game note</string>
 </resources>

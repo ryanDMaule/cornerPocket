@@ -19,6 +19,7 @@ class Game: RealmObject {
     var userBroke: Boolean = true
     var userBallsPlayed: String? = null
     var methodOfVictory: String = ""
+    var note: String? = null
 }
 
 const val EIGHT_BALl = "8-BALL"

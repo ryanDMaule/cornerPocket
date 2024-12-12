@@ -194,6 +194,13 @@ class HistoryGameDetailsFragment : Fragment() {
                 binding.opponentBallsPlayed.visibility = View.GONE
                 binding.opponentBallsPlayedText.visibility = View.GONE
             }
+
+            //GAME NOTE
+            if (passedGame!!.note != null) {
+                binding.noteSection.visibility = View.VISIBLE
+                binding.gameNote.text = passedGame!!.note
+            }
+
         }
 
     }

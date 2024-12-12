@@ -149,6 +149,7 @@ class GameRepository(passedRealm : Realm) {
         pUserBroke : Boolean,
         pUserBallsPlayed : String,
         pMethodOfVictory : String,
+        pNote : String?
     ) : Game {
         return Game().apply {
             opponentId = selectedOpponent._id
@@ -159,6 +160,7 @@ class GameRepository(passedRealm : Realm) {
             userBroke = pUserBroke == true
             userBallsPlayed = pUserBallsPlayed
             methodOfVictory = pMethodOfVictory
+            note = pNote
         }
     }
 

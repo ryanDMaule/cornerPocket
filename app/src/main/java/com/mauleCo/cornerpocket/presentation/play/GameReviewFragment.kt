@@ -84,6 +84,10 @@ class GameReviewFragment : Fragment() {
         //endregion
 
         binding.finishGame.setOnClickListener {
+            if (!binding.noteSection.noteInputText.text.isNullOrBlank()){
+                viewModel.setNote(binding.noteSection.noteInputText.text.toString())
+            }
+
             if (viewModel.getSubType() == EIGHT_BALl){
                 if (viewModel.getMethodOfVictory().isBlank() && viewModel.getUserBallsPlayed().isBlank() && viewModel.getUserWon() == null){
                     Toast.makeText(requireActivity(), getString(R.string.please_fill_in_all_fields),Toast.LENGTH_SHORT).show()
@@ -118,6 +122,13 @@ class GameReviewFragment : Fragment() {
                 }
             }
 
+        }
+
+        var noteClicked = false
+        binding.noteSection.noteComponent.setOnClickListener {
+            if (!noteClicked){
+                binding.noteSection.noteTextField.visibility = View.VISIBLE
+            }
         }
 
         binding.quitButton.setOnClickListener {

@@ -183,6 +183,12 @@ class GameDetailsFragment : Fragment() {
                 binding.opponentBallsPlayedText.visibility = View.GONE
             }
 
+            //GAME NOTE
+            if (game.note != null) {
+                binding.noteSection.visibility = View.VISIBLE
+                binding.gameNote.text = game.note
+            }
+
         }
 
     }
