@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/note_component"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/dialog_border">
+
+    <!-- TITLE SECTION -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addNote"
+        android:paddingTop="16dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/note_icon"
+            style="@style/iconSize"
+            android:contentDescription="@string/info_icon"
+            android:src="@drawable/note_icon_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/noteText"
+            style="@style/h2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/add_note"
+            app:layout_constraintBottom_toBottomOf="@+id/note_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/note_icon" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/noteTextField"
+            style="@style/TextInputLayout"
+            android:layout_marginTop="16dp"
+            android:hint="Add some details about your game!"
+            tools:visibility="visible"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/note_icon">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/noteInputText"
+                style="@style/TextInputEditText"
+                android:inputType="textMultiLine"
+                android:maxLength="1000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

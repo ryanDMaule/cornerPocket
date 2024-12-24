@@ -132,6 +132,17 @@
                     android:layout_marginEnd="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/winner_section" />
 
+                <!-- BALLS PLAYED SECTION-->
+                <include
+                    android:id="@+id/note_section"
+                    layout="@layout/note_component"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/balls_played_section" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>

@@ -268,7 +268,7 @@
                     style="@style/menuItems"
                     android:maxLines="2"
                     android:layout_marginStart="8dp"
-                    android:text="@string/donations"
+                    android:text="@string/more"
                     android:textAlignment="textStart"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -281,7 +281,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:contentDescription="@string/image_description"
-                    android:src="@drawable/home_donations"
+                    android:src="@drawable/more_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
