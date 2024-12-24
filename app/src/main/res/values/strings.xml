@@ -221,4 +221,5 @@
     <string name="camera_issue">An error occurred opening the camera</string>
     <string name="add_note">Add note</string>
     <string name="game_note">Game note</string>
+    <string name="game_duration_2">Game duration:</string>
 </resources>

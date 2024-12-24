@@ -141,6 +141,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+        <TextView
+            android:id="@+id/timerHeading"
+            style="@style/p"
+            android:textAllCaps="true"
+            android:text="@string/game_duration_2"
+            app:layout_constraintBottom_toTopOf="@+id/timer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <Chronometer
             android:id="@+id/timer"
             style="@style/h1"
