@@ -31,8 +31,8 @@
             android:id="@+id/action_playFragment_to_opponentDetailsFragment"
             app:destination="@id/opponentDetailsFragment" />
         <action
-            android:id="@+id/action_playFragment_to_donationsFragment"
-            app:destination="@id/donationsFragment" />
+            android:id="@+id/action_playFragment_to_moreFragment2"
+            app:destination="@id/moreFragment" />
     </fragment>
     <navigation android:id="@+id/gameGraph"
         app:startDestination="@id/opponentSelectFragment">
@@ -159,5 +159,14 @@
         <action
             android:id="@+id/action_registrationFragment_to_playFragment"
             app:destination="@id/playFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.mauleCo.cornerpocket.presentation.settings.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_donationsFragment"
+            app:destination="@id/donationsFragment" />
     </fragment>
 </navigation>

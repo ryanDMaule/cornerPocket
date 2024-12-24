@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.donationsCL.setOnClickListener {
-            findNavController().navigate(R.id.action_playFragment_to_donationsFragment)
+            findNavController().navigate(R.id.action_playFragment_to_moreFragment2)
         }
 
     }
